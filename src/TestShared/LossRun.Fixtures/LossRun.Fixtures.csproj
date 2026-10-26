@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Generates the synthetic fixtures checked in under src/TestShared/fixtures (no real carrier data or branding).
+       See src/TestShared/fixtures/README.md for the command. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <!-- PDFtoImage declares its supported OSes (Windows/Linux/macOS...); this tool only runs on dev machines. -->
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- PDFsharp pinned: 6.2.x is MIT; 6.5.0 is AGPL-3.0-only. Pkcs pinned over PDFsharp's vulnerable 8.0.1. -->
+    <PackageReference Include="PDFsharp" Version="6.2.4" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
+    <PackageReference Include="PDFtoImage" Version="5.4.0" />
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\LossRun.Contracts\LossRun.Contracts.csproj" />
+    <Compile Include="..\SyntheticLossRuns.cs" Link="Shared\SyntheticLossRuns.cs" />
+  </ItemGroup>
+
+</Project>

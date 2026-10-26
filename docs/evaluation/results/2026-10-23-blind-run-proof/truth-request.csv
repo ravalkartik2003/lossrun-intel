@@ -1,0 +1,15 @@
+carrier,policy_number,period_start,period_end,documents,note
+Fictional Casualty Group,FCG-WC-2101,2021-01-01,2022-01-01,1,
+Fictional Casualty Group,FCG-WC-2301,2023-01-01,2024-01-01,1,
+Notional Workers Comp Exchange,NWX-2021-01,2021-10-01,2022-10-01,1,
+Notional Workers Comp Exchange,NWX-2022-01,2022-10-01,2023-10-01,2,
+Notional Workers Comp Exchange,NWX-2023-01,2023-10-01,2024-10-01,1,
+Notional Workers Comp Exchange,NWX-2024-01,2024-10-01,2025-10-01,2,
+Placeholder Assurance Co.,PAC-WC-20221,2022-03-15,2023-03-15,1,
+Placeholder Assurance Co.,PAC-WC-20231,2023-03-15,2024-03-15,1,
+Placeholder Assurance Co.,PAC-WC-20241,2024-03-15,2025-03-15,1,
+Synthetic Mutual Insurance Co.,SYN-WC-2201,2022-07-01,2023-07-01,2,
+Synthetic Mutual Insurance Co.,SYN-WC-2301,2023-07-01,2024-07-01,2,
+Synthetic Mutual Insurance Co.,SYN-WC-2401,2024-07-01,2025-07-01,1,
+Fictional Casualty Group,,,,1,"1 file(s) of this carrier print no policy readable before OCR (scans, images, protected files): request every policy of this carrier for the accounts in the pool"
+Synthetic Mutual Insurance Co.,,,,3,"3 file(s) of this carrier print no policy readable before OCR (scans, images, protected files): request every policy of this carrier for the accounts in the pool"

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Rules</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+  </ItemGroup>
+
+  <!-- Source of truth: docs/evaluation/rule-catalog.json (embedded, never copied). -->
+  <ItemGroup>
+    <EmbeddedResource Include="$(EvaluationDataDir)rule-catalog.json" LogicalName="LossRun.Data.rule-catalog.json" Link="Data\rule-catalog.json" />
+  </ItemGroup>
+
+</Project>

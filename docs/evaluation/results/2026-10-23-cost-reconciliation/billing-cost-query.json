@@ -1,0 +1,520 @@
+{
+  "eTag": null,
+  "id": "subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/<resource-group>/providers/Microsoft.CostManagement/query/00000000-0000-0000-0000-000000000000",
+  "location": null,
+  "name": "00000000-0000-0000-0000-000000000000",
+  "properties": {
+    "columns": [
+      {
+        "name": "Cost",
+        "type": "Number"
+      },
+      {
+        "name": "UsageQuantity",
+        "type": "Number"
+      },
+      {
+        "name": "UsageDate",
+        "type": "Number"
+      },
+      {
+        "name": "ServiceName",
+        "type": "String"
+      },
+      {
+        "name": "Meter",
+        "type": "String"
+      },
+      {
+        "name": "MeterSubcategory",
+        "type": "String"
+      },
+      {
+        "name": "Currency",
+        "type": "String"
+      }
+    ],
+    "nextLink": null,
+    "rows": [
+      [
+        6e-06,
+        0.0002,
+        20261021,
+        "Key Vault",
+        "Operations",
+        "Key Vault",
+        "USD"
+      ],
+      [
+        0.0,
+        0.032256,
+        20261022,
+        "Azure App Service",
+        "F1 App",
+        "Azure App Service Free Plan - Linux",
+        "USD"
+      ],
+      [
+        0.0,
+        0.000534,
+        20261022,
+        "Bandwidth",
+        "Intra Continent Data Transfer In",
+        "Bandwidth Inter-Region",
+        "USD"
+      ],
+      [
+        1.92e-06,
+        9.6e-05,
+        20261022,
+        "Bandwidth",
+        "Intra Continent Data Transfer Out",
+        "Bandwidth Inter-Region",
+        "USD"
+      ],
+      [
+        0.0,
+        0.002525,
+        20261022,
+        "Bandwidth",
+        "Standard Data Transfer In",
+        "Rtn Preference: MGN",
+        "USD"
+      ],
+      [
+        0.0,
+        0.011667,
+        20261022,
+        "Bandwidth",
+        "Standard Data Transfer Out - Free",
+        "Rtn Preference: MGN",
+        "USD"
+      ],
+      [
+        6.459,
+        2153.0,
+        20261022,
+        "Durable Task Scheduler",
+        "Consumption Action",
+        "Durable Task Scheduler",
+        "USD"
+      ],
+      [
+        6.225602625,
+        7.546185,
+        20261022,
+        "Foundry Models",
+        "5.4 mini Inp Dz 1M Tokens",
+        "Azure OpenAI GPT5",
+        "USD"
+      ],
+      [
+        10.9971675,
+        2.22165,
+        20261022,
+        "Foundry Models",
+        "5.4 mini Opt Dz 1M Tokens",
+        "Azure OpenAI GPT5",
+        "USD"
+      ],
+      [
+        1.42624416,
+        17.287808,
+        20261022,
+        "Foundry Models",
+        "5.4 mini cd Inp Dz 1M Tokens",
+        "Azure OpenAI GPT5",
+        "USD"
+      ],
+      [
+        0.078035529,
+        545.703,
+        20261022,
+        "Foundry Models",
+        "text embedding 3 large DZ Tokens",
+        "Azure OpenAI Embedding",
+        "USD"
+      ],
+      [
+        0.33,
+        0.044,
+        20261022,
+        "Foundry Tools",
+        "Doc Co Extr Sync Standard Pages",
+        "Azure Content Understanding",
+        "USD"
+      ],
+      [
+        14.565,
+        2.913,
+        20261022,
+        "Foundry Tools",
+        "Doc Content Extraction Standard Pages",
+        "Azure Content Understanding",
+        "USD"
+      ],
+      [
+        0.0,
+        0.051,
+        20261022,
+        "Foundry Tools",
+        "S0 Transactions - Free",
+        "Azure Document Intelligence",
+        "USD"
+      ],
+      [
+        2.301,
+        2301.0,
+        20261022,
+        "Foundry Tools",
+        "Std Contextualization Tokens",
+        "Azure Content Understanding",
+        "USD"
+      ],
+      [
+        0.0,
+        6502.6,
+        20261022,
+        "Functions",
+        "On Demand Execution Time",
+        "Flex Consumption",
+        "USD"
+      ],
+      [
+        0.0,
+        1486.0,
+        20261022,
+        "Functions",
+        "On Demand Total Executions",
+        "Flex Consumption",
+        "USD"
+      ],
+      [
+        0.000423,
+        0.0141,
+        20261022,
+        "Key Vault",
+        "Operations",
+        "Key Vault",
+        "USD"
+      ],
+      [
+        0.0,
+        0.248322658,
+        20261022,
+        "Log Analytics",
+        "Analytics Logs Data Ingestion",
+        "Log Analytics",
+        "USD"
+      ],
+      [
+        0.0,
+        2.65607801649306,
+        20261022,
+        "SQL Database",
+        "1 vCore - Free",
+        "SQL Database General Purpose - Serverless - Compute Gen5",
+        "USD"
+      ],
+      [
+        0.0,
+        1.03225806451613,
+        20261022,
+        "SQL Database",
+        "General Purpose Data Stored - Free",
+        "SQL Database Single/Elastic Pool General Purpose - Storage",
+        "USD"
+      ],
+      [
+        0.0023288,
+        0.5822,
+        20261022,
+        "Storage",
+        "All Other Operations",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        8e-06,
+        0.002,
+        20261022,
+        "Storage",
+        "Class 2 Operations",
+        "Queues v2",
+        "USD"
+      ],
+      [
+        0.0,
+        0.005035,
+        20261022,
+        "Storage",
+        "Hot LRS Data Stored - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        0.0,
+        0.1865,
+        20261022,
+        "Storage",
+        "Hot LRS Write Operations - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        0.0,
+        0.3916,
+        20261022,
+        "Storage",
+        "Hot Read Operations - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        0.0,
+        0.0982,
+        20261022,
+        "Storage",
+        "LRS List and Create Container Operations - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        3.6e-08,
+        0.0001,
+        20261022,
+        "Storage",
+        "Read Operations",
+        "Tables",
+        "USD"
+      ],
+      [
+        0.0,
+        0.002,
+        20261022,
+        "Storage",
+        "Read Operations - Free",
+        "Files",
+        "USD"
+      ],
+      [
+        0.0,
+        0.009408,
+        20261023,
+        "Azure App Service",
+        "F1 App",
+        "Azure App Service Free Plan - Linux",
+        "USD"
+      ],
+      [
+        0.0,
+        0.000115,
+        20261023,
+        "Bandwidth",
+        "Intra Continent Data Transfer In",
+        "Bandwidth Inter-Region",
+        "USD"
+      ],
+      [
+        4.4e-07,
+        2.2e-05,
+        20261023,
+        "Bandwidth",
+        "Intra Continent Data Transfer Out",
+        "Bandwidth Inter-Region",
+        "USD"
+      ],
+      [
+        0.0,
+        1.5e-05,
+        20261023,
+        "Bandwidth",
+        "Standard Data Transfer In",
+        "Rtn Preference: MGN",
+        "USD"
+      ],
+      [
+        0.0,
+        4e-06,
+        20261023,
+        "Bandwidth",
+        "Standard Data Transfer Out - Free",
+        "Rtn Preference: MGN",
+        "USD"
+      ],
+      [
+        0.12,
+        40.0,
+        20261023,
+        "Durable Task Scheduler",
+        "Consumption Action",
+        "Durable Task Scheduler",
+        "USD"
+      ],
+      [
+        0.00121935,
+        0.001478,
+        20261023,
+        "Foundry Models",
+        "5.4 mini Inp Dz 1M Tokens",
+        "Azure OpenAI GPT5",
+        "USD"
+      ],
+      [
+        0.0002772,
+        5.6e-05,
+        20261023,
+        "Foundry Models",
+        "5.4 mini Opt Dz 1M Tokens",
+        "Azure OpenAI GPT5",
+        "USD"
+      ],
+      [
+        0.015,
+        0.002,
+        20261023,
+        "Foundry Tools",
+        "Doc Co Extr Sync Standard Pages",
+        "Azure Content Understanding",
+        "USD"
+      ],
+      [
+        0.015,
+        0.003,
+        20261023,
+        "Foundry Tools",
+        "Doc Content Extraction Standard Pages",
+        "Azure Content Understanding",
+        "USD"
+      ],
+      [
+        0.003,
+        3.0,
+        20261023,
+        "Foundry Tools",
+        "Std Contextualization Tokens",
+        "Azure Content Understanding",
+        "USD"
+      ],
+      [
+        0.0,
+        457.6,
+        20261023,
+        "Functions",
+        "On Demand Execution Time",
+        "Flex Consumption",
+        "USD"
+      ],
+      [
+        0.0,
+        26.0,
+        20261023,
+        "Functions",
+        "On Demand Total Executions",
+        "Flex Consumption",
+        "USD"
+      ],
+      [
+        9e-05,
+        0.003,
+        20261023,
+        "Key Vault",
+        "Operations",
+        "Key Vault",
+        "USD"
+      ],
+      [
+        0.0,
+        0.033630765,
+        20261023,
+        "Log Analytics",
+        "Analytics Logs Data Ingestion",
+        "Log Analytics",
+        "USD"
+      ],
+      [
+        0.0,
+        0.851805830439815,
+        20261023,
+        "SQL Database",
+        "1 vCore - Free",
+        "SQL Database General Purpose - Serverless - Compute Gen5",
+        "USD"
+      ],
+      [
+        0.0,
+        0.301075268817204,
+        20261023,
+        "SQL Database",
+        "General Purpose Data Stored - Free",
+        "SQL Database Single/Elastic Pool General Purpose - Storage",
+        "USD"
+      ],
+      [
+        0.0004048,
+        0.1012,
+        20261023,
+        "Storage",
+        "All Other Operations",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        1.2e-06,
+        0.0003,
+        20261023,
+        "Storage",
+        "Class 2 Operations",
+        "Queues v2",
+        "USD"
+      ],
+      [
+        0.0,
+        0.011522,
+        20261023,
+        "Storage",
+        "Hot LRS Data Stored - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        0.0,
+        0.0064,
+        20261023,
+        "Storage",
+        "Hot LRS Write Operations - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        0.0,
+        0.0332,
+        20261023,
+        "Storage",
+        "Hot Read Operations - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        0.0,
+        0.0176,
+        20261023,
+        "Storage",
+        "LRS List and Create Container Operations - Free",
+        "Blob Storage",
+        "USD"
+      ],
+      [
+        0.0,
+        0.0003,
+        20261023,
+        "Storage",
+        "Read Operations - Free",
+        "Files",
+        "USD"
+      ]
+    ]
+  },
+  "sku": null,
+  "type": "Microsoft.CostManagement/query"
+}

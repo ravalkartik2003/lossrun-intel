@@ -1,0 +1,701 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lossrun-poc/schemas/canonical-schema.json",
+  "title": "LossRunDocument",
+  "description": "Canonical workers' compensation loss run: one document (one carrier/TPA run at one valuation date) -> policy periods -> claims, plus printed subtotals and grand totals. Values only; per-value lineage is keyed by field path in `lineage`. Source: docs/evaluation/evaluation-and-wc-domain.md B1 (schema + aliases), B2 (enumerations), B4 (totals used by reconciliation rules).",
+  "schemaVersion": "0.10.0",
+  "type": "object",
+  "required": ["schemaVersion", "documentId", "noLossesStatement", "policyPeriods"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "description": "Version of this schema the document conforms to (semver; matches the top-level `schemaVersion` keyword of this file).",
+      "type": "string",
+      "nullable": false,
+      "piiLevel": "none",
+      "unit": "id",
+      "aliasesRef": null
+    },
+    "documentId": {
+      "description": "Stable id of the source document (blob id / content hash) this canonical record was extracted from.",
+      "type": "string",
+      "nullable": false,
+      "piiLevel": "none",
+      "unit": "id",
+      "aliasesRef": null
+    },
+    "carrierName": {
+      "description": "Issuing carrier as printed on the run (letterhead/header).",
+      "type": ["string", "null"],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "text",
+      "aliasesRef": "glossary.json#/fields/document.carrierName"
+    },
+    "tpaName": {
+      "description": "Third-party administrator, when the run is a TPA run (State Fund requires TPA letterhead).",
+      "type": ["string", "null"],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "text",
+      "aliasesRef": "glossary.json#/fields/document.tpaName"
+    },
+    "insuredName": {
+      "description": "Named insured / employer the run is for.",
+      "type": ["string", "null"],
+      "nullable": true,
+      "piiLevel": "low",
+      "unit": "text",
+      "aliasesRef": "glossary.json#/fields/document.insuredName"
+    },
+    "lineOfBusiness": {
+      "description": "Line of business of the run as a whole. Canonical `WC`; anything else is flagged by the non-WC rule.",
+      "type": ["string", "null"],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "code",
+      "aliasesRef": "glossary.json#/fields/document.lineOfBusiness"
+    },
+    "jurisdictionState": {
+      "description": "Default jurisdiction (2-letter USPS state) for claims that do not print their own.",
+      "type": ["string", "null"],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "code",
+      "aliasesRef": "glossary.json#/fields/document.jurisdictionState"
+    },
+    "valuationDate": {
+      "description": "Valuation ('as of') date of the money on the run. Drives staleness (State Fund: within 100 days of inception) and DOI ordering.",
+      "type": ["string", "null"],
+      "format": "date",
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "date",
+      "aliasesRef": "glossary.json#/fields/document.valuationDate"
+    },
+    "valuationDateSource": {
+      "description": "Brief 23 Answers 2: where the valuation date comes from: printed on the run, or stated by the submitter because the run prints none (lineage extractor context). R-32 flags submission; the quote payload and the pricing memo state it.",
+      "type": ["string", "null"],
+      "enum": ["printed", "submission", null],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "enum",
+      "aliasesRef": null
+    },
+    "reportRunDate": {
+      "description": "Date the report was produced/printed, when different from the valuation date.",
+      "type": ["string", "null"],
+      "format": "date",
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "date",
+      "aliasesRef": "glossary.json#/fields/document.reportRunDate"
+    },
+    "noLossesStatement": {
+      "description": "True when the run prints an explicit 'no losses reported' / 'NONE' statement.",
+      "type": "boolean",
+      "nullable": false,
+      "piiLevel": "none",
+      "unit": "flag",
+      "aliasesRef": "glossary.json#/fields/document.noLossesStatement"
+    },
+    "unattributedNoLossesStatement": {
+      "description": "A 'no losses' statement was printed but could not be tied to a policy period: every period lists claims (ADR 0016 as amended in ADR 0018). Flagged by R-28; it usually means a period heading was not read.",
+      "type": "boolean",
+      "default": false,
+      "nullable": false,
+      "piiLevel": "none",
+      "unit": "flag",
+      "aliasesRef": null
+    },
+    "componentPresence": {
+      "description": "Loss components the run does not print at all (brief 19 Answers 1; ADR 0018 amendment): e.g. medical { present: false } for a carrier whose loss run has no medical column. Not zero and not null: the source does not report it. The learn gate does not require an absent component; analytics marks metrics that use it as computed without it. Null when every component is printed or unknown.",
+      "anyOf": [{ "$ref": "#/$defs/ComponentPresence" }, { "type": "null" }],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "composite",
+      "aliasesRef": null
+    },
+    "totalComposition": {
+      "description": "What the printed total columns sum (ADR 0018): `allComponents` (indemnity + medical + expense; R-20) or `indemnityMedical` (a total headed e.g. 'Total Incurred (Ind+Med)' beside separate expense columns; R-29). Null when the format names no composition, read as allComponents.",
+      "type": ["string", "null"],
+      "enum": ["allComponents", "indemnityMedical", null],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "enum",
+      "aliasesRef": null
+    },
+    "expenseTreatment": {
+      "description": "How the run treats expense/ALAE, set from the carrier format spec (brief 05): `separate` (own columns), `mergedIntoMedical` (folded into medical), `excluded` (not on the run), `unknown`. Drives R-20 severity and like-for-like metrics.",
+      "type": "string",
+      "enum": ["separate", "mergedIntoMedical", "excluded", "unknown"],
+      "default": "unknown",
+      "nullable": false,
+      "piiLevel": "none",
+      "unit": "enum",
+      "aliasesRef": null
+    },
+    "policyPeriods": {
+      "description": "Policy periods printed on the run, each with its claims and printed subtotals.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/PolicyPeriod" },
+      "nullable": false,
+      "piiLevel": "none",
+      "unit": "collection",
+      "aliasesRef": null
+    },
+    "reportTotals": {
+      "description": "Grand totals printed for the whole run (null when the run prints none).",
+      "anyOf": [{ "$ref": "#/$defs/Totals" }, { "type": "null" }],
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "composite",
+      "aliasesRef": "glossary.json#/fields/document.reportTotals"
+    },
+    "lineage": {
+      "description": "Per-value lineage keyed by canonical field path (e.g. `policyPeriods[0].claims[2].indemnity.paid`). Same path format as RuleOutcome.affectedFields.",
+      "type": ["object", "null"],
+      "additionalProperties": { "$ref": "#/$defs/LineageRecord" },
+      "nullable": true,
+      "piiLevel": "none",
+      "unit": "composite",
+      "aliasesRef": null
+    }
+  },
+  "$defs": {
+    "PolicyPeriod": {
+      "description": "One policy term on the run.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claims"],
+      "properties": {
+        "policyNumber": {
+          "description": "Policy number for the term.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "id",
+          "aliasesRef": "glossary.json#/fields/period.policyNumber"
+        },
+        "carrierName": {
+          "description": "Carrier for this term when a run spans carriers; otherwise null (inherit document carrier).",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "text",
+          "aliasesRef": "glossary.json#/fields/document.carrierName"
+        },
+        "effectiveDate": {
+          "description": "Policy term effective date (inclusive).",
+          "type": ["string", "null"],
+          "format": "date",
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "date",
+          "aliasesRef": "glossary.json#/fields/period.effectiveDate"
+        },
+        "expirationDate": {
+          "description": "Policy term expiration date (exclusive).",
+          "type": ["string", "null"],
+          "format": "date",
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "date",
+          "aliasesRef": "glossary.json#/fields/period.expirationDate"
+        },
+        "periodKind": {
+          "description": "What the period is (ADR 0017): `policyTerm` for a policy term (the default reading of a loss run), or the year a summary row reports by -- `fiscalYear`, `reportYear`, `accidentYear`, `calendarYear`. Null when not printed or not determinable.",
+          "type": ["string", "null"],
+          "enum": ["policyTerm", "fiscalYear", "reportYear", "accidentYear", "calendarYear", null],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "enum",
+          "aliasesRef": null
+        },
+        "periodLabel": {
+          "description": "The period's printed label when it is not a policy number or a date range (e.g. a fiscal or report year as printed; ADR 0017).",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "text",
+          "aliasesRef": "glossary.json#/fields/period.periodLabel"
+        },
+        "noLossesStatement": {
+          "description": "True when this period prints an explicit 'no claims' / 'no losses' statement (ADR 0016). R-14 then requires zero claim rows for the period; a period with zero rows and no statement is flagged by R-27.",
+          "type": "boolean",
+          "default": false,
+          "nullable": false,
+          "piiLevel": "none",
+          "unit": "flag",
+          "aliasesRef": "glossary.json#/fields/document.noLossesStatement"
+        },
+        "detailLevel": {
+          "description": "`claims` when the run lists claim rows for this term, or prints a no-losses statement for it (ADR 0016); `summaryOnly` when it prints only totals/counts (research B1 layout archetype 3; ADR 0017: a summary-only loss run is a document whose periods are all summary-only). Reconciliation rules R-10/R-11 are not applicable to summary-only terms.",
+          "type": "string",
+          "enum": ["claims", "summaryOnly"],
+          "default": "claims",
+          "nullable": false,
+          "piiLevel": "none",
+          "unit": "enum",
+          "aliasesRef": null
+        },
+        "claims": {
+          "description": "Claim rows printed under this term.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/Claim" },
+          "nullable": false,
+          "piiLevel": "none",
+          "unit": "collection",
+          "aliasesRef": null
+        },
+        "keptRows": {
+          "description": "Brief 23 §2 (ADR 0020 amendment): rows of another line of business printed under this term (a line or claim-type code naming auto, general liability, …). Kept, not extracted: listed with keptReason, counted, never in claims, metrics or the quote payload. R-10/R-11 tie the claims plus these rows to a printed subtotal that covers every line.",
+          "type": ["array", "null"],
+          "items": { "$ref": "#/$defs/Claim" },
+          "nullable": true,
+          "piiLevel": "medium",
+          "unit": "collection",
+          "aliasesRef": null
+        },
+        "subtotals": {
+          "description": "Subtotal block printed for this term (null when none printed).",
+          "anyOf": [{ "$ref": "#/$defs/Totals" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "composite",
+          "aliasesRef": "glossary.json#/fields/period.subtotals"
+        }
+      }
+    },
+    "Claim": {
+      "description": "One claim row (one claim at the document's valuation date).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "claimNumber": {
+          "description": "Carrier/TPA claim number as printed (normalized only by CanonicalComparer for matching).",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "low",
+          "unit": "id",
+          "aliasesRef": "glossary.json#/fields/claim.claimNumber"
+        },
+        "claimantName": {
+          "description": "Injured worker name. PII: strip before any LLM call the schema does not need it for.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "high",
+          "unit": "text",
+          "aliasesRef": "glossary.json#/fields/claim.claimantName"
+        },
+        "dateOfInjury": {
+          "description": "Date of injury / loss / accident. For CA cumulative trauma, the Lab. Code §5412 date (may post-date employment).",
+          "type": ["string", "null"],
+          "format": "date",
+          "nullable": true,
+          "piiLevel": "low",
+          "unit": "date",
+          "aliasesRef": "glossary.json#/fields/claim.dateOfInjury"
+        },
+        "dateReported": {
+          "description": "Date reported to carrier / claim administrator.",
+          "type": ["string", "null"],
+          "format": "date",
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "date",
+          "aliasesRef": "glossary.json#/fields/claim.dateReported"
+        },
+        "dateClosed": {
+          "description": "Close date (for reopened claims, the most recent prior close date if printed).",
+          "type": ["string", "null"],
+          "format": "date",
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "date",
+          "aliasesRef": "glossary.json#/fields/claim.dateClosed"
+        },
+        "lastDayWorked": {
+          "description": "The claimant's last day worked, when the carrier prints it. Drives post-termination cumulative-trauma flags (CA LC 3600(a)(10)); the submission context's account-level date applies when absent.",
+          "type": ["string", "null"],
+          "format": "date",
+          "nullable": true,
+          "piiLevel": "medium",
+          "unit": "date",
+          "aliasesRef": "glossary.json#/fields/claim.lastDayWorked"
+        },
+        "status": {
+          "description": "Canonical claim status. Reopened counts as open for open/closed counts. `unknown` (brief 19 Answers 2): the format prints no status and its close dates were not verified as a status convention; neither open nor closed, flagged by R-30.",
+          "type": ["string", "null"],
+          "enum": ["open", "closed", "reopened", "unknown", null],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "enum",
+          "aliasesRef": "glossary.json#/fields/claim.status"
+        },
+        "rawStatus": {
+          "description": "Status exactly as printed (e.g. 'Closed in subrogation', 'O', 'L'), kept for audit and re-mapping.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "text",
+          "aliasesRef": "glossary.json#/fields/claim.status"
+        },
+        "claimType": {
+          "description": "Medical-only vs indemnity (lost time). Derived from injury type code when printed (06/07 -> medicalOnly), else from indemnity money; `unknown` when neither is available.",
+          "type": ["string", "null"],
+          "enum": ["medicalOnly", "indemnity", "unknown", null],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "enum",
+          "aliasesRef": "glossary.json#/fields/claim.claimType"
+        },
+        "injuryTypeCode": {
+          "description": "Statistical-plan injury type code when printed (code-sets.json `statPlan.injuryType`).",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "code",
+          "aliasesRef": "glossary.json#/fields/claim.injuryTypeCode"
+        },
+        "typeOfLossCode": {
+          "description": "Statistical-plan type of loss: 01 trauma, 02 cumulative occupational disease, 03 cumulative other (code-sets.json `statPlan.typeOfLoss`).",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "code",
+          "aliasesRef": "glossary.json#/fields/claim.typeOfLossCode"
+        },
+        "cumulativeTrauma": {
+          "description": "True when the claim is cumulative trauma (type of loss 02/03, WCIO nature 60-83, cause 97/98, or 'CT'/'cumulative' text). Changes DOI rule severity (CA LC 5412).",
+          "type": ["boolean", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "flag",
+          "aliasesRef": "glossary.json#/fields/claim.cumulativeTrauma"
+        },
+        "natureOfInjury": {
+          "description": "Nature of injury: WCIO code and/or free text.",
+          "anyOf": [{ "$ref": "#/$defs/CodedValue" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "medium",
+          "unit": "composite",
+          "aliasesRef": "glossary.json#/fields/claim.natureOfInjury"
+        },
+        "causeOfInjury": {
+          "description": "Cause of injury: WCIO code and/or free text.",
+          "anyOf": [{ "$ref": "#/$defs/CodedValue" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "medium",
+          "unit": "composite",
+          "aliasesRef": "glossary.json#/fields/claim.causeOfInjury"
+        },
+        "partOfBody": {
+          "description": "Part of body: WCIO code and/or free text.",
+          "anyOf": [{ "$ref": "#/$defs/CodedValue" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "medium",
+          "unit": "composite",
+          "aliasesRef": "glossary.json#/fields/claim.partOfBody"
+        },
+        "accidentDescription": {
+          "description": "Free-text accident/loss description. May contain PHI.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "high",
+          "unit": "text",
+          "aliasesRef": "glossary.json#/fields/claim.accidentDescription"
+        },
+        "litigationFlag": {
+          "description": "Litigated / attorney-represented. Provenance matters: explicit column > status text > attorney-fee column > legal expense > 0 (weak).",
+          "type": ["boolean", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "flag",
+          "aliasesRef": "glossary.json#/fields/claim.litigationFlag"
+        },
+        "reportOnly": {
+          "description": "Recorded for reporting only, without financials (brief 22 Answers 4): a census-only status (Travelers 'X') or an incident indicator. Status says whether the claim is open; this flag says whether it carries amounts. Claim counts report both totals (with and without report-only claims).",
+          "type": ["boolean", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "flag",
+          "aliasesRef": "glossary.json#/fields/claim.reportOnly"
+        },
+        "keptReason": {
+          "description": "Brief 23 §2: on a row in a period's keptRows only, why it was kept, not extracted ('line of business: auto (claim-type code \"PP\")').",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "text",
+          "aliasesRef": null
+        },
+        "jurisdictionState": {
+          "description": "Claim jurisdiction (2-letter USPS state); falls back to the document jurisdiction when null.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "code",
+          "aliasesRef": "glossary.json#/fields/claim.jurisdictionState"
+        },
+        "classCode": {
+          "description": "Payroll classification code. CA: 4-digit WCIRB code, left-zero padded, base code only.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "code",
+          "aliasesRef": "glossary.json#/fields/claim.classCode"
+        },
+        "lineOfBusiness": {
+          "description": "Line of business when the run mixes lines per row (e.g. WC / EL / GL / AL); falls back to the document line.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "code",
+          "aliasesRef": "glossary.json#/fields/document.lineOfBusiness"
+        },
+        "indemnity": {
+          "description": "Indemnity (wage replacement, incl. death benefits) paid/reserve/incurred.",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.indemnity"
+        },
+        "medical": {
+          "description": "Medical paid/reserve/incurred. Some carriers merge expense/ALAE into medical; see report 03 open questions.",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.medical"
+        },
+        "expense": {
+          "description": "Expense / ALAE (legal, other claim-specific expense; rehab is folded in until a separate bucket is needed).",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.expense"
+        },
+        "total": {
+          "description": "Total paid/reserve/incurred as printed (gross of recoveries). Not computed: when not printed it stays null.",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.total"
+        },
+        "recoverySubrogation": {
+          "description": "Subrogation / third-party / salvage recoveries, as a positive amount recovered.",
+          "type": ["number", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.recoverySubrogation"
+        },
+        "netIncurred": {
+          "description": "Net incurred (gross incurred less recoveries) when printed. CA experience rating uses net for subrogated claims.",
+          "type": ["number", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.netIncurred"
+        }
+      }
+    },
+    "MoneyTriplet": {
+      "description": "Paid to date, case reserve (outstanding), incurred (paid + reserve). Each value as printed; null when the column is absent.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paid": {
+          "description": "Paid to date.",
+          "type": ["number", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "{prefix}.paid"
+        },
+        "reserve": {
+          "description": "Case reserve / outstanding.",
+          "type": ["number", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "{prefix}.reserve"
+        },
+        "incurred": {
+          "description": "Incurred (paid + reserve).",
+          "type": ["number", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "{prefix}.incurred"
+        }
+      }
+    },
+    "CodedValue": {
+      "description": "A code-set value: the code (if printed or mapped), the raw text, and the code system it belongs to.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "description": "Code, normalized (WCIO 2-digit left-padded).",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "code",
+          "aliasesRef": null
+        },
+        "text": {
+          "description": "Free text as printed.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "medium",
+          "unit": "text",
+          "aliasesRef": null
+        },
+        "codeSystem": {
+          "description": "Code system id from code-sets.json (e.g. `WCIO-Nature`, `WCIO-Cause`, `WCIO-PartOfBody`) or `carrier:<id>` for carrier-specific codes.",
+          "type": ["string", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "id",
+          "aliasesRef": null
+        }
+      }
+    },
+    "Totals": {
+      "description": "A printed subtotal or grand-total block.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "claimCount": {
+          "description": "Printed total claim count.",
+          "type": ["integer", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "count",
+          "aliasesRef": "{prefix}.claimCount"
+        },
+        "openCount": {
+          "description": "Printed open claim count (reopened counted as open).",
+          "type": ["integer", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "count",
+          "aliasesRef": "{prefix}.openCount"
+        },
+        "closedCount": {
+          "description": "Printed closed claim count.",
+          "type": ["integer", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "count",
+          "aliasesRef": "{prefix}.closedCount"
+        },
+        "indemnity": {
+          "description": "Indemnity totals.",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.indemnity"
+        },
+        "medical": {
+          "description": "Medical totals.",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.medical"
+        },
+        "expense": {
+          "description": "Expense / ALAE totals.",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.expense"
+        },
+        "total": {
+          "description": "Overall totals.",
+          "anyOf": [{ "$ref": "#/$defs/MoneyTriplet" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.total"
+        },
+        "recoverySubrogation": {
+          "description": "Subrogation recoveries (the recovery kind claim rows carry; ADR 0017 keeps it here and adds the other kinds under `recoveries`).",
+          "type": ["number", "null"],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "glossary.json#/fields/claim.recoverySubrogation"
+        },
+        "recoveries": {
+          "description": "Recoveries other than subrogation, by kind, as a summary or total row prints them (ADR 0017; P5). Recovery columns not modelled here are listed in glossary.json `ignoredHeaders`.",
+          "anyOf": [{ "$ref": "#/$defs/RecoveryAmounts" }, { "type": "null" }],
+          "nullable": true,
+          "piiLevel": "none",
+          "unit": "USD",
+          "aliasesRef": "{prefix}.recoveries"
+        }
+      }
+    },
+    "ComponentPresence": {
+      "description": "Per loss component: { present: false } when the run prints no column for it (brief 19 Answers 1). A component not listed is printed or unknown.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "indemnity": { "description": "Indemnity presence.", "anyOf": [{ "$ref": "#/$defs/Presence" }, { "type": "null" }], "nullable": true, "piiLevel": "none", "unit": "composite", "aliasesRef": null },
+        "medical": { "description": "Medical presence.", "anyOf": [{ "$ref": "#/$defs/Presence" }, { "type": "null" }], "nullable": true, "piiLevel": "none", "unit": "composite", "aliasesRef": null },
+        "expense": { "description": "Expense presence.", "anyOf": [{ "$ref": "#/$defs/Presence" }, { "type": "null" }], "nullable": true, "piiLevel": "none", "unit": "composite", "aliasesRef": null }
+      }
+    },
+    "Presence": {
+      "description": "Whether the source reports a component.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present"],
+      "properties": {
+        "present": { "description": "False: the run prints no column for the component.", "type": "boolean", "nullable": false, "piiLevel": "none", "unit": "flag", "aliasesRef": null }
+      }
+    },
+    "RecoveryAmounts": {
+      "description": "Recovery amounts by kind (ADR 0017). Subrogation is `recoverySubrogation` on the owning totals or claim.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deductible": { "description": "Deductible recoveries.", "type": ["number", "null"], "nullable": true, "piiLevel": "none", "unit": "USD", "aliasesRef": "glossary.json#/fields/period.subtotals.recoveries.deductible" },
+        "reinsurance": { "description": "Reinsurance / excess insurance recoveries.", "type": ["number", "null"], "nullable": true, "piiLevel": "none", "unit": "USD", "aliasesRef": "glossary.json#/fields/period.subtotals.recoveries.reinsurance" },
+        "sif": { "description": "Second-injury / subsequent-injury fund recoveries.", "type": ["number", "null"], "nullable": true, "piiLevel": "none", "unit": "USD", "aliasesRef": "glossary.json#/fields/period.subtotals.recoveries.sif" },
+        "other": { "description": "Other recoveries the run prints as a separate column.", "type": ["number", "null"], "nullable": true, "piiLevel": "none", "unit": "USD", "aliasesRef": "glossary.json#/fields/period.subtotals.recoveries.other" }
+      }
+    },
+    "LineageRecord": {
+      "description": "Where one canonical value came from (CLAUDE.md: document id, page + polygon or sheet + cell, format version, model/prompt version, confidence).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["documentId"],
+      "properties": {
+        "documentId": { "description": "Source document id.", "type": "string", "nullable": false, "piiLevel": "none", "unit": "id", "aliasesRef": null },
+        "page": { "description": "1-based page number (PDF/image sources).", "type": ["integer", "null"], "nullable": true, "piiLevel": "none", "unit": "count", "aliasesRef": null },
+        "polygon": { "description": "Bounding polygon on the page (x1,y1,...,x4,y4; inches for PDF, pixels for images, per CU/DI geometry).", "type": ["array", "null"], "items": { "type": "number" }, "nullable": true, "piiLevel": "none", "unit": "geometry", "aliasesRef": null },
+        "sheet": { "description": "Sheet name (spreadsheet sources).", "type": ["string", "null"], "nullable": true, "piiLevel": "none", "unit": "id", "aliasesRef": null },
+        "cell": { "description": "A1-style cell reference (spreadsheet sources).", "type": ["string", "null"], "nullable": true, "piiLevel": "none", "unit": "id", "aliasesRef": null },
+        "sourceText": { "description": "Raw text of the source cell/span before normalization.", "type": ["string", "null"], "nullable": true, "piiLevel": "high", "unit": "text", "aliasesRef": null },
+        "extractor": { "description": "How the value was produced: replay (deterministic read through a CarrierFormat), derived (computed by a format's derivedRules from other values), spec (constant declared by the format), context (taken from the submission, e.g. the carrier hint on a letterhead-less export), learn / delta (model-assisted, brief 06), manual (reviewer edit).", "type": ["string", "null"], "enum": ["replay", "derived", "spec", "context", "learn", "delta", "manual", null], "nullable": true, "piiLevel": "none", "unit": "enum", "aliasesRef": null },
+        "formatId": { "description": "CarrierFormat id used (replay/learn).", "type": ["string", "null"], "nullable": true, "piiLevel": "none", "unit": "id", "aliasesRef": null },
+        "formatVersion": { "description": "CarrierFormat version used.", "type": ["string", "null"], "nullable": true, "piiLevel": "none", "unit": "id", "aliasesRef": null },
+        "model": { "description": "Model deployment name when a model produced or mapped the value; null for deterministic replay.", "type": ["string", "null"], "nullable": true, "piiLevel": "none", "unit": "id", "aliasesRef": null },
+        "promptVersion": { "description": "Prompt/spec version when a model was involved.", "type": ["string", "null"], "nullable": true, "piiLevel": "none", "unit": "id", "aliasesRef": null },
+        "confidence": { "description": "Confidence 0..1 (extraction or mapping).", "type": ["number", "null"], "minimum": 0, "maximum": 1, "nullable": true, "piiLevel": "none", "unit": "ratio", "aliasesRef": null },
+        "part": { "description": "For a value read from a stacked cell (two fields printed in one cell, ADR 0018): its 0-based position in the cell. Null for a whole cell.", "type": ["integer", "null"], "minimum": 0, "nullable": true, "piiLevel": "none", "unit": "count", "aliasesRef": null },
+        "repair": { "description": "A repair replay applied to the printed text, which sourceText keeps as printed (brief 31 Answers 1): ocrRepair: l→I for a scanned Title-Case name whose first capital I OCR read as l. Null when the value is the printed text.", "type": ["string", "null"], "nullable": true, "piiLevel": "none", "unit": "text", "aliasesRef": null }
+      }
+    }
+  }
+}

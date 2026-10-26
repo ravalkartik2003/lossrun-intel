@@ -1,0 +1,23 @@
+# Brief 21 real ablation: every alias brief 17 added from the real samples (glossary source "real-sample ...")
+document.reportTotals.openCount|Total Nbr Open
+document.reportTotals.closedCount|Total Nbr Closed
+period.effectiveDate|Policy Eff Dt
+period.effectiveDate|Inception Date
+period.expirationDate|Policy Exp Dt
+claim.claimNumber|Claim Reference
+claim.claimantName|Claimant(s)
+claim.dateOfInjury|Incident Date
+claim.dateOfInjury|Injury Date
+claim.dateReported|Date Received
+claim.dateClosed|Close Date
+claim.causeOfInjury|Loss Cause
+claim.accidentDescription|Description of Loss
+claim.accidentDescription|Description of Claim
+claim.jurisdictionState|Claim State
+claim.expense.paid|ExpensePaid
+claim.expense.paid|Expenses / Fees Paid
+claim.total.incurred|Total Gross Incurred
+claim.recoverySubrogation|Subrogation Recovery
+claim.recoverySubrogation|Recovery
+claim.recoverySubrogation|Recovered
+claim.recoverySubrogation|Recovered Loss

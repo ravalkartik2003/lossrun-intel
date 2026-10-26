@@ -1,0 +1,98 @@
+{
+  "description": "Excerpt of QuotePayloadV2 for an account whose only document is a summary-only loss run (ADR 0017). Synthetic.",
+  "documents": [
+    {
+      "documentId": "doc-mock-summary-only",
+      "claimCount": 0,
+      "granularity": "period"
+    }
+  ],
+  "claims": [],
+  "periodSummaries": {
+    "granularity": "period",
+    "rows": [
+      {
+        "documentId": "doc-mock-summary-only",
+        "periodIndex": 0,
+        "periodKind": "fiscalYear",
+        "periodLabel": "FY 2021-22",
+        "policyNumber": null,
+        "effectiveDate": null,
+        "expirationDate": null,
+        "claimCount": 7,
+        "openCount": 0,
+        "closedCount": 7,
+        "paid": 72680.4,
+        "reserve": 0.0,
+        "incurred": 72680.4,
+        "recoverySubrogation": null,
+        "recoveries": {
+          "deductible": 2500.0,
+          "reinsurance": null,
+          "sif": null,
+          "other": null
+        },
+        "lineagePath": "policyPeriods[0].subtotals"
+      },
+      {
+        "documentId": "doc-mock-summary-only",
+        "periodIndex": 1,
+        "periodKind": "fiscalYear",
+        "periodLabel": "FY 2022-23",
+        "policyNumber": null,
+        "effectiveDate": null,
+        "expirationDate": null,
+        "claimCount": 11,
+        "openCount": 2,
+        "closedCount": 9,
+        "paid": 109136.1,
+        "reserve": 31900.0,
+        "incurred": 141036.1,
+        "recoverySubrogation": null,
+        "recoveries": {
+          "deductible": 4000.0,
+          "reinsurance": null,
+          "sif": null,
+          "other": null
+        },
+        "lineagePath": "policyPeriods[1].subtotals"
+      },
+      {
+        "documentId": "doc-mock-summary-only",
+        "periodIndex": 2,
+        "periodKind": "fiscalYear",
+        "periodLabel": "FY 2023-24",
+        "policyNumber": null,
+        "effectiveDate": null,
+        "expirationDate": null,
+        "claimCount": 9,
+        "openCount": 5,
+        "closedCount": 4,
+        "paid": 43785.6,
+        "reserve": 86250.0,
+        "incurred": 130035.6,
+        "recoverySubrogation": null,
+        "recoveries": {
+          "deductible": 0.0,
+          "reinsurance": null,
+          "sif": null,
+          "other": null
+        },
+        "lineagePath": "policyPeriods[2].subtotals"
+      }
+    ],
+    "metrics": {
+      "claim_count": {
+        "value": 27,
+        "unit": "count"
+      },
+      "incurred_total": {
+        "value": 343752.1,
+        "unit": "money"
+      },
+      "reporting_lag_median_days": {
+        "notMeasurable": "summary-only loss run: claim-level metric, no claim rows printed"
+      }
+    }
+  }
+}

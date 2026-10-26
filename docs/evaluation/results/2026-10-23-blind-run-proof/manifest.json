@@ -1,0 +1,145 @@
+{
+  "generatorVersion": "import",
+  "docsRoot": "../../../src/TestShared/fixtures/import",
+  "generatedAt": "2026-10-23T20:00:49.3761443+00:00",
+  "entries": [
+    {
+      "id": "fictional-casualty-group-loss-run-6ec9ccec",
+      "file": "Fictional Casualty Group/loss-run.pdf",
+      "carrier": "Fictional Casualty Group",
+      "layout": "unknown",
+      "inputType": "native-pdf",
+      "logicalId": "fictional-casualty-group-loss-run-6ec9ccec",
+      "strata": [],
+      "sha256": "6ec9ccec12786301942744e30096457bfa6d7b43087fb4c357e94f9cf8420d14",
+      "bytes": 90826,
+      "pages": 2
+    },
+    {
+      "id": "fictional-casualty-group-scanned-loss-run-28a523ea",
+      "file": "Fictional Casualty Group/scanned-loss-run.pdf",
+      "carrier": "Fictional Casualty Group",
+      "layout": "unknown",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "logicalId": "fictional-casualty-group-scanned-loss-run-28a523ea",
+      "strata": [],
+      "sha256": "28a523ea37adf695396057963706324f4f002a10b70e89dee3861bdca27e8258",
+      "bytes": 652671,
+      "pages": 2
+    },
+    {
+      "id": "notional-workers-comp-exchange-broker-package-ab219245",
+      "file": "Notional Workers Comp Exchange/broker-package.zip",
+      "carrier": "Notional Workers Comp Exchange",
+      "layout": "unknown",
+      "inputType": "zip",
+      "logicalId": "notional-workers-comp-exchange-broker-package-ab219245",
+      "strata": [
+        "bundle"
+      ],
+      "sha256": "ab2192453717ac08840bca33a4ae0ed2053e443f3bd513648722112e6a04353e",
+      "bytes": 24773,
+      "pages": 2,
+      "members": [
+        {
+          "file": "claims-2023.xlsx",
+          "inputType": "xlsx",
+          "pages": 1,
+          "bytes": 13322
+        },
+        {
+          "file": "claims-2024.xlsx",
+          "inputType": "xlsx",
+          "pages": 1,
+          "bytes": 13221
+        }
+      ]
+    },
+    {
+      "id": "notional-workers-comp-exchange-claims-export-d4bb8bf9",
+      "file": "Notional Workers Comp Exchange/claims-export.xlsx",
+      "carrier": "Notional Workers Comp Exchange",
+      "layout": "unknown",
+      "inputType": "xlsx",
+      "logicalId": "notional-workers-comp-exchange-claims-export-d4bb8bf9",
+      "strata": [],
+      "sha256": "d4bb8bf9a3faf126ad27a987f4ba67f4c4672e102c5bd22f70cadba0fa24accf",
+      "bytes": 8275,
+      "pages": 1
+    },
+    {
+      "id": "placeholder-assurance-co-claims-920a980b",
+      "file": "Placeholder Assurance Co/claims.csv",
+      "carrier": "Placeholder Assurance Co.",
+      "layout": "unknown",
+      "inputType": "csv",
+      "logicalId": "placeholder-assurance-co-claims-920a980b",
+      "strata": [],
+      "sha256": "920a980b885b338f652366aa6dd6e04faebe4b397ed9e2a643930a15669aab0e",
+      "bytes": 13071,
+      "pages": 1
+    },
+    {
+      "id": "synthetic-mutual-insurance-co-2024-renewal-loss-run-40430284",
+      "file": "Synthetic Mutual Insurance Co/2024-renewal-loss-run.pdf",
+      "carrier": "Synthetic Mutual Insurance Co.",
+      "layout": "unknown",
+      "inputType": "native-pdf",
+      "logicalId": "synthetic-mutual-insurance-co-2024-renewal-loss-run-40430284",
+      "strata": [],
+      "sha256": "40430284583a4b4820d71d736077e168acd70a9141f545b192f19ab04c1c354a",
+      "bytes": 84844,
+      "pages": 1
+    },
+    {
+      "id": "synthetic-mutual-insurance-co-faxed-loss-run-26d1f5dc",
+      "file": "Synthetic Mutual Insurance Co/faxed-loss-run.pdf",
+      "carrier": "Synthetic Mutual Insurance Co.",
+      "layout": "unknown",
+      "inputType": "scan-150dpi-fax",
+      "logicalId": "synthetic-mutual-insurance-co-faxed-loss-run-26d1f5dc",
+      "strata": [],
+      "sha256": "26d1f5dcc4ca33442a67cbbccaa55bff1c9e77f049c5a4c98d03289fd77cd4e9",
+      "bytes": 583276,
+      "pages": 2
+    },
+    {
+      "id": "synthetic-mutual-insurance-co-protected-loss-run-bf392f12",
+      "file": "Synthetic Mutual Insurance Co/protected-loss-run.pdf",
+      "carrier": "Synthetic Mutual Insurance Co.",
+      "layout": "unknown",
+      "inputType": "native-pdf",
+      "logicalId": "synthetic-mutual-insurance-co-protected-loss-run-bf392f12",
+      "strata": [
+        "password-protected"
+      ],
+      "sha256": "bf392f1262ec11e04685add8933e2caa0a1dc5a0256de7caa05e6b2f8b7a430f",
+      "bytes": 87349,
+      "pages": 0
+    },
+    {
+      "id": "synthetic-mutual-insurance-co-submission-package-c3886077",
+      "file": "Synthetic Mutual Insurance Co/submission-package.pdf",
+      "carrier": "Synthetic Mutual Insurance Co.",
+      "layout": "unknown",
+      "inputType": "native-pdf",
+      "logicalId": "synthetic-mutual-insurance-co-submission-package-c3886077",
+      "strata": [],
+      "sha256": "c3886077e6d86ba280b506f80c1654dd204b007655aba3b47f40148d97aad2b0",
+      "bytes": 171818,
+      "pages": 5
+    },
+    {
+      "id": "phone-photo-of-loss-run-9561918f",
+      "file": "phone-photo-of-loss-run.png",
+      "carrier": "Synthetic Mutual Insurance Co.",
+      "layout": "unknown",
+      "inputType": "scan-150dpi-fax",
+      "logicalId": "phone-photo-of-loss-run-9561918f",
+      "strata": [],
+      "sha256": "9561918f0fd9e865d2cd4faa36e3bdd7c1189e821def8e2c95cb6de41b22b7aa",
+      "bytes": 43671,
+      "pages": 1
+    }
+  ]
+}

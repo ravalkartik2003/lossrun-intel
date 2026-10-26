@@ -1,0 +1,31 @@
+{
+  "description": "Zero-shot classifier/splitter for workers' compensation submission bundles (brief 04). No training data: categories are described as mini-prompts. Version the analyzer id (-v2, ...) instead of editing a deployed definition.",
+  "baseAnalyzerId": "prebuilt-document",
+  "models": {
+    "completion": "prebuilt-analyzer-completion-mini"
+  },
+  "config": {
+    "returnDetails": true,
+    "enableSegment": true,
+    "contentCategories": {
+      "LossRun": {
+        "description": "An insurance loss run (loss history / claims history / experience report) issued by a carrier or TPA: a header with carrier, insured, policy numbers and a valuation or 'as of' date, followed by a table of claims (claim number, claimant, date of injury or loss, status, paid / reserve / incurred amounts) and/or policy-period subtotals and totals, or a statement that no losses were reported."
+      },
+      "ExperienceModWorksheet": {
+        "description": "A workers' compensation experience rating / experience modification worksheet (WCIRB or NCCI): rating date, experience period, class codes with payroll and expected losses, actual primary and excess losses, ballast, and the resulting modification factor."
+      },
+      "Payroll": {
+        "description": "A payroll report or payroll-by-class schedule: class codes or job descriptions with employee counts and annual or period payroll amounts, as used for workers' compensation rating or premium audit."
+      },
+      "AcordApplication": {
+        "description": "An ACORD insurance application or form (e.g. ACORD 125, 130 workers compensation application, 131): numbered form fields for applicant, locations, class codes, prior carrier history, and signatures, with the ACORD form layout."
+      },
+      "Correspondence": {
+        "description": "A letter, cover note, or email from a broker, agent, insured, or carrier: salutation, narrative paragraphs, and a signature; not a table of claims or payroll."
+      },
+      "Other": {
+        "description": "Any other page that is not a loss run, experience modification worksheet, payroll report, ACORD application, or correspondence (e.g. financial statements, safety manuals, blank pages)."
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Brief 27: the blind set and everything built from it are never opened or indexed by an assistant (docs/operations/playbook.md).
+blind/
+# Real sample documents (local only, never committed).
+samples/

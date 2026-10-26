@@ -1,0 +1,123 @@
+{
+  "uploadId": "up-7f3a9c2d1e8b4a6f0c21",
+  "status": "awaiting-review",
+  "createdAt": "2026-10-22T14:03:11Z",
+  "completedAt": "2026-10-22T14:03:29Z",
+  "submission": {
+    "quoteId": "Q-2026-018342",
+    "carrierHint": "AmTrust",
+    "uploaderRole": "Underwriter",
+    "uploaderId": "uw-0417",
+    "valuationDate": "2026-08-31",
+    "policyPeriods": [
+      {
+        "policyNumber": "WC-55-11923",
+        "effectiveDate": "2023-07-01",
+        "expirationDate": "2024-07-01"
+      },
+      {
+        "policyNumber": "WC-55-11923",
+        "effectiveDate": "2024-07-01",
+        "expirationDate": "2025-07-01"
+      },
+      {
+        "policyNumber": "WC-55-11923",
+        "effectiveDate": "2025-07-01",
+        "expirationDate": "2026-07-01"
+      }
+    ]
+  },
+  "files": [
+    {
+      "fileName": "acme-fabrication-package.zip",
+      "sha256": "3f9c\u2026b1e2",
+      "sizeBytes": 4812233,
+      "blobPath": "uploads/up-7f3a\u2026/acme-fabrication-package.zip"
+    }
+  ],
+  "items": [
+    {
+      "documentId": "doc-01",
+      "fileName": "amtrust-loss-run-2026.pdf",
+      "pageRange": "1-6",
+      "classification": "LossRun",
+      "status": "processed",
+      "blobPath": "uploads/up-7f3a\u2026/amtrust-loss-run-2026.pdf",
+      "routingTier": "ReplayAccepted",
+      "badge": "Format memory hit \u00b7 AmTrust v2 \u00b7 0 model calls",
+      "formatRef": "amtrust-pdf@2",
+      "formatStatus": "active",
+      "claimCount": 47,
+      "costUsd": 0.03
+    },
+    {
+      "documentId": "doc-02",
+      "fileName": "pie-loss-run-2024.pdf",
+      "pageRange": "1-3",
+      "classification": "LossRun",
+      "status": "awaiting-review",
+      "reason": "Period 2023 subtotal does not match extracted rows (R-10)",
+      "blobPath": "uploads/up-7f3a\u2026/pie-loss-run-2024.pdf",
+      "routingTier": "Review",
+      "badge": "Needs review \u00b7 Pie v1 \u00b7 0 model calls",
+      "formatRef": "pie-pdf@1",
+      "formatStatus": "active",
+      "claimCount": 12,
+      "costUsd": 0.015,
+      "reviewKind": "document-review"
+    },
+    {
+      "documentId": "doc-03",
+      "fileName": "prior-carrier-2023.xlsx",
+      "classification": "LossRun",
+      "status": "processed",
+      "blobPath": "uploads/up-7f3a\u2026/prior-carrier-2023.xlsx",
+      "routingTier": "Learned",
+      "badge": "Format learned \u00b7 Fictional Casualty v1 \u00b7 1 model call \u00b7 confirming (1 of 3)",
+      "formatRef": "fictional-casualty-spreadsheet@1",
+      "formatStatus": "shadow",
+      "claimCount": 19,
+      "costUsd": 0.021,
+      "reviewKind": "confirm-format"
+    },
+    {
+      "documentId": "doc-04",
+      "fileName": "payroll-report-2025.pdf",
+      "pageRange": "1-2",
+      "classification": "Payroll",
+      "status": "kept-not-processed",
+      "reason": "Payroll report; available to chat",
+      "blobPath": "uploads/up-7f3a\u2026/payroll-report-2025.pdf"
+    },
+    {
+      "documentId": "doc-05",
+      "fileName": "broker-cover-letter.pdf",
+      "pageRange": "1",
+      "classification": "Correspondence",
+      "status": "kept-not-processed",
+      "reason": "Letter; available to chat",
+      "blobPath": "uploads/up-7f3a\u2026/broker-cover-letter.pdf"
+    },
+    {
+      "documentId": "doc-06",
+      "fileName": "old-scan.tif",
+      "classification": "image/tiff",
+      "status": "unsupported",
+      "reason": "Image could not be read (0 words recognized)",
+      "blobPath": "uploads/up-7f3a\u2026/old-scan.tif"
+    }
+  ],
+  "cost": {
+    "totalUsd": 0.066,
+    "llmCalls": 1,
+    "embeddingCalls": 1,
+    "pages": 12,
+    "byDocument": {
+      "doc-01": 0.03,
+      "doc-02": 0.015,
+      "doc-03": 0.021
+    }
+  },
+  "firstClaimMs": 1380,
+  "completedMs": 18200
+}

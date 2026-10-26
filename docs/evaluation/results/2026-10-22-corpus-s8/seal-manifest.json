@@ -1,0 +1,2912 @@
+{
+  "protocol": "docs/evaluation/scoring-protocol.md",
+  "seed": 8,
+  "sealedAt": "2026-10-22T16:11:05.7802685+00:00",
+  "corpusGeneratorVersion": "corpus-gen-0.1.0",
+  "corpusSeed": 8,
+  "tuning": [
+    {
+      "id": "c1-002-native-pdf",
+      "file": "c1-002-native-pdf.pdf",
+      "sha256": "2811377e0965303f6b33f783ee136acfff7587e9c7cb33021c97c8922a4f0188",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-002-scan-300dpi-clean",
+      "file": "c1-002-scan-300dpi-clean.pdf",
+      "sha256": "266bf06ca2814ad95a1e3780adefafa5ad241f31f405ef5b966c065a04d1aee4",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-002-scan-200dpi-rotated-noisy",
+      "file": "c1-002-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "6031a5e293ba4969702069dfccaf87b9ce15dc2f8ccd24a145c1534aeaa669cf",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-002-scan-150dpi-fax",
+      "file": "c1-002-scan-150dpi-fax.pdf",
+      "sha256": "116fae34a923118aba08bfa8f2532214547694626b0c1b9e4ce01a531a07a840",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-003-native-pdf",
+      "file": "c1-003-native-pdf.pdf",
+      "sha256": "aa7a15226ef285b4c251b7e06cb219ed9568e10d5c9257e289b9f4d0f43c3e83",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-003-scan-300dpi-clean",
+      "file": "c1-003-scan-300dpi-clean.pdf",
+      "sha256": "e7ff66eee4c897775ee746149ba8cbc9387ab7f317dc9634c5bce9697cb53b25",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-003-scan-200dpi-rotated-noisy",
+      "file": "c1-003-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "078e252e52ec2bde05d84b2d4e46c38f1bfcb0d360bc7377c241a7e36537b082",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-003-scan-150dpi-fax",
+      "file": "c1-003-scan-150dpi-fax.pdf",
+      "sha256": "30768191e69e3656c516807b3974af2a933a9b86b2314b6fada0e8f17bb2bbf7",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-007-native-pdf",
+      "file": "c1-007-native-pdf.pdf",
+      "sha256": "8edc3eb09d5c66bdd9e11e152318ffa29818766a3cd422484be6dc17bdd594d4",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-007-scan-300dpi-clean",
+      "file": "c1-007-scan-300dpi-clean.pdf",
+      "sha256": "e5cb21b44509487290931c7baad09ea89c2320f6b6792ed5616f227fa087b0ae",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-007-scan-200dpi-rotated-noisy",
+      "file": "c1-007-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "75137fef50b51cf201646a263fdfddfdb0764f1f69ec4530a7d6713970d78122",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-007-scan-150dpi-fax",
+      "file": "c1-007-scan-150dpi-fax.pdf",
+      "sha256": "840b8be1a964beb3c7b01021d7cec2781706b63e75bf5f808b888e68b46fad63",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-011-native-pdf",
+      "file": "c1-011-native-pdf.pdf",
+      "sha256": "d6dfc75a5fa5e3535e2e990af093cf127f09277d0e4b950150a6dd5d8a26cc43",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-011-scan-300dpi-clean",
+      "file": "c1-011-scan-300dpi-clean.pdf",
+      "sha256": "486e8276ee2caf360673d943da78b1b57e62be1f72a9fde172a7f47fb18a4fc7",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-011-scan-200dpi-rotated-noisy",
+      "file": "c1-011-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "eef886b99fce4d611e4c3cc169bd6e0cdd5bea6138aec190d9326243b98caf7c",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-011-scan-150dpi-fax",
+      "file": "c1-011-scan-150dpi-fax.pdf",
+      "sha256": "b3869396463bd8655ccafcb0d344bc67afd3963f1df0c98cee4b2635b6c85b0b",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-014-native-pdf",
+      "file": "c1-014-native-pdf.pdf",
+      "sha256": "847515bcaf5a86b5728d5c77649db9c7369c12d16cd47e0d4d4f7d183cea8084",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-014-scan-300dpi-clean",
+      "file": "c1-014-scan-300dpi-clean.pdf",
+      "sha256": "3ab8c104b4632759cc55e5d35bea3a04affd7164ee5d379ac771e818d80d5ea9",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-014-scan-200dpi-rotated-noisy",
+      "file": "c1-014-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "3fd51b42792ed86641cb8d5dbfd1aa031fa9a5373eca7add939b8adf0fcd14bc",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-014-scan-150dpi-fax",
+      "file": "c1-014-scan-150dpi-fax.pdf",
+      "sha256": "9b26cbf12a6919ac6838ea5d08a07135969cee109573acb26ca733df9431d11a",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-022-native-pdf",
+      "file": "c1-022-native-pdf.pdf",
+      "sha256": "2bccfe8a76eef1071ce3b18b341e74ca7d2feafe8502b5fca79ec93bef19b4f0",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-022-scan-300dpi-clean",
+      "file": "c1-022-scan-300dpi-clean.pdf",
+      "sha256": "feca5eb3d686b3b6869c0473d26cd49143d27fe48e067c3bb6139500f6eb773f",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-022-scan-200dpi-rotated-noisy",
+      "file": "c1-022-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "f77cc8b7fd359ccc9a8286d0ec27b74d493a8def435569063a58a9935e9a94af",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-022-scan-150dpi-fax",
+      "file": "c1-022-scan-150dpi-fax.pdf",
+      "sha256": "aea7313e82e0c756c040c1a6becf387c70915bd477edfbed38854f99df58a2ef",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-026-native-pdf-locked",
+      "file": "c1-026-native-pdf-locked.pdf",
+      "sha256": "5a0728090e69e9851526e99844d63bb65e02661f4a6e08559d93831b76aaf195",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c1-028-native-pdf-locked",
+      "file": "c1-028-native-pdf-locked.pdf",
+      "sha256": "401406ceb8a46f4507390e8d72c0ccf1db3247d1ae9e04117fa038086c59eadf",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c1-031-native-pdf-bundle",
+      "file": "c1-031-native-pdf-bundle.pdf",
+      "sha256": "c9e40b2446bca797880ab3faaeb26aef704bbcc6fe80833cb0a96b194a151e71",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c1-032-native-pdf-bundle",
+      "file": "c1-032-native-pdf-bundle.pdf",
+      "sha256": "ee8959b692e567099f63c4b8d05e86eab48ea41c108d12f94711f521822bc26c",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c1-033-native-pdf-bundle",
+      "file": "c1-033-native-pdf-bundle.pdf",
+      "sha256": "356034298ba0284eccf6de52049a9f634165beb4b156048970fa0f2e927eac78",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c2-010-native-pdf",
+      "file": "c2-010-native-pdf.pdf",
+      "sha256": "d8d5cd3ede733054dd09553877b63d6288d4ede962c69261349fded049bc20a8",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-010-scan-300dpi-clean",
+      "file": "c2-010-scan-300dpi-clean.pdf",
+      "sha256": "0384eebccc3533a2ad7c8a8c17981ce69f9b6ea99662fadfcb0a8e4e6e6ad0db",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-010-scan-200dpi-rotated-noisy",
+      "file": "c2-010-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "260894a404ca18c1d7de2f745dbc6447fe84b6ea03e078b793f2441b8543a5d8",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-010-scan-150dpi-fax",
+      "file": "c2-010-scan-150dpi-fax.pdf",
+      "sha256": "53e3e00d01c4f83e0cf1bb1fb953911f5bc4a502a873e9d46698b41f1ada8802",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-011-native-pdf",
+      "file": "c2-011-native-pdf.pdf",
+      "sha256": "11a4ac6495f33d418ecb1f1c29bb47e66dac6c8113ee0c4cc788d43a1ebc29e4",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-011-scan-300dpi-clean",
+      "file": "c2-011-scan-300dpi-clean.pdf",
+      "sha256": "e78af2b762550b242636c646aef7959803cd4c0ff570491131f58567e5563099",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-011-scan-200dpi-rotated-noisy",
+      "file": "c2-011-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "745f431d7c7e596416627176c653983d1782519a0c16ac7f4863c0e04adac82d",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-011-scan-150dpi-fax",
+      "file": "c2-011-scan-150dpi-fax.pdf",
+      "sha256": "893f4d73ca7d7622cd449e984e00fa4fa0c3caa942eff4d76acd15a8acc7760d",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-014-native-pdf",
+      "file": "c2-014-native-pdf.pdf",
+      "sha256": "94daeb67335fc438c62f2feb8cf5c3328015397fec166c6568bff60b32ef47d8",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-014-scan-300dpi-clean",
+      "file": "c2-014-scan-300dpi-clean.pdf",
+      "sha256": "76ad30754ac0e34c6a0d933b81b349bebe11affbcceca8428982e756bb893001",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-014-scan-200dpi-rotated-noisy",
+      "file": "c2-014-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "ad169f8e42dabe93570f732d511a4a3597b605a415c81c05efeffad8f9f1eb91",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-014-scan-150dpi-fax",
+      "file": "c2-014-scan-150dpi-fax.pdf",
+      "sha256": "8e7caf084d3b9c78b78c9f98c6401d7dc817b945b3cd5d138365c1c5490afa0d",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-018-native-pdf",
+      "file": "c2-018-native-pdf.pdf",
+      "sha256": "ea03d332685925837de62b16fa2fdc6c0d330fc76babb95d9937df6ea9977275",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-018-scan-300dpi-clean",
+      "file": "c2-018-scan-300dpi-clean.pdf",
+      "sha256": "6187d533b7c1c9226cac2a6bd8ea888fb3ca3e47a9eea0fc55129d567e8ffbbc",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-018-scan-200dpi-rotated-noisy",
+      "file": "c2-018-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "4ee008c1c8433e98bbc8a63a6492e490f5f73fe4d73089ab216772663073d6da",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-018-scan-150dpi-fax",
+      "file": "c2-018-scan-150dpi-fax.pdf",
+      "sha256": "e7b9afbd28a76180b554a37126dd969f65c44b11b08759953211a261a8e02a5c",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-020-native-pdf",
+      "file": "c2-020-native-pdf.pdf",
+      "sha256": "6aa812e8af7f7314ae7cbb2dd8a3572b077500ae823092d666ad246aa7f25024",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-020-scan-300dpi-clean",
+      "file": "c2-020-scan-300dpi-clean.pdf",
+      "sha256": "9f85e6e667228b5269b52dac9f9df5499c802fbe98b2c06a005227bd16a5dbfe",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-020-scan-200dpi-rotated-noisy",
+      "file": "c2-020-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "c88b27ac8f027618397f9e6dcc2a17b688c670f7f4d1073f8b237fc23e8e6f9d",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-020-scan-150dpi-fax",
+      "file": "c2-020-scan-150dpi-fax.pdf",
+      "sha256": "8e60ff01d192bd07ca68826bc7eaa893bf0b1ea8859ac8d1f825f7743753a2f2",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-023-native-pdf",
+      "file": "c2-023-native-pdf.pdf",
+      "sha256": "364d67628c115cc09ab701296f1c61bc9715d7e1cd0d4686b0b0ca3089a19253",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-023-scan-300dpi-clean",
+      "file": "c2-023-scan-300dpi-clean.pdf",
+      "sha256": "0b43d84019273747f9a54755f2f541be134ace428756b5c3f70e5b33008da9c1",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-023-scan-200dpi-rotated-noisy",
+      "file": "c2-023-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "f7afefcc551c69d5f2292e60503d9ee6719478a74460d16e5161962be47f5d59",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-023-scan-150dpi-fax",
+      "file": "c2-023-scan-150dpi-fax.pdf",
+      "sha256": "d4bb48d9327465cdd33d32cd17a527c05740cb949059a3681b895147fbea6e9d",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-025-native-pdf-locked",
+      "file": "c2-025-native-pdf-locked.pdf",
+      "sha256": "a241380fa8ef49629a6e44bd5f6823502d8f4333afba93950eba3f31fb6d4fb8",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c2-027-native-pdf-locked",
+      "file": "c2-027-native-pdf-locked.pdf",
+      "sha256": "9f622f6626f028e0dc172a5f0a349236895a0a2112b0fd14316307845a604354",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c3-002-native-pdf",
+      "file": "c3-002-native-pdf.pdf",
+      "sha256": "59bb7e8772798f204a0b9465ec09a7fd7ca081b81206444c029d51cdcbb781e8",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-002-scan-300dpi-clean",
+      "file": "c3-002-scan-300dpi-clean.pdf",
+      "sha256": "3555076d3e1c0cc2eaa854dcd04838c6d6c8c79e0ac98677dc26be6db6563b7f",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-002-scan-200dpi-rotated-noisy",
+      "file": "c3-002-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "5f61711042de32b8f5b3c5aec0c7fc9bf95992bbbbcd9dcb20d16e21e0caa282",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-002-scan-150dpi-fax",
+      "file": "c3-002-scan-150dpi-fax.pdf",
+      "sha256": "968f03808d8df431cd551271a3c5f09fe6112e8c80817d458ad73d601600f4ea",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c3-004-native-pdf",
+      "file": "c3-004-native-pdf.pdf",
+      "sha256": "13d01f7d6d56ff730c0f25fbb197e10738182287b61b884eb5a77a0a9c9d84bc",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-004-scan-300dpi-clean",
+      "file": "c3-004-scan-300dpi-clean.pdf",
+      "sha256": "f3cd34b23affe363545225672b322aa41d8e529ea651f21f57e78ee863b213e7",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-004-scan-200dpi-rotated-noisy",
+      "file": "c3-004-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "0de21feb46d1c1ac3e4285b04b06b1184c18baa121c5f3b44bcb17c33a2d232d",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-004-scan-150dpi-fax",
+      "file": "c3-004-scan-150dpi-fax.pdf",
+      "sha256": "06f1ebce295e33675edceaf744b54c112e936e73d7a16b5b9255667a18c0a10f",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c3-007-native-pdf",
+      "file": "c3-007-native-pdf.pdf",
+      "sha256": "0438f658b2088b339859792be4e47b4cbbb1ff2fb143d5b738d6e36f14120cd6",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-007-scan-300dpi-clean",
+      "file": "c3-007-scan-300dpi-clean.pdf",
+      "sha256": "1f06ed1f092cdb88d4f750310bd9b38276243477e400f8d97b0df8b1fb616ad9",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-007-scan-200dpi-rotated-noisy",
+      "file": "c3-007-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "7fb96a0dcbea9e2a5f1665c64899eb6c3c7bfc6c71523d0e6b7269bde152c7ad",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-007-scan-150dpi-fax",
+      "file": "c3-007-scan-150dpi-fax.pdf",
+      "sha256": "6ebb981c073437d4dca8da19a03b4bd9f375ef74c341cbe1ab9f57ece14e1d6e",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c4-002-xlsx",
+      "file": "c4-002-xlsx.xlsx",
+      "sha256": "e0bac95aa00038512b43162b0cbfe00d25f106d44b14349e30fc0b3f7a376142",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-004-xlsx",
+      "file": "c4-004-xlsx.xlsx",
+      "sha256": "29941f16f01bef38ff2e276d4d28fcb1f8a158230b21a645710307d09b924803",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-015-xlsx",
+      "file": "c4-015-xlsx.xlsx",
+      "sha256": "c541efbe8eac70511690204038be540b9022c6b8c53dc8e0258c1002a59ddb2f",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-016-xlsx",
+      "file": "c4-016-xlsx.xlsx",
+      "sha256": "8951329e022f1ed06439877457b0ef5983729da509a5d524f0b62701e69f0470",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-022-xlsx",
+      "file": "c4-022-xlsx.xlsx",
+      "sha256": "1318318722188fb1ebe26d84b709b6e4c920bc5222c34a834cd7d9db2016519a",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-026-xlsx",
+      "file": "c4-026-xlsx.xlsx",
+      "sha256": "df91bc4f503e6e7f63282b89ac78bd3b6b3e924835726fb5ac72f8c95f1f47dc",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-028-xlsx",
+      "file": "c4-028-xlsx.xlsx",
+      "sha256": "1c8206967b80ed444a29053e322cd7f3073ff1500d153cc7c5349b4698bb070e",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-033-xlsx",
+      "file": "c4-033-xlsx.xlsx",
+      "sha256": "58b57d772241c8caffbb6808f1b9e5c3e0e16f71b157993d1dfc8709d2c742f1",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c4-035-xlsx",
+      "file": "c4-035-xlsx.xlsx",
+      "sha256": "5a555cf22ca68722b70f7ae3d30a89c5c5d8d47e6302f516d09a0bae54c72e17",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-036-xlsx",
+      "file": "c4-036-xlsx.xlsx",
+      "sha256": "ecd5cb8cc5c1d4aa42c39b9463696dbe49ddef4bfd0af92b6a1e7b41d4404fa4",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-037-xlsx",
+      "file": "c4-037-xlsx.xlsx",
+      "sha256": "49ac30a07b7550a0e7d989193f2a32806df455be82a61ab989978f0d8a84f096",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c5-003-csv",
+      "file": "c5-003-csv.csv",
+      "sha256": "4dfa813c8d123127df74495c659eddc67a1ef99e2ba351a86afc20830775a960",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-010-csv",
+      "file": "c5-010-csv.csv",
+      "sha256": "59160ce6a7e95d0b7ea8b64bbbaa171ab5c60d1c0c4759f0836857bb2f83e33e",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-011-csv",
+      "file": "c5-011-csv.csv",
+      "sha256": "739458b3ab3807b518f1eb91cccca0be75c1dfa29c9b6e260e21412503ff44e6",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-019-csv",
+      "file": "c5-019-csv.csv",
+      "sha256": "375c34f9d9418ff4bea2be8d9d2f033adb0e5b717ec8d8fb97cf3aea0fafb867",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-023-csv",
+      "file": "c5-023-csv.csv",
+      "sha256": "3b27e46d6dd6b0d8626502b3952c6da23be55e0e02a4a0c2f358e4b3a5a163b5",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-024-csv",
+      "file": "c5-024-csv.csv",
+      "sha256": "41597930d09417ffbb63ba24951cd0fc60d8c99c2a56951e2471f0e5f4f555c1",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-026-csv",
+      "file": "c5-026-csv.csv",
+      "sha256": "882b106427a2fb34a2479b39d0d02a3433e449fe1f1db3537ef42d405cd5d1a0",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-033-csv",
+      "file": "c5-033-csv.csv",
+      "sha256": "a1499f4e9bc59a51ab26265ab2909da086499eaf7ba94fe52fb1e78835dd96db",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c5-034-csv",
+      "file": "c5-034-csv.csv",
+      "sha256": "93aec713b718c3fba6cc19e0a3a9fe4cc674b4f4f5bc65667f6cbf136bea2049",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-035-csv",
+      "file": "c5-035-csv.csv",
+      "sha256": "de5aaddc599cc39d751b585600f1a79862a8a03ddcb4108a03275a32e9ef63f9",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-037-csv",
+      "file": "c5-037-csv.csv",
+      "sha256": "72ddc3b3aac9c5509180eaf89899fe7255b7aa117434b3ce2548cc16e31fb798",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "partial-run"
+      ]
+    }
+  ],
+  "blind": [
+    {
+      "id": "c1-000-native-pdf",
+      "file": "c1-000-native-pdf.pdf",
+      "sha256": "b75cd1a927d4332e3800d1d67b10a892b4eef164d9b3aeca0312f75aa6095e16",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-000-scan-300dpi-clean",
+      "file": "c1-000-scan-300dpi-clean.pdf",
+      "sha256": "73bafd8985f0db36141e7d76b25fdf9ce41ba53456f8d595c6e4bfe4106d334e",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-000-scan-200dpi-rotated-noisy",
+      "file": "c1-000-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "21aa6c4ae54ae8f0969a30e7d24f506e29849b4e6003021134a78253fa5fa222",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-000-scan-150dpi-fax",
+      "file": "c1-000-scan-150dpi-fax.pdf",
+      "sha256": "8128045fc9e6b12744a3760d75beb60f679a68dc4f38e266a5a322d3277c03a7",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-001-native-pdf",
+      "file": "c1-001-native-pdf.pdf",
+      "sha256": "8c20cbd731bea038651bf53f4a2d72747ccae53a331c49f8053359e1ded50ee4",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c1-001-scan-300dpi-clean",
+      "file": "c1-001-scan-300dpi-clean.pdf",
+      "sha256": "4d1d3227578c034f3be3b157efb1fa7553157f852d90fc45fdbfd516f28feb1f",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c1-001-scan-200dpi-rotated-noisy",
+      "file": "c1-001-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "624c26c544741df1f4350102ec7c7baccfdb85cba21bb92dc8903194b597f86b",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c1-001-scan-150dpi-fax",
+      "file": "c1-001-scan-150dpi-fax.pdf",
+      "sha256": "b2f8912073096c94f818373a0068ac526ea3c4b14803685b3cfc9623e09c2fde",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c1-004-native-pdf",
+      "file": "c1-004-native-pdf.pdf",
+      "sha256": "7195e5bc5de28947aa532c7c3f95d5dcc054da6ec3c88b9f7a0523be94b20197",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-004-scan-300dpi-clean",
+      "file": "c1-004-scan-300dpi-clean.pdf",
+      "sha256": "13f775d09384afe68a1c4ba94fc318351249eef4ab7c7398c7175ecc4a4b7bcd",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-004-scan-200dpi-rotated-noisy",
+      "file": "c1-004-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "451cc111b9b99c7cf0af1ea899bed5629a1cf7f109129bb62588bb5f109e3b94",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-004-scan-150dpi-fax",
+      "file": "c1-004-scan-150dpi-fax.pdf",
+      "sha256": "4205d284a3d06bafc438933d1bd1e0f2aca918099a50f1a823739ed1c7bf1807",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-005-native-pdf",
+      "file": "c1-005-native-pdf.pdf",
+      "sha256": "f5c4d4e4691966929b0b2bf141542a0336cbc0f43ee3b3ed925f4a7c0fba2e95",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c1-005-scan-300dpi-clean",
+      "file": "c1-005-scan-300dpi-clean.pdf",
+      "sha256": "0b48f9f988dd44970748aaa19ba92da001bb47c554c4cd0d524d3ff8b0c0dda6",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c1-005-scan-200dpi-rotated-noisy",
+      "file": "c1-005-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "c679e9cbf1ca66683892f3dcba5dcd61d5931b6e31f769f6c5c1bd3d9d8c5e0b",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c1-005-scan-150dpi-fax",
+      "file": "c1-005-scan-150dpi-fax.pdf",
+      "sha256": "f41d1073aa09b7420605c2f420ea1cf37fe50cf41a995cd2cdb9601d776b4c13",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c1-006-native-pdf",
+      "file": "c1-006-native-pdf.pdf",
+      "sha256": "516b85f97c773cfc10f52bb9bcf7e15090165aeb0226904523026036e128f626",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-006-scan-300dpi-clean",
+      "file": "c1-006-scan-300dpi-clean.pdf",
+      "sha256": "ff9aa8660a225e1200fc091ea3cdb890db95acdb5ba79470adfd012a413992f1",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-006-scan-200dpi-rotated-noisy",
+      "file": "c1-006-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "13defbae10c98c277e1f917a4d55fc181b2f2ceadde82704b6013b576158e101",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-006-scan-150dpi-fax",
+      "file": "c1-006-scan-150dpi-fax.pdf",
+      "sha256": "daed9e46dec6b1225088daca4b1f229aa7da07a9621a52485a7edd1d6ab67406",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-008-native-pdf",
+      "file": "c1-008-native-pdf.pdf",
+      "sha256": "77e3495fd48ecd00055db773b508ca1517f5130fb3bda84ef85e171030e5289d",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-008-scan-300dpi-clean",
+      "file": "c1-008-scan-300dpi-clean.pdf",
+      "sha256": "5666a6dde3e63e50ed025633346ede590c6a26560d01bb4b2c292fcb3f495d61",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-008-scan-200dpi-rotated-noisy",
+      "file": "c1-008-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "7ae5b315dafbb25d136ff32496dab98a937159d2bf65ad962ba5b7fe3d4d69a2",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-008-scan-150dpi-fax",
+      "file": "c1-008-scan-150dpi-fax.pdf",
+      "sha256": "4b70f74cd4bf66fb40aa8727c22037148cd5d2082bafe64ed0f65e1d6a578708",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-009-native-pdf",
+      "file": "c1-009-native-pdf.pdf",
+      "sha256": "cb0870896abfacc537fdfd686664de8bacd3a100571c99a8aab74d49e8dad680",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c1-009-scan-300dpi-clean",
+      "file": "c1-009-scan-300dpi-clean.pdf",
+      "sha256": "e4a943d62051cb443afebf37e4b2b52bb516f1101bd0925063135a09da72138f",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c1-009-scan-200dpi-rotated-noisy",
+      "file": "c1-009-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "9409da53599172fe00ae27a09f944db07dea53b7d263cb499fa488a9323e2582",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c1-009-scan-150dpi-fax",
+      "file": "c1-009-scan-150dpi-fax.pdf",
+      "sha256": "5438cab9d0ed6ce7bd223724df5d2e68c00e6036d442b476ab7dc40302b9bd43",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c1-010-native-pdf",
+      "file": "c1-010-native-pdf.pdf",
+      "sha256": "3635334ebf491cf2c8858c5590b9dd52d1b1a81a83788c9f6846d25e871946e8",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-010-scan-300dpi-clean",
+      "file": "c1-010-scan-300dpi-clean.pdf",
+      "sha256": "c0bd2e1e7e543e4657c9fb1760a1674fceeba9cd1b7f74b292462d1100c80456",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-010-scan-200dpi-rotated-noisy",
+      "file": "c1-010-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "24ffb7838b13da3681363271711af054c56f0eaa913071e07454291764677d59",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-010-scan-150dpi-fax",
+      "file": "c1-010-scan-150dpi-fax.pdf",
+      "sha256": "5333512bdfae2608ce323dc4d2ef6b61a81e60b9d0d9dac99457419295b8af2b",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-012-native-pdf",
+      "file": "c1-012-native-pdf.pdf",
+      "sha256": "76a8b2af6ad9c6bc4028a5105fcb7f34d86ba5a962dd3c22b52cf22c56424f18",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-012-scan-300dpi-clean",
+      "file": "c1-012-scan-300dpi-clean.pdf",
+      "sha256": "d0252c07a4d20c6040e8b7c6b3b38369f17b1c8e97cb7b9531ff287cdb23540b",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-012-scan-200dpi-rotated-noisy",
+      "file": "c1-012-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "dfe03412e9895c7822c2056fb4502eea1d01cfa6e1bd7989f2788c88be1c13dd",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-012-scan-150dpi-fax",
+      "file": "c1-012-scan-150dpi-fax.pdf",
+      "sha256": "ab7a421d9b749a90427d2b87130fabafe5ee6bb7478eaa45dab6d6b7a19ead53",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-013-native-pdf",
+      "file": "c1-013-native-pdf.pdf",
+      "sha256": "70267e594495bae8557b4a392c61f1207a5b2545023e820fae310e3caf853286",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c1-013-scan-300dpi-clean",
+      "file": "c1-013-scan-300dpi-clean.pdf",
+      "sha256": "28f3cbb3b791be579750d2edacd6b57547f7439018bd786f942a88639c14f929",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c1-013-scan-200dpi-rotated-noisy",
+      "file": "c1-013-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "5469dc242e586917314bad10fc1203b9a4b6d074fb097ce32b7c8db6730b9653",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c1-013-scan-150dpi-fax",
+      "file": "c1-013-scan-150dpi-fax.pdf",
+      "sha256": "92f6b030ea2855d2ac727178cfe67bcf371f65d8f6d979b62ee68ad2faa05f8f",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c1-015-native-pdf",
+      "file": "c1-015-native-pdf.pdf",
+      "sha256": "d28751fdbce588d69d8d9edbbb12986658a48f568b2462f67d535bcbffc8fc2f",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-015-scan-300dpi-clean",
+      "file": "c1-015-scan-300dpi-clean.pdf",
+      "sha256": "94c75ab5e05ed6b9992d3cbebb0552e6e0717cc8f4600bc5b90a4490965afc98",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-015-scan-200dpi-rotated-noisy",
+      "file": "c1-015-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "78d45a8fbacb67a3fd6987afba84397b555dc49379775effb8f9d540492fa223",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-015-scan-150dpi-fax",
+      "file": "c1-015-scan-150dpi-fax.pdf",
+      "sha256": "ff2f2322a0e7250b8b205b9e58f2b0012cdd3becde22ba9b9c1f5580a71988fc",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-016-native-pdf",
+      "file": "c1-016-native-pdf.pdf",
+      "sha256": "cbc470815bc39d568292bfda34b59a2387f6bc8c27f598d85ac7e8235c06e427",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-016-scan-300dpi-clean",
+      "file": "c1-016-scan-300dpi-clean.pdf",
+      "sha256": "a3a0122bcf07e942bdeb0acada169bc1172829a93dda0c3323479dd5b4fa010a",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-016-scan-200dpi-rotated-noisy",
+      "file": "c1-016-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "6c32e4fde5a1bc6832f86cf7e612b37e7e6a7073d5319393b3fbbbb082636265",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-016-scan-150dpi-fax",
+      "file": "c1-016-scan-150dpi-fax.pdf",
+      "sha256": "4f457860baeccfd77ac8dd9fb940f2f7a5d14c27d3a212eff49d2078b85a831b",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-017-native-pdf",
+      "file": "c1-017-native-pdf.pdf",
+      "sha256": "713655f5d3e65601c57e24f743a1f765dda811d7d49dd4fe550157e7f649abd8",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c1-017-scan-300dpi-clean",
+      "file": "c1-017-scan-300dpi-clean.pdf",
+      "sha256": "2fff98dc019ba06b82b4490202f2970b5446e0348978ca2bb948333da5212f01",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c1-017-scan-200dpi-rotated-noisy",
+      "file": "c1-017-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "7e812759543dd869e4f353e16458629a3dc5e652599b1cab4d1289c47af44730",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c1-017-scan-150dpi-fax",
+      "file": "c1-017-scan-150dpi-fax.pdf",
+      "sha256": "62e6688e2c3ccf30ed8495fb6c35dad5c5ea84c42559137929571d7dc17edfbd",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c1-018-native-pdf",
+      "file": "c1-018-native-pdf.pdf",
+      "sha256": "3640c2a8517c2673e04e60249fc0b6f60d65453d18a4d1a72af5af030e909159",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-018-scan-300dpi-clean",
+      "file": "c1-018-scan-300dpi-clean.pdf",
+      "sha256": "f0cd2017956384809729119c23bf8a00f729091d4b16efa54a9f3f64d4deff57",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-018-scan-200dpi-rotated-noisy",
+      "file": "c1-018-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "ff1fd843ce6aa9d997de57b4a4f55af1240df964bda520157747e6df5231eb82",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-018-scan-150dpi-fax",
+      "file": "c1-018-scan-150dpi-fax.pdf",
+      "sha256": "3cbe0b6e00d3ba5afbdf68ac353719f9b8e0a58a5f4cf69353c5feb4a0cec4c5",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-019-native-pdf",
+      "file": "c1-019-native-pdf.pdf",
+      "sha256": "fe4b3b6ffb5a080db2a1bfb4e5f7f8793a99d48ec5c2d31ca63ac243ab6fdb1f",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-019-scan-300dpi-clean",
+      "file": "c1-019-scan-300dpi-clean.pdf",
+      "sha256": "66bbb1686de8f509c72ac247697519c02027d2617994f745b2bad7a6f808d04a",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-019-scan-200dpi-rotated-noisy",
+      "file": "c1-019-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "4f786394dbb93dbc7c50e2a522d4472510a7dfee394a0f2b7fe94d550a93fbd3",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-019-scan-150dpi-fax",
+      "file": "c1-019-scan-150dpi-fax.pdf",
+      "sha256": "f894e730da4b8d3e4d16282d8e21c841f6037b946f35712fcc88357f595fb87d",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-020-native-pdf",
+      "file": "c1-020-native-pdf.pdf",
+      "sha256": "ddfc6dcf57fbd456be2fffb324fe565ba110b7ca27448dfbd0194d32f999ec8d",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-020-scan-300dpi-clean",
+      "file": "c1-020-scan-300dpi-clean.pdf",
+      "sha256": "06c5e61c0e309199baba5daf0f8647b336d6aecd2f10935147d0c2860c184ed6",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-020-scan-200dpi-rotated-noisy",
+      "file": "c1-020-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "4227d063ce984a682ee76b98d089a05840755e7d4341c169433fa9d650b4bce0",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-020-scan-150dpi-fax",
+      "file": "c1-020-scan-150dpi-fax.pdf",
+      "sha256": "5d55fac195fbfe77579ce66d09e0b8362bb81b8f2f96edccf29e1a03868ca917",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-021-native-pdf",
+      "file": "c1-021-native-pdf.pdf",
+      "sha256": "809d6b665e3992cb5fac36591ab2c16fedc5a714f9e4391eb0ad58b67922506b",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c1-021-scan-300dpi-clean",
+      "file": "c1-021-scan-300dpi-clean.pdf",
+      "sha256": "0c92651418dd8d71dca46b6ce7cddb34ae8bb04987cd1ce876d0efd4d10b4b26",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c1-021-scan-200dpi-rotated-noisy",
+      "file": "c1-021-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "b9e2d67e2349f11c52b3523d91f61007fe4a3744a6e6a6b77a3f6f6d1a869344",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c1-021-scan-150dpi-fax",
+      "file": "c1-021-scan-150dpi-fax.pdf",
+      "sha256": "2f2deb03d8b6c2303ea2651eb22f6209cfd2c30c25aeaf98aac20519585aa5d9",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c1-023-native-pdf",
+      "file": "c1-023-native-pdf.pdf",
+      "sha256": "25bd66f36f5c10897b705890300052f68ec62324914b16db25e413cd29a7b2b3",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c1-023-scan-300dpi-clean",
+      "file": "c1-023-scan-300dpi-clean.pdf",
+      "sha256": "d3bbc4ecbf20b0404ad2e95843178638661021af532e676c336eaccbb4761d81",
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c1-023-scan-200dpi-rotated-noisy",
+      "file": "c1-023-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "6241639c72868dfa081fd7d705af1d38028e3a39032f68cf6fa1a99d2a3b9f6f",
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c1-023-scan-150dpi-fax",
+      "file": "c1-023-scan-150dpi-fax.pdf",
+      "sha256": "42e88533ba3ec6ba35b79268a3ab9f7039452a81ad16cbbd48f331a9c0a67930",
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c1-024-native-pdf-locked",
+      "file": "c1-024-native-pdf-locked.pdf",
+      "sha256": "35360669a877823908f94263c3225f06bdee79178b2d9cd589afb33d7eb453a8",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c1-025-native-pdf-locked",
+      "file": "c1-025-native-pdf-locked.pdf",
+      "sha256": "00e562f777b67649e6d8ebd4fcb15d673d954317f623266354b5d29c6dcbd680",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c1-027-native-pdf-locked",
+      "file": "c1-027-native-pdf-locked.pdf",
+      "sha256": "174f7f9af689a67ff9dab9099ec96c4ad30ff286107957972f80a77f9bb31f8d",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c1-029-native-pdf-locked",
+      "file": "c1-029-native-pdf-locked.pdf",
+      "sha256": "7f44cc00f3dd119da2ced437ab633ab3002cefdf4509ba618bbc5230280f0caa",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c1-030-native-pdf-bundle",
+      "file": "c1-030-native-pdf-bundle.pdf",
+      "sha256": "bc19141ed9cb9778886b6f33452206df9cd912925bee990484214143e246557d",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c1-034-native-pdf-bundle",
+      "file": "c1-034-native-pdf-bundle.pdf",
+      "sha256": "7b21e2f9361164d45a6157dc706a63cfba2c695c68a122f736f0819cbd1ff3c5",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c1-035-native-pdf-bundle",
+      "file": "c1-035-native-pdf-bundle.pdf",
+      "sha256": "24945f8e746ccc0fcaf5f370038b4a0050c5c0159fca29e2fe16dfd3cca1e079",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c1-036-native-pdf-bundle",
+      "file": "c1-036-native-pdf-bundle.pdf",
+      "sha256": "aed9147305eee3f20600af52242201a91e3a8721ff6272ccdb3078bafe116d18",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c1-037-native-pdf-bundle",
+      "file": "c1-037-native-pdf-bundle.pdf",
+      "sha256": "ab3272a82e3ee81673b26c0de6180c985a64d83e28b188eb4d5cc38b94b175ac",
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "strata": [
+        "bundle"
+      ]
+    },
+    {
+      "id": "c2-000-native-pdf",
+      "file": "c2-000-native-pdf.pdf",
+      "sha256": "52c490ea4b0d23bb8b8fff5e68c17bf2e08313631d493e996ac981d827b4fb66",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-000-scan-300dpi-clean",
+      "file": "c2-000-scan-300dpi-clean.pdf",
+      "sha256": "59d865bacdc7438d066f1bcc69ac3cb93fb29f8546b5fdd5b4104bda733b881d",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-000-scan-200dpi-rotated-noisy",
+      "file": "c2-000-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "1f6804349896dcc5e8e260fb2e237e781c35448c1674a1965b457490989fdca3",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-000-scan-150dpi-fax",
+      "file": "c2-000-scan-150dpi-fax.pdf",
+      "sha256": "f0518f4c65da50385c468b866a3080c5ae739053958cb6da07a6b0b7805b7e5a",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-001-native-pdf",
+      "file": "c2-001-native-pdf.pdf",
+      "sha256": "69fb0e87a941b5de6c28e4f6c5df07396b963e352fa55bac49bc51a5db6489dc",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c2-001-scan-300dpi-clean",
+      "file": "c2-001-scan-300dpi-clean.pdf",
+      "sha256": "8d57b9cb80ae5ffdbe12246ed165bb67e3f8a6dc54626865d7df14d1caf00f8a",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c2-001-scan-200dpi-rotated-noisy",
+      "file": "c2-001-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "3698283fc88decba9768835ae6072fd1df84bd3037399b00be4c3d9a06c3a439",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c2-001-scan-150dpi-fax",
+      "file": "c2-001-scan-150dpi-fax.pdf",
+      "sha256": "62067b3ddf35d91a08520608c42777d52292f4cb27de35356964456a9ac41c1b",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c2-002-native-pdf",
+      "file": "c2-002-native-pdf.pdf",
+      "sha256": "141292b22acada7ef12fcca5e9d381f25529aa968ea6f429941724cb8afe40f2",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-002-scan-300dpi-clean",
+      "file": "c2-002-scan-300dpi-clean.pdf",
+      "sha256": "247d408c4899d29b993467848c1cf584157024cc08e797ad279b6b9ce511784a",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-002-scan-200dpi-rotated-noisy",
+      "file": "c2-002-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "1c4b0c6afe6695bc343507ee8ea52ff9a5dc2c11fd8cd4b5fac76d0075b53259",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-002-scan-150dpi-fax",
+      "file": "c2-002-scan-150dpi-fax.pdf",
+      "sha256": "9143333c5fad71ced25108a790e47cd6bca55a85f14e9e51ba5f57da83a937ee",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-003-native-pdf",
+      "file": "c2-003-native-pdf.pdf",
+      "sha256": "8b9cb86f176a3306f5b0ea3cc30df2d487f902b0cf68e62c329a504ffa86dc97",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-003-scan-300dpi-clean",
+      "file": "c2-003-scan-300dpi-clean.pdf",
+      "sha256": "b370911c884d73be61ef52be679488051417384dd7cb25ea06b4bd7ec5b04ff7",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-003-scan-200dpi-rotated-noisy",
+      "file": "c2-003-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "31577d4de973a353ddfadc6944ba22caa2a399cc3e3fe5b7c305e7fb1e47e7b5",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-003-scan-150dpi-fax",
+      "file": "c2-003-scan-150dpi-fax.pdf",
+      "sha256": "9da03f870afd208a943499ceb74e5e42bba9567e412b8f044cc4e6d69113b4e4",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-004-native-pdf",
+      "file": "c2-004-native-pdf.pdf",
+      "sha256": "013a7afcaa7185cb72b964396b9e57072e48245eb6e956d19382945110470d7d",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-004-scan-300dpi-clean",
+      "file": "c2-004-scan-300dpi-clean.pdf",
+      "sha256": "f40b4d7093c623df45b769ea01bc0237cf149fafb2ffadb3fe510e25e06212c1",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-004-scan-200dpi-rotated-noisy",
+      "file": "c2-004-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "28b6f179e4a0cc1fa25adc7c47061a3edd2235f095b987f349ec8efe64b6e4db",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-004-scan-150dpi-fax",
+      "file": "c2-004-scan-150dpi-fax.pdf",
+      "sha256": "6d3d58e94f6853e9c9ee91c66cad2175ab9d2a0c6ac2418c8d9cc56cf10702ec",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-005-native-pdf",
+      "file": "c2-005-native-pdf.pdf",
+      "sha256": "7212bcd43c833eea729fbf5bf0657e2525949c21f73c3a0d78f5b998ec1ab7d6",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c2-005-scan-300dpi-clean",
+      "file": "c2-005-scan-300dpi-clean.pdf",
+      "sha256": "25625e3851c8429030b6dedb0cc06e5ee4a4d3563894751106093edd7845af59",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c2-005-scan-200dpi-rotated-noisy",
+      "file": "c2-005-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "d2803267207fb696dd559dc473b393e6bbde2a20c83cd5a36118711edf964c6f",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c2-005-scan-150dpi-fax",
+      "file": "c2-005-scan-150dpi-fax.pdf",
+      "sha256": "29238ac76d9290b968e336dc27dfbc687bef7191a984b8a6376d347c4902b16f",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c2-006-native-pdf",
+      "file": "c2-006-native-pdf.pdf",
+      "sha256": "5ba9123b08d0a77ab97cff8742f147d7fc8fed1289023ea12615984160534e11",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-006-scan-300dpi-clean",
+      "file": "c2-006-scan-300dpi-clean.pdf",
+      "sha256": "f3cfefcc1a2f3517407c442c13d9f67669fa3d13b10006c6f20570d276fb7f15",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-006-scan-200dpi-rotated-noisy",
+      "file": "c2-006-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "40747213407352ece64119cc8f43840b9fb02c3e04a51c0340d341f9d389d950",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-006-scan-150dpi-fax",
+      "file": "c2-006-scan-150dpi-fax.pdf",
+      "sha256": "413d284b23d6cb71c98a4b8c0f0b1535e16b7bde179433bbf58aea17b65cb47e",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-007-native-pdf",
+      "file": "c2-007-native-pdf.pdf",
+      "sha256": "8bb481a024601516a2bbbee6ddeb1e84fe5a5bffd00060cd046e60fbe243a655",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-007-scan-300dpi-clean",
+      "file": "c2-007-scan-300dpi-clean.pdf",
+      "sha256": "0de25114649a36c1c5ffc7806d651528d9ba88e2581dd381577be9ade116d763",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-007-scan-200dpi-rotated-noisy",
+      "file": "c2-007-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "644f11683a9a44a0c70560f1f5bccf6cb1186870ae840891cd176cad76aac973",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-007-scan-150dpi-fax",
+      "file": "c2-007-scan-150dpi-fax.pdf",
+      "sha256": "02176917230182f434f7ee75556ef8fa48d99355f43c1f305c92e8b0b5620047",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-008-native-pdf",
+      "file": "c2-008-native-pdf.pdf",
+      "sha256": "26bb54f7e33947adfe580dc9a4971563b9c5a46391424c12fc149d6d7ef1646f",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-008-scan-300dpi-clean",
+      "file": "c2-008-scan-300dpi-clean.pdf",
+      "sha256": "eacceaabb480c9b004ad5028b4e5b105cdca42ba85b28a642d2d12d6e808bf5a",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-008-scan-200dpi-rotated-noisy",
+      "file": "c2-008-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "7962129c5dd1fa2198839c8c369316a1ec58cd28acbd2bbfaecb263dc4d548ca",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-008-scan-150dpi-fax",
+      "file": "c2-008-scan-150dpi-fax.pdf",
+      "sha256": "da755da9320171b34b8c3f16d94ebb742193ce784b447cd4ce9d6f1acbc7d44e",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-009-native-pdf",
+      "file": "c2-009-native-pdf.pdf",
+      "sha256": "f9776a0caf53e85f6ab5910784324d442c017e8385f4bc1532ed59c3ec52938e",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c2-009-scan-300dpi-clean",
+      "file": "c2-009-scan-300dpi-clean.pdf",
+      "sha256": "125c64c726b6b6baaa445f1982e0c362c763fbbf44d0c034f0bac23b383f418e",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c2-009-scan-200dpi-rotated-noisy",
+      "file": "c2-009-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "b1c2c374649c0f3e2d2ad1a0e190a25ea120958f0d2002e9403aac7b047fe408",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c2-009-scan-150dpi-fax",
+      "file": "c2-009-scan-150dpi-fax.pdf",
+      "sha256": "fb440e9d8136674ad52d82f0fc96fa86637d5713f7fa69627ff638f2e9105b9d",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c2-012-native-pdf",
+      "file": "c2-012-native-pdf.pdf",
+      "sha256": "ed8f18302d5e0846ec5abfb5eef17f2c5784c08d02c800ebf2bbce0966a000de",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-012-scan-300dpi-clean",
+      "file": "c2-012-scan-300dpi-clean.pdf",
+      "sha256": "d99ac157bb30ea4b8ed2dec5c9cef3abf2550152591dcc14c28c6a5b1f7308d7",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-012-scan-200dpi-rotated-noisy",
+      "file": "c2-012-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "8c3a124335b1ab7589769a6846f13753333c31576a3564e269e1588832ef8ff1",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-012-scan-150dpi-fax",
+      "file": "c2-012-scan-150dpi-fax.pdf",
+      "sha256": "5068bdff89cd9e4628a1885810e55d5561c76db7977cf5283d24746566874e2f",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-013-native-pdf",
+      "file": "c2-013-native-pdf.pdf",
+      "sha256": "007d86319cc725125ef0eef4e90e869f1364ebdc4738132bec9e1f280b3ac67e",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c2-013-scan-300dpi-clean",
+      "file": "c2-013-scan-300dpi-clean.pdf",
+      "sha256": "683de9e5ca2437126aa384045e3cb93e8cad46a2bad091b03bb8632e072645e6",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c2-013-scan-200dpi-rotated-noisy",
+      "file": "c2-013-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "cb8e22c540f3e61e2034fbd24420d2d705a414de73677bb55633b62c24f9e6ea",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c2-013-scan-150dpi-fax",
+      "file": "c2-013-scan-150dpi-fax.pdf",
+      "sha256": "1222f1adb0b8af045a62bbb0f45004b06cfeec0776f3246df3181eb8688b0f94",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c2-015-native-pdf",
+      "file": "c2-015-native-pdf.pdf",
+      "sha256": "441783c2aa3585bc167208981260d6263b83154e9127bf7eb938d167bfe36271",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-015-scan-300dpi-clean",
+      "file": "c2-015-scan-300dpi-clean.pdf",
+      "sha256": "97ee04da8453437ef01a7b05c51e48067df3245e385facd6fdefc13dcf77174b",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-015-scan-200dpi-rotated-noisy",
+      "file": "c2-015-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "230d67b29ce58d80f732b566cc76f4385ba1371feef217ab6ead59c13c00d7dc",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-015-scan-150dpi-fax",
+      "file": "c2-015-scan-150dpi-fax.pdf",
+      "sha256": "2001512361c4af28846f4c780b37b4c34c6f6ad8c73da81d9d4ddf6464113ed8",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-016-native-pdf",
+      "file": "c2-016-native-pdf.pdf",
+      "sha256": "1a87a7fa1f66eae12c2ad7aeba8f95bb14a315f0e5988a0a8e8825b7498fd72f",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-016-scan-300dpi-clean",
+      "file": "c2-016-scan-300dpi-clean.pdf",
+      "sha256": "543663cd5c6bfe84164dcf49366b224448333ba9600a2f3bb33874c191e3a33d",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-016-scan-200dpi-rotated-noisy",
+      "file": "c2-016-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "f1bfdca6487e4b937dd42cdebf3c05f2a7b4329de37f3f2df492c7e658fbc398",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-016-scan-150dpi-fax",
+      "file": "c2-016-scan-150dpi-fax.pdf",
+      "sha256": "002311c136456dadb33201cbf1260182d6c33a8403b83cb47c16958d80cd2b39",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-017-native-pdf",
+      "file": "c2-017-native-pdf.pdf",
+      "sha256": "faf1229f6eda2fef2aa1eb2ebdd06b87265f8f7682f50d7022e78cd3e4e7bd23",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c2-017-scan-300dpi-clean",
+      "file": "c2-017-scan-300dpi-clean.pdf",
+      "sha256": "5df89bde0cb6f1eef1c3323869ce9c1cae22df1b474b9af49cdfd08960de1585",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c2-017-scan-200dpi-rotated-noisy",
+      "file": "c2-017-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "455095bebc0304b871a5450b5e55bdf59b6a91288c8e84d9cb996f1701978839",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c2-017-scan-150dpi-fax",
+      "file": "c2-017-scan-150dpi-fax.pdf",
+      "sha256": "8a7a7bfe2a7425478b14f2a15bf059f5e66f73ab5a038d184fb65a02f5416c37",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c2-019-native-pdf",
+      "file": "c2-019-native-pdf.pdf",
+      "sha256": "43111fe4368e594e7aba570bad769a6670ade63fcc82dd1706a6cf99f1fa427c",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-019-scan-300dpi-clean",
+      "file": "c2-019-scan-300dpi-clean.pdf",
+      "sha256": "126b0eb9507dd6bd598aa1c042c0cedfa9fc35fe37f53d9c691b57a8e8ea36f2",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-019-scan-200dpi-rotated-noisy",
+      "file": "c2-019-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "df29ed46b1b2dab107fb52b16292ed7ba482c35a287eb093e51928de0ca1493d",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-019-scan-150dpi-fax",
+      "file": "c2-019-scan-150dpi-fax.pdf",
+      "sha256": "b753c184b82a978c39c3b07893d7336f4a0f1780bf6dcaf3baa472bdc40d442a",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-021-native-pdf",
+      "file": "c2-021-native-pdf.pdf",
+      "sha256": "8e097ca4db0082390529daf5fb315c735510e4bebd85f576a50988f4c31b24f8",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c2-021-scan-300dpi-clean",
+      "file": "c2-021-scan-300dpi-clean.pdf",
+      "sha256": "31b7e40ac00cbc26ac5c1f3ba236074adde18274bb7749901f4929642c1accac",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c2-021-scan-200dpi-rotated-noisy",
+      "file": "c2-021-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "8842bb0d05bd5c329f3a2f751b07f7d13e958ed87ef4edc7bbc7177a579bfb4b",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c2-021-scan-150dpi-fax",
+      "file": "c2-021-scan-150dpi-fax.pdf",
+      "sha256": "d82251dae1a0ca9e768264c5672817aa58cdb1a8a87d44a15bfcacc020f27d45",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c2-022-native-pdf",
+      "file": "c2-022-native-pdf.pdf",
+      "sha256": "c139820cde8304cd1ade4642ce5b5d5cde97d9a112c47133d7b4b8477b732eda",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c2-022-scan-300dpi-clean",
+      "file": "c2-022-scan-300dpi-clean.pdf",
+      "sha256": "299717ba556a74779d5e434195c587eed707aa8aefa8fc1c933c6aa4f0acbc57",
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c2-022-scan-200dpi-rotated-noisy",
+      "file": "c2-022-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "786fad07b4acb39259f0a1d1ba819a84360de0c3f97040245e8dd4b9ee39008b",
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c2-022-scan-150dpi-fax",
+      "file": "c2-022-scan-150dpi-fax.pdf",
+      "sha256": "7ed20541687e65ff0337c64f284e9b5663585ddd89a2944f8e4f32b222f1fd7f",
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c2-024-native-pdf-locked",
+      "file": "c2-024-native-pdf-locked.pdf",
+      "sha256": "0429426aa7bb65bc902166af0be8d2b187e29d291aaebdab6b168009e3a318a6",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c2-026-native-pdf-locked",
+      "file": "c2-026-native-pdf-locked.pdf",
+      "sha256": "4486eed641a8d9569b76f3d8612231ca6b4cbf6ed964ab90d361cb59d240dc0f",
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "strata": [
+        "password-protected"
+      ]
+    },
+    {
+      "id": "c3-000-native-pdf",
+      "file": "c3-000-native-pdf.pdf",
+      "sha256": "3094b87201905e2da43669475c5e9fa56a9c44de4578a79a3c3763ca8e1027ab",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-000-scan-300dpi-clean",
+      "file": "c3-000-scan-300dpi-clean.pdf",
+      "sha256": "64868c73cd45d427a8f5d93ce18859c2f48b6c53fcabadbbc78f78b714af6016",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-000-scan-200dpi-rotated-noisy",
+      "file": "c3-000-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "168466ccccd1669f4bb163eb66f38e7b1bf936686e5ea9190f2584acc50b58d6",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-000-scan-150dpi-fax",
+      "file": "c3-000-scan-150dpi-fax.pdf",
+      "sha256": "cd6b21e45d647880c028863e022d5f5604691df3b06b31597fcf9218b41e0295",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c3-001-native-pdf",
+      "file": "c3-001-native-pdf.pdf",
+      "sha256": "22642d6fe1235c6767862393358f6345927035c22c0d7525c4a947a83c8a9db2",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c3-001-scan-300dpi-clean",
+      "file": "c3-001-scan-300dpi-clean.pdf",
+      "sha256": "e4b8357d3a3a9bfda23057801fddf683b2ee22bdcae97edafb050fe38ea51597",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c3-001-scan-200dpi-rotated-noisy",
+      "file": "c3-001-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "1beb96c38d1abb1a28c14d777028b2e30f2e7b542330f6627c44a1de6a6bdb50",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c3-001-scan-150dpi-fax",
+      "file": "c3-001-scan-150dpi-fax.pdf",
+      "sha256": "d92af8bf88c42e7eedbe2b263f08802177785f5a07b8aae5f509f2b5a0240df4",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c3-003-native-pdf",
+      "file": "c3-003-native-pdf.pdf",
+      "sha256": "136fd5a5ac8bf18a5db6c5487260a52ab241dcd13cada0222626cecf9c941c1a",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-003-scan-300dpi-clean",
+      "file": "c3-003-scan-300dpi-clean.pdf",
+      "sha256": "84318f1c5abd9deaa97f0e271d17c879318e1fdd2bf55434ef0e81fc9258d21d",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-003-scan-200dpi-rotated-noisy",
+      "file": "c3-003-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "012cd8cb24ed3e23230553311e012b7d3409db3138a50ada137fc188615c400f",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-003-scan-150dpi-fax",
+      "file": "c3-003-scan-150dpi-fax.pdf",
+      "sha256": "6152413c0cf815fc1f223915d1d68937778da21a22e025c4cb05589d5520f0c5",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c3-005-native-pdf",
+      "file": "c3-005-native-pdf.pdf",
+      "sha256": "61e3617be936c8bb24c7edf174a8fb02b397f2747e0155d7c08224d5cf546fe6",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c3-005-scan-300dpi-clean",
+      "file": "c3-005-scan-300dpi-clean.pdf",
+      "sha256": "03c01d10edb782cc26b1af00b65d44f67107364d5dad60500e619f3546f6b6a5",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c3-005-scan-200dpi-rotated-noisy",
+      "file": "c3-005-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "334c922a6a94b882481327403748504195576eeaccf616c9ba6c14a29a61e987",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c3-005-scan-150dpi-fax",
+      "file": "c3-005-scan-150dpi-fax.pdf",
+      "sha256": "a25ab12886cecf8a30f193e13ee89e90b7af3ec4b0791f4913437a9274ac55f3",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c3-006-native-pdf",
+      "file": "c3-006-native-pdf.pdf",
+      "sha256": "2a2c9a5fc8410fdddb8bb57b322fdb97ac053e366f0d34d48150ab7f9dc136ee",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-006-scan-300dpi-clean",
+      "file": "c3-006-scan-300dpi-clean.pdf",
+      "sha256": "e090a8ea7bddafc305a204af377fe21bda849e01ae096e22c8607c1df796d7ec",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-006-scan-200dpi-rotated-noisy",
+      "file": "c3-006-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "01fb81dc6321a8a2afed720393b85fe5a80462ce802991ebb8d8ee6026bbbf6e",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-006-scan-150dpi-fax",
+      "file": "c3-006-scan-150dpi-fax.pdf",
+      "sha256": "2519a03652f2b66174780db7418e8cbcfe9b44be466940922ed84d55d3bb75b6",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c3-008-native-pdf",
+      "file": "c3-008-native-pdf.pdf",
+      "sha256": "fbcd33e549c8f5ef4d283ab98cf2a55c7c0698a550ab58e1a278427d49a8a6a9",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-008-scan-300dpi-clean",
+      "file": "c3-008-scan-300dpi-clean.pdf",
+      "sha256": "ee2545b606b356a278fb7960b0ef98ed0170773c22a2f6ba38fd4d07e3171329",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-008-scan-200dpi-rotated-noisy",
+      "file": "c3-008-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "d8c9fe4d11875b74e51ed86bb4af65730bd20dcc055782a3ef8cfeed1398baba",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-008-scan-150dpi-fax",
+      "file": "c3-008-scan-150dpi-fax.pdf",
+      "sha256": "89887ab42636c6982e6e9df5669dff0272cc2319f22ea83c8f0313d17f959976",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c3-009-native-pdf",
+      "file": "c3-009-native-pdf.pdf",
+      "sha256": "818c51cfb27d95066479602d456a764ec67cc28aa15d2b45831703006412146c",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c3-009-scan-300dpi-clean",
+      "file": "c3-009-scan-300dpi-clean.pdf",
+      "sha256": "da05903760d4b100165bded60663292212d7398115474a60667a0cf8e33faab7",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c3-009-scan-200dpi-rotated-noisy",
+      "file": "c3-009-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "b497076f1e0c8ad8558f5928115ac3347e7f1a6aaed4eb902f85deefe2ca2e59",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c3-009-scan-150dpi-fax",
+      "file": "c3-009-scan-150dpi-fax.pdf",
+      "sha256": "bf2ae9d45028dd5e079bd2499f8d8b9d3daaeb5faf0b0e41e651adb9e8c16899",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c3-010-native-pdf",
+      "file": "c3-010-native-pdf.pdf",
+      "sha256": "0f57ed4d14a0ff92a48b348eac89baa5fa725d44c546bc565e6114d3d6ecdf6e",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-010-scan-300dpi-clean",
+      "file": "c3-010-scan-300dpi-clean.pdf",
+      "sha256": "e98a369592fcd3db90bc327d372ddcd89a38dd712a0b3ebacbdc0f0eb5c5d868",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-010-scan-200dpi-rotated-noisy",
+      "file": "c3-010-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "5e69ef174edf4f2cdd328edc4f9e4ee52d49e6f6b2517e72d45ab10b2ffaa499",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-010-scan-150dpi-fax",
+      "file": "c3-010-scan-150dpi-fax.pdf",
+      "sha256": "7f789d8aa260b1d575085cdb18c621eb28823d5f4b0a7392bfd3cf1461eee121",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c3-011-native-pdf",
+      "file": "c3-011-native-pdf.pdf",
+      "sha256": "efec8cd4f661310a96fa6120502e43f9fcd2ecf0127c1ce2d1ce45f8b7aaec58",
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "strata": []
+    },
+    {
+      "id": "c3-011-scan-300dpi-clean",
+      "file": "c3-011-scan-300dpi-clean.pdf",
+      "sha256": "b1028fddc41551f4588c4986f8e8bf0438ce33d28caf5ee5cad17bb29d6af6b0",
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "strata": []
+    },
+    {
+      "id": "c3-011-scan-200dpi-rotated-noisy",
+      "file": "c3-011-scan-200dpi-rotated-noisy.pdf",
+      "sha256": "e646fb51d21790ad1e630e4616d33b8e58b876e094c1c718fefdd4580b1b1fff",
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "strata": []
+    },
+    {
+      "id": "c3-011-scan-150dpi-fax",
+      "file": "c3-011-scan-150dpi-fax.pdf",
+      "sha256": "84a0c914a7acce9e17e360f9c9d0d75c22098ddf1c4f9f70b0127e0e6d47c48b",
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "strata": []
+    },
+    {
+      "id": "c4-000-xlsx",
+      "file": "c4-000-xlsx.xlsx",
+      "sha256": "07f1ec57b121f0c7d088d11c320d6a702ff007157fbdd99de4a62b6df9575a53",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-001-xlsx",
+      "file": "c4-001-xlsx.xlsx",
+      "sha256": "fbbfcbd00831681bbb9e8fe186ecab016ececbe855a2bd6e9e13f4bb7728ed08",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c4-003-xlsx",
+      "file": "c4-003-xlsx.xlsx",
+      "sha256": "99fe3fcc6f254bd67f2f42f461ab35d14ac5f4258170f23692ae7357c2f7647f",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-005-xlsx",
+      "file": "c4-005-xlsx.xlsx",
+      "sha256": "0634a90574e6b83a7df40ae0ae7d26e8e47305a7b689478149bf3ac44e2a0797",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c4-006-xlsx",
+      "file": "c4-006-xlsx.xlsx",
+      "sha256": "0e95c2da3dc8ef7ab5fc46e45b6bcf4f238f703715afff290a57536d52c8dd62",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-007-xlsx",
+      "file": "c4-007-xlsx.xlsx",
+      "sha256": "5f05cea0c14bbde1addc1ee6252b665fac89866b14d816349495de389076f099",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-008-xlsx",
+      "file": "c4-008-xlsx.xlsx",
+      "sha256": "d5d7ee947a2d157518f7756c90ebf58525bbd400ff3622b04d6e5afdb86dbc38",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-009-xlsx",
+      "file": "c4-009-xlsx.xlsx",
+      "sha256": "ab6637a7421e7af44bffc3719036903483e8b1c15f7b81a3bfb501f87ae0ca41",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c4-010-xlsx",
+      "file": "c4-010-xlsx.xlsx",
+      "sha256": "2f003bf2c935f862c2594d7b02d63ce239b30b5d7d589ae037d8a52366f2681a",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-011-xlsx",
+      "file": "c4-011-xlsx.xlsx",
+      "sha256": "d19a7f26c52353061806295a3bc691ff46a14492fb2ae44363869bd27d62e2e8",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-012-xlsx",
+      "file": "c4-012-xlsx.xlsx",
+      "sha256": "be1cf68536876e1abf9419d95aba7b511e857d36df99db6219306a3604c3513f",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-013-xlsx",
+      "file": "c4-013-xlsx.xlsx",
+      "sha256": "0069887f209c765f56ca0297dc1ecbbd2b7afc9da6c9e1d0eaafd61116023a94",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c4-014-xlsx",
+      "file": "c4-014-xlsx.xlsx",
+      "sha256": "178335a898c61bcb994e72b158cd8637eede351cb48133abe97e3f5519a43cf3",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-017-xlsx",
+      "file": "c4-017-xlsx.xlsx",
+      "sha256": "aa0ba28662060edd29de1c5120c5cbf26372b1667fc2d267c38ddbf20ff9d605",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c4-018-xlsx",
+      "file": "c4-018-xlsx.xlsx",
+      "sha256": "78bb6f4631b39096406cb0578da21d192acd51bcfe528638494e042116a9a5f7",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-019-xlsx",
+      "file": "c4-019-xlsx.xlsx",
+      "sha256": "a23ad15ed043572a68bfe3de20a7e0e5e843d488fb2d2b7cd5271264dc6d75a3",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-020-xlsx",
+      "file": "c4-020-xlsx.xlsx",
+      "sha256": "c09bf2b3807988fd460af9dbe66d7d87832a4c33bf667856986923731a8fd6a9",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-021-xlsx",
+      "file": "c4-021-xlsx.xlsx",
+      "sha256": "c00b1bd184c717aff73bcf6d50a0d49ff5676641ef494eae9774ba676e299b2e",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c4-023-xlsx",
+      "file": "c4-023-xlsx.xlsx",
+      "sha256": "f1f4bcb0f360d8ca8593f2b55e0d1542796bef215e27517842300d1cb2b13421",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-024-xlsx",
+      "file": "c4-024-xlsx.xlsx",
+      "sha256": "042b8dfd256a67a6d531b929c8e3d076b1a87d74f55928ca865cf23eeb2c94a2",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-025-xlsx",
+      "file": "c4-025-xlsx.xlsx",
+      "sha256": "2f9fd2067ee9998696a93c555a0119987b4ac8da1e5ae92a35502bb5de62487d",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "non-ca"
+      ]
+    },
+    {
+      "id": "c4-027-xlsx",
+      "file": "c4-027-xlsx.xlsx",
+      "sha256": "76c25880bcfdef2616e1ac4cb72052724b39845140eeea43f97b5a118bfcfcbc",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-029-xlsx",
+      "file": "c4-029-xlsx.xlsx",
+      "sha256": "e7fccdbfd228f03f0d195f314a1d371d07fb9fb72a5130a32c2bdaca094ed975",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": [
+        "source-inconsistent"
+      ]
+    },
+    {
+      "id": "c4-030-xlsx",
+      "file": "c4-030-xlsx.xlsx",
+      "sha256": "6ac79a07b1be1113ecc08b56267f0c720799e3a74e969c011175f568e5117f45",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-031-xlsx",
+      "file": "c4-031-xlsx.xlsx",
+      "sha256": "f7a48954b13a269723d1fe2c01a2cf803909e73d9c6471d5825beb2e3a54dd61",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-032-xlsx",
+      "file": "c4-032-xlsx.xlsx",
+      "sha256": "7c99b0a1523901c78c4ef51b9f29c68c2c0e77d363220c939107bb7e49a252c7",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-034-xlsx",
+      "file": "c4-034-xlsx.xlsx",
+      "sha256": "2a0913b225fb4a43aa8448a9db118c00395e93c97862ed4b6017e47e27362f0c",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-038-xlsx",
+      "file": "c4-038-xlsx.xlsx",
+      "sha256": "f0e0717cd9cff88b1900a648eae6df8dc4685b9b0a6d8321afdb819f0592ee10",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c4-039-xlsx",
+      "file": "c4-039-xlsx.xlsx",
+      "sha256": "7e934747b5ecd44d628f11b802ee7e93a0280dad9a54f2ba92c6fb4cb41aa4a5",
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "strata": []
+    },
+    {
+      "id": "c5-000-csv",
+      "file": "c5-000-csv.csv",
+      "sha256": "3b0d032714f38d4b68270404d511006044f635cba5f6736a8399ef21db562c46",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-001-csv",
+      "file": "c5-001-csv.csv",
+      "sha256": "3e4cf38d358c0638c383cd2f8d76deedaf77f4644fb2ba81908231ec8a564383",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "missing-year"
+      ]
+    },
+    {
+      "id": "c5-002-csv",
+      "file": "c5-002-csv.csv",
+      "sha256": "fa06dea92a83ef6cb1c1923a12a820efc108ea70313314af18bd88cc594fa965",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-004-csv",
+      "file": "c5-004-csv.csv",
+      "sha256": "a75a2cf9514b00444eed8ab3c2b24da2a364b0530db5adcee4dbda7df900d9fd",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-005-csv",
+      "file": "c5-005-csv.csv",
+      "sha256": "35cf957950a5e0f2b99e14b78da884a2f1b2a232d021fc10203e3729fff90f30",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "partial-run"
+      ]
+    },
+    {
+      "id": "c5-006-csv",
+      "file": "c5-006-csv.csv",
+      "sha256": "eaa2836d68eb8b191f6e3e1a7e67dc89c93704dcea766af3b9b096f1a59443f2",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-007-csv",
+      "file": "c5-007-csv.csv",
+      "sha256": "09924102b524f372627a3c88150b3c4016771d988c3d2c46d379a732329d3ab2",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-008-csv",
+      "file": "c5-008-csv.csv",
+      "sha256": "eba83acabfc36616136e8b8b31aa7a712c1364749b8efa6d2e14213a04ec553c",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-009-csv",
+      "file": "c5-009-csv.csv",
+      "sha256": "89b4b21e2f166ec6a9dd048e311d30c70fd15172569d86912bf33dc1a9d5247a",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "closed-only"
+      ]
+    },
+    {
+      "id": "c5-012-csv",
+      "file": "c5-012-csv.csv",
+      "sha256": "8371fb9d5ca608f05af06db128b9fc195e4d2827535314a9e3998beaddc3e9fa",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-013-csv",
+      "file": "c5-013-csv.csv",
+      "sha256": "c0850a79a45170625938268527f1355fefca9f4954d15488dfa4a69608767a57",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "reopened"
+      ]
+    },
+    {
+      "id": "c5-014-csv",
+      "file": "c5-014-csv.csv",
+      "sha256": "b0fcfbbe4f92c02e0dd36ccfd1cffbc51c0a4e155093d25b84398c093b5c4792",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-015-csv",
+      "file": "c5-015-csv.csv",
+      "sha256": "73db6e6558063f08ad7654a4969b3fefc08508a6e029b67865d7133944eda99d",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-016-csv",
+      "file": "c5-016-csv.csv",
+      "sha256": "87b44bcbbe7a8162a9bc40f05f26e9ff3162ca992db79f337855278c1688d9e1",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-017-csv",
+      "file": "c5-017-csv.csv",
+      "sha256": "b6af238a59dc0f01e24076ed137afd9e749b4f520cfacb675d9e569c23c4749e",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "cat-outlier"
+      ]
+    },
+    {
+      "id": "c5-018-csv",
+      "file": "c5-018-csv.csv",
+      "sha256": "edee6c5b90fb86e5505e1672da1ca92afe038e8d48c983c8f524055fdc53556b",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-020-csv",
+      "file": "c5-020-csv.csv",
+      "sha256": "50012c581137bd60c6e930caa53c59872e08ebc20a07e50b2f75461202438fe6",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-021-csv",
+      "file": "c5-021-csv.csv",
+      "sha256": "7ae22771b3b0ae6cdbc222dcd81cef3d07f6fc5715f0ed176f0e77d403d0ed83",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "multi-policy"
+      ]
+    },
+    {
+      "id": "c5-022-csv",
+      "file": "c5-022-csv.csv",
+      "sha256": "b100d3ab6babb9bd3a9b72f155858aabda7c2a9826fbd478ade6caf57c69bf26",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-025-csv",
+      "file": "c5-025-csv.csv",
+      "sha256": "91018508c03c1636e89aa226c45185b8fcc08390e8d3487bdd52daa7dc5039f0",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "non-ca"
+      ]
+    },
+    {
+      "id": "c5-027-csv",
+      "file": "c5-027-csv.csv",
+      "sha256": "f85467abe0ab9e17d014e05eca3b3fc9aa0f50f88c1a91dfd3c5f76e41999442",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-028-csv",
+      "file": "c5-028-csv.csv",
+      "sha256": "875def1a71050d955b425746f5a6ebeaf7fcac5eae0d208538bc76d1677eaa41",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-029-csv",
+      "file": "c5-029-csv.csv",
+      "sha256": "6c5250d53b50f127839b6e15b505b219878379e7b35e0c2e4c08be466b457354",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": [
+        "non-wc-rows"
+      ]
+    },
+    {
+      "id": "c5-030-csv",
+      "file": "c5-030-csv.csv",
+      "sha256": "06c9990005acd502c107ef9ad3426431b621ac14030d10b9c6152753357ad24f",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-031-csv",
+      "file": "c5-031-csv.csv",
+      "sha256": "ba8b0f0f715a4c988165dd07377302c8faf3533ebf5b0a3f89075c73657d614a",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-032-csv",
+      "file": "c5-032-csv.csv",
+      "sha256": "c5ad3c2195ed2465a7ad88e2ed9d31749a17d3868a8c311397f07f5bec7a888b",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-036-csv",
+      "file": "c5-036-csv.csv",
+      "sha256": "2f5693f50b4d9174e6790fa50213abe39d0dcdb21c98dfe3241fb5861eae2018",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-038-csv",
+      "file": "c5-038-csv.csv",
+      "sha256": "c3a04ed757420c5189a7263473b36048bb6c33d3b90751e753ba1a5d48db58da",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    },
+    {
+      "id": "c5-039-csv",
+      "file": "c5-039-csv.csv",
+      "sha256": "08ab557726655be9153a1b6ef6e171c79869e283c1f68f70ce5ccb9581b95473",
+      "carrier": "c5",
+      "inputType": "csv",
+      "strata": []
+    }
+  ],
+  "blindManifestSha256": "6a9907acb6b63f8d873f17a25551d423e96b802cbea98a7787ec17437bdec2c0"
+}

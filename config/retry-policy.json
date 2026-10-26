@@ -1,0 +1,31 @@
+{
+  "$comment": "Brief 33 (ADR 0028): which activity failures the Durable layer retries. A rule names the failure's ErrorType (the full exception type name, TaskFailureDetails.ErrorType) and optionally narrows it: whenMessageMatches (a regex on ErrorMessage), whenPropertyIn (a value of a property the app's IExceptionPropertiesProvider adds; a SqlException's message never carries its number), innerIsTransient (classify the wrapped InnerFailure). Every regex and property here is written from captured failure details, not from memory: src/LossRun.Orchestration.Tests/fixtures/captured-failures.json, produced by tools/capture-failures. The chain is walked outermost first; the first rule that matches decides. Unknown types are not retried (the lower layers had their chance): they fail fast and reach the Needs-investigation queue keyed by their type. Grow the lists from that queue, with evidence; never flip unknownIsTransient.",
+  "schemaVersion": "1.1.0",
+  "storage": { "maxAttempts": 3, "firstDelaySeconds": 5, "backoff": 2.0, "maxTotalSeconds": 60 },
+  "transient": [
+    { "type": "System.Net.Http.HttpRequestException" },
+    { "type": "System.TimeoutException" },
+    { "type": "System.Threading.Tasks.TaskCanceledException", "whenMessageMatches": "HttpClient\\.Timeout", "$comment": "captured: an HttpClient timeout's message names HttpClient.Timeout" },
+    { "type": "Azure.RequestFailedException", "whenMessageMatches": "(?m)^Status: (408|429|500|502|503|504) \\(", "$comment": "captured: 'Status: 503 (Service Unavailable)' on its own line" },
+    { "type": "Microsoft.Data.SqlClient.SqlException", "whenPropertyIn": { "name": "sqlErrorNumber", "values": [40613, -2, 258, 40197, 40501, 49918, 49919, 49920, 4060, 10928, 10929, 11001] }, "$comment": "the first five are SqlConnections.ResumeErrors (serverless resume, timeouts); the rest are Azure SQL's documented busy/throttle errors from the brief" },
+    { "type": "Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException" },
+    { "type": "Microsoft.EntityFrameworkCore.DbUpdateException", "innerIsTransient": true }
+  ],
+  "permanent": [
+    { "type": "Microsoft.EntityFrameworkCore.Storage.RetryLimitExceededException", "reason": "EF retries exhausted on {inner.sqlErrorNumber}", "$comment": "brief 34 A1.1, captured: EF's own SqlServerRetryingExecutionStrategy gave up; the inner SqlException carries sqlErrorNumber. EF already retried 8 x <= 15 s, so it is not retried again" },
+    { "type": "Azure.RequestFailedException", "whenMessageMatches": "(?m)^Status: 404 \\(", "$comment": "brief 34 A1.4, captured: a missing blob or analyzer is not healed by running again; still escalated" },
+    { "type": "System.InvalidOperationException" },
+    { "type": "System.ArgumentException" },
+    { "type": "System.ArgumentNullException" },
+    { "type": "System.ArgumentOutOfRangeException" },
+    { "type": "System.FormatException" },
+    { "type": "System.Text.Json.JsonException" },
+    { "type": "System.InvalidCastException" },
+    { "type": "System.NullReferenceException" },
+    { "type": "System.NotSupportedException" },
+    { "type": "System.IO.InvalidDataException" },
+    { "type": "System.Collections.Generic.KeyNotFoundException" },
+    { "type": "LossRun.Formats.FormatAlreadyPublishedException" }
+  ],
+  "unknownIsTransient": false
+}

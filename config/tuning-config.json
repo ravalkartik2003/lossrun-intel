@@ -1,0 +1,36 @@
+{
+  "$comment": "Brief 27 (Answers 1, 3): stopping criteria for lossrun tune (docs/operations/tuning-loop.md §5-6, docs/operations/playbook.md). Data, never code. Targets are the acceptance table's (docs/poc-plan/closeout/acceptance-table.md), on the lower bound of the 95 % interval: a stratum is an input type, with native PDFs split into recurring and first-seen templates. measure 'prefill' scores the reviewer's pre-fill (fax: review by design). Strata with fewer than minStratumDocuments documents are reported as insufficient and do not block.",
+  "version": "1.2.0",
+  "defaultKeyFieldAccuracyLower": 0.95,
+  "targets": [
+    { "stratum": "native-pdf/recurring", "keyFieldAccuracyLower": 0.99, "maxReviewRate": 0.05 },
+    { "stratum": "native-pdf/first-seen", "keyFieldAccuracyLower": 0.97 },
+    { "stratum": "xlsx", "keyFieldAccuracyLower": 0.99 },
+    { "stratum": "csv", "keyFieldAccuracyLower": 0.99 },
+    { "stratum": "zip", "keyFieldAccuracyLower": 0.99 },
+    { "stratum": "scan-300dpi-clean", "keyFieldAccuracyLower": 0.95 },
+    { "stratum": "scan-200dpi-rotated-noisy", "keyFieldAccuracyLower": 0.90 },
+    { "stratum": "scan-150dpi-fax", "keyFieldAccuracyLower": 0.85, "measure": "prefill" }
+  ],
+  "minStratumDocuments": 5,
+  "maxReviewRate": 0.20,
+  "requireZeroTier2InLastBatch": true,
+  "$batchBudgetComment": "Brief 31 item 4 (brief 30 Answers 4): the per-batch spend cap (batchBudgetUsd in the playbook) is derived in code, never typed here: replayUsdPerDocument × batchDocuments + learnUsdPerFormat × ceil(expectedNewFormatsShare × batchDocuments). Source docs/poc-plan/tco.md §3: a 12-page replay is 12 × $0.0063 ≈ $0.075; a learn on a 12-page document $0.10–0.30 (the upper end, a tuning set is chosen to be diverse); one new format per 200 documents in production, rounded up to 10 % for a tuning set. batchDocuments is the released tuning set (100 files, docs/operations/blind-run.md §3). 0.075 × 100 + 0.30 × 10 = $10.50. --budget / BUDGET still override per batch.",
+  "replayUsdPerDocument": 0.075,
+  "learnUsdPerFormat": 0.30,
+  "expectedNewFormatsShare": 0.10,
+  "batchDocuments": 100,
+  "maxBatches": 5,
+  "grammarPaths": [
+    "src/LossRun.Learning/PromptBuilder.cs",
+    "src/LossRun.Learning/ModelSchema.cs",
+    "src/LossRun.Learning/SpecLint*.cs",
+    "docs/evaluation/carrier-format.schema.json",
+    "docs/evaluation/canonical-schema.json",
+    "docs/evaluation/rule-catalog.json"
+  ],
+  "labelledGrammarPaths": [
+    "src/LossRun.Learning/FormatLearner.cs"
+  ],
+  "nonConvergence": "From the second batch on: grammar changes in batch n at or above batch n-1 (and above zero) stop the loop; fall back to the delta path for that carrier class (tuning-loop.md §6). Grammar = the prompt, the schemas, the rule catalog and the lint files; FormatLearner.cs counts only in commits labelled tier-2."
+}

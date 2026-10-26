@@ -1,0 +1,24 @@
+{
+ "quote": "Q-QS25-10251322",
+ "upload": {
+  "status": "completed",
+  "tier": "ReplayAccepted"
+ },
+ "revision1SecondsAfterPageOpen": 7,
+ "decision": 200,
+ "revision2SecondsAfterDecision": 1,
+ "liveRegion": "Loss information updated to quote revision 2.",
+ "readiness": "5 fields need input",
+ "strip": "Last command\nob-cc0d68da86ed4b5ca8ea78251008b42b\nIdempotency key\nob-cc0d68da86ed4b5ca8ea78251008b42b\nQuote revision received\n2\nDelivery\napplied\nReceived\n2026-10-25T13:28:46.9779651+00:00\nLast event\nlossrun.review.decided (revision 2)\nLast event at\n2026-10-25T13:28:46.6188534+00:00\nOlder revisions refused\n—",
+ "grid": {
+  "quoteRevision": 2,
+  "columns": 2,
+  "rows": 13,
+  "attachments": 1
+ },
+ "olderRevision": 409,
+ "axe": {
+  "light": [],
+  "dark": []
+ }
+}

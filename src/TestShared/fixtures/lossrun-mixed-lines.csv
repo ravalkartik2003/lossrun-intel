@@ -1,0 +1,6 @@
+Policy #,Claim #,Claimant,DOI,Report Date,Status,Type,Indemnity Paid,Indemnity Reserve,Medical Paid,Medical Reserve,Expense Paid,Total Incurred
+SYN-WC-2301,WC-23-0101,"Synthetic Claimant K",01/12/2023,01/13/2023,Closed,IND,9000.00,0.00,6500.00,0.00,700.00,16200.00
+SYN-WC-2301,WC-23-0102,"Synthetic Claimant L",03/04/2023,03/06/2023,Open,MO,0.00,0.00,1100.00,400.00,0.00,1500.00
+SYN-WC-2301,WC-23-0103,"Synthetic Claimant M",05/20/2023,05/21/2023,Open,IND,4200.00,8000.00,3100.00,2500.00,0.00,17800.00
+SYN-WC-2301,GL-23-0104,"Synthetic Claimant N",06/02/2023,06/05/2023,Closed,GL,0.00,0.00,0.00,0.00,0.00,2400.00
+SYN-WC-2301,WC-23-0105,"Synthetic Claimant O",09/18/2023,09/20/2023,X,IND,0.00,0.00,0.00,0.00,0.00,0.00

@@ -1,0 +1,49 @@
+{
+  "name": "lossrun-docs",
+  "description": "Brief 12 chat index: one chunk per page or sheet of every processed or kept document. Scope fields (scope, quoteId, workspaceId) are filterable; every query carries the server's scope filter (ADR 0002). Created by `lossrun chat init-index`; chunks are pushed by the chat-index queue (no indexer).",
+  "fields": [
+    { "name": "chunkId", "type": "Edm.String", "key": true, "filterable": true, "retrievable": true },
+    { "name": "documentId", "type": "Edm.String", "filterable": true, "retrievable": true },
+    { "name": "uploadId", "type": "Edm.String", "filterable": true, "retrievable": true },
+    { "name": "quoteId", "type": "Edm.String", "filterable": true, "retrievable": true, "facetable": true },
+    { "name": "workspaceId", "type": "Edm.String", "filterable": true, "retrievable": true },
+    { "name": "scope", "type": "Edm.String", "filterable": true, "retrievable": true },
+    { "name": "carrier", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "facetable": true },
+    { "name": "classification", "type": "Edm.String", "searchable": true, "filterable": true, "retrievable": true, "facetable": true },
+    { "name": "fileName", "type": "Edm.String", "searchable": true, "retrievable": true },
+    { "name": "page", "type": "Edm.Int32", "filterable": true, "retrievable": true },
+    { "name": "sheet", "type": "Edm.String", "retrievable": true },
+    { "name": "markdown", "type": "Edm.String", "searchable": true, "retrievable": true, "analyzer": "en.microsoft" },
+    {
+      "name": "vector",
+      "type": "Collection(Edm.Single)",
+      "searchable": true,
+      "retrievable": false,
+      "stored": false,
+      "dimensions": 3072,
+      "vectorSearchProfile": "hnsw-cosine"
+    },
+    { "name": "valuationDate", "type": "Edm.DateTimeOffset", "filterable": true, "retrievable": true, "sortable": true },
+    { "name": "formatRef", "type": "Edm.String", "filterable": true, "retrievable": true },
+    { "name": "reviewStatus", "type": "Edm.String", "filterable": true, "retrievable": true },
+    { "name": "policyNumbers", "type": "Collection(Edm.String)", "searchable": true, "filterable": true, "retrievable": true },
+    { "name": "expiresAt", "type": "Edm.DateTimeOffset", "filterable": true, "retrievable": true }
+  ],
+  "vectorSearch": {
+    "algorithms": [ { "name": "hnsw", "kind": "hnsw", "hnswParameters": { "metric": "cosine", "m": 4, "efConstruction": 400, "efSearch": 500 } } ],
+    "profiles": [ { "name": "hnsw-cosine", "algorithm": "hnsw" } ]
+  },
+  "semantic": {
+    "defaultConfiguration": "default",
+    "configurations": [
+      {
+        "name": "default",
+        "prioritizedFields": {
+          "titleField": { "fieldName": "fileName" },
+          "prioritizedContentFields": [ { "fieldName": "markdown" } ],
+          "prioritizedKeywordsFields": [ { "fieldName": "carrier" }, { "fieldName": "classification" }, { "fieldName": "policyNumbers" } ]
+        }
+      }
+    ]
+  }
+}

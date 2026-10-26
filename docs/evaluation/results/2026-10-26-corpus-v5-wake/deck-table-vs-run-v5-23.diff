@@ -1,0 +1,30 @@
+6c6
+< | native PDF, first-seen template | 1 | insufficient sample (n = 1 document) | insufficient sample (n = 1 document) | — (none reviewed) | 4.000 | ≥ 98% delivered — insufficient sample (n = 1 document): no verdict |
+---
+> | native PDF, first-seen template | 1 | insufficient sample (n = 1 document) | insufficient sample (n = 1 document) | — (none reviewed) | 5.000 | ≥ 98% delivered — insufficient sample (n = 1 document): no verdict |
+9,10c9,10
+< | scan 200 dpi rotated | 48 | 100.0% [99.9%–100.0%] (n=7272, docs=35) | 27.1% [16.5%–41.1%] (n=48, docs=48) | 99.8% [99.6%–99.9%] (n=3150, docs=13) | 0.000 | measured, not committed; review rate 27.1%, pre-fill 99.8% |
+< | fax < 200 dpi | 48 | — (none delivered) | 100.0% [91.2%–100.0%] (n=48, docs=48) | 89.1% [86.2%–91.4%] (n=10422, docs=48) | 0.021 | routed to review by design; pre-fill 89.1% |
+---
+> | scan 200 dpi rotated | 48 | 100.0% [99.9%–100.0%] (n=6948, docs=34) | 29.2% [18.2%–43.3%] (n=48, docs=48) | 99.8% [99.6%–99.9%] (n=3474, docs=14) | 0.000 | measured, not committed; review rate 29.2%, pre-fill 99.8% |
+> | fax < 200 dpi | 48 | — (none delivered) | 100.0% [91.2%–100.0%] (n=48, docs=48) | 88.9% [86.0%–91.3%] (n=10422, docs=48) | 0.021 | routed to review by design; pre-fill 88.9% |
+12,16c12,16
+< | construct: two-line records (c6) | 6 | 100.0% [99.6%–100.0%] (n=1278, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.167 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+< | construct: one table per claim (c7) | 6 | 100.0% [99.5%–100.0%] (n=858, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.667 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+< | construct: stacked cells (c8) | 6 | 100.0% [99.5%–100.0%] (n=1026, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.167 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+< | construct: component-sum headers (c9) | 6 | 100.0% [99.6%–100.0%] (n=1098, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.500 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+< | construct: measures as rows (c10) | 6 | 100.0% [99.6%–100.0%] (n=1158, docs=5) | 16.7% [1.1%–58.7%] (n=6, docs=6) | 33.3% [26.4%–41.1%] (n=156, docs=1) | 1.000 | measured, not committed (construct coverage: first document learned, then replayed); review rate 16.7% |
+---
+> | construct: two-line records (c6) | 6 | 100.0% [99.6%–100.0%] (n=1278, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.500 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+> | construct: one table per claim (c7) | 6 | 100.0% [99.5%–100.0%] (n=858, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.333 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+> | construct: stacked cells (c8) | 6 | 100.0% [99.5%–100.0%] (n=1026, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.500 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+> | construct: component-sum headers (c9) | 6 | 100.0% [99.6%–100.0%] (n=1098, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.333 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+> | construct: measures as rows (c10) | 6 | 100.0% [99.6%–100.0%] (n=1314, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | — (none reviewed) | 0.167 | measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0% |
+26c26
+< | scan 200 dpi rotated | 46 | 100.0% [88.2%–100.0%] (n=35, docs=35) | 100.0% [88.2%–100.0%] (n=35, docs=35) | 23.9% [13.8%–38.1%] (n=46, docs=46) | 35 |
+---
+> | scan 200 dpi rotated | 46 | 100.0% [87.9%–100.0%] (n=34, docs=34) | 100.0% [87.9%–100.0%] (n=34, docs=34) | 26.1% [15.5%–40.4%] (n=46, docs=46) | 34 |
+33c33
+< | construct: measures as rows (c10) | 6 | 100.0% [51.1%–100.0%] (n=5, docs=5) | 100.0% [51.1%–100.0%] (n=5, docs=5) | 16.7% [1.1%–58.7%] (n=6, docs=6) | 5 |
+---
+> | construct: measures as rows (c10) | 6 | 100.0% [55.7%–100.0%] (n=6, docs=6) | 100.0% [55.7%–100.0%] (n=6, docs=6) | 0.0% [0.0%–44.3%] (n=6, docs=6) | 6 |

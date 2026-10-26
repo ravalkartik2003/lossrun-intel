@@ -1,0 +1,569 @@
+{
+  "documentId": "doc-01",
+  "uploadId": "up-7f3a9c2d1e8b4a6f0c21",
+  "revision": 1,
+  "formatRef": "amtrust-pdf@2",
+  "reviewState": null,
+  "routing": {
+    "tier": "ReplayAccepted",
+    "badge": "Format memory hit \u00b7 AmTrust v2 \u00b7 0 model calls",
+    "fingerprintTier": "deterministic",
+    "score": 1.0,
+    "modelCalls": 0,
+    "embeddingCalls": 0,
+    "formatStatus": "active"
+  },
+  "cost": {
+    "totalUsd": 0.03,
+    "pages": 6,
+    "llmCalls": 0,
+    "embeddingCalls": 0,
+    "lines": [
+      {
+        "service": "ContentUnderstanding",
+        "meter": "documentPagesStandard",
+        "quantity": 6,
+        "unitPrice": 0.005,
+        "costUsd": 0.03
+      }
+    ]
+  },
+  "document": {
+    "carrierName": "AmTrust North America",
+    "insuredName": "Acme Fabrication Inc",
+    "valuationDate": "2026-08-31",
+    "jurisdictionState": "CA",
+    "expenseTreatment": "separate",
+    "policyPeriods": [
+      {
+        "policyNumber": "WC-55-11923",
+        "effectiveDate": "2023-07-01",
+        "expirationDate": "2024-07-01",
+        "detailLevel": "claims",
+        "claims": [
+          {
+            "claimNumber": "WC-23-0417",
+            "dateOfInjury": "2023-09-14",
+            "dateReported": "2023-09-14",
+            "status": "open",
+            "claimType": "indemnity",
+            "natureOfInjury": {
+              "code": "52",
+              "text": "Strain",
+              "codeSystem": "WCIO-Nature"
+            },
+            "causeOfInjury": {
+              "code": "56",
+              "text": "Lifting",
+              "codeSystem": "WCIO-Cause"
+            },
+            "partOfBody": {
+              "code": "42",
+              "text": "Lower back",
+              "codeSystem": "WCIO-PartOfBody"
+            },
+            "indemnity": {
+              "paid": 18450.0,
+              "reserve": 22000.0,
+              "incurred": 40450.0
+            },
+            "medical": {
+              "paid": 31220.55,
+              "reserve": 9000.0,
+              "incurred": 40220.55
+            },
+            "expense": {
+              "paid": 2150.0,
+              "reserve": 0,
+              "incurred": 2150.0
+            },
+            "total": {
+              "paid": 51820.55,
+              "reserve": 31000.0,
+              "incurred": 82820.55
+            },
+            "litigationFlag": true,
+            "cumulativeTrauma": false,
+            "_lineage": {
+              "claimNumber": {
+                "page": 2,
+                "polygon": [
+                  1.02,
+                  3.41,
+                  1.98,
+                  3.41,
+                  1.98,
+                  3.58,
+                  1.02,
+                  3.58
+                ],
+                "confidence": 0.99,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              },
+              "medical.paid": {
+                "page": 2,
+                "polygon": [
+                  6.1,
+                  3.41,
+                  6.9,
+                  3.41,
+                  6.9,
+                  3.58,
+                  6.1,
+                  3.58
+                ],
+                "confidence": 0.99,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              }
+            }
+          },
+          {
+            "claimNumber": "WC-23-0418",
+            "dateOfInjury": "2023-11-02",
+            "dateReported": "2023-11-02",
+            "status": "closed",
+            "claimType": "medicalOnly",
+            "natureOfInjury": {
+              "code": "40",
+              "text": "Laceration",
+              "codeSystem": "WCIO-Nature"
+            },
+            "causeOfInjury": {
+              "code": "16",
+              "text": "Hand tool",
+              "codeSystem": "WCIO-Cause"
+            },
+            "partOfBody": {
+              "code": "36",
+              "text": "Finger(s)",
+              "codeSystem": "WCIO-PartOfBody"
+            },
+            "indemnity": {
+              "paid": 0,
+              "reserve": 0,
+              "incurred": 0
+            },
+            "medical": {
+              "paid": 1340.0,
+              "reserve": 0,
+              "incurred": 1340.0
+            },
+            "expense": {
+              "paid": 0,
+              "reserve": 0,
+              "incurred": 0
+            },
+            "total": {
+              "paid": 1340.0,
+              "reserve": 0,
+              "incurred": 1340.0
+            },
+            "litigationFlag": false,
+            "cumulativeTrauma": false,
+            "_lineage": {
+              "claimNumber": {
+                "page": 2,
+                "polygon": [
+                  1.02,
+                  3.41,
+                  1.98,
+                  3.41,
+                  1.98,
+                  3.58,
+                  1.02,
+                  3.58
+                ],
+                "confidence": 1.0,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              },
+              "medical.paid": {
+                "page": 2,
+                "polygon": [
+                  6.1,
+                  3.41,
+                  6.9,
+                  3.41,
+                  6.9,
+                  3.58,
+                  6.1,
+                  3.58
+                ],
+                "confidence": 1.0,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              }
+            }
+          }
+        ],
+        "subtotals": {
+          "claimCount": 2,
+          "openCount": 1,
+          "closedCount": 1,
+          "total": {
+            "paid": 52830.55,
+            "reserve": 31000.0,
+            "incurred": 83830.55
+          }
+        }
+      },
+      {
+        "policyNumber": "WC-55-11923",
+        "effectiveDate": "2024-07-01",
+        "expirationDate": "2025-07-01",
+        "detailLevel": "claims",
+        "claims": [
+          {
+            "claimNumber": "WC-24-0421",
+            "dateOfInjury": "2024-02-27",
+            "dateReported": "2024-02-27",
+            "status": "reopened",
+            "claimType": "indemnity",
+            "natureOfInjury": {
+              "code": "80",
+              "text": "Cumulative injury",
+              "codeSystem": "WCIO-Nature"
+            },
+            "causeOfInjury": {
+              "code": "97",
+              "text": "Repetitive motion",
+              "codeSystem": "WCIO-Cause"
+            },
+            "partOfBody": {
+              "code": "31",
+              "text": "Shoulder(s)",
+              "codeSystem": "WCIO-PartOfBody"
+            },
+            "indemnity": {
+              "paid": 9800.0,
+              "reserve": 14500.0,
+              "incurred": 24300.0
+            },
+            "medical": {
+              "paid": 12765.4,
+              "reserve": 6200.0,
+              "incurred": 18965.4
+            },
+            "expense": {
+              "paid": 3400.0,
+              "reserve": 0,
+              "incurred": 3400.0
+            },
+            "total": {
+              "paid": 25965.4,
+              "reserve": 20700.0,
+              "incurred": 46665.4
+            },
+            "litigationFlag": true,
+            "cumulativeTrauma": true,
+            "_lineage": {
+              "claimNumber": {
+                "page": 3,
+                "polygon": [
+                  1.02,
+                  3.41,
+                  1.98,
+                  3.41,
+                  1.98,
+                  3.58,
+                  1.02,
+                  3.58
+                ],
+                "confidence": 0.93,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              },
+              "medical.paid": {
+                "page": 3,
+                "polygon": [
+                  6.1,
+                  3.41,
+                  6.9,
+                  3.41,
+                  6.9,
+                  3.58,
+                  6.1,
+                  3.58
+                ],
+                "confidence": 0.93,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              }
+            }
+          },
+          {
+            "claimNumber": "WC-24-0425",
+            "dateOfInjury": "2024-06-19",
+            "dateReported": "2024-06-19",
+            "status": "closed",
+            "claimType": "indemnity",
+            "natureOfInjury": {
+              "code": "10",
+              "text": "Contusion",
+              "codeSystem": "WCIO-Nature"
+            },
+            "causeOfInjury": {
+              "code": "30",
+              "text": "Fall on same level",
+              "codeSystem": "WCIO-Cause"
+            },
+            "partOfBody": {
+              "code": "53",
+              "text": "Knee",
+              "codeSystem": "WCIO-PartOfBody"
+            },
+            "indemnity": {
+              "paid": 4120.0,
+              "reserve": 0,
+              "incurred": 4120.0
+            },
+            "medical": {
+              "paid": 7980.1,
+              "reserve": 0,
+              "incurred": 7980.1
+            },
+            "expense": {
+              "paid": 410.0,
+              "reserve": 0,
+              "incurred": 410.0
+            },
+            "total": {
+              "paid": 12510.1,
+              "reserve": 0,
+              "incurred": 12510.1
+            },
+            "litigationFlag": false,
+            "cumulativeTrauma": false,
+            "_lineage": {
+              "claimNumber": {
+                "page": 3,
+                "polygon": [
+                  1.02,
+                  3.41,
+                  1.98,
+                  3.41,
+                  1.98,
+                  3.58,
+                  1.02,
+                  3.58
+                ],
+                "confidence": 0.98,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              },
+              "medical.paid": {
+                "page": 3,
+                "polygon": [
+                  6.1,
+                  3.41,
+                  6.9,
+                  3.41,
+                  6.9,
+                  3.58,
+                  6.1,
+                  3.58
+                ],
+                "confidence": 0.98,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              }
+            }
+          }
+        ],
+        "subtotals": {
+          "claimCount": 2,
+          "openCount": 1,
+          "closedCount": 1,
+          "total": {
+            "paid": 38475.5,
+            "reserve": 20700.0,
+            "incurred": 59175.5
+          }
+        }
+      },
+      {
+        "policyNumber": "WC-55-11923",
+        "effectiveDate": "2025-07-01",
+        "expirationDate": "2026-07-01",
+        "detailLevel": "claims",
+        "claims": [
+          {
+            "claimNumber": "WC-25-0430",
+            "dateOfInjury": "2025-01-08",
+            "dateReported": "2025-01-08",
+            "status": "open",
+            "claimType": "indemnity",
+            "natureOfInjury": {
+              "code": "28",
+              "text": "Fracture",
+              "codeSystem": "WCIO-Nature"
+            },
+            "causeOfInjury": {
+              "code": "25",
+              "text": "Fall from ladder",
+              "codeSystem": "WCIO-Cause"
+            },
+            "partOfBody": {
+              "code": "54",
+              "text": "Ankle",
+              "codeSystem": "WCIO-PartOfBody"
+            },
+            "indemnity": {
+              "paid": 27300.0,
+              "reserve": 48000.0,
+              "incurred": 75300.0
+            },
+            "medical": {
+              "paid": 61200.0,
+              "reserve": 35000.0,
+              "incurred": 96200.0
+            },
+            "expense": {
+              "paid": 5100.0,
+              "reserve": 0,
+              "incurred": 5100.0
+            },
+            "total": {
+              "paid": 93600.0,
+              "reserve": 83000.0,
+              "incurred": 176600.0
+            },
+            "litigationFlag": false,
+            "cumulativeTrauma": false,
+            "_lineage": {
+              "claimNumber": {
+                "page": 4,
+                "polygon": [
+                  1.02,
+                  3.41,
+                  1.98,
+                  3.41,
+                  1.98,
+                  3.58,
+                  1.02,
+                  3.58
+                ],
+                "confidence": 0.87,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              },
+              "medical.paid": {
+                "page": 4,
+                "polygon": [
+                  6.1,
+                  3.41,
+                  6.9,
+                  3.41,
+                  6.9,
+                  3.58,
+                  6.1,
+                  3.58
+                ],
+                "confidence": 0.87,
+                "extractor": "replay",
+                "formatRef": "amtrust-pdf@2"
+              }
+            }
+          }
+        ],
+        "subtotals": {
+          "claimCount": 1,
+          "openCount": 1,
+          "closedCount": 0,
+          "total": {
+            "paid": 93600.0,
+            "reserve": 83000.0,
+            "incurred": 176600.0
+          }
+        }
+      }
+    ],
+    "grandTotals": {
+      "claimCount": 5,
+      "openCount": 3,
+      "closedCount": 2,
+      "total": {
+        "paid": 184906.05,
+        "reserve": 134700.0,
+        "incurred": 319606.05
+      }
+    }
+  },
+  "ruleOutcomes": [
+    {
+      "ruleId": "R-02",
+      "severity": "hard",
+      "status": "pass",
+      "message": "Incurred equals paid plus reserve",
+      "affectedFields": [
+        "policyPeriods[*].claims[*].total"
+      ]
+    },
+    {
+      "ruleId": "R-10",
+      "severity": "hard",
+      "status": "pass",
+      "message": "Period subtotals match extracted rows",
+      "affectedFields": [
+        "policyPeriods[*].subtotals"
+      ]
+    },
+    {
+      "ruleId": "R-04",
+      "severity": "soft",
+      "status": "fail",
+      "message": "Closed claim carries a reserve",
+      "affectedFields": [
+        "policyPeriods[1].claims[1].medical.reserve"
+      ],
+      "claimId": "WC-24-0425",
+      "periodIndex": 1,
+      "values": {
+        "reserve": "0.00"
+      }
+    },
+    {
+      "ruleId": "R-16",
+      "severity": "soft",
+      "status": "pass",
+      "message": "Reopened claim has an open reserve",
+      "affectedFields": [
+        "policyPeriods[1].claims[0]"
+      ],
+      "claimId": "WC-24-0421"
+    },
+    {
+      "ruleId": "R-24",
+      "severity": "flag",
+      "status": "fail",
+      "message": "Large loss: total incurred \u2265 $100,000",
+      "affectedFields": [
+        "policyPeriods[2].claims[0].total.incurred"
+      ],
+      "claimId": "WC-25-0430",
+      "values": {
+        "incurred": "176600.00"
+      }
+    },
+    {
+      "ruleId": "R-23",
+      "severity": "flag",
+      "status": "pass",
+      "message": "Reporting lag within 30 days",
+      "affectedFields": [
+        "policyPeriods[*].claims[*].dateReported"
+      ]
+    },
+    {
+      "ruleId": "R-20",
+      "severity": "hard",
+      "status": "notInformative",
+      "message": "Total equals components (derived, not printed)",
+      "affectedFields": [
+        "policyPeriods[*].claims[*].total.incurred"
+      ]
+    }
+  ]
+}

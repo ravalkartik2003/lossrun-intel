@@ -1,0 +1,339 @@
+{
+  "runKey": "10251008",
+  "quote": "EVAL24-10251008-FIX",
+  "document": "c1-000-native-pdf",
+  "documentId": "doc-e4ef2e159c35d5bd-p1-3",
+  "planted": [
+    {
+      "claimNumber": "WC-23-0001",
+      "field": "policyPeriods[0].claims[0].medical.paid",
+      "label": "medical paid",
+      "printed": "17815.08",
+      "final": "19049.64",
+      "steps": [
+        {}
+      ]
+    },
+    {
+      "claimNumber": "WC-23-0002",
+      "field": "policyPeriods[0].claims[1].indemnity.reserve",
+      "label": "indemnity reserve",
+      "printed": "0.00",
+      "final": "2500.00",
+      "steps": [
+        {}
+      ]
+    },
+    {
+      "claimNumber": "WC-22-0003",
+      "field": "policyPeriods[0].claims[2].total.incurred",
+      "label": "total incurred",
+      "printed": "96550.52",
+      "final": "98300.52",
+      "steps": [
+        {},
+        {}
+      ]
+    }
+  ],
+  "turns": [
+    {
+      "question": {
+        "id": "why-differs",
+        "text": "Why does claim WC-23-0001 show medical paid of $19,049.64 when the loss run says $17,815.08?",
+        "facts": [
+          {
+            "label": "printed",
+            "text": "17,815.08"
+          },
+          {
+            "label": "current",
+            "text": "19,049.64"
+          },
+          {
+            "label": "rationale",
+            "text": "eval24: medical bill dated 2024-08-14 received after the run was printed"
+          },
+          {
+            "label": "reviewer",
+            "text": "underwriter"
+          }
+        ]
+      },
+      "answer": "Claim WC-23-0001\u2019s medical paid was printed as $17,815.08 [S1] but is currently $19,049.64 [C1]. It was changed by an underwriter on 2026-10-25T10:09Z with the rationale: \u0022eval24: medical bill dated 2024-08-14 received after the run was printed\u0022 [C1].",
+      "missing": [],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001759,
+      "totalMs": 3661,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "who-when",
+        "text": "Who changed the indemnity reserve on claim WC-23-0002, and when?",
+        "facts": [
+          {
+            "label": "reviewer",
+            "text": "underwriter"
+          },
+          {
+            "label": "date",
+            "text": "2026-10-25"
+          },
+          {
+            "label": "current",
+            "text": "2,500.00"
+          }
+        ]
+      },
+      "answer": "The indemnity reserve on claim WC-23-0002 was changed by the underwriter, on 2026-10-25T10:09Z [C1]. The rationale was: \u201Ceval24: adjuster raised the reserve for a second surgery\u201D [C1].",
+      "missing": [
+        "current"
+      ],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001627,
+      "totalMs": 3820,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": false
+    },
+    {
+      "question": {
+        "id": "what-written",
+        "text": "What did the reviewer write when correcting claim WC-23-0002\u0027s indemnity reserve?",
+        "facts": [
+          {
+            "label": "rationale",
+            "text": "eval24: adjuster raised the reserve for a second surgery"
+          }
+        ]
+      },
+      "answer": "The reviewer wrote: \u201Ceval24: adjuster raised the reserve for a second surgery\u201D [C1]. The corrected indemnity reserve is $2,500.00 [C1], from $0.00 on the loss run [S1].",
+      "missing": [],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001509,
+      "totalMs": 2979,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "chain-latest",
+        "text": "Has claim WC-22-0003\u0027s total incurred been corrected? What does the loss run print?",
+        "facts": [
+          {
+            "label": "printed",
+            "text": "96,550.52"
+          },
+          {
+            "label": "current",
+            "text": "98,300.52"
+          },
+          {
+            "label": "rationale",
+            "text": "eval24: carrier letter supersedes the broker\u0027s figure"
+          }
+        ]
+      },
+      "answer": "Yes. WC-22-0003\u2019s total incurred has been corrected to $98,300.52 [C1]. The loss run prints $96,550.52 [S1].",
+      "missing": [
+        "rationale"
+      ],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001732,
+      "totalMs": 3262,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": false
+    },
+    {
+      "question": {
+        "id": "chain-history",
+        "text": "Show every correction of claim WC-22-0003\u0027s total incurred, in order.",
+        "facts": [
+          {
+            "label": "printed",
+            "text": "96,550.52"
+          },
+          {
+            "label": "first",
+            "text": "97,550.52"
+          },
+          {
+            "label": "current",
+            "text": "98,300.52"
+          },
+          {
+            "label": "first rationale",
+            "text": "eval24: first correction from the broker\u0027s spreadsheet"
+          },
+          {
+            "label": "second rationale",
+            "text": "eval24: carrier letter supersedes the broker\u0027s figure"
+          }
+        ]
+      },
+      "answer": "WC-22-0003 total incurred was printed as $96,550.52 [S1]. It was corrected to $97,550.52 by the underwriter, Underwriter, at 2026-10-25T10:09Z: \u0022eval24: first correction from the broker\u0027s spreadsheet\u0022 [C1]. It was then corrected to $98,300.52 by the underwriter, Underwriter, at 2026-10-25T10:09Z: \u0022eval24: carrier letter supersedes the broker\u0027s figure\u0022 [C1]. Current total incurred is $98,300.52, approved [C1].",
+      "missing": [],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.002230,
+      "totalMs": 5186,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "unchanged",
+        "text": "Was claim WC-23-0001\u0027s indemnity paid corrected?",
+        "facts": [
+          {
+            "label": "as printed",
+            "text": "not"
+          }
+        ]
+      },
+      "answer": "No. WC-23-0001\u2019s indemnity paid is unchanged from the loss run: $76,293.69 [S1], and its current value is also $76,293.69 with status approved [C1]. There are no corrections [C1].",
+      "missing": [
+        "as printed"
+      ],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001580,
+      "totalMs": 4030,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": false
+    },
+    {
+      "question": {
+        "id": "which-fields",
+        "text": "Which values on claim WC-23-0001 did a reviewer correct?",
+        "facts": [
+          {
+            "label": "field",
+            "text": "medical"
+          },
+          {
+            "label": "current",
+            "text": "19,049.64"
+          }
+        ]
+      },
+      "answer": "A reviewer corrected WC-23-0001\u2019s medical paid from $17,815.08 [S1] to $19,049.64 [C1]. It was changed by an underwriter, role: Underwriter, on 2026-10-25T10:09Z, with rationale: \u0022eval24: medical bill dated 2024-08-14 received after the run was printed\u0022 [C1].",
+      "missing": [],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001674,
+      "totalMs": 3275,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "original",
+        "text": "What was the original printed indemnity reserve of claim WC-23-0002?",
+        "facts": [
+          {
+            "label": "printed",
+            "text": "0.00"
+          }
+        ]
+      },
+      "answer": "The original printed indemnity reserve for claim WC-23-0002 was $0.00 [S1].",
+      "missing": [],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001457,
+      "totalMs": 3925,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "reported-adjusted",
+        "text": "Explain the difference between the reported and the adjusted medical paid on claim WC-23-0001.",
+        "facts": [
+          {
+            "label": "printed",
+            "text": "17,815.08"
+          },
+          {
+            "label": "current",
+            "text": "19,049.64"
+          },
+          {
+            "label": "rationale",
+            "text": "eval24: medical bill dated 2024-08-14 received after the run was printed"
+          }
+        ]
+      },
+      "answer": "On claim WC-23-0001, reported medical paid was $17,815.08 [S1] and the adjusted medical paid is $19,049.64 [C1], a difference of $1,234.56. The underwriter changed it on 2026-10-25T10:09Z because: \u0022eval24: medical bill dated 2024-08-14 received after the run was printed\u0022 [C1].",
+      "missing": [],
+      "unverified": [],
+      "notFound": false,
+      "costUsd": 0.001900,
+      "totalMs": 3321,
+      "tools": [
+        "explain_value"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "who-approved",
+        "text": "Who corrected values on this quote, and what reasons did they give?",
+        "facts": [
+          {
+            "label": "reviewer",
+            "text": "underwriter"
+          },
+          {
+            "label": "rationale a",
+            "text": "eval24: medical bill dated 2024-08-14 received after the run was printed"
+          },
+          {
+            "label": "rationale b",
+            "text": "eval24: adjuster raised the reserve for a second surgery"
+          }
+        ]
+      },
+      "answer": "The documents do not identify any reviewer by name, so I can\u2019t say who corrected values. The quote is in review state \u201Coverride,\u201D with 259 unresolved fields and no approved final values yet [C1]. For example, WC-23-0001 total incurred shows no corrections at all; it remains unresolved with reason \u201CR-10\u201D [S1][C2]. So the only reason visible in scope is the unresolved review code, not a named reviewer\u2019s rationale [C1][C2].",
+      "missing": [
+        "reviewer",
+        "rationale a",
+        "rationale b"
+      ],
+      "unverified": [],
+      "notFound": true,
+      "costUsd": 0.014788,
+      "totalMs": 15553,
+      "tools": [
+        "get_review_status",
+        "search_documents",
+        "search_documents",
+        "explain_value",
+        "query_claims"
+      ],
+      "pass": false
+    }
+  ]
+}

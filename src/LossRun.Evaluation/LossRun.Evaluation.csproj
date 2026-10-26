@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Evaluation</RootNamespace>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Same pins as the fixture generator (THIRD-PARTY.md): PDFsharp 6.2.4 is the last MIT release; Pkcs over its vulnerable 8.0.1. -->
+    <PackageReference Include="PDFsharp" Version="6.2.4" />
+    <PackageReference Include="Azure.Storage.Queues" Version="12.28.1" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
+    <PackageReference Include="ClosedXML" Version="0.105.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Learning\LossRun.Learning.csproj" />
+    <ProjectReference Include="..\LossRun.Formats\LossRun.Formats.csproj" />
+    <ProjectReference Include="..\LossRun.Ingestion\LossRun.Ingestion.csproj" />
+    <ProjectReference Include="..\LossRun.Rules\LossRun.Rules.csproj" />
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Analytics\LossRun.Analytics.csproj" />
+    <ProjectReference Include="..\LossRun.Api.Contracts\LossRun.Api.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Chat\LossRun.Chat.csproj" />
+    <ProjectReference Include="..\LossRun.Data\LossRun.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LossRun.Evaluation.Tests" />
+  </ItemGroup>
+
+</Project>

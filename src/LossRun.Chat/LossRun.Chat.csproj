@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Chat</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Agent Framework (ADR 0002): ChatClientAgent over the delta deployment; the OpenAI SDK speaks to the Azure v1 endpoint. -->
+    <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.25.0" />
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Api.Contracts\LossRun.Api.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Analytics\LossRun.Analytics.csproj" />
+    <ProjectReference Include="..\LossRun.Data\LossRun.Data.csproj" />
+    <ProjectReference Include="..\LossRun.Formats\LossRun.Formats.csproj" />
+    <ProjectReference Include="..\LossRun.Ingestion\LossRun.Ingestion.csproj" />
+  </ItemGroup>
+
+  <!-- Source of truth: infra/search/lossrun-docs.index.json (embedded, never copied). -->
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)..\..\infra\search\lossrun-docs.index.json" LogicalName="LossRun.Chat.lossrun-docs.index.json" Link="Search\lossrun-docs.index.json" />
+  </ItemGroup>
+
+</Project>

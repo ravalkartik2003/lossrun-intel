@@ -1,0 +1,1498 @@
+{
+  "codeSetsVersion": "0.2.0",
+  "description": "Code sets referenced by the canonical schema, as captured in docs/evaluation/evaluation-and-wc-domain.md B2/B3. `completeness` is `complete` only where the research captured the whole list; `partial` tables list only the codes and group ranges the research quoted and must be completed from the official WCIO tables (CA DWC posts them as PDFs) before mapping accuracy is scored. Codes are strings, 2-digit left-zero padded.",
+  "tables": {
+    "WCIO-Nature": {
+      "system": "WCIO-Nature",
+      "name": "WCIO Injury Description Table: Nature of Injury",
+      "version": "WCIO Injury Description Tables (CA DWC WCIS copy dated February 2021)",
+      "codeWidth": 2,
+      "source": "CA DWC WCIS Nature Of Injury table",
+      "sourceUrl": "https://www.dir.ca.gov/dwc/WCIS/Nature_Of_Injury.pdf",
+      "retrievedOn": "2026-10-21",
+      "completeness": "complete",
+      "completenessNote": "All codes and short descriptions from the CA DWC PDF; narrative descriptions omitted.",
+      "groups": [
+        {
+          "name": "Specific Injury",
+          "codes": [
+            "01",
+            "02",
+            "03",
+            "04",
+            "07",
+            "10",
+            "13",
+            "16",
+            "19",
+            "22",
+            "25",
+            "28",
+            "30",
+            "31",
+            "32",
+            "34",
+            "36",
+            "37",
+            "38",
+            "40",
+            "41",
+            "42",
+            "43",
+            "46",
+            "47",
+            "49",
+            "52",
+            "53",
+            "54",
+            "55",
+            "58",
+            "59"
+          ]
+        },
+        {
+          "name": "Occupational Disease or Cumulative Injury",
+          "codes": [
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "83"
+          ],
+          "cumulativeTrauma": true
+        },
+        {
+          "name": "Multiple Injuries",
+          "codes": [
+            "90",
+            "91"
+          ]
+        }
+      ],
+      "codes": [
+        {
+          "code": "01",
+          "description": "No Physical Injury",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "02",
+          "description": "Amputation",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "03",
+          "description": "Angina Pectoris",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "04",
+          "description": "Burn",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "07",
+          "description": "Concussion",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "10",
+          "description": "Contusion",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "13",
+          "description": "Crushing",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "16",
+          "description": "Dislocation",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "19",
+          "description": "Electric Shock",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "22",
+          "description": "Enucleation",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "25",
+          "description": "Foreign Body",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "28",
+          "description": "Fracture",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "30",
+          "description": "Freezing",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "31",
+          "description": "Hearing Loss or Impairment",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "32",
+          "description": "Heat Prostration",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "34",
+          "description": "Hernia",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "36",
+          "description": "Infection",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "37",
+          "description": "Inflammation",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "38",
+          "description": "Adverse reaction to a vaccination or inoculation",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "40",
+          "description": "Laceration",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "41",
+          "description": "Myocardial Infarction",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "42",
+          "description": "Poisoning - General (Not OD or Cumulative Injury)",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "43",
+          "description": "Puncture",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "46",
+          "description": "Rupture",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "47",
+          "description": "Severance",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "49",
+          "description": "Sprain or Tear",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "52",
+          "description": "Strain or Tear",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "53",
+          "description": "Syncope",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "54",
+          "description": "Asphyxiation",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "55",
+          "description": "Vascular",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "58",
+          "description": "Vision Loss",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "59",
+          "description": "All Other Specific Injuries, NOC",
+          "group": "Specific Injury"
+        },
+        {
+          "code": "60",
+          "description": "Dust Disease, NOC",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "61",
+          "description": "Asbestosis",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "62",
+          "description": "Black Lung",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "63",
+          "description": "Byssinosis",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "64",
+          "description": "Silicosis",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "65",
+          "description": "Respiratory Disorders",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "66",
+          "description": "Poisoning - Chemical, (Other Than Metals) Man made or organic",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "67",
+          "description": "Poisoning - Metal",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "68",
+          "description": "Dermatitis",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "69",
+          "description": "Mental Disorder",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "70",
+          "description": "Radiation",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "71",
+          "description": "All Other Occupational Disease Injury, NOC",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "72",
+          "description": "Loss of Hearing",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "73",
+          "description": "Contagious Disease",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "74",
+          "description": "Cancer",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "75",
+          "description": "AIDS",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "76",
+          "description": "VDT - Related Diseases",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "77",
+          "description": "Mental Stress",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "78",
+          "description": "Carpal Tunnel Syndrome",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "79",
+          "description": "Hepatitis C",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "80",
+          "description": "All Other Cumulative Injury, NOC",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "83",
+          "description": "COVID-19",
+          "group": "Occupational Disease or Cumulative Injury",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "90",
+          "description": "Multiple Physical Injuries Only",
+          "group": "Multiple Injuries"
+        },
+        {
+          "code": "91",
+          "description": "Multiple Injuries Including Both Physical and Psychological",
+          "group": "Multiple Injuries"
+        }
+      ]
+    },
+    "WCIO-Cause": {
+      "system": "WCIO-Cause",
+      "name": "WCIO Injury Description Table: Cause of Injury",
+      "version": "WCIO Injury Description Tables (CA DWC WCIS copy dated February 2021)",
+      "codeWidth": 2,
+      "source": "CA DWC WCIS Cause Of Injury table",
+      "sourceUrl": "https://www.dir.ca.gov/dwc/WCIS/Cause_Of_Injury.pdf",
+      "retrievedOn": "2026-10-21",
+      "completeness": "complete",
+      "completenessNote": "All codes and short descriptions from the CA DWC PDF; narrative descriptions omitted.",
+      "groups": [
+        {
+          "name": "Burn or Scald - Heat or Cold",
+          "codes": [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "11",
+            "14",
+            "84"
+          ]
+        },
+        {
+          "name": "Caught In, Under or Between",
+          "codes": [
+            "10",
+            "12",
+            "13",
+            "20"
+          ]
+        },
+        {
+          "name": "Cut, Puncture, Scrape Injured By",
+          "codes": [
+            "15",
+            "16",
+            "17",
+            "18",
+            "19"
+          ]
+        },
+        {
+          "name": "Fall, Slip or Trip Injury",
+          "codes": [
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
+          ]
+        },
+        {
+          "name": "Motor Vehicle",
+          "codes": [
+            "40",
+            "41",
+            "45",
+            "46",
+            "47",
+            "48",
+            "50"
+          ]
+        },
+        {
+          "name": "Strain or Injury By",
+          "codes": [
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "97"
+          ]
+        },
+        {
+          "name": "Striking Against or Stepping On",
+          "codes": [
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70"
+          ]
+        },
+        {
+          "name": "Struck or Injured By",
+          "codes": [
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "85",
+            "86"
+          ]
+        },
+        {
+          "name": "Rubbed or Abraded By",
+          "codes": [
+            "94",
+            "95"
+          ]
+        },
+        {
+          "name": "Miscellaneous Causes",
+          "codes": [
+            "82",
+            "83",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "93",
+            "96",
+            "98",
+            "99"
+          ]
+        }
+      ],
+      "codes": [
+        {
+          "code": "01",
+          "description": "Chemicals",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "02",
+          "description": "Hot Objects or Substances",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "03",
+          "description": "Temperature Extremes",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "04",
+          "description": "Fire or Flame",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "05",
+          "description": "Steam or Hot Fluids",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "06",
+          "description": "Dust, Gases, Fumes or Vapors",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "07",
+          "description": "Welding Operation",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "08",
+          "description": "Radiation",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "09",
+          "description": "Contact With, NOC",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "10",
+          "description": "Machine or Machinery",
+          "group": "Caught In, Under or Between"
+        },
+        {
+          "code": "11",
+          "description": "Cold Objects or Substances",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "12",
+          "description": "Object Handled",
+          "group": "Caught In, Under or Between"
+        },
+        {
+          "code": "13",
+          "description": "Caught In, Under or Between, NOC",
+          "group": "Caught In, Under or Between"
+        },
+        {
+          "code": "14",
+          "description": "Abnormal Air Pressure",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "15",
+          "description": "Broken Glass",
+          "group": "Cut, Puncture, Scrape Injured By"
+        },
+        {
+          "code": "16",
+          "description": "Hand Tool, Utensil; Not Powered",
+          "group": "Cut, Puncture, Scrape Injured By"
+        },
+        {
+          "code": "17",
+          "description": "Object Being Lifted or Handled",
+          "group": "Cut, Puncture, Scrape Injured By"
+        },
+        {
+          "code": "18",
+          "description": "Powered Hand Tool, Appliance",
+          "group": "Cut, Puncture, Scrape Injured By"
+        },
+        {
+          "code": "19",
+          "description": "Cut, Puncture, Scrape, NOC",
+          "group": "Cut, Puncture, Scrape Injured By"
+        },
+        {
+          "code": "20",
+          "description": "Collapsing Materials (Slides of Earth)",
+          "group": "Caught In, Under or Between"
+        },
+        {
+          "code": "25",
+          "description": "From Different Level (Elevation)",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "26",
+          "description": "From Ladder or Scaffolding",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "27",
+          "description": "From Liquid or Grease Spills",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "28",
+          "description": "Into Openings",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "29",
+          "description": "On Same Level",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "30",
+          "description": "Slip, or Trip, Did Not Fall",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "31",
+          "description": "Fall, Slip or Trip, NOC",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "32",
+          "description": "On Ice or Snow",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "33",
+          "description": "On Stairs",
+          "group": "Fall, Slip or Trip Injury"
+        },
+        {
+          "code": "40",
+          "description": "Crash of Water Vehicle",
+          "group": "Motor Vehicle"
+        },
+        {
+          "code": "41",
+          "description": "Crash of Rail Vehicle",
+          "group": "Motor Vehicle"
+        },
+        {
+          "code": "45",
+          "description": "Collision or Sideswipe With Another Vehicle",
+          "group": "Motor Vehicle"
+        },
+        {
+          "code": "46",
+          "description": "Collision with a Fixed Object",
+          "group": "Motor Vehicle"
+        },
+        {
+          "code": "47",
+          "description": "Crash of Airplane",
+          "group": "Motor Vehicle"
+        },
+        {
+          "code": "48",
+          "description": "Vehicle Upset",
+          "group": "Motor Vehicle"
+        },
+        {
+          "code": "50",
+          "description": "Motor Vehicle, NOC",
+          "group": "Motor Vehicle"
+        },
+        {
+          "code": "52",
+          "description": "Continual Noise",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "53",
+          "description": "Twisting",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "54",
+          "description": "Jumping or Leaping",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "55",
+          "description": "Holding or Carrying",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "56",
+          "description": "Lifting",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "57",
+          "description": "Pushing or Pulling",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "58",
+          "description": "Reaching",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "59",
+          "description": "Using Tool or Machinery",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "60",
+          "description": "Strain or Injury By, NOC",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "61",
+          "description": "Wielding or Throwing",
+          "group": "Strain or Injury By"
+        },
+        {
+          "code": "65",
+          "description": "Moving Part of Machine",
+          "group": "Striking Against or Stepping On"
+        },
+        {
+          "code": "66",
+          "description": "Object Being Lifted or Handled",
+          "group": "Striking Against or Stepping On"
+        },
+        {
+          "code": "67",
+          "description": "Sanding, Scraping, Cleaning Operation",
+          "group": "Striking Against or Stepping On"
+        },
+        {
+          "code": "68",
+          "description": "Stationary Object",
+          "group": "Striking Against or Stepping On"
+        },
+        {
+          "code": "69",
+          "description": "Stepping on Sharp Object",
+          "group": "Striking Against or Stepping On"
+        },
+        {
+          "code": "70",
+          "description": "Striking Against or Stepping On, NOC",
+          "group": "Striking Against or Stepping On"
+        },
+        {
+          "code": "74",
+          "description": "Fellow Worker, Patient or Other Person",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "75",
+          "description": "Falling or Flying Object",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "76",
+          "description": "Hand Tool or Machine in Use",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "77",
+          "description": "Motor Vehicle",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "78",
+          "description": "Moving Parts of Machine",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "79",
+          "description": "Object Being Lifted or Handled",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "80",
+          "description": "Object Handled By Others",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "81",
+          "description": "Struck or Injured, NOC",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "82",
+          "description": "Absorption, Ingestion or Inhalation, NOC",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "83",
+          "description": "Pandemic",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "84",
+          "description": "Electrical Current",
+          "group": "Burn or Scald - Heat or Cold"
+        },
+        {
+          "code": "85",
+          "description": "Animal or Insect",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "86",
+          "description": "Explosion or Flare Back",
+          "group": "Struck or Injured By"
+        },
+        {
+          "code": "87",
+          "description": "Foreign Matter (Body) in Eye(s)",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "88",
+          "description": "Natural Disasters",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "89",
+          "description": "Person in Act of a Crime",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "90",
+          "description": "Other Than Physical Cause of Injury",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "91",
+          "description": "Mold",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "93",
+          "description": "Gunshot",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "94",
+          "description": "Repetitive Motion",
+          "group": "Rubbed or Abraded By"
+        },
+        {
+          "code": "95",
+          "description": "Rubbed or Abraded, NOC",
+          "group": "Rubbed or Abraded By"
+        },
+        {
+          "code": "96",
+          "description": "Terrorism",
+          "group": "Miscellaneous Causes"
+        },
+        {
+          "code": "97",
+          "description": "Repetitive Motion",
+          "group": "Strain or Injury By",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "98",
+          "description": "Cumulative, NOC",
+          "group": "Miscellaneous Causes",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "99",
+          "description": "Other - Miscellaneous, NOC",
+          "group": "Miscellaneous Causes"
+        }
+      ]
+    },
+    "WCIO-PartOfBody": {
+      "system": "WCIO-PartOfBody",
+      "name": "WCIO Injury Description Table: Part of Body",
+      "version": "WCIO Injury Description Tables (CA DWC WCIS copy dated February 2021)",
+      "codeWidth": 2,
+      "source": "CA DWC WCIS Part Of Body table",
+      "sourceUrl": "https://www.dir.ca.gov/dwc/WCIS/Part_Of_Body.pdf",
+      "retrievedOn": "2026-10-21",
+      "completeness": "complete",
+      "completenessNote": "All codes and short descriptions from the CA DWC PDF; narrative descriptions omitted. IAIABC SROI subcodes under 13, 14, 36, 37, 57, 58 are not included.",
+      "groups": [
+        {
+          "name": "Head",
+          "codes": [
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19"
+          ]
+        },
+        {
+          "name": "Neck",
+          "codes": [
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26"
+          ]
+        },
+        {
+          "name": "Upper Extremities",
+          "codes": [
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39"
+          ]
+        },
+        {
+          "name": "Trunk",
+          "codes": [
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "60",
+            "61",
+            "62",
+            "63"
+          ]
+        },
+        {
+          "name": "Lower Extremities",
+          "codes": [
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58"
+          ]
+        },
+        {
+          "name": "Multiple Body Parts",
+          "codes": [
+            "64",
+            "65",
+            "66",
+            "90",
+            "91",
+            "99"
+          ]
+        }
+      ],
+      "codes": [
+        {
+          "code": "10",
+          "description": "Multiple Head Injury",
+          "group": "Head"
+        },
+        {
+          "code": "11",
+          "description": "Skull",
+          "group": "Head"
+        },
+        {
+          "code": "12",
+          "description": "Brain",
+          "group": "Head"
+        },
+        {
+          "code": "13",
+          "description": "Ear(s)",
+          "group": "Head"
+        },
+        {
+          "code": "14",
+          "description": "Eye(s)",
+          "group": "Head"
+        },
+        {
+          "code": "15",
+          "description": "Nose",
+          "group": "Head"
+        },
+        {
+          "code": "16",
+          "description": "Teeth",
+          "group": "Head"
+        },
+        {
+          "code": "17",
+          "description": "Mouth",
+          "group": "Head"
+        },
+        {
+          "code": "18",
+          "description": "Soft Tissue",
+          "group": "Head"
+        },
+        {
+          "code": "19",
+          "description": "Facial Bones",
+          "group": "Head"
+        },
+        {
+          "code": "20",
+          "description": "Multiple Neck Injury",
+          "group": "Neck"
+        },
+        {
+          "code": "21",
+          "description": "Vertebrae",
+          "group": "Neck"
+        },
+        {
+          "code": "22",
+          "description": "Disc",
+          "group": "Neck"
+        },
+        {
+          "code": "23",
+          "description": "Spinal Cord",
+          "group": "Neck"
+        },
+        {
+          "code": "24",
+          "description": "Larynx",
+          "group": "Neck"
+        },
+        {
+          "code": "25",
+          "description": "Soft Tissue",
+          "group": "Neck"
+        },
+        {
+          "code": "26",
+          "description": "Trachea",
+          "group": "Neck"
+        },
+        {
+          "code": "30",
+          "description": "Multiple Upper Extremities",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "31",
+          "description": "Upper Arm",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "32",
+          "description": "Elbow",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "33",
+          "description": "Lower Arm",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "34",
+          "description": "Wrist",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "35",
+          "description": "Hand",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "36",
+          "description": "Finger(s)",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "37",
+          "description": "Thumb",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "38",
+          "description": "Shoulder(s)",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "39",
+          "description": "Wrist(s) & Hand(s)",
+          "group": "Upper Extremities"
+        },
+        {
+          "code": "40",
+          "description": "Multiple Trunk",
+          "group": "Trunk"
+        },
+        {
+          "code": "41",
+          "description": "Upper Back Area",
+          "group": "Trunk"
+        },
+        {
+          "code": "42",
+          "description": "Lower Back Area",
+          "group": "Trunk"
+        },
+        {
+          "code": "43",
+          "description": "Disc",
+          "group": "Trunk"
+        },
+        {
+          "code": "44",
+          "description": "Chest",
+          "group": "Trunk"
+        },
+        {
+          "code": "45",
+          "description": "Sacrum and Coccyx",
+          "group": "Trunk"
+        },
+        {
+          "code": "46",
+          "description": "Pelvis",
+          "group": "Trunk"
+        },
+        {
+          "code": "47",
+          "description": "Spinal Cord",
+          "group": "Trunk"
+        },
+        {
+          "code": "48",
+          "description": "Internal Organs",
+          "group": "Trunk"
+        },
+        {
+          "code": "49",
+          "description": "Heart",
+          "group": "Trunk"
+        },
+        {
+          "code": "50",
+          "description": "Multiple Lower Extremities",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "51",
+          "description": "Hip",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "52",
+          "description": "Upper Leg",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "53",
+          "description": "Knee",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "54",
+          "description": "Lower Leg",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "55",
+          "description": "Ankle",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "56",
+          "description": "Foot",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "57",
+          "description": "Toes",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "58",
+          "description": "Great Toe",
+          "group": "Lower Extremities"
+        },
+        {
+          "code": "60",
+          "description": "Lungs",
+          "group": "Trunk"
+        },
+        {
+          "code": "61",
+          "description": "Abdomen Including Groin",
+          "group": "Trunk"
+        },
+        {
+          "code": "62",
+          "description": "Buttocks",
+          "group": "Trunk"
+        },
+        {
+          "code": "63",
+          "description": "Lumbar & or Sacral Vertebrae NOC Trunk",
+          "group": "Trunk"
+        },
+        {
+          "code": "64",
+          "description": "Artificial Appliance",
+          "group": "Multiple Body Parts"
+        },
+        {
+          "code": "65",
+          "description": "Insufficient Info to Properly Identify - Unclassified",
+          "group": "Multiple Body Parts"
+        },
+        {
+          "code": "66",
+          "description": "No Physical Injury",
+          "group": "Multiple Body Parts"
+        },
+        {
+          "code": "90",
+          "description": "Multiple Body Parts (Including Body Systems & Body Parts)",
+          "group": "Multiple Body Parts"
+        },
+        {
+          "code": "91",
+          "description": "Body Systems and Multiple Body Systems",
+          "group": "Multiple Body Parts"
+        },
+        {
+          "code": "99",
+          "description": "Whole Body",
+          "group": "Multiple Body Parts"
+        }
+      ]
+    },
+    "statPlan.injuryType": {
+      "system": "statPlan.injuryType",
+      "name": "Statistical plan Injury Type",
+      "version": "NCCI-style (MA 2024-07 stat plan; FL USR; NCRB edits)",
+      "codeWidth": 2,
+      "source": "evaluation-and-wc-domain.md B2",
+      "completeness": "complete",
+      "completenessNote": "03/04 (PPD major/minor) appear in secondary sources only; not confirmed in a primary NCCI document (B2 Gaps). Bureau-specific meanings differ (FL 03/04/09 are impairment/supplemental).",
+      "codes": [
+        {
+          "code": "01",
+          "description": "Death",
+          "claimType": "indemnity"
+        },
+        {
+          "code": "02",
+          "description": "Permanent Total Disability",
+          "claimType": "indemnity"
+        },
+        {
+          "code": "03",
+          "description": "Permanent Partial Disability - Major",
+          "claimType": "indemnity",
+          "verified": false
+        },
+        {
+          "code": "04",
+          "description": "Permanent Partial Disability - Minor",
+          "claimType": "indemnity",
+          "verified": false
+        },
+        {
+          "code": "05",
+          "description": "Temporary Total or Temporary Partial Disability",
+          "claimType": "indemnity"
+        },
+        {
+          "code": "06",
+          "description": "Medical Only",
+          "claimType": "medicalOnly"
+        },
+        {
+          "code": "07",
+          "description": "Contract Medical",
+          "claimType": "medicalOnly"
+        },
+        {
+          "code": "09",
+          "description": "Permanent Partial Disability",
+          "claimType": "indemnity"
+        }
+      ]
+    },
+    "statPlan.status": {
+      "system": "statPlan.status",
+      "name": "Statistical plan Claim Status",
+      "version": "NCCI USR",
+      "codeWidth": 1,
+      "source": "evaluation-and-wc-domain.md B2/B4 (MA stat plan, FL USR, NCRB edit 000185)",
+      "completeness": "complete",
+      "codes": [
+        {
+          "code": "0",
+          "description": "Open - future payments are expected",
+          "status": "open"
+        },
+        {
+          "code": "1",
+          "description": "Closed - no future payments are expected",
+          "status": "closed"
+        },
+        {
+          "code": "2",
+          "description": "Reopened",
+          "status": "reopened"
+        }
+      ]
+    },
+    "statPlan.typeOfLoss": {
+      "system": "statPlan.typeOfLoss",
+      "name": "Statistical plan Type of Loss",
+      "version": "NCCI-style (MA stat plan)",
+      "codeWidth": 2,
+      "source": "evaluation-and-wc-domain.md B2",
+      "completeness": "complete",
+      "codes": [
+        {
+          "code": "01",
+          "description": "Trauma",
+          "cumulativeTrauma": false
+        },
+        {
+          "code": "02",
+          "description": "Cumulative Injury: Occupational Disease",
+          "cumulativeTrauma": true
+        },
+        {
+          "code": "03",
+          "description": "Cumulative Injury: Other Than Occupational Disease",
+          "cumulativeTrauma": true
+        }
+      ]
+    },
+    "statPlan.typeOfRecovery": {
+      "system": "statPlan.typeOfRecovery",
+      "name": "Statistical plan Type of Recovery",
+      "version": "NCCI-style (MA stat plan)",
+      "codeWidth": 2,
+      "source": "evaluation-and-wc-domain.md B2",
+      "completeness": "complete",
+      "codes": [
+        {
+          "code": "01",
+          "description": "No Recovery",
+          "subrogation": false
+        },
+        {
+          "code": "02",
+          "description": "Second Injury Fund Only",
+          "subrogation": false
+        },
+        {
+          "code": "03",
+          "description": "Subrogation Only (Third Party)",
+          "subrogation": true
+        },
+        {
+          "code": "04",
+          "description": "Subrogation with Second Injury Fund",
+          "subrogation": true
+        }
+      ]
+    },
+    "statPlan.typeOfSettlement": {
+      "system": "statPlan.typeOfSettlement",
+      "name": "Statistical plan Type of Settlement",
+      "version": "NCCI-style (MA stat plan)",
+      "codeWidth": 2,
+      "source": "evaluation-and-wc-domain.md B2",
+      "completeness": "partial",
+      "completenessNote": "Only 00/05/09 were captured; other settlement codes exist in bureau plans.",
+      "codes": [
+        {
+          "code": "00",
+          "description": "No Settlement"
+        },
+        {
+          "code": "05",
+          "description": "Non-Compensable",
+          "note": "CA ERP: none of the reported incurred is reflected in the mod"
+        },
+        {
+          "code": "09",
+          "description": "All Other Settlements"
+        }
+      ]
+    },
+    "statPlan.typeOfClaim": {
+      "system": "statPlan.typeOfClaim",
+      "name": "Statistical plan Type of Claim",
+      "version": "NCCI-style (MA stat plan; NCRB edits list 01-04 as valid)",
+      "codeWidth": 2,
+      "source": "evaluation-and-wc-domain.md B2",
+      "completeness": "partial",
+      "completenessNote": "NCRB edits accept 01-04; the meaning of 04 was not captured.",
+      "codes": [
+        {
+          "code": "01",
+          "description": "Workers Compensation Only"
+        },
+        {
+          "code": "02",
+          "description": "Employers Liability Only"
+        },
+        {
+          "code": "03",
+          "description": "Workers Compensation including Employers Liability"
+        }
+      ]
+    },
+    "WCIRB-ClassCode": {
+      "system": "WCIRB-ClassCode",
+      "name": "WCIRB Standard Classification (California)",
+      "version": "2025 (DN59 list, Excel)",
+      "codeWidth": 4,
+      "source": "evaluation-and-wc-domain.md B3 — CA WCIS Training Bulletin 04-14; CA DWC WCIS",
+      "completeness": "format-only",
+      "completenessNote": "~700 classifications; only the format rule is captured: 4 digits, left-zero padded, base code only. WCIRB codes differ from NCCI codes; no crosswalk.",
+      "format": {
+        "pattern": "^[0-9]{4}$"
+      },
+      "codes": []
+    }
+  }
+}

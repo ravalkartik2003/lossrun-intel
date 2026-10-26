@@ -1,0 +1,417 @@
+{
+  "version": "1.1.0",
+  "docs": 302,
+  "delivered": 224,
+  "scores": [
+    {
+      "metric": "claim_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "open_claim_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "closed_claim_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "reopened_claim_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "medical_only_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "lost_time_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "lost_time_share",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "paid_total",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "reserve_total",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "incurred_total",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "frequency_per_100_payroll",
+      "unit": "rate",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "frequency_per_100_fte",
+      "unit": "rate",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "claim_count_by_policy_year",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "severity_all",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "severity_lost_time",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 105,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "paid_to_incurred",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "large_loss_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "large_loss_share",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "capped_incurred",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "loss_drivers_cause_incurred",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 145,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "loss_drivers_cause_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 145,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "loss_drivers_body_part_incurred",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 185,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "loss_drivers_body_part_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 185,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "loss_drivers_nature_incurred",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 145,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "loss_drivers_nature_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 145,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "litigation_rate",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 185,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "ct_share",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "ct_indemnity_share",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 105,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "post_termination_ct_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 150,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "subrogation_recovery_rate",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 195,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "closure_median_days",
+      "unit": "days",
+      "tolerance": "\u00B10.5",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 80,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "open_claim_age",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "reporting_lag_median_days",
+      "unit": "days",
+      "tolerance": "\u00B10.5",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "reporting_lag_p90_days",
+      "unit": "days",
+      "tolerance": "\u00B10.5",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "reporting_lag_over_30_share",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "incurred_by_policy_year",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "paid_by_policy_year",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "severity_by_policy_year",
+      "unit": "money",
+      "tolerance": "$1 / 0.1 %",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "paid_to_incurred_by_policy_year",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "non_ca_share",
+      "unit": "ratio",
+      "tolerance": "1 % rel.",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    },
+    {
+      "metric": "non_wc_excluded_count",
+      "unit": "count",
+      "tolerance": "exact",
+      "compared": 224,
+      "within": 224,
+      "bothNull": 0,
+      "nullMismatch": 0,
+      "misses": []
+    }
+  ]
+}

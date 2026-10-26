@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Liquibase master changelog (ADR 0006). The POC runner (src/LossRun.DbDeploy) applies the same files in this order. -->
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <property name="appPrincipalName" value=""/>
+
+    <include file="changelog/0001-schema-change-log.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0002-upload.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0003-document-claim.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0004-extracted-value.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0005-override-audit.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0006-format.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0007-usage-cost.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0008-views.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0009-ledger-digest.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0010-format-embedding-hits.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0011-feature-snapshot.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0012-quote-context.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0013-app-ledger-view.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0014-chat.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0015-integration.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0016-apply-decision-proc.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0017-quote-label.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0018-glossary-alias.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0019-upload-item-kept-rows.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0020-quote-revision.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0021-escalation.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0022-quote-owner.sql" relativeToChangelogFile="true"/>
+    <include file="changelog/0023-upload-item-unnormalized.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>

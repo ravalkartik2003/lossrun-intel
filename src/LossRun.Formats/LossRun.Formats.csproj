@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Formats</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Rules\LossRun.Rules.csproj" />
+    <ProjectReference Include="..\LossRun.Ingestion\LossRun.Ingestion.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Brief 29: alias activation thresholds are configuration (config/alias-policy.json). -->
+    <EmbeddedResource Include="..\..\config\alias-policy.json" LogicalName="LossRun.Config.alias-policy.json" Link="Config\alias-policy.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LossRun.Formats.Tests" />
+  </ItemGroup>
+
+</Project>

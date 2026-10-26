@@ -1,0 +1,35 @@
+[
+  {
+    "at": "2026-10-21T19:52:40Z",
+    "user": "m.okafor",
+    "role": "Underwriter",
+    "documentId": "doc-11",
+    "revision": 2,
+    "event": "override",
+    "fieldPath": "policyPeriods[0].claims[3].claimNumber",
+    "oldValue": "WC-22-0156",
+    "newValue": "WC-22-0157",
+    "rationale": "Carrier typo; confirmed against claim detail page 4",
+    "ledgerTxId": 1842
+  },
+  {
+    "at": "2026-10-21T19:52:40Z",
+    "user": "system",
+    "role": "system",
+    "documentId": "doc-11",
+    "revision": 2,
+    "event": "revalidate",
+    "detail": "26 rules; 0 hard failures",
+    "ledgerTxId": 1843
+  },
+  {
+    "at": "2026-10-22T14:03:29Z",
+    "user": "system",
+    "role": "system",
+    "documentId": "doc-03",
+    "revision": 1,
+    "event": "format.published",
+    "detail": "fictional-casualty-spreadsheet@1 (shadow)",
+    "ledgerTxId": 1901
+  }
+]

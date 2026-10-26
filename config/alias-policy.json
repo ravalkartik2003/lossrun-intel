@@ -1,0 +1,7 @@
+{
+  "$comment": "Brief 29 §1 (brief 21 Answers 2 and 4, ADR 0019): when a learned glossary alias becomes active without a reviewer. Evidence from minDocuments distinct documents across minFormats distinct learned formats. A replay of a hand-written spec counts toward documents but never toward formats unless countHandFormats is true. Overrides per run: LOSSRUN_ALIAS_MIN_DOCUMENTS, LOSSRUN_ALIAS_MIN_FORMATS.",
+  "version": "1.0.0",
+  "minDocuments": 5,
+  "minFormats": 3,
+  "countHandFormats": false
+}

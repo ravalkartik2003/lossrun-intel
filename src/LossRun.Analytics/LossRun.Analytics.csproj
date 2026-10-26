@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Analytics</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+  </ItemGroup>
+
+  <!-- Source of truth: docs/analytics/catalog.yaml (embedded, never copied). -->
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)..\..\docs\analytics\catalog.yaml" LogicalName="LossRun.Analytics.catalog.yaml" Link="Data\catalog.yaml" />
+  </ItemGroup>
+
+</Project>

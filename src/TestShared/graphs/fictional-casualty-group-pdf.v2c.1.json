@@ -1,0 +1,337 @@
+{
+  "specSchema": "carrier-format-0.2.0",
+  "formatId": "fictional-casualty-group-pdf",
+  "version": 1,
+  "carrierName": "Fictional Casualty Group",
+  "fileKind": "pdf",
+  "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+  "createdAt": "2026-10-22T20:03:22.9717485+00:00",
+  "description": "Fictional Casualty Group workers' compensation loss history report. Page 1 contains a policy summary table and three policy-detail tables; each policy section is opened by a section heading anchor. The policy number is repeated in each section heading rather than in a column.",
+  "status": "shadow",
+  "fingerprint": {
+    "identityKey": "502a791eb8038aa6363ce93abfe6a714",
+    "headerKey": "322de98a56711e68ab6bc38691e8a7aa",
+    "identityText": "fictional casualty group",
+    "headerText": "policy no|eff|exp|claims|tot inc",
+    "embedding": {
+      "model": "text-embedding-3-large",
+      "threshold": 0.95,
+      "textNormalization": "fp-text-1"
+    }
+  },
+  "tableLocator": {
+    "headerMatchMin": 0.8,
+    "blockAnchor": "^Policy No:\\s+(?<policyNumber>\\S+)\\s+Eff\\s+(?<effectiveDate>\\d{2}/\\d{2}/\\d{4})\\s+Exp\\s+(?<expirationDate>\\d{2}/\\d{2}/\\d{4})$",
+    "rowKinds": [
+      {
+        "kind": "subtotal",
+        "regex": "^Policy Total\\s*-\\s*\\d+\\s+Claims\\b",
+        "countsRegex": "^Policy Total\\s*-\\s*(?<claimCount>\\d+)\\s+Claims\\b"
+      },
+      {
+        "kind": "grandTotal",
+        "regex": "^Account Total\\s*-\\s*\\d+\\s+Claims\\b",
+        "countsRegex": "^Account Total\\s*-\\s*(?<claimCount>\\d+)\\s+Claims\\b"
+      }
+    ],
+    "lineFallback": {
+      "enabled": true,
+      "deskew": true,
+      "lineTolerance": 0.5,
+      "minHeaderMatch": 0.7,
+      "assignment": "headerLeftEdge"
+    }
+  },
+  "columnMap": [
+    {
+      "source": "Claim No",
+      "target": "claim.claimNumber",
+      "normalizer": {
+        "type": "claimNumber",
+        "pattern": "^(?<value>\\d{2}-FC-\\d{5})$",
+        "format": "{value}"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Employee",
+      "target": "claim.claimantName",
+      "normalizer": {
+        "type": "text"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Accident Dt",
+      "target": "claim.dateOfInjury",
+      "normalizer": {
+        "type": "date"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Rptd",
+      "target": "claim.dateReported",
+      "normalizer": {
+        "type": "date"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Cls Dt",
+      "target": "claim.dateClosed",
+      "normalizer": {
+        "type": "date"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "St",
+      "target": "claim.status",
+      "normalizer": {
+        "type": "enum",
+        "glossaryField": "claim.status",
+        "codeSystem": "statPlan.status"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "St",
+      "target": "claim.rawStatus",
+      "normalizer": {
+        "type": "text"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Ind. Pd",
+      "target": "claim.indemnity.paid",
+      "normalizer": {
+        "type": "currency"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Ind. Res",
+      "target": "claim.indemnity.reserve",
+      "normalizer": {
+        "type": "currency"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Med. Pd",
+      "target": "claim.medical.paid",
+      "normalizer": {
+        "type": "currency"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Med. Res",
+      "target": "claim.medical.reserve",
+      "normalizer": {
+        "type": "currency"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Exp. Pd",
+      "target": "claim.expense.paid",
+      "normalizer": {
+        "type": "currency"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "O/S",
+      "target": "claim.total.reserve",
+      "normalizer": {
+        "type": "currency"
+      },
+      "nullWhen": [
+        ""
+      ]
+    },
+    {
+      "source": "Tot. Inc",
+      "target": "claim.total.incurred",
+      "normalizer": {
+        "type": "currency"
+      },
+      "nullWhen": [
+        ""
+      ]
+    }
+  ],
+  "ignoredHeaders": [
+    "Employee"
+  ],
+  "periods": {
+    "source": "blockAnchor"
+  },
+  "documentFields": [
+    {
+      "target": "document.carrierName",
+      "locator": {
+        "type": "regex",
+        "pattern": "(?m)^(?<value>FICTIONAL CASUALTY GROUP)\\s*$"
+      },
+      "normalizer": {
+        "type": "text"
+      }
+    },
+    {
+      "target": "document.insuredName",
+      "locator": {
+        "type": "regex",
+        "pattern": "Named Insured:\\s*(?<value>.+?)(?=\\s+Evaluation Date:|\\s*$)"
+      },
+      "normalizer": {
+        "type": "text"
+      }
+    },
+    {
+      "target": "document.valuationDate",
+      "locator": {
+        "type": "regex",
+        "pattern": "Evaluation Date:\\s*(?<value>\\d{2}/\\d{2}/\\d{4})"
+      },
+      "normalizer": {
+        "type": "date"
+      }
+    },
+    {
+      "target": "document.reportRunDate",
+      "locator": {
+        "type": "regex",
+        "pattern": "Printed:\\s*(?<value>\\d{2}/\\d{2}/\\d{4})"
+      },
+      "normalizer": {
+        "type": "date"
+      }
+    },
+    {
+      "target": "document.lineOfBusiness",
+      "locator": {
+        "type": "regex",
+        "pattern": "(?i)(?<value>Workers Compensation)"
+      },
+      "normalizer": {
+        "type": "enum",
+        "glossaryField": "document.lineOfBusiness"
+      }
+    },
+    {
+      "target": "document.expenseTreatment",
+      "locator": {
+        "type": "const",
+        "value": "separate"
+      },
+      "normalizer": {
+        "type": "text"
+      },
+      "reason": "Expense is printed in its own column (Exp. Pd), so expense treatment is separate."
+    }
+  ],
+  "derivedRules": [
+    {
+      "target": "indemnity.incurred",
+      "sum": [
+        "indemnity.paid",
+        "indemnity.reserve"
+      ],
+      "when": "absent",
+      "appliesTo": [
+        "claim",
+        "totals"
+      ]
+    },
+    {
+      "target": "medical.incurred",
+      "sum": [
+        "medical.paid",
+        "medical.reserve"
+      ],
+      "when": "absent",
+      "appliesTo": [
+        "claim",
+        "totals"
+      ]
+    },
+    {
+      "target": "expense.incurred",
+      "sum": [
+        "expense.paid",
+        "expense.reserve"
+      ],
+      "when": "absent",
+      "appliesTo": [
+        "claim",
+        "totals"
+      ]
+    }
+  ],
+  "periodBoundaries": {
+    "expirationInclusive": false
+  },
+  "validation": {
+    "expectedApplicable": [
+      "R-01",
+      "R-02",
+      "R-03",
+      "R-06",
+      "R-07",
+      "R-08",
+      "R-09",
+      "R-10",
+      "R-11",
+      "R-12",
+      "R-13",
+      "R-18",
+      "R-19",
+      "R-21",
+      "R-26"
+    ],
+    "softOverrides": []
+  },
+  "learning": {
+    "stage": "learn",
+    "model": "gpt-5.4-mini",
+    "modelVersion": "2026-03-17",
+    "promptVersion": "learn-v5",
+    "iterations": 2,
+    "inputTokens": 30011,
+    "cachedInputTokens": 13568,
+    "outputTokens": 3598,
+    "pageImage": false,
+    "sourceDocumentId": "doc-0fc8f9cbac469807",
+    "verification": "8 claim rows; 0 hard / 0 soft failures; 0 unmapped; 0 missing; 0 issues; totals tie (36 checks); required coverage 100 %; gate pdf-totals",
+    "verificationGate": "pdf-totals",
+    "learnedFrom": "native"
+  }
+}

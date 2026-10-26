@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Source of truth for schema, glossary, code sets and rules (CLAUDE.md). -->
+    <EvaluationDataDir>$(MSBuildThisFileDirectory)..\docs\evaluation\</EvaluationDataDir>
+    <!-- Latency budgets run on their own (src/README.md): the default `dotnet test` leaves them out; a filter given to dotnet test replaces this. -->
+    <VSTestTestCaseFilter Condition="'$(VSTestTestCaseFilter)' == ''">Category!=Performance</VSTestTestCaseFilter>
+  </PropertyGroup>
+</Project>

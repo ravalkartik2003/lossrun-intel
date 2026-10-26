@@ -1,0 +1,70 @@
+# The .NET solution's build and tests on every push and pull request that touches the code or the data it validates
+# against. No Azure access, no secrets: the opt-in Azure tests skip. The latency budget runs on its own (src/README.md).
+name: dotnet
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "!src/web/**"
+      - "db/**"
+      - "config/**"
+      - "docs/evaluation/*.json"
+      - "docs/analytics/catalog.yaml"
+      - ".github/workflows/dotnet.yml"
+  pull_request:
+    paths:
+      - "src/**"
+      - "!src/web/**"
+      - "db/**"
+      - "config/**"
+      - "docs/evaluation/*.json"
+      - "docs/analytics/catalog.yaml"
+      - ".github/workflows/dotnet.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - name: "Fonts for the synthetic PDFs (Liberation: metric-compatible Arial and Times New Roman)"
+        run: sudo apt-get update -q && sudo apt-get install -y -q fonts-liberation
+      - run: dotnet build src/LossRun.sln -c Release
+      - name: "Tests (default filter, everything except Category=Performance)"
+        run: dotnet test src/LossRun.sln -c Release --no-build
+      - name: "Latency budget, alone"
+        run: dotnet test src/LossRun.Analytics.Tests -c Release --no-build --filter Category=Performance
+
+  # Brief 28: the organisation does not allow Docker on developer machines, so the SQL tests also take a connection string
+  # (LOSSRUN_TEST_SQL). This job proves that mode against a SQL Server service container; the password is per run.
+  sql-connection-string:
+    runs-on: ubuntu-24.04
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: "Lrt-${{ github.run_id }}-Ci!"
+        ports: ["1433:1433"]
+        options: >-
+          --health-cmd "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P 'Lrt-${{ github.run_id }}-Ci!' -Q 'SELECT 1'"
+          --health-interval 10s --health-timeout 5s --health-retries 12
+    env:
+      LOSSRUN_TEST_SQL: "Server=localhost,1433;User ID=sa;Password=Lrt-${{ github.run_id }}-Ci!;TrustServerCertificate=true"
+      DOCKER_HOST: ""
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - run: dotnet build src/LossRun.Data.Tests -c Release
+      - name: "SQL tests through LOSSRUN_TEST_SQL (mode 1)"
+        run: dotnet test src/LossRun.Data.Tests -c Release --no-build

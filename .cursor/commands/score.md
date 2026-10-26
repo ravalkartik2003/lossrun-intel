@@ -1,0 +1,20 @@
+# /score — verify the seal and score the blind run
+
+After the operator has run the blind set into `$WORK/blind/results/build` and the evaluator has adjudicated and built truth (`docs/operations/blind-run.md` §6–9, `docs/operations/playbook.md`). `eval truth` always prints the decision counts and refuses archive-only rows left at their default (exit 3) unless the evaluator passed `--accept-defaults`; if truth is missing for that reason, stop and tell the operator.
+
+## Rules (always)
+- **Do not open anything under `$WORK/blind/`** except the two report files this command prints from `$WORK/blind/report/build/` (`report.md` up to its first section, `deck-table.md`). Run the commands; never open results, alignment, the workbook or `documents.csv`.
+- **Verify first.** If `eval verify` names files, stop: the result is not valid. `PUBLISHED_HASH` (the blind manifest sha256 the evaluator published at the seal) makes `verify` recompute it from the seal's blind list.
+- **Never quote one blended number.** Always the per-input-type breakdown with its 95 % interval, and never tuning numbers as accuracy (`blind-run.md` §10).
+- No archive content in chat or commits (`tuning-loop.md` §7).
+
+## Do
+```bash run
+"$LR" eval verify --corpus "$WORK/corpus" --seal "$WORK/seal/seal-manifest.json" $( [ -n "${PUBLISHED_HASH:-}" ] && echo --published-hash "$PUBLISHED_HASH" )
+"$LR" eval score --corpus "$WORK/corpus" --results "$WORK/blind/results/build" --out "$WORK/blind/report/build"
+sed -n '1,/^## /p' "$WORK/blind/report/build/report.md"
+cat "$WORK/blind/report/build/deck-table.md"
+```
+
+## Then tell the operator
+The deck table by input type (accuracy with intervals, review rate, model calls per document, cost), the documents without truth, and where the full report is (`$WORK/blind/report/build/report.md`, `documents.csv`, for the operator and evaluator). Re-score after any adjudication change: scoring is a pure function of corpus, truth and results.

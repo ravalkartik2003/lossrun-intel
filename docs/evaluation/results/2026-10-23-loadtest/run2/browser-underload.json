@@ -1,0 +1,32 @@
+{
+  "started": "2026-10-23T14:00:03.685Z",
+  "finished": "2026-10-23T14:10:11.016Z",
+  "sessions": 25,
+  "minutes": 9,
+  "quote": "Q-LOAD-1000",
+  "sliderToKpiMs": {
+    "samples": 3400,
+    "p50": 67.60000002384186,
+    "p95": 140,
+    "max": 348.5
+  },
+  "eventTimingMs": {
+    "samples": 6386,
+    "p50": 672,
+    "p95": 1848,
+    "max": 3304
+  },
+  "documentOpenMs": {
+    "samples": 340,
+    "p50": 991,
+    "p95": 1614,
+    "max": 3052
+  },
+  "analyticsOpenMs": {
+    "samples": 340,
+    "p50": 1989,
+    "p95": 5327,
+    "max": 9967
+  },
+  "errors": []
+}

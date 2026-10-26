@@ -1,0 +1,55 @@
+[
+  {
+    "documentId": "doc-02",
+    "uploadId": "up-7f3a9c2d1e8b4a6f0c21",
+    "kind": "document-review",
+    "state": "pending",
+    "reasons": [
+      "Period 2023 subtotal does not match extracted rows (R-10): printed 41,200.00, extracted 41,100.00",
+      "Claim WC-23-0088 medical paid read at low confidence (0.71)"
+    ],
+    "badge": "Needs review \u00b7 Pie v1 \u00b7 0 model calls",
+    "formatRef": "pie-pdf@1",
+    "openedAt": "2026-10-22T14:03:27Z"
+  },
+  {
+    "documentId": "doc-03",
+    "uploadId": "up-7f3a9c2d1e8b4a6f0c21",
+    "kind": "confirm-format",
+    "state": "pending",
+    "reasons": [
+      "New carrier format learned from this document; confirm the column mapping"
+    ],
+    "badge": "Format learned \u00b7 Fictional Casualty v1 \u00b7 1 model call",
+    "formatRef": "fictional-casualty-spreadsheet@1",
+    "openedAt": "2026-10-22T14:03:29Z"
+  },
+  {
+    "documentId": "doc-11",
+    "uploadId": "up-2b1c\u2026",
+    "kind": "document-review",
+    "state": "decided",
+    "reasons": [
+      "Hard rule R-09: duplicate claim number WC-22-0156"
+    ],
+    "badge": "Needs review \u00b7 AmTrust v2 \u00b7 0 model calls",
+    "formatRef": "amtrust-pdf@2",
+    "openedAt": "2026-10-21T19:40:02Z",
+    "decidedAt": "2026-10-21T19:52:40Z",
+    "decision": {
+      "documentId": "doc-11",
+      "action": "override",
+      "overrides": [
+        {
+          "fieldPath": "policyPeriods[0].claims[3].claimNumber",
+          "newValue": "WC-22-0157",
+          "rationale": "Carrier typo; confirmed against claim detail page 4"
+        }
+      ],
+      "promoteToFormat": false,
+      "user": "m.okafor",
+      "role": "Underwriter",
+      "at": "2026-10-21T19:52:40Z"
+    }
+  }
+]

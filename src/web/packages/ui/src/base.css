@@ -1,0 +1,90 @@
+/* Base styles: element defaults, focus, buttons, inputs, tables. Components add their own rules in components.css. */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+h1, h2, h3, h4 { margin: 0; font-weight: 600; color: var(--ink); }
+h1 { font-size: var(--fs-title); line-height: var(--lh-title); }
+h2 { font-size: var(--fs-section); line-height: var(--lh-section); }
+h3 { font-size: var(--fs-body); line-height: var(--lh-body); }
+p { margin: 0; max-width: 75ch; }
+
+a { color: var(--action); text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* §6: visible focus — 2px action outline, 2px offset, on every interactive element. */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+  border-radius: var(--r-input);
+}
+
+.lr-sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Buttons */
+.lr-btn {
+  display: inline-flex; align-items: center; gap: var(--s2);
+  min-height: 32px; padding: 0 var(--s3);
+  border: 1px solid var(--line-strong); border-radius: var(--r-input);
+  background: var(--surface-raised); color: var(--ink);
+  font: inherit; font-weight: 500; cursor: pointer; white-space: nowrap;
+}
+.lr-btn:hover { background: var(--surface-sunken); }
+.lr-btn[disabled], .lr-btn[aria-disabled="true"] { color: var(--ink-3); cursor: not-allowed; background: var(--surface-sunken); }
+.lr-btn--primary { background: var(--action); border-color: var(--action); color: var(--action-ink); }
+.lr-btn--primary:hover { background: var(--action); filter: brightness(1.08); }
+.lr-btn--danger { color: var(--fail); border-color: var(--fail); }
+.lr-btn--quiet { border-color: transparent; background: transparent; }
+.lr-btn--quiet:hover { background: var(--surface-sunken); }
+.lr-btn--sm { min-height: 28px; padding: 0 var(--s2); font-size: var(--fs-dense); }
+.lr-btn svg { flex: none; }
+
+/* Inputs */
+.lr-field { display: grid; gap: var(--s1); }
+.lr-label { font-weight: 500; color: var(--ink); }
+.lr-hint { font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--ink-2); }
+.lr-error { font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--fail); display: flex; gap: var(--s1); align-items: center; }
+.lr-input, .lr-select, .lr-textarea {
+  min-height: 32px; padding: 0 var(--s2);
+  border: 1px solid var(--line-strong); border-radius: var(--r-input);
+  background: var(--surface-raised); color: var(--ink); font: inherit;
+}
+.lr-textarea { padding: var(--s2); min-height: 72px; resize: vertical; }
+.lr-input[aria-invalid="true"], .lr-textarea[aria-invalid="true"] { border-color: var(--fail); }
+.lr-input--num { text-align: right; font-variant-numeric: tabular-nums lining-nums; }
+
+/* Tables */
+.lr-table { border-collapse: separate; border-spacing: 0; width: 100%; background: var(--surface-raised); font-size: var(--fs-dense); line-height: var(--lh-dense); }
+.lr-table caption { text-align: left; padding: var(--s2) 0; color: var(--ink-2); caption-side: top; }
+.lr-table th, .lr-table td { height: var(--row-h); padding: 0 var(--s2); border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+.lr-table thead th { position: sticky; top: 0; z-index: 1; background: var(--surface-raised); font-weight: 600; color: var(--ink); }
+.lr-table .num { text-align: right; font-variant-numeric: tabular-nums lining-nums; }
+.lr-table tbody tr:hover td { background: var(--surface); }
+
+.lr-panel { background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--r-panel); }
+.lr-muted { color: var(--ink-2); }
+.lr-meta { font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--ink-2); }
+.lr-num { font-variant-numeric: tabular-nums lining-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; scroll-behavior: auto !important; }
+}

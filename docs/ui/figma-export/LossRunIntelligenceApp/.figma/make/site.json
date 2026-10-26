@@ -1,0 +1,10 @@
+{
+  "description": "Enables underwriters to upload, verify, and trace workers' compensation loss run data with confidence scores and tamper-evident audit trails.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

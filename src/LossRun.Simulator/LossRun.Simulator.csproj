@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>lossrun-sim</AssemblyName>
+    <RootNamespace>LossRun.Simulator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Api.Contracts\LossRun.Api.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

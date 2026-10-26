@@ -1,0 +1,6 @@
+# Remote-state backend for infra/ (written by infra/bootstrap: terraform output -raw backend_hcl > ../backend.hcl).
+resource_group_name  = "<name_prefix>-tfstate-rg"
+storage_account_name = "<state storage account, terraform output of infra/bootstrap>"
+container_name       = "tfstate"
+key                  = "<environment>.tfstate"
+use_azuread_auth     = true

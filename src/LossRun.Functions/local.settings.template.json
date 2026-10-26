@@ -1,0 +1,25 @@
+{
+  "_comment": "Copy to local.settings.json (git-ignored). No secrets here: everything is identity-based (az login). Values mirror the Terraform app settings (infra/orchestration.tf). For local runs use the dev task hub 'lossrun-dev' or the DTS emulator (docker run -p 8080:8080 mcr.microsoft.com/dts/dts-emulator:latest; connection string Endpoint=http://localhost:8080;Authentication=None).",
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "DURABLE_TASK_SCHEDULER_CONNECTION_STRING": "Endpoint=https://<dts-endpoint>;Authentication=DefaultAzure",
+    "TASKHUB_NAME": "lossrun-dev",
+    "AzureAI__Endpoint": "<terraform output ai_endpoint>",
+    "ContentUnderstanding__Endpoint": "<terraform output content_understanding_endpoint>",
+    "ContentUnderstanding__InlineMaxPages": "0",
+    "Models__Learn": "gpt-5.4-mini",
+    "Models__LearnVersion": "2026-03-17",
+    "Models__Delta": "gpt-5.4-mini",
+    "Models__DeltaVersion": "2026-03-17",
+    "Models__Embedding": "text-embedding-3-large",
+    "Storage__BlobEndpoint": "<terraform output storage_blob_endpoint>",
+    "Formats__Container": "formats-test",
+    "Review__TimeoutDays": "7",
+    "Auth__Mode": "basic",
+    "DevAuth__Users": "applicant:<choose>:Applicant;underwriter:<choose>:Underwriter",
+    "Webhook__Url": "",
+    "Webhook__Secret": ""
+  }
+}

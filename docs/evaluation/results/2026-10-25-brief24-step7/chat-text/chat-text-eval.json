@@ -1,0 +1,379 @@
+{
+  "runKey": "10251006",
+  "quotes": [
+    "EVAL13-10251006-CT",
+    "EVAL13-10251006-BUNDLE"
+  ],
+  "ctDocs": [
+    "c4-002-xlsx",
+    "c5-010-csv"
+  ],
+  "bundleDocs": [
+    "c1-030-native-pdf-bundle"
+  ],
+  "turns": [
+    {
+      "question": {
+        "id": "ct-summary",
+        "quoteId": "EVAL13-10251006-CT",
+        "text": "Summarize the cumulative trauma exposure on this account: how many CT claims are there and what share of all claims is that?",
+        "facts": [
+          {
+            "label": "CT claims",
+            "number": 14,
+            "kind": "count"
+          },
+          {
+            "label": "CT share",
+            "number": 15.217400,
+            "kind": "percent"
+          }
+        ]
+      },
+      "answer": "There are 14 cumulative-trauma claims on this account [C1\u2013C14], and they represent 15.2% of all claims [M1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.004328,
+      "totalMs": 3645,
+      "tools": [
+        "compute_metric",
+        "query_claims"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "litigated",
+        "quoteId": "EVAL13-10251006-CT",
+        "text": "Which claims are litigated? Give their claim numbers.",
+        "facts": [
+          {
+            "label": "N23-00003",
+            "text": "N23-00003",
+            "kind": "number"
+          },
+          {
+            "label": "N23-00011",
+            "text": "N23-00011",
+            "kind": "number"
+          },
+          {
+            "label": "N23-00014",
+            "text": "N23-00014",
+            "kind": "number"
+          },
+          {
+            "label": "N23-00015",
+            "text": "N23-00015",
+            "kind": "number"
+          },
+          {
+            "label": "N23-00030",
+            "text": "N23-00030",
+            "kind": "number"
+          },
+          {
+            "label": "N24-00022",
+            "text": "N24-00022",
+            "kind": "number"
+          },
+          {
+            "label": "N24-00027",
+            "text": "N24-00027",
+            "kind": "number"
+          },
+          {
+            "label": "N25-00034",
+            "text": "N25-00034",
+            "kind": "number"
+          },
+          {
+            "label": "N25-00038",
+            "text": "N25-00038",
+            "kind": "number"
+          },
+          {
+            "label": "PA21000018",
+            "text": "PA21000018",
+            "kind": "number"
+          },
+          {
+            "label": "PA22000004",
+            "text": "PA22000004",
+            "kind": "number"
+          },
+          {
+            "label": "PA22000007",
+            "text": "PA22000007",
+            "kind": "number"
+          },
+          {
+            "label": "PA22000029",
+            "text": "PA22000029",
+            "kind": "number"
+          },
+          {
+            "label": "PA22000036",
+            "text": "PA22000036",
+            "kind": "number"
+          },
+          {
+            "label": "PA23000039",
+            "text": "PA23000039",
+            "kind": "number"
+          },
+          {
+            "label": "PA23000040",
+            "text": "PA23000040",
+            "kind": "number"
+          }
+        ]
+      },
+      "answer": "The litigated claims are: N25-00038 [C1], PA21000018 [C2], N23-00030 [C3], PA22000007 [C4], PA23000039 [C5], N24-00022 [C6], PA22000029 [C7], PA22000036 [C8], N23-00014 [C9], N23-00011 [C10], PA22000004 [C11], PA23000040 [C12], N25-00034 [C13], N24-00027 [C14], N23-00003 [C15], and N23-00015 [C16].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.004786,
+      "totalMs": 3615,
+      "tools": [
+        "query_claims"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "post-term-ct",
+        "quoteId": "EVAL13-10251006-CT",
+        "text": "Are there post-termination cumulative trauma claims (injury reported after the last day worked)? How many?",
+        "facts": [
+          {
+            "label": "post-termination CT",
+            "number": 4,
+            "kind": "count"
+          }
+        ]
+      },
+      "answer": "Yes \u2014 there are 4 post-termination cumulative trauma claims [M1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.003467,
+      "totalMs": 3215,
+      "tools": [
+        "compute_metric",
+        "query_claims"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "litigation-rate",
+        "quoteId": "EVAL13-10251006-CT",
+        "text": "What is the litigation rate on lost-time claims?",
+        "facts": [
+          {
+            "label": "litigation rate",
+            "number": 15.00,
+            "kind": "percent"
+          }
+        ]
+      },
+      "answer": "The litigation rate on lost-time claims is 15.0% [M1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.001298,
+      "totalMs": 4303,
+      "tools": [
+        "compute_metric"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "cause-driver",
+        "quoteId": "EVAL13-10251006-CT",
+        "text": "Which cause of injury drives the most incurred loss, and how much?",
+        "facts": [
+          {
+            "label": "cause code",
+            "text": "78",
+            "kind": "number"
+          },
+          {
+            "label": "cause incurred",
+            "number": 1196798.9,
+            "kind": "money"
+          }
+        ]
+      },
+      "answer": "Cause code 78 drives the most incurred loss at $1,196,798.90 [M1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.005840,
+      "totalMs": 4858,
+      "tools": [
+        "compute_metric",
+        "search_documents"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "subrogation",
+        "quoteId": "EVAL13-10251006-CT",
+        "text": "What is the subrogation recovery rate on this account?",
+        "facts": [
+          {
+            "label": "recovery rate",
+            "number": 8.142600,
+            "kind": "percent"
+          }
+        ]
+      },
+      "answer": "The subrogation recovery rate on this account is 8.1% [M1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.001082,
+      "totalMs": 2285,
+      "tools": [
+        "compute_metric"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "reporting-lag",
+        "quoteId": "EVAL13-10251006-CT",
+        "text": "What is the median reporting lag in days, and what share of claims were reported more than 30 days after injury?",
+        "facts": [
+          {
+            "label": "median lag",
+            "number": 7,
+            "kind": "days"
+          },
+          {
+            "label": "over 30 days",
+            "number": 10.869600,
+            "kind": "percent"
+          }
+        ]
+      },
+      "answer": "The median reporting lag is 7.0 days [M1]. The share of claims reported more than 30 days after injury is 10.9% [M2].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.001528,
+      "totalMs": 2976,
+      "tools": [
+        "compute_metric",
+        "compute_metric"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "payroll",
+        "quoteId": "EVAL13-10251006-BUNDLE",
+        "text": "What annual payroll does the payroll report show for class code 3632, and what is that class?",
+        "facts": [
+          {
+            "label": "payroll",
+            "number": 1615500,
+            "kind": "money"
+          },
+          {
+            "label": "class",
+            "text": "Machine Shop",
+            "kind": "number"
+          }
+        ]
+      },
+      "answer": "The payroll report shows $1,615,500 for class code 3632 [S1]. That class is Machine Shop [S1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.004234,
+      "totalMs": 2813,
+      "tools": [
+        "search_documents"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "application",
+        "quoteId": "EVAL13-10251006-BUNDLE",
+        "text": "According to the application, how many employees does the insured have and what is the nature of the business?",
+        "facts": [
+          {
+            "label": "employees",
+            "number": 43,
+            "kind": "count"
+          },
+          {
+            "label": "business",
+            "text": "light manufacturing",
+            "kind": "number"
+          }
+        ]
+      },
+      "answer": "According to the application, the insured has 43 employees and the nature of business is light manufacturing [S1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.004206,
+      "totalMs": 3086,
+      "tools": [
+        "search_documents"
+      ],
+      "pass": true
+    },
+    {
+      "question": {
+        "id": "totals",
+        "quoteId": "EVAL13-10251006-BUNDLE",
+        "text": "What is the total incurred on the loss run, and how many claims are open or reopened?",
+        "facts": [
+          {
+            "label": "total incurred",
+            "number": 2367092.89,
+            "kind": "money"
+          },
+          {
+            "label": "open",
+            "number": 16,
+            "kind": "count"
+          }
+        ]
+      },
+      "answer": "Total incurred is $2,367,092.89 [M1]. There are 16 open or reopened claims [C1].",
+      "missing": [],
+      "unexplained": [],
+      "notFound": false,
+      "costUsd": 0.004368,
+      "totalMs": 4544,
+      "tools": [
+        "query_claims",
+        "compute_metric"
+      ],
+      "pass": true
+    }
+  ],
+  "largeQuote": "Q-LOAD-1000",
+  "largeMs": [
+    3621,
+    2936,
+    2928,
+    3865,
+    2648,
+    2397,
+    2589,
+    22091,
+    2628,
+    2246
+  ]
+}

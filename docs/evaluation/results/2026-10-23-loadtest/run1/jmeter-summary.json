@@ -1,0 +1,105 @@
+{
+  "samples": 1286,
+  "errors": 0,
+  "startMs": 1792762807645,
+  "endMs": 1792763458295,
+  "labels": {
+    "chat": {
+      "samples": 150,
+      "errorPct": 0.0,
+      "p50": 7831,
+      "p95": 12799,
+      "max": 16264,
+      "codes": {
+        "200": 150
+      }
+    },
+    "document": {
+      "samples": 304,
+      "errorPct": 0.0,
+      "p50": 216,
+      "p95": 437,
+      "max": 1317,
+      "codes": {
+        "200": 304
+      }
+    },
+    "features-hit": {
+      "samples": 132,
+      "errorPct": 0.0,
+      "p50": 106,
+      "p95": 155,
+      "max": 1178,
+      "codes": {
+        "200": 132
+      }
+    },
+    "features-miss": {
+      "samples": 42,
+      "errorPct": 0.0,
+      "p50": 548,
+      "p95": 8809,
+      "max": 10287,
+      "codes": {
+        "200": 42
+      }
+    },
+    "override": {
+      "samples": 150,
+      "errorPct": 0.0,
+      "p50": 953,
+      "p95": 2308,
+      "max": 5164,
+      "codes": {
+        "200": 150
+      }
+    },
+    "upload": {
+      "samples": 10,
+      "errorPct": 0.0,
+      "p50": 623,
+      "p95": 2505,
+      "max": 2505,
+      "codes": {
+        "202": 10
+      }
+    },
+    "what-if": {
+      "samples": 498,
+      "errorPct": 0.0,
+      "p50": 118,
+      "p95": 330,
+      "max": 3484,
+      "codes": {
+        "200": 498
+      }
+    }
+  },
+  "errorPct": 0.0,
+  "criteria": [
+    {
+      "label": "features-hit",
+      "p95LimitMs": 300,
+      "p95": 155,
+      "pass": true
+    },
+    {
+      "label": "override",
+      "p95LimitMs": 1500,
+      "p95": 2308,
+      "pass": false
+    },
+    {
+      "label": "document",
+      "p95LimitMs": 1000,
+      "p95": 437,
+      "pass": true
+    },
+    {
+      "label": "all",
+      "errorPctLimit": 0.5,
+      "errorPct": 0.0,
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,3437 @@
+{
+  "name": "cost-by-path",
+  "decision": "43% of documents ran with 0 LLM calls; corpus total $7.51 (CU $2.92, LLM $4.58)",
+  "markdown": "### Cost by path\n\nPer corpus file (bundles and archives count once), by the path the loss-run document took. CU = layout \u002B classifier; LLM = learn/delta/repair calls; other = embeddings and DI.\r\n\r\n| Path | Docs | Mean cost | Mean CU | Mean LLM | Mean other | LLM calls / doc | p50 s | p95 s |\r\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\r\n| ReplayAccepted | 211 | $0.0074 | $0.0069 | $0.0005 | $0.0000 | 0.35 | 4.1 | 7.8 |\r\n| Review | 115 | $0.0488 | $0.0120 | $0.0368 | $0.0001 | 3.27 | 42.7 | 54.1 |\r\n| Learned | 10 | $0.0312 | $0.0068 | $0.0242 | $0.0002 | 2.00 | 19.5 | 40.0 |\r\n| not-found | 2 | $0.0135 | $0.0120 | $0.0015 | $0.0000 | 1.00 | 4.6 | 6.0 |\r\n\r\nLearn-vs-replay break-even per carrier (layout cost is the same on both paths and left out):\r\n\r\n| Carrier | Docs | LLM spend (all docs) | Docs with 0 LLM calls | Per-call cost | Model-per-doc lower bound | Break-even at doc # |\r\n|---|---:|---:|---:|---:|---:|---:|\r\n| c1 | 110 | $1.0143 | 38 | $0.0082 | $0.8998 | 125 |\r\n| c2 | 100 | $1.3684 | 30 | $0.0091 | $0.9123 | 150 |\r\n| c3 | 48 | $2.1135 | 0 | $0.0110 | $0.5284 | 192 |\r\n| c4 | 40 | $0.0432 | 39 | $0.0144 | $0.5756 | 3 |\r\n| c5 | 40 | $0.0361 | 39 | $0.0120 | $0.4811 | 3 |\r\n\r\n**Result:** 43% of documents ran with 0 LLM calls; corpus total $7.51 (CU $2.92, LLM $4.58).\r\n",
+  "data": {
+    "paths": [
+      {
+        "id": "c1-000-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.019701150,
+        "cu": 0.018000,
+        "llm": 0.001701150,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 11.998
+      },
+      {
+        "id": "c1-000-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.018741150,
+        "cu": 0.018000,
+        "llm": 0.000741150,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 8.272
+      },
+      {
+        "id": "c1-000-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.061667450,
+        "cu": 0.018000,
+        "llm": 0.043535175,
+        "other": 0.000132275,
+        "llmCalls": 4,
+        "seconds": 43.697
+      },
+      {
+        "id": "c1-000-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.066148557,
+        "cu": 0.018000,
+        "llm": 0.048016425,
+        "other": 0.000132132,
+        "llmCalls": 4,
+        "seconds": 41.453
+      },
+      {
+        "id": "c1-001-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.535
+      },
+      {
+        "id": "c1-001-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.541
+      },
+      {
+        "id": "c1-001-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.046675355,
+        "cu": 0.005,
+        "llm": 0.041548800,
+        "other": 0.000126555,
+        "llmCalls": 3,
+        "seconds": 39.499
+      },
+      {
+        "id": "c1-001-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.045290105,
+        "cu": 0.005,
+        "llm": 0.040163550,
+        "other": 0.000126555,
+        "llmCalls": 3,
+        "seconds": 35.044
+      },
+      {
+        "id": "c1-002-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.974
+      },
+      {
+        "id": "c1-002-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013583175,
+        "cu": 0.012000,
+        "llm": 0.001583175,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.067
+      },
+      {
+        "id": "c1-002-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.013583175,
+        "cu": 0.012000,
+        "llm": 0.001583175,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 3.933
+      },
+      {
+        "id": "c1-002-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.065728500,
+        "cu": 0.012000,
+        "llm": 0.053728500,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 42.06
+      },
+      {
+        "id": "c1-003-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.015,
+        "cu": 0.015,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.361
+      },
+      {
+        "id": "c1-003-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.019945350,
+        "cu": 0.018000,
+        "llm": 0.001945350,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.399
+      },
+      {
+        "id": "c1-003-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.019965975,
+        "cu": 0.018000,
+        "llm": 0.001965975,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 5.313
+      },
+      {
+        "id": "c1-003-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.020148322,
+        "cu": 0.018000,
+        "llm": 0.002015475,
+        "other": 0.000132847,
+        "llmCalls": 1,
+        "seconds": 10.882
+      },
+      {
+        "id": "c1-004-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.543
+      },
+      {
+        "id": "c1-004-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013624645,
+        "cu": 0.012000,
+        "llm": 0.001497375,
+        "other": 0.000127270,
+        "llmCalls": 1,
+        "seconds": 7.266
+      },
+      {
+        "id": "c1-004-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012537375,
+        "cu": 0.012000,
+        "llm": 0.000537375,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.78
+      },
+      {
+        "id": "c1-004-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013671670,
+        "cu": 0.012000,
+        "llm": 0.001544400,
+        "other": 0.000127270,
+        "llmCalls": 1,
+        "seconds": 7.038
+      },
+      {
+        "id": "c1-005-native-pdf",
+        "path": "Review",
+        "cost": 0.053709604,
+        "cu": 0.012000,
+        "llm": 0.041584050,
+        "other": 0.000125554,
+        "llmCalls": 4,
+        "seconds": 41.825
+      },
+      {
+        "id": "c1-005-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013345575,
+        "cu": 0.012000,
+        "llm": 0.001345575,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.862
+      },
+      {
+        "id": "c1-005-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012385575,
+        "cu": 0.012000,
+        "llm": 0.000385575,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 3.917
+      },
+      {
+        "id": "c1-005-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.054464840,
+        "cu": 0.012000,
+        "llm": 0.042339000,
+        "other": 0.000125840,
+        "llmCalls": 4,
+        "seconds": 37.971
+      },
+      {
+        "id": "c1-006-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 5.596
+      },
+      {
+        "id": "c1-006-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013555950,
+        "cu": 0.012000,
+        "llm": 0.001555950,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.899
+      },
+      {
+        "id": "c1-006-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012595950,
+        "cu": 0.012000,
+        "llm": 0.000595950,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.354
+      },
+      {
+        "id": "c1-006-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.060649257,
+        "cu": 0.012000,
+        "llm": 0.048517125,
+        "other": 0.000132132,
+        "llmCalls": 4,
+        "seconds": 42.406
+      },
+      {
+        "id": "c1-007-native-pdf",
+        "path": "Review",
+        "cost": 0.044424907,
+        "cu": 0.005,
+        "llm": 0.039299925,
+        "other": 0.000124982,
+        "llmCalls": 3,
+        "seconds": 36.915
+      },
+      {
+        "id": "c1-007-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.446
+      },
+      {
+        "id": "c1-007-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.043377982,
+        "cu": 0.005,
+        "llm": 0.038253000,
+        "other": 0.000124982,
+        "llmCalls": 3,
+        "seconds": 37.623
+      },
+      {
+        "id": "c1-007-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.052408432,
+        "cu": 0.005,
+        "llm": 0.047283450,
+        "other": 0.000124982,
+        "llmCalls": 3,
+        "seconds": 37.993
+      },
+      {
+        "id": "c1-008-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.752
+      },
+      {
+        "id": "c1-008-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013541925,
+        "cu": 0.012000,
+        "llm": 0.001541925,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.024
+      },
+      {
+        "id": "c1-008-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012715630,
+        "cu": 0.012000,
+        "llm": 0.000581925,
+        "other": 0.000133705,
+        "llmCalls": 1,
+        "seconds": 5.567
+      },
+      {
+        "id": "c1-008-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013732841,
+        "cu": 0.012000,
+        "llm": 0.001598850,
+        "other": 0.000133991,
+        "llmCalls": 1,
+        "seconds": 8.206
+      },
+      {
+        "id": "c1-009-native-pdf",
+        "path": "Learned",
+        "cost": 0.018160223,
+        "cu": 0.005,
+        "llm": 0.012919125,
+        "other": 0.000241098,
+        "llmCalls": 1,
+        "seconds": 17.547
+      },
+      {
+        "id": "c1-009-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.342
+      },
+      {
+        "id": "c1-009-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005120549,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000120549,
+        "llmCalls": 0,
+        "seconds": 4.613
+      },
+      {
+        "id": "c1-009-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.005120835,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000120835,
+        "llmCalls": 0,
+        "seconds": 4.857
+      },
+      {
+        "id": "c1-010-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.089
+      },
+      {
+        "id": "c1-010-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.363
+      },
+      {
+        "id": "c1-010-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.187
+      },
+      {
+        "id": "c1-010-scan-150dpi-fax",
+        "path": "ReplayAccepted",
+        "cost": 0.005104819,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000104819,
+        "llmCalls": 0,
+        "seconds": 4.951
+      },
+      {
+        "id": "c1-011-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.829
+      },
+      {
+        "id": "c1-011-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013437975,
+        "cu": 0.012000,
+        "llm": 0.001437975,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 5.201
+      },
+      {
+        "id": "c1-011-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012603815,
+        "cu": 0.012000,
+        "llm": 0.000477975,
+        "other": 0.000125840,
+        "llmCalls": 1,
+        "seconds": 7.617
+      },
+      {
+        "id": "c1-011-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013571240,
+        "cu": 0.012000,
+        "llm": 0.001445400,
+        "other": 0.000125840,
+        "llmCalls": 1,
+        "seconds": 6.979
+      },
+      {
+        "id": "c1-012-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.294
+      },
+      {
+        "id": "c1-012-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005120263,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000120263,
+        "llmCalls": 0,
+        "seconds": 6.878
+      },
+      {
+        "id": "c1-012-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005120263,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000120263,
+        "llmCalls": 0,
+        "seconds": 4.945
+      },
+      {
+        "id": "c1-012-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.447
+      },
+      {
+        "id": "c1-013-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.853
+      },
+      {
+        "id": "c1-013-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.599
+      },
+      {
+        "id": "c1-013-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.050652560,
+        "cu": 0.005,
+        "llm": 0.045528150,
+        "other": 0.000124410,
+        "llmCalls": 3,
+        "seconds": 36.096
+      },
+      {
+        "id": "c1-013-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.043980185,
+        "cu": 0.005,
+        "llm": 0.038855775,
+        "other": 0.000124410,
+        "llmCalls": 3,
+        "seconds": 36.337
+      },
+      {
+        "id": "c1-014-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013295250,
+        "cu": 0.012000,
+        "llm": 0.001295250,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.144
+      },
+      {
+        "id": "c1-014-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013295250,
+        "cu": 0.012000,
+        "llm": 0.001295250,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.036
+      },
+      {
+        "id": "c1-014-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013293600,
+        "cu": 0.012000,
+        "llm": 0.001293600,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 3.761
+      },
+      {
+        "id": "c1-014-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013438844,
+        "cu": 0.012000,
+        "llm": 0.001312575,
+        "other": 0.000126269,
+        "llmCalls": 1,
+        "seconds": 5.135
+      },
+      {
+        "id": "c1-015-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010126555,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000126555,
+        "llmCalls": 0,
+        "seconds": 5.103
+      },
+      {
+        "id": "c1-015-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013656105,
+        "cu": 0.012000,
+        "llm": 0.001529550,
+        "other": 0.000126555,
+        "llmCalls": 1,
+        "seconds": 5.194
+      },
+      {
+        "id": "c1-015-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013533675,
+        "cu": 0.012000,
+        "llm": 0.001533675,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.237
+      },
+      {
+        "id": "c1-015-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013670955,
+        "cu": 0.012000,
+        "llm": 0.001544400,
+        "other": 0.000126555,
+        "llmCalls": 1,
+        "seconds": 5.503
+      },
+      {
+        "id": "c1-016-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010126555,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000126555,
+        "llmCalls": 0,
+        "seconds": 6.266
+      },
+      {
+        "id": "c1-016-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013566675,
+        "cu": 0.012000,
+        "llm": 0.001566675,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.015
+      },
+      {
+        "id": "c1-016-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013565025,
+        "cu": 0.012000,
+        "llm": 0.001565025,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.875
+      },
+      {
+        "id": "c1-016-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013750298,
+        "cu": 0.012000,
+        "llm": 0.001623600,
+        "other": 0.000126698,
+        "llmCalls": 1,
+        "seconds": 5.204
+      },
+      {
+        "id": "c1-017-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.937
+      },
+      {
+        "id": "c1-017-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.906
+      },
+      {
+        "id": "c1-017-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.527
+      },
+      {
+        "id": "c1-017-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.059271082,
+        "cu": 0.005,
+        "llm": 0.054146100,
+        "other": 0.000124982,
+        "llmCalls": 3,
+        "seconds": 42.928
+      },
+      {
+        "id": "c1-018-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.633
+      },
+      {
+        "id": "c1-018-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013546875,
+        "cu": 0.012000,
+        "llm": 0.001546875,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.378
+      },
+      {
+        "id": "c1-018-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013547700,
+        "cu": 0.012000,
+        "llm": 0.001547700,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.58
+      },
+      {
+        "id": "c1-018-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013732291,
+        "cu": 0.012000,
+        "llm": 0.001605450,
+        "other": 0.000126841,
+        "llmCalls": 1,
+        "seconds": 10.318
+      },
+      {
+        "id": "c1-019-native-pdf",
+        "path": "Review",
+        "cost": 0.061289563,
+        "cu": 0.010,
+        "llm": 0.051162150,
+        "other": 0.000127413,
+        "llmCalls": 3,
+        "seconds": 43.341
+      },
+      {
+        "id": "c1-019-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.056788938,
+        "cu": 0.012000,
+        "llm": 0.044661525,
+        "other": 0.000127413,
+        "llmCalls": 4,
+        "seconds": 36.439
+      },
+      {
+        "id": "c1-019-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.053897688,
+        "cu": 0.012000,
+        "llm": 0.041770275,
+        "other": 0.000127413,
+        "llmCalls": 4,
+        "seconds": 40.757
+      },
+      {
+        "id": "c1-019-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.054256488,
+        "cu": 0.012000,
+        "llm": 0.042129075,
+        "other": 0.000127413,
+        "llmCalls": 4,
+        "seconds": 36.629
+      },
+      {
+        "id": "c1-020-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.197
+      },
+      {
+        "id": "c1-020-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013516350,
+        "cu": 0.012000,
+        "llm": 0.001516350,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.182
+      },
+      {
+        "id": "c1-020-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013516350,
+        "cu": 0.012000,
+        "llm": 0.001516350,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.519
+      },
+      {
+        "id": "c1-020-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.060255876,
+        "cu": 0.012000,
+        "llm": 0.048129750,
+        "other": 0.000126126,
+        "llmCalls": 4,
+        "seconds": 46.443
+      },
+      {
+        "id": "c1-021-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.995
+      },
+      {
+        "id": "c1-021-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013553475,
+        "cu": 0.012000,
+        "llm": 0.001553475,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.514
+      },
+      {
+        "id": "c1-021-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013560900,
+        "cu": 0.012000,
+        "llm": 0.001560900,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 9.578
+      },
+      {
+        "id": "c1-021-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.061277015,
+        "cu": 0.012000,
+        "llm": 0.049151175,
+        "other": 0.000125840,
+        "llmCalls": 4,
+        "seconds": 42.702
+      },
+      {
+        "id": "c1-022-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.198
+      },
+      {
+        "id": "c1-022-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.13
+      },
+      {
+        "id": "c1-022-scan-200dpi-rotated-noisy",
+        "path": "Learned",
+        "cost": 0.019272103,
+        "cu": 0.005,
+        "llm": 0.014029575,
+        "other": 0.000242528,
+        "llmCalls": 1,
+        "seconds": 17.19
+      },
+      {
+        "id": "c1-022-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.833
+      },
+      {
+        "id": "c1-023-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.010133705,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000133705,
+        "llmCalls": 0,
+        "seconds": 6.667
+      },
+      {
+        "id": "c1-023-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013555950,
+        "cu": 0.012000,
+        "llm": 0.001555950,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.823
+      },
+      {
+        "id": "c1-023-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013555950,
+        "cu": 0.012000,
+        "llm": 0.001555950,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.442
+      },
+      {
+        "id": "c1-023-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013735855,
+        "cu": 0.012000,
+        "llm": 0.001602150,
+        "other": 0.000133705,
+        "llmCalls": 1,
+        "seconds": 6.334
+      },
+      {
+        "id": "c1-024-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.586
+      },
+      {
+        "id": "c1-025-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.505
+      },
+      {
+        "id": "c1-026-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.013427184,
+        "cu": 0.012000,
+        "llm": 0.001300200,
+        "other": 0.000126984,
+        "llmCalls": 1,
+        "seconds": 7.844
+      },
+      {
+        "id": "c1-027-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.010,
+        "cu": 0.010,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.565
+      },
+      {
+        "id": "c1-028-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.015,
+        "cu": 0.015,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.142
+      },
+      {
+        "id": "c1-029-native-pdf-locked",
+        "path": "Learned",
+        "cost": 0.019716602,
+        "cu": 0.005,
+        "llm": 0.014464350,
+        "other": 0.000252252,
+        "llmCalls": 1,
+        "seconds": 18.293
+      },
+      {
+        "id": "c1-030-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.038319900,
+        "cu": 0.036000,
+        "llm": 0.002319900,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.434
+      },
+      {
+        "id": "c1-031-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.031906575,
+        "cu": 0.030000,
+        "llm": 0.001906575,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 5.201
+      },
+      {
+        "id": "c1-032-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.031791900,
+        "cu": 0.030000,
+        "llm": 0.001791900,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 8.477
+      },
+      {
+        "id": "c1-033-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.032050543,
+        "cu": 0.030000,
+        "llm": 0.001918125,
+        "other": 0.000132418,
+        "llmCalls": 1,
+        "seconds": 7.138
+      },
+      {
+        "id": "c1-034-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.038437325,
+        "cu": 0.036000,
+        "llm": 0.002305050,
+        "other": 0.000132275,
+        "llmCalls": 1,
+        "seconds": 15.218
+      },
+      {
+        "id": "c1-035-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.032040379,
+        "cu": 0.030000,
+        "llm": 0.001914825,
+        "other": 0.000125554,
+        "llmCalls": 1,
+        "seconds": 6.968
+      },
+      {
+        "id": "c1-036-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.025503150,
+        "cu": 0.024000,
+        "llm": 0.001503150,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.178
+      },
+      {
+        "id": "c1-037-native-pdf-bundle",
+        "path": "ReplayAccepted",
+        "cost": 0.032037112,
+        "cu": 0.030000,
+        "llm": 0.001910700,
+        "other": 0.000126412,
+        "llmCalls": 1,
+        "seconds": 10.89
+      },
+      {
+        "id": "c2-000-native-pdf",
+        "path": "Learned",
+        "cost": 0.032116580,
+        "cu": 0.012000,
+        "llm": 0.019836300,
+        "other": 0.000280280,
+        "llmCalls": 2,
+        "seconds": 18.909
+      },
+      {
+        "id": "c2-000-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.012689208,
+        "cu": 0.012000,
+        "llm": 0.000548925,
+        "other": 0.000140283,
+        "llmCalls": 1,
+        "seconds": 5.331
+      },
+      {
+        "id": "c2-000-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.013654983,
+        "cu": 0.012000,
+        "llm": 0.001514700,
+        "other": 0.000140283,
+        "llmCalls": 1,
+        "seconds": 8.664
+      },
+      {
+        "id": "c2-000-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.078440623,
+        "cu": 0.012000,
+        "llm": 0.066299625,
+        "other": 0.000140998,
+        "llmCalls": 5,
+        "seconds": 52.782
+      },
+      {
+        "id": "c2-001-native-pdf",
+        "path": "Learned",
+        "cost": 0.035213333,
+        "cu": 0.005,
+        "llm": 0.029933625,
+        "other": 0.000279708,
+        "llmCalls": 2,
+        "seconds": 37.2
+      },
+      {
+        "id": "c2-001-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.385
+      },
+      {
+        "id": "c2-001-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.637
+      },
+      {
+        "id": "c2-001-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.064321400,
+        "cu": 0.005,
+        "llm": 0.059321400,
+        "other": 0.000000000,
+        "llmCalls": 4,
+        "seconds": 50.462
+      },
+      {
+        "id": "c2-002-native-pdf",
+        "path": "Learned",
+        "cost": 0.031062428,
+        "cu": 0.012000,
+        "llm": 0.018777000,
+        "other": 0.000285428,
+        "llmCalls": 2,
+        "seconds": 20.614
+      },
+      {
+        "id": "c2-002-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013650132,
+        "cu": 0.012000,
+        "llm": 0.001507275,
+        "other": 0.000142857,
+        "llmCalls": 1,
+        "seconds": 10.669
+      },
+      {
+        "id": "c2-002-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012689989,
+        "cu": 0.012000,
+        "llm": 0.000547275,
+        "other": 0.000142714,
+        "llmCalls": 1,
+        "seconds": 7.055
+      },
+      {
+        "id": "c2-002-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.066636975,
+        "cu": 0.012000,
+        "llm": 0.054636975,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 53.038
+      },
+      {
+        "id": "c2-003-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.477
+      },
+      {
+        "id": "c2-003-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 5.708
+      },
+      {
+        "id": "c2-003-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.894
+      },
+      {
+        "id": "c2-003-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.048830145,
+        "cu": 0.005,
+        "llm": 0.043702875,
+        "other": 0.000127270,
+        "llmCalls": 3,
+        "seconds": 53.582
+      },
+      {
+        "id": "c2-004-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.503
+      },
+      {
+        "id": "c2-004-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 5.019
+      },
+      {
+        "id": "c2-004-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.265
+      },
+      {
+        "id": "c2-004-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.513
+      },
+      {
+        "id": "c2-005-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013648306,
+        "cu": 0.012000,
+        "llm": 0.001506450,
+        "other": 0.000141856,
+        "llmCalls": 1,
+        "seconds": 14.146
+      },
+      {
+        "id": "c2-005-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.012688592,
+        "cu": 0.012000,
+        "llm": 0.000546450,
+        "other": 0.000142142,
+        "llmCalls": 1,
+        "seconds": 21.569
+      },
+      {
+        "id": "c2-005-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012688449,
+        "cu": 0.012000,
+        "llm": 0.000546450,
+        "other": 0.000141999,
+        "llmCalls": 1,
+        "seconds": 7.557
+      },
+      {
+        "id": "c2-005-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.067560725,
+        "cu": 0.012000,
+        "llm": 0.055417725,
+        "other": 0.000143000,
+        "llmCalls": 5,
+        "seconds": 48.396
+      },
+      {
+        "id": "c2-006-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013519650,
+        "cu": 0.012000,
+        "llm": 0.001519650,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 6.816
+      },
+      {
+        "id": "c2-006-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013519650,
+        "cu": 0.012000,
+        "llm": 0.001519650,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.608
+      },
+      {
+        "id": "c2-006-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.013513050,
+        "cu": 0.012000,
+        "llm": 0.001513050,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 6.026
+      },
+      {
+        "id": "c2-006-scan-150dpi-fax",
+        "path": "not-found",
+        "cost": 0.013545225,
+        "cu": 0.012000,
+        "llm": 0.001545225,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 6.026
+      },
+      {
+        "id": "c2-007-native-pdf",
+        "path": "Review",
+        "cost": 0.013661517,
+        "cu": 0.012000,
+        "llm": 0.001522950,
+        "other": 0.000138567,
+        "llmCalls": 1,
+        "seconds": 9.071
+      },
+      {
+        "id": "c2-007-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.057841453,
+        "cu": 0.012000,
+        "llm": 0.045702600,
+        "other": 0.000138853,
+        "llmCalls": 4,
+        "seconds": 44.717
+      },
+      {
+        "id": "c2-007-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013514700,
+        "cu": 0.012000,
+        "llm": 0.001514700,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.803
+      },
+      {
+        "id": "c2-007-scan-150dpi-fax",
+        "path": "not-found",
+        "cost": 0.013543575,
+        "cu": 0.012000,
+        "llm": 0.001543575,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.626
+      },
+      {
+        "id": "c2-008-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.583
+      },
+      {
+        "id": "c2-008-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.507
+      },
+      {
+        "id": "c2-008-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.586
+      },
+      {
+        "id": "c2-008-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.050565331,
+        "cu": 0.005,
+        "llm": 0.045437775,
+        "other": 0.000127556,
+        "llmCalls": 3,
+        "seconds": 45.646
+      },
+      {
+        "id": "c2-009-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013507275,
+        "cu": 0.012000,
+        "llm": 0.001507275,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.83
+      },
+      {
+        "id": "c2-009-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.056266385,
+        "cu": 0.012000,
+        "llm": 0.044127675,
+        "other": 0.000138710,
+        "llmCalls": 4,
+        "seconds": 38.654
+      },
+      {
+        "id": "c2-009-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013503975,
+        "cu": 0.012000,
+        "llm": 0.001503975,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.89
+      },
+      {
+        "id": "c2-009-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.067912725,
+        "cu": 0.012000,
+        "llm": 0.055912725,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 52.836
+      },
+      {
+        "id": "c2-010-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013291125,
+        "cu": 0.012000,
+        "llm": 0.001291125,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.55
+      },
+      {
+        "id": "c2-010-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013291125,
+        "cu": 0.012000,
+        "llm": 0.001291125,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 5.463
+      },
+      {
+        "id": "c2-010-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013301850,
+        "cu": 0.012000,
+        "llm": 0.001301850,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.171
+      },
+      {
+        "id": "c2-010-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.071195775,
+        "cu": 0.012000,
+        "llm": 0.059195775,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 46.457
+      },
+      {
+        "id": "c2-011-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013506450,
+        "cu": 0.012000,
+        "llm": 0.001506450,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.441
+      },
+      {
+        "id": "c2-011-scan-300dpi-clean",
+        "path": "Learned",
+        "cost": 0.044536197,
+        "cu": 0.012000,
+        "llm": 0.032249625,
+        "other": 0.000286572,
+        "llmCalls": 3,
+        "seconds": 34.799
+      },
+      {
+        "id": "c2-011-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.013520475,
+        "cu": 0.012000,
+        "llm": 0.001520475,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 8.222
+      },
+      {
+        "id": "c2-011-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.070387050,
+        "cu": 0.012000,
+        "llm": 0.058387050,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 54.06
+      },
+      {
+        "id": "c2-012-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.5
+      },
+      {
+        "id": "c2-012-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.657
+      },
+      {
+        "id": "c2-012-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.619
+      },
+      {
+        "id": "c2-012-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.055426925,
+        "cu": 0.005,
+        "llm": 0.050426925,
+        "other": 0.000000000,
+        "llmCalls": 4,
+        "seconds": 44.079
+      },
+      {
+        "id": "c2-013-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.743
+      },
+      {
+        "id": "c2-013-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.72
+      },
+      {
+        "id": "c2-013-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.737
+      },
+      {
+        "id": "c2-013-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.057701675,
+        "cu": 0.005,
+        "llm": 0.052701675,
+        "other": 0.000000000,
+        "llmCalls": 4,
+        "seconds": 47.363
+      },
+      {
+        "id": "c2-014-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013527075,
+        "cu": 0.012000,
+        "llm": 0.001527075,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.684
+      },
+      {
+        "id": "c2-014-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.012567075,
+        "cu": 0.012000,
+        "llm": 0.000567075,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 5.304
+      },
+      {
+        "id": "c2-014-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013533675,
+        "cu": 0.012000,
+        "llm": 0.001533675,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.348
+      },
+      {
+        "id": "c2-014-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.067022025,
+        "cu": 0.012000,
+        "llm": 0.055022025,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 46.305
+      },
+      {
+        "id": "c2-015-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.407
+      },
+      {
+        "id": "c2-015-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 6.129
+      },
+      {
+        "id": "c2-015-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 2.122
+      },
+      {
+        "id": "c2-015-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.051222875,
+        "cu": 0.005,
+        "llm": 0.046222875,
+        "other": 0.000000000,
+        "llmCalls": 3,
+        "seconds": 55.67
+      },
+      {
+        "id": "c2-016-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.318
+      },
+      {
+        "id": "c2-016-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.428
+      },
+      {
+        "id": "c2-016-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.422
+      },
+      {
+        "id": "c2-016-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.057531729,
+        "cu": 0.005,
+        "llm": 0.052395450,
+        "other": 0.000136279,
+        "llmCalls": 4,
+        "seconds": 55.128
+      },
+      {
+        "id": "c2-017-native-pdf",
+        "path": "Review",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.602
+      },
+      {
+        "id": "c2-017-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 3.649
+      },
+      {
+        "id": "c2-017-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.53
+      },
+      {
+        "id": "c2-017-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.060178475,
+        "cu": 0.005,
+        "llm": 0.055178475,
+        "other": 0.000000000,
+        "llmCalls": 4,
+        "seconds": 49.409
+      },
+      {
+        "id": "c2-018-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.084
+      },
+      {
+        "id": "c2-018-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 5.436
+      },
+      {
+        "id": "c2-018-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.005,
+        "cu": 0.005,
+        "llm": 0,
+        "other": 0.000,
+        "llmCalls": 0,
+        "seconds": 4.718
+      },
+      {
+        "id": "c2-018-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.059936000,
+        "cu": 0.005,
+        "llm": 0.054936000,
+        "other": 0.000000000,
+        "llmCalls": 4,
+        "seconds": 48.793
+      },
+      {
+        "id": "c2-019-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013333200,
+        "cu": 0.012000,
+        "llm": 0.001333200,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.579
+      },
+      {
+        "id": "c2-019-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013468478,
+        "cu": 0.012000,
+        "llm": 0.001333200,
+        "other": 0.000135278,
+        "llmCalls": 1,
+        "seconds": 6.386
+      },
+      {
+        "id": "c2-019-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013344750,
+        "cu": 0.012000,
+        "llm": 0.001344750,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.671
+      },
+      {
+        "id": "c2-019-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.069943500,
+        "cu": 0.012000,
+        "llm": 0.057943500,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 49.72
+      },
+      {
+        "id": "c2-020-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013293600,
+        "cu": 0.012000,
+        "llm": 0.001293600,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 6.677
+      },
+      {
+        "id": "c2-020-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013293600,
+        "cu": 0.012000,
+        "llm": 0.001293600,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.185
+      },
+      {
+        "id": "c2-020-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013304325,
+        "cu": 0.012000,
+        "llm": 0.001304325,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.052
+      },
+      {
+        "id": "c2-020-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.065921025,
+        "cu": 0.012000,
+        "llm": 0.053921025,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 44.49
+      },
+      {
+        "id": "c2-021-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013292775,
+        "cu": 0.012000,
+        "llm": 0.001292775,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 3.918
+      },
+      {
+        "id": "c2-021-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013426766,
+        "cu": 0.012000,
+        "llm": 0.001292775,
+        "other": 0.000133991,
+        "llmCalls": 1,
+        "seconds": 6.271
+      },
+      {
+        "id": "c2-021-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.013299375,
+        "cu": 0.012000,
+        "llm": 0.001299375,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 5.41
+      },
+      {
+        "id": "c2-021-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.013313400,
+        "cu": 0.012000,
+        "llm": 0.001313400,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 3.993
+      },
+      {
+        "id": "c2-022-native-pdf",
+        "path": "ReplayAccepted",
+        "cost": 0.013517175,
+        "cu": 0.012000,
+        "llm": 0.001517175,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.259
+      },
+      {
+        "id": "c2-022-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013517175,
+        "cu": 0.012000,
+        "llm": 0.001517175,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.32
+      },
+      {
+        "id": "c2-022-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.012557175,
+        "cu": 0.012000,
+        "llm": 0.000557175,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.56
+      },
+      {
+        "id": "c2-022-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.069560700,
+        "cu": 0.012000,
+        "llm": 0.057560700,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 68.177
+      },
+      {
+        "id": "c2-023-native-pdf",
+        "path": "Learned",
+        "cost": 0.032337031,
+        "cu": 0.012000,
+        "llm": 0.020066475,
+        "other": 0.000270556,
+        "llmCalls": 2,
+        "seconds": 19.488
+      },
+      {
+        "id": "c2-023-scan-300dpi-clean",
+        "path": "ReplayAccepted",
+        "cost": 0.013642696,
+        "cu": 0.012000,
+        "llm": 0.001507275,
+        "other": 0.000135421,
+        "llmCalls": 1,
+        "seconds": 6.095
+      },
+      {
+        "id": "c2-023-scan-200dpi-rotated-noisy",
+        "path": "ReplayAccepted",
+        "cost": 0.013529550,
+        "cu": 0.012000,
+        "llm": 0.001529550,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 7.001
+      },
+      {
+        "id": "c2-023-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.078413925,
+        "cu": 0.012000,
+        "llm": 0.066413925,
+        "other": 0.000000000,
+        "llmCalls": 5,
+        "seconds": 50.204
+      },
+      {
+        "id": "c2-024-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.013480050,
+        "cu": 0.012000,
+        "llm": 0.001480050,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 6.802
+      },
+      {
+        "id": "c2-025-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.013520475,
+        "cu": 0.012000,
+        "llm": 0.001520475,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.303
+      },
+      {
+        "id": "c2-026-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.013652321,
+        "cu": 0.012000,
+        "llm": 0.001509750,
+        "other": 0.000142571,
+        "llmCalls": 1,
+        "seconds": 8.417
+      },
+      {
+        "id": "c2-027-native-pdf-locked",
+        "path": "ReplayAccepted",
+        "cost": 0.013510575,
+        "cu": 0.012000,
+        "llm": 0.001510575,
+        "other": 0.000000000,
+        "llmCalls": 1,
+        "seconds": 4.533
+      },
+      {
+        "id": "c3-000-native-pdf",
+        "path": "Review",
+        "cost": 0.048657419,
+        "cu": 0.012000,
+        "llm": 0.036563325,
+        "other": 0.000094094,
+        "llmCalls": 4,
+        "seconds": 42.22
+      },
+      {
+        "id": "c3-000-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.049207994,
+        "cu": 0.012000,
+        "llm": 0.037113900,
+        "other": 0.000094094,
+        "llmCalls": 4,
+        "seconds": 43.029
+      },
+      {
+        "id": "c3-000-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.047554694,
+        "cu": 0.012000,
+        "llm": 0.035460600,
+        "other": 0.000094094,
+        "llmCalls": 4,
+        "seconds": 44.28
+      },
+      {
+        "id": "c3-000-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.056328522,
+        "cu": 0.012000,
+        "llm": 0.044235000,
+        "other": 0.000093522,
+        "llmCalls": 4,
+        "seconds": 44.042
+      },
+      {
+        "id": "c3-001-native-pdf",
+        "path": "Review",
+        "cost": 0.060954105,
+        "cu": 0.012000,
+        "llm": 0.048859725,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 40.499
+      },
+      {
+        "id": "c3-001-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.050442630,
+        "cu": 0.012000,
+        "llm": 0.038348250,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 49.751
+      },
+      {
+        "id": "c3-001-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.055620330,
+        "cu": 0.012000,
+        "llm": 0.043525950,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 40.153
+      },
+      {
+        "id": "c3-001-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.056102934,
+        "cu": 0.012000,
+        "llm": 0.044008125,
+        "other": 0.000094809,
+        "llmCalls": 4,
+        "seconds": 39.326
+      },
+      {
+        "id": "c3-002-native-pdf",
+        "path": "Review",
+        "cost": 0.061835184,
+        "cu": 0.018000,
+        "llm": 0.043740375,
+        "other": 0.000094809,
+        "llmCalls": 4,
+        "seconds": 45.876
+      },
+      {
+        "id": "c3-002-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.069273009,
+        "cu": 0.018000,
+        "llm": 0.051178200,
+        "other": 0.000094809,
+        "llmCalls": 4,
+        "seconds": 56.312
+      },
+      {
+        "id": "c3-002-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.066414909,
+        "cu": 0.018000,
+        "llm": 0.048320100,
+        "other": 0.000094809,
+        "llmCalls": 4,
+        "seconds": 49.669
+      },
+      {
+        "id": "c3-002-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.059592370,
+        "cu": 0.018000,
+        "llm": 0.041497275,
+        "other": 0.000095095,
+        "llmCalls": 4,
+        "seconds": 44.869
+      },
+      {
+        "id": "c3-003-native-pdf",
+        "path": "Review",
+        "cost": 0.063278887,
+        "cu": 0.018000,
+        "llm": 0.045184650,
+        "other": 0.000094237,
+        "llmCalls": 4,
+        "seconds": 45.197
+      },
+      {
+        "id": "c3-003-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.052435462,
+        "cu": 0.018000,
+        "llm": 0.034341225,
+        "other": 0.000094237,
+        "llmCalls": 4,
+        "seconds": 42.086
+      },
+      {
+        "id": "c3-003-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.062906287,
+        "cu": 0.018000,
+        "llm": 0.044812050,
+        "other": 0.000094237,
+        "llmCalls": 4,
+        "seconds": 52.403
+      },
+      {
+        "id": "c3-003-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.068453901,
+        "cu": 0.018000,
+        "llm": 0.050359950,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 53.331
+      },
+      {
+        "id": "c3-004-native-pdf",
+        "path": "Review",
+        "cost": 0.062783301,
+        "cu": 0.012000,
+        "llm": 0.050689350,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 48.241
+      },
+      {
+        "id": "c3-004-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.056087601,
+        "cu": 0.012000,
+        "llm": 0.043993650,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 44.226
+      },
+      {
+        "id": "c3-004-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.056670426,
+        "cu": 0.012000,
+        "llm": 0.044576475,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 46.492
+      },
+      {
+        "id": "c3-004-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.057840208,
+        "cu": 0.012000,
+        "llm": 0.045746400,
+        "other": 0.000093808,
+        "llmCalls": 4,
+        "seconds": 39.866
+      },
+      {
+        "id": "c3-005-native-pdf",
+        "path": "Review",
+        "cost": 0.068439295,
+        "cu": 0.018000,
+        "llm": 0.050344200,
+        "other": 0.000095095,
+        "llmCalls": 4,
+        "seconds": 47.525
+      },
+      {
+        "id": "c3-005-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.063348970,
+        "cu": 0.018000,
+        "llm": 0.045253875,
+        "other": 0.000095095,
+        "llmCalls": 4,
+        "seconds": 55.343
+      },
+      {
+        "id": "c3-005-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.060576970,
+        "cu": 0.018000,
+        "llm": 0.042481875,
+        "other": 0.000095095,
+        "llmCalls": 4,
+        "seconds": 41.815
+      },
+      {
+        "id": "c3-005-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.074282259,
+        "cu": 0.018000,
+        "llm": 0.056187450,
+        "other": 0.000094809,
+        "llmCalls": 4,
+        "seconds": 47.298
+      },
+      {
+        "id": "c3-006-native-pdf",
+        "path": "Review",
+        "cost": 0.043115083,
+        "cu": 0.012000,
+        "llm": 0.031021275,
+        "other": 0.000093808,
+        "llmCalls": 4,
+        "seconds": 30.167
+      },
+      {
+        "id": "c3-006-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.054368383,
+        "cu": 0.012000,
+        "llm": 0.042274575,
+        "other": 0.000093808,
+        "llmCalls": 4,
+        "seconds": 45.388
+      },
+      {
+        "id": "c3-006-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.054263683,
+        "cu": 0.012000,
+        "llm": 0.042169875,
+        "other": 0.000093808,
+        "llmCalls": 4,
+        "seconds": 40.539
+      },
+      {
+        "id": "c3-006-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.051330023,
+        "cu": 0.012000,
+        "llm": 0.039235500,
+        "other": 0.000094523,
+        "llmCalls": 4,
+        "seconds": 36.557
+      },
+      {
+        "id": "c3-007-native-pdf",
+        "path": "Review",
+        "cost": 0.059789601,
+        "cu": 0.018000,
+        "llm": 0.041695650,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 43.847
+      },
+      {
+        "id": "c3-007-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.061726101,
+        "cu": 0.018000,
+        "llm": 0.043632150,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 44.237
+      },
+      {
+        "id": "c3-007-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.061669701,
+        "cu": 0.018000,
+        "llm": 0.043575750,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 50.404
+      },
+      {
+        "id": "c3-007-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.067555797,
+        "cu": 0.018000,
+        "llm": 0.049462275,
+        "other": 0.000093522,
+        "llmCalls": 4,
+        "seconds": 51.29
+      },
+      {
+        "id": "c3-008-native-pdf",
+        "path": "Review",
+        "cost": 0.059230251,
+        "cu": 0.018000,
+        "llm": 0.041136300,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 39.318
+      },
+      {
+        "id": "c3-008-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.066100476,
+        "cu": 0.018000,
+        "llm": 0.048006525,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 46.008
+      },
+      {
+        "id": "c3-008-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.060829476,
+        "cu": 0.018000,
+        "llm": 0.042735525,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 39.816
+      },
+      {
+        "id": "c3-008-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.062027416,
+        "cu": 0.018000,
+        "llm": 0.043932750,
+        "other": 0.000094666,
+        "llmCalls": 4,
+        "seconds": 50.294
+      },
+      {
+        "id": "c3-009-native-pdf",
+        "path": "Review",
+        "cost": 0.064641480,
+        "cu": 0.018000,
+        "llm": 0.046547100,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 47.455
+      },
+      {
+        "id": "c3-009-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.053456955,
+        "cu": 0.018000,
+        "llm": 0.035362575,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 41.541
+      },
+      {
+        "id": "c3-009-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.063893130,
+        "cu": 0.018000,
+        "llm": 0.045798750,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 45.804
+      },
+      {
+        "id": "c3-009-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.066795377,
+        "cu": 0.018000,
+        "llm": 0.048700425,
+        "other": 0.000094952,
+        "llmCalls": 4,
+        "seconds": 44.497
+      },
+      {
+        "id": "c3-010-native-pdf",
+        "path": "Review",
+        "cost": 0.059006123,
+        "cu": 0.012000,
+        "llm": 0.046911600,
+        "other": 0.000094523,
+        "llmCalls": 4,
+        "seconds": 46.298
+      },
+      {
+        "id": "c3-010-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.049049648,
+        "cu": 0.012000,
+        "llm": 0.036955125,
+        "other": 0.000094523,
+        "llmCalls": 4,
+        "seconds": 40.736
+      },
+      {
+        "id": "c3-010-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.048704423,
+        "cu": 0.012000,
+        "llm": 0.036609900,
+        "other": 0.000094523,
+        "llmCalls": 4,
+        "seconds": 41.662
+      },
+      {
+        "id": "c3-010-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.058834401,
+        "cu": 0.012000,
+        "llm": 0.046740450,
+        "other": 0.000093951,
+        "llmCalls": 4,
+        "seconds": 41.495
+      },
+      {
+        "id": "c3-011-native-pdf",
+        "path": "Review",
+        "cost": 0.067461330,
+        "cu": 0.018000,
+        "llm": 0.049366950,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 45.967
+      },
+      {
+        "id": "c3-011-scan-300dpi-clean",
+        "path": "Review",
+        "cost": 0.065612055,
+        "cu": 0.018000,
+        "llm": 0.047517675,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 46.743
+      },
+      {
+        "id": "c3-011-scan-200dpi-rotated-noisy",
+        "path": "Review",
+        "cost": 0.068816580,
+        "cu": 0.018000,
+        "llm": 0.050722200,
+        "other": 0.000094380,
+        "llmCalls": 4,
+        "seconds": 43.999
+      },
+      {
+        "id": "c3-011-scan-150dpi-fax",
+        "path": "Review",
+        "cost": 0.064618059,
+        "cu": 0.018000,
+        "llm": 0.046523250,
+        "other": 0.000094809,
+        "llmCalls": 4,
+        "seconds": 45.398
+      },
+      {
+        "id": "c4-000-xlsx",
+        "path": "Learned",
+        "cost": 0.043168125,
+        "cu": 0,
+        "llm": 0.043168125,
+        "other": 0.000000000,
+        "llmCalls": 3,
+        "seconds": 39.966
+      },
+      {
+        "id": "c4-001-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.106
+      },
+      {
+        "id": "c4-002-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.084
+      },
+      {
+        "id": "c4-003-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.046
+      },
+      {
+        "id": "c4-004-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.123
+      },
+      {
+        "id": "c4-005-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.091
+      },
+      {
+        "id": "c4-006-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.068
+      },
+      {
+        "id": "c4-007-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.064
+      },
+      {
+        "id": "c4-008-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.133
+      },
+      {
+        "id": "c4-009-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.103
+      },
+      {
+        "id": "c4-010-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.022
+      },
+      {
+        "id": "c4-011-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.108
+      },
+      {
+        "id": "c4-012-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.144
+      },
+      {
+        "id": "c4-013-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.029
+      },
+      {
+        "id": "c4-014-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.106
+      },
+      {
+        "id": "c4-015-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.053
+      },
+      {
+        "id": "c4-016-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.104
+      },
+      {
+        "id": "c4-017-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.108
+      },
+      {
+        "id": "c4-018-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.068
+      },
+      {
+        "id": "c4-019-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.139
+      },
+      {
+        "id": "c4-020-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.057
+      },
+      {
+        "id": "c4-021-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.091
+      },
+      {
+        "id": "c4-022-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.03
+      },
+      {
+        "id": "c4-023-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.071
+      },
+      {
+        "id": "c4-024-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.046
+      },
+      {
+        "id": "c4-025-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.086
+      },
+      {
+        "id": "c4-026-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.023
+      },
+      {
+        "id": "c4-027-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.056
+      },
+      {
+        "id": "c4-028-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.083
+      },
+      {
+        "id": "c4-029-xlsx",
+        "path": "Review",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.046
+      },
+      {
+        "id": "c4-030-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.077
+      },
+      {
+        "id": "c4-031-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.062
+      },
+      {
+        "id": "c4-032-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.045
+      },
+      {
+        "id": "c4-033-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.053
+      },
+      {
+        "id": "c4-034-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.037
+      },
+      {
+        "id": "c4-035-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.053
+      },
+      {
+        "id": "c4-036-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.077
+      },
+      {
+        "id": "c4-037-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.118
+      },
+      {
+        "id": "c4-038-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.098
+      },
+      {
+        "id": "c4-039-xlsx",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.091
+      },
+      {
+        "id": "c5-000-csv",
+        "path": "Learned",
+        "cost": 0.036083475,
+        "cu": 0,
+        "llm": 0.036083475,
+        "other": 0.000000000,
+        "llmCalls": 3,
+        "seconds": 33.026
+      },
+      {
+        "id": "c5-001-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.116
+      },
+      {
+        "id": "c5-002-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.11
+      },
+      {
+        "id": "c5-003-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.103
+      },
+      {
+        "id": "c5-004-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.044
+      },
+      {
+        "id": "c5-005-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.105
+      },
+      {
+        "id": "c5-006-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.108
+      },
+      {
+        "id": "c5-007-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.076
+      },
+      {
+        "id": "c5-008-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.027
+      },
+      {
+        "id": "c5-009-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.046
+      },
+      {
+        "id": "c5-010-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.051
+      },
+      {
+        "id": "c5-011-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.045
+      },
+      {
+        "id": "c5-012-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.046
+      },
+      {
+        "id": "c5-013-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.037
+      },
+      {
+        "id": "c5-014-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.025
+      },
+      {
+        "id": "c5-015-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.061
+      },
+      {
+        "id": "c5-016-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.097
+      },
+      {
+        "id": "c5-017-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.044
+      },
+      {
+        "id": "c5-018-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.046
+      },
+      {
+        "id": "c5-019-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.163
+      },
+      {
+        "id": "c5-020-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.045
+      },
+      {
+        "id": "c5-021-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.137
+      },
+      {
+        "id": "c5-022-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.095
+      },
+      {
+        "id": "c5-023-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.083
+      },
+      {
+        "id": "c5-024-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.091
+      },
+      {
+        "id": "c5-025-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.109
+      },
+      {
+        "id": "c5-026-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.021
+      },
+      {
+        "id": "c5-027-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.104
+      },
+      {
+        "id": "c5-028-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.068
+      },
+      {
+        "id": "c5-029-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.065
+      },
+      {
+        "id": "c5-030-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.094
+      },
+      {
+        "id": "c5-031-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.123
+      },
+      {
+        "id": "c5-032-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.017
+      },
+      {
+        "id": "c5-033-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.036
+      },
+      {
+        "id": "c5-034-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.052
+      },
+      {
+        "id": "c5-035-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.068
+      },
+      {
+        "id": "c5-036-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.094
+      },
+      {
+        "id": "c5-037-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.046
+      },
+      {
+        "id": "c5-038-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.028
+      },
+      {
+        "id": "c5-039-csv",
+        "path": "ReplayAccepted",
+        "cost": 0,
+        "cu": 0,
+        "llm": 0,
+        "other": 0,
+        "llmCalls": 0,
+        "seconds": 0.021
+      }
+    ],
+    "breakEven": [
+      {
+        "carrier": "c1",
+        "docs": 110,
+        "llmUsd": 1.014288900,
+        "zeroCallDocs": 38,
+        "perCallUsd": 0.0081797491935483870967741935,
+        "modelPerDocUsd": 0.8997724112903225806451612850,
+        "breakEvenDoc": 125
+      },
+      {
+        "carrier": "c2",
+        "docs": 100,
+        "llmUsd": 1.368424425,
+        "zeroCallDocs": 30,
+        "perCallUsd": 0.0091228295,
+        "modelPerDocUsd": 0.9122829500,
+        "breakEvenDoc": 150
+      },
+      {
+        "carrier": "c3",
+        "docs": 48,
+        "llmUsd": 2.113456125,
+        "zeroCallDocs": 0,
+        "perCallUsd": 0.011007583984375,
+        "modelPerDocUsd": 0.528364031250000,
+        "breakEvenDoc": 192
+      },
+      {
+        "carrier": "c4",
+        "docs": 40,
+        "llmUsd": 0.043168125,
+        "zeroCallDocs": 39,
+        "perCallUsd": 0.014389375,
+        "modelPerDocUsd": 0.575575000,
+        "breakEvenDoc": 3
+      },
+      {
+        "carrier": "c5",
+        "docs": 40,
+        "llmUsd": 0.036083475,
+        "zeroCallDocs": 39,
+        "perCallUsd": 0.012027825,
+        "modelPerDocUsd": 0.481113000,
+        "breakEvenDoc": 3
+      }
+    ]
+  },
+  "spendUsd": 0
+}

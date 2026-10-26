@@ -1,0 +1,63 @@
+{
+  "specSchema": "carrier-format-0.1.0",
+  "formatId": "synthetic-mutual-pdf",
+  "version": 2,
+  "supersedes": "synthetic-mutual-pdf@1",
+  "carrierName": "Synthetic Mutual Insurance Co.",
+  "fileKind": "pdf",
+  "createdBy": "hand",
+  "createdAt": "2026-10-22T20:00:00+00:00",
+  "reviewedBy": "brief-08c: v2 of the brief-05 hand spec. CU can drop the \"(\" of the grand-total counts when the row label spans cells (08b corpus v2: 13 of 13 c1 natives lost the grand-total counts); the counts regex no longer requires it and tolerates \"-\" before the count.",
+  "description": "Synthetic Mutual landscape PDF loss run: one table per policy period under a 'Policy … Policy Period …' heading, subtotal row per period, grand total row. Covers lossrun-native.pdf, lossrun-scanned.pdf, lossrun-locked.pdf and the loss-run segment of bundle.pdf.",
+  "fingerprint": {
+    "identityKey": "68d395c23fb91fca5de967c475634429",
+    "headerKey": "322efe8af600f43ce98e4cdc352fe840",
+    "identityText": "synthetic mutual insurance co",
+    "headerText": "claim|claimant|doi|reported|status|type|ind paid|ind reserve|med paid|med reserve|exp paid|total incurred",
+    "embedding": { "model": "text-embedding-3-large", "threshold": 0.95, "textNormalization": "fp-text-1" }
+  },
+  "tableLocator": {
+    "headerMatchMin": 0.8,
+    "blockAnchor": "^Policy (?<policyNumber>\\S+)\\s+Policy Period (?<effectiveDate>\\d{2}/\\d{2}/\\d{4})\\s*-\\s*(?<expirationDate>\\d{2}/\\d{2}/\\d{4})$",
+    "rowKinds": [
+      { "kind": "subtotal", "regex": "^Subtotal\\b", "countsRegex": "[(\\-]?\\s*(?<claimCount>\\d+)\\s+claims?\\s*:\\s*(?<openCount>\\d+)\\s+open\\s*/\\s*(?<closedCount>\\d+)\\s+closed\\b\\s*\\)?" },
+      { "kind": "grandTotal", "regex": "^GRAND TOTAL\\b", "countsRegex": "[(\\-]?\\s*(?<claimCount>\\d+)\\s+claims?\\s*:\\s*(?<openCount>\\d+)\\s+open\\s*/\\s*(?<closedCount>\\d+)\\s+closed\\b\\s*\\)?" }
+    ],
+    "lineFallback": { "enabled": true, "deskew": true, "lineTolerance": 0.5, "minHeaderMatch": 0.7, "assignment": "headerLeftEdge" }
+  },
+  "columnMap": [
+    { "source": "Claim #", "target": "claim.claimNumber", "normalizer": { "type": "claimNumber", "pattern": "^(?<prefix>[A-Z]{2})\\s*-?\\s*(?<year>\\d{2})\\s*-?\\s*(?<seq>\\d{4})$", "format": "{prefix}-{year}-{seq}" } },
+    { "source": "Claimant", "target": "claim.claimantName", "normalizer": { "type": "text" } },
+    { "source": "DOI", "target": "claim.dateOfInjury", "normalizer": { "type": "date" } },
+    { "source": "Reported", "target": "claim.dateReported", "normalizer": { "type": "date" } },
+    { "source": "Status", "target": "claim.status", "normalizer": { "type": "enum", "glossaryField": "claim.status" } },
+    { "source": "Status", "target": "claim.rawStatus", "normalizer": { "type": "text" } },
+    { "source": "Type", "target": "claim.claimType", "normalizer": { "type": "enum", "glossaryField": "claim.claimType" } },
+    { "source": "Ind Paid", "target": "claim.indemnity.paid", "normalizer": { "type": "currency" } },
+    { "source": "Ind Reserve", "target": "claim.indemnity.reserve", "normalizer": { "type": "currency" } },
+    { "source": "Med Paid", "target": "claim.medical.paid", "normalizer": { "type": "currency" } },
+    { "source": "Med Reserve", "target": "claim.medical.reserve", "normalizer": { "type": "currency" } },
+    { "source": "Exp Paid", "target": "claim.expense.paid", "normalizer": { "type": "currency" } },
+    { "source": "Total Incurred", "target": "claim.total.incurred", "normalizer": { "type": "currency" } }
+  ],
+  "ignoredHeaders": [],
+  "periods": { "source": "blockAnchor" },
+  "documentFields": [
+    { "target": "document.carrierName", "locator": { "type": "regex", "pattern": "(?<value>[A-Z][A-Za-z ]* Insurance Co\\.)" }, "normalizer": { "type": "text" } },
+    { "target": "document.insuredName", "locator": { "type": "regex", "pattern": "Insured:\\s*(?<value>.+?)\\s*$" }, "normalizer": { "type": "text" } },
+    { "target": "document.valuationDate", "locator": { "type": "regex", "pattern": "Valued as of:\\s*(?<value>\\d{2}/\\d{2}/\\d{4})" }, "normalizer": { "type": "date" } },
+    { "target": "document.reportRunDate", "locator": { "type": "regex", "pattern": "Run Date:\\s*(?<value>\\d{2}/\\d{2}/\\d{4})" }, "normalizer": { "type": "date" } },
+    { "target": "document.lineOfBusiness", "locator": { "type": "regex", "pattern": "(?<value>Workers' Compensation) Loss Run" }, "normalizer": { "type": "enum", "glossaryField": "document.lineOfBusiness" } },
+    { "target": "document.noLossesStatement", "locator": { "type": "regexPresent", "pattern": "(?i)no losses (were )?reported" } },
+    { "target": "document.expenseTreatment", "locator": { "type": "const", "value": "separate" }, "reason": "Expense paid is printed in its own column (Exp Paid); the run prints no expense reserve column." }
+  ],
+  "derivedRules": [
+    { "target": "indemnity.incurred", "sum": ["indemnity.paid", "indemnity.reserve"], "when": "absent", "appliesTo": ["claim", "totals"] },
+    { "target": "medical.incurred", "sum": ["medical.paid", "medical.reserve"], "when": "absent", "appliesTo": ["claim", "totals"] }
+  ],
+  "periodBoundaries": { "expirationInclusive": false },
+  "validation": {
+    "expectedApplicable": ["R-01", "R-02", "R-03", "R-06", "R-07", "R-08", "R-09", "R-10", "R-11", "R-12", "R-13", "R-19", "R-21", "R-26"],
+    "softOverrides": []
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "gitSha": "65225094976b147817c386a9edda5673a6057f72",
+  "startedAt": "2026-10-22T14:45:14.8208491+00:00",
+  "finishedAt": "2026-10-22T15:52:47.9078075+00:00",
+  "mode": "local",
+  "cuInline": false,
+  "learnModel": "gpt-5.4-mini",
+  "learnModelVersion": "2026-03-17",
+  "deltaModel": "gpt-5.4-mini",
+  "deltaModelVersion": "2026-03-17",
+  "embeddingModel": "text-embedding-3-large",
+  "promptVersion": "learn-v5",
+  "learnGateVersion": "learn-gate-0.1.0",
+  "priceTableVersion": "0.1.0",
+  "catalogVersion": "0.4.0",
+  "corpusGeneratorVersion": "corpus-gen-0.1.0",
+  "corpusSeed": 8,
+  "documents": 338,
+  "registryAtEnd": [
+    {
+      "formatId": "fictional-casualty-group-pdf",
+      "version": 1,
+      "carrierName": "Fictional Casualty Group",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T14:47:17.7911128+00:00",
+      "status": "active",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "fictional-casualty-group-pdf-2",
+      "version": 1,
+      "carrierName": "Fictional Casualty Group",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:04:55.3910851+00:00",
+      "status": "active",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "fictional-casualty-group-pdf-3",
+      "version": 1,
+      "carrierName": "Fictional Casualty Group",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:06:00.6400014+00:00",
+      "status": "shadow",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "fictional-casualty-group-pdf-4",
+      "version": 1,
+      "carrierName": "Fictional Casualty Group",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:13:14.5012661+00:00",
+      "status": "shadow",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "fictional-casualty-group-pdf-5",
+      "version": 1,
+      "carrierName": "Fictional Casualty Group",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:20:16.4856342+00:00",
+      "status": "shadow",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "notional-workers-comp-exchange-xlsx",
+      "version": 1,
+      "carrierName": "Notional Workers Comp Exchange",
+      "fileKind": "spreadsheet",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:52:14.3201284+00:00",
+      "status": "active",
+      "verificationGate": "spreadsheet-rules"
+    },
+    {
+      "formatId": "placeholder-assurance-co-csv",
+      "version": 1,
+      "carrierName": "Placeholder Assurance Co.",
+      "fileKind": "spreadsheet",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:52:47.6422578+00:00",
+      "status": "active",
+      "verificationGate": "spreadsheet-rules"
+    },
+    {
+      "formatId": "synthetic-mutual-csv",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "spreadsheet",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T00:00:00+00:00",
+      "status": "active"
+    },
+    {
+      "formatId": "synthetic-mutual-insurance-co-pdf",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T14:57:52.8507155+00:00",
+      "status": "shadow",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "synthetic-mutual-insurance-co-pdf-2",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:03:53.5234843+00:00",
+      "status": "active",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "synthetic-mutual-insurance-co-pdf-3",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-22T15:04:13.1222158+00:00",
+      "status": "shadow",
+      "verificationGate": "pdf-totals"
+    },
+    {
+      "formatId": "synthetic-mutual-pdf",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T00:00:00+00:00",
+      "status": "active"
+    },
+    {
+      "formatId": "synthetic-mutual-xlsx",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "spreadsheet",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T00:00:00+00:00",
+      "status": "active"
+    }
+  ]
+}

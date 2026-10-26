@@ -1,0 +1,53 @@
+{
+ "quote": "Q-DATED-10251156",
+ "upload": {
+  "status": "completed",
+  "tier": "ReplayAccepted",
+  "formatRef": "synthetic-mutual-csv-dated@1"
+ },
+ "engineerMe": {
+  "role": "Engineer",
+  "canReview": false,
+  "canRead": true
+ },
+ "engineer": {
+  "document": 200,
+  "escalations": 200,
+  "decide": 403
+ },
+ "quoteSystem": {
+  "payload": 200,
+  "document": 403,
+  "quotes": 403,
+  "upload": 200
+ },
+ "payloadPeriods": [
+  {
+   "effectiveDate": true,
+   "valuationDate": true
+  },
+  {
+   "effectiveDate": true,
+   "valuationDate": true
+  }
+ ],
+ "flag": {
+  "status": 201,
+  "reason": "manual-flag"
+ },
+ "queueHasFlag": true,
+ "event": {
+  "rows": 1,
+  "published": true
+ },
+ "mockGrid": {
+  "quoteRevision": 1,
+  "orderedByEffectiveDate": true,
+  "columns": 2,
+  "effectiveDates": [
+   "value",
+   "value"
+  ],
+  "lastFetchError": null
+ }
+}

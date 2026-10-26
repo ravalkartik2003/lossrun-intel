@@ -1,0 +1,210 @@
+[
+  {
+    "screen": "Upload",
+    "theme": "light",
+    "violations": 0,
+    "passes": 25,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Upload (replay finished)",
+    "theme": "light",
+    "violations": 0,
+    "passes": 25,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Upload (applicant)",
+    "theme": "light",
+    "violations": 0,
+    "passes": 25,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Document",
+    "theme": "light",
+    "violations": 0,
+    "passes": 32,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Document (lineage panel)",
+    "theme": "light",
+    "violations": 0,
+    "passes": 35,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Document (row trace)",
+    "theme": "light",
+    "violations": 0,
+    "passes": 32,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Review queue",
+    "theme": "light",
+    "violations": 0,
+    "passes": 29,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Review detail",
+    "theme": "light",
+    "violations": 0,
+    "passes": 33,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Analytics",
+    "theme": "light",
+    "violations": 0,
+    "passes": 27,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Analytics (what-if active)",
+    "theme": "light",
+    "violations": 0,
+    "passes": 27,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Chat",
+    "theme": "light",
+    "violations": 0,
+    "passes": 26,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Costs",
+    "theme": "light",
+    "violations": 0,
+    "passes": 31,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Formats",
+    "theme": "light",
+    "violations": 0,
+    "passes": 28,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Upload",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 25,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Upload (replay finished)",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 25,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Upload (applicant)",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 25,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Document",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 32,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Document (lineage panel)",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 35,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Document (row trace)",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 32,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Review queue",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 29,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Review detail",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 33,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Analytics",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 27,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Analytics (what-if active)",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 27,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Chat",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 26,
+    "incomplete": 1,
+    "details": []
+  },
+  {
+    "screen": "Costs",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 31,
+    "incomplete": 0,
+    "details": []
+  },
+  {
+    "screen": "Formats",
+    "theme": "dark",
+    "violations": 0,
+    "passes": 28,
+    "incomplete": 0,
+    "details": []
+  }
+]

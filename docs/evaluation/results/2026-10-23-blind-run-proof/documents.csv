@@ -1,0 +1,4 @@
+doc,carrier,input_type,template,strata,final_tier,extracted,hard_failures,stp,quote_success,seconds,cost_usd,llm_calls,truth_claims,matched_claims,predicted_claims,all_correct,error
+fictional-casualty-group-loss-run-6ec9ccec,Fictional Casualty Group,native-pdf,first-seen,,Learned,True,0,True,True,26.1,0.037354,2,49,49,49,True,""
+fictional-casualty-group-scanned-loss-run-28a523ea,Fictional Casualty Group,scan-200dpi-rotated-noisy,unseen-repeat,,ReplayAccepted,True,0,True,True,3.8,0.013357,1,31,31,31,True,""
+notional-workers-comp-exchange-broker-package-ab219245,Notional Workers Comp Exchange,zip,first-seen,bundle,Learned,True,0,True,True,71.3,0.080627,5,101,101,101,True,""

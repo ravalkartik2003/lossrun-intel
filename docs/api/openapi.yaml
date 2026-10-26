@@ -1,0 +1,2038 @@
+openapi: 3.1.0
+info:
+  title: LossRun POC API
+  version: 1.0.0-poc
+  summary: Workers' comp loss run ingestion — uploads, streaming progress, extracted documents with lineage, review queue, format registry.
+  description: |
+    Brief 07, first cut of the "API spec & sample code" deliverable (docs/requirements/poc-requirements.md).
+    DTOs live in `src/LossRun.Api.Contracts` and are kept in sync with this file by `ApiContractTests`.
+    JSON is camelCase, enums are camelCase strings, nulls are omitted.
+
+    **Auth.** Entra ID bearer tokens with app roles `Applicant`, `Underwriter`, `UWManager`, `Admin`.
+    The external demo host runs `LOSSRUN_DEV_AUTH=basic` (HTTP Basic; users in Key Vault). Nothing is anonymous.
+    Applicants see only their own uploads; reviews are for Underwriter/UWManager/Admin.
+servers:
+  - url: https://<function-app>.azurewebsites.net/api/v1
+    description: POC Function App (East US 2)
+security:
+  - entra: []
+  - basic: []
+tags:
+  - name: uploads
+  - name: documents
+  - name: reviews
+  - name: formats
+  - name: webhooks
+  - name: chat
+  - name: integration
+paths:
+  /uploads:
+    post:
+      tags: [uploads]
+      operationId: createUpload
+      summary: Accept an upload and start processing.
+      description: |
+        Returns 202 with the upload id at once; processing runs in a Durable Functions orchestration.
+        Idempotent per caller: the same `Idempotency-Key`, or (without a key) the same file names and content, from the same caller returns the existing upload (`existing: true`).
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: false
+          schema: { type: string, maxLength: 200 }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: array
+                  items: { type: string, format: binary }
+                  description: One or more files (PDF, image, XLSX/XLS/CSV, ZIP; encrypted PDFs are tried with the configured passwords).
+                quoteId: { type: string }
+                carrierHint: { type: string, description: Carrier the submission names; overrides a format's declared carrier and routes to review on mismatch. }
+                valuationDate: { type: string, format: date, description: Used only when the document prints no valuation date (lineage extractor context). }
+                policyPeriods: { type: string, description: 'JSON array of ContextPeriod; fills policy dates the document does not print, matched by policy number.' }
+                payrollByPeriod: { type: string, description: 'JSON array of PeriodExposure (payroll in dollars); merged into the quote context (report 10 answer 1).' }
+                fteByPeriod: { type: string, description: 'JSON array of PeriodExposure (FTE count); merged into the quote context.' }
+                lastDayWorked: { type: string, format: date, description: Account-level last day worked; merged into the quote context. }
+                targetPolicyEffectiveDate: { type: string, format: date, description: 'Brief 29: target policy effective date (R-15); merged into the quote context.' }
+                requestedPolicyYears: { type: string, description: 'Brief 29: comma-separated policy years (R-25), e.g. 2022,2023,2024; merged into the quote context.' }
+                workspaceId: { type: string, description: 'Ad-hoc chat workspace (POST /workspaces) the files belong to instead of a quote; not with quoteId (400); absent or another user''s 404, expired 410.' }
+              required: [file]
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlobUploadRequest'
+      responses:
+        '202':
+          description: Accepted.
+          headers:
+            Location: { schema: { type: string }, description: statusUrl }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UploadAccepted' }
+        '400': { $ref: '#/components/responses/Error' }
+        '401': { $ref: '#/components/responses/Error' }
+  /uploads/{uploadId}:
+    get:
+      tags: [uploads]
+      operationId: getUpload
+      summary: Upload manifest — every file and segment with classification, status, reason, routing badge and cost.
+      parameters: [{ $ref: '#/components/parameters/uploadId' }]
+      responses:
+        '200':
+          description: The manifest.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UploadManifest' }
+        '401': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /uploads/{uploadId}/status:
+    get:
+      tags: [uploads]
+      operationId: getUploadStatus
+      summary: Latest progress of the upload and of each loss-run document (polling fallback for the event stream).
+      parameters: [{ $ref: '#/components/parameters/uploadId' }]
+      responses:
+        '200':
+          description: Status.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UploadStatusView' }
+        '404': { $ref: '#/components/responses/Error' }
+  /uploads/{uploadId}/events:
+    get:
+      tags: [uploads]
+      operationId: streamUploadEvents
+      summary: Server-Sent Events of progress changes.
+      description: |
+        `event: progress` with an `UploadStatusView` JSON payload whenever anything changes (500 ms poll), then
+        `event: end` with `{ "status": ... }` when the upload is completed or awaiting review. The stream closes after
+        about 200 s (front-end limit 230 s); reconnect or fall back to `/status`.
+      parameters: [{ $ref: '#/components/parameters/uploadId' }]
+      responses:
+        '200':
+          description: Event stream.
+          content:
+            text/event-stream:
+              schema: { type: string }
+        '404': { $ref: '#/components/responses/Error' }
+  /documents/{documentId}:
+    get:
+      tags: [documents]
+      operationId: getDocument
+      summary: Canonical loss run with cell-level lineage, rule outcomes, routing decision and cost.
+      parameters: [{ $ref: '#/components/parameters/documentId' }]
+      responses:
+        '200':
+          description: The document.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/DocumentResult' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+  /documents/{documentId}/source/pages/{page}:
+    get:
+      tags: [documents]
+      operationId: getPageImage
+      summary: Page image (PNG, 110 DPI) rendered server-side from the original PDF; page is 1-based within the document.
+      parameters: [{ $ref: '#/components/parameters/documentId' }, { $ref: '#/components/parameters/page' }]
+      responses:
+        '200':
+          description: PNG.
+          content:
+            image/png:
+              schema: { type: string, format: binary }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+  /documents/{documentId}/source/pages/{page}/layout:
+    get:
+      tags: [documents]
+      operationId: getPageLayout
+      summary: Graph slice of one page (paragraphs, tables, cells, words with polygons in the graph unit) for highlight overlays. For a spreadsheet the page is a sheet; its cells carry `a1` addresses and `sheets` lists the workbook's sheets (`[{ number, sheetName }]`, null for PDFs). The workbench renders that grid; page images exist for PDFs only (409 otherwise). Brief 13.
+      parameters: [{ $ref: '#/components/parameters/documentId' }, { $ref: '#/components/parameters/page' }]
+      responses:
+        '200':
+          description: Layout slice.
+          content:
+            application/json:
+              schema: { type: object, additionalProperties: true }
+        '404': { $ref: '#/components/responses/Error' }
+  /documents/{documentId}/quote-payload:
+    get:
+      tags: [documents]
+      operationId: getQuotePayload
+      summary: Normalized payload for the pricing engine (per-period counts and paid/reserve/incurred sums, raw claims). See quote-payload.md.
+      parameters: [{ $ref: '#/components/parameters/documentId' }]
+      responses:
+        '200':
+          description: Payload.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QuotePayload' }
+        '404': { $ref: '#/components/responses/Error' }
+  /reviews:
+    get:
+      tags: [reviews]
+      operationId: listReviews
+      summary: Review queue (Underwriter, UWManager, Admin).
+      parameters:
+        - name: state
+          in: query
+          schema: { type: string, enum: [pending, decided, expired, all], default: pending }
+      responses:
+        '200':
+          description: Review items, oldest first.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/ReviewItem' }
+        '403': { $ref: '#/components/responses/Error' }
+  /reviews/{documentId}/decision:
+    post:
+      tags: [reviews]
+      operationId: decideReview
+      summary: Accept, override or reject; raises the ReviewDecision event on the upload orchestration.
+      description: |
+        Overrides set canonical fields by lineage path (lineage extractor becomes `manual`); values the format derived from an
+        overridden field are recomputed; every change is an audit event; the document is re-validated. `overrides` are sent
+        only with `action: override`: accept or reject with overrides answers 400 `overrides-not-allowed` (brief 24; they
+        were silently dropped before). `promoteToFormat` approves a shadow format; absent, it is true on a `confirm-format`
+        item and false otherwise; an explicit false on a `confirm-format` item approves the document only and leaves the
+        format in shadow. A reject never approves a format. On a `confirm-format` item, `aliases` decides the
+        learned glossary aliases the format introduced (ADR 0019); those not listed are accepted with the format. A correction
+        of a value read through a learned alias retires that alias (`glossary.alias.retired`, linked to the override).
+      parameters: [{ $ref: '#/components/parameters/documentId' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReviewDecisionRequest' }
+      responses:
+        '202':
+          description: Decision recorded and raised.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReviewDecision' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+  /glossary/aliases:
+    get:
+      tags: [formats]
+      operationId: listGlossaryAliases
+      summary: Learned glossary aliases (ADR 0019) with their lifecycle and verification evidence.
+      description: |
+        A candidate is never used for resolution. It becomes active when a reviewer confirms the format that introduced it,
+        or when it has verified on 3 documents across 2 formats (configuration). A correction of a value read through it, or a
+        rejection, retires it. Active aliases resolve headers like hand aliases, after glossary.json's own.
+      parameters:
+        - { name: formatId, in: query, required: false, schema: { type: string }, description: Aliases the format introduced or verified. }
+        - { name: status, in: query, required: false, schema: { type: string, enum: [candidate, active, retired] } }
+      responses:
+        '200':
+          description: Learned aliases.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/LearnedAlias' }
+  /formats:
+    get:
+      tags: [formats]
+      operationId: listFormats
+      summary: Carrier format registry (hand and learned specs) with live status.
+      responses:
+        '200':
+          description: Formats.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/FormatSummary' }
+  /formats/{formatId}/versions/{version}/retire:
+    post:
+      tags: [formats]
+      operationId: retireFormat
+      summary: Retire a format version (Admin, UWManager) — hidden from matching, kept for lineage; audited.
+      parameters:
+        - name: formatId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: version
+          in: path
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason: { type: string, minLength: 1 }
+      responses:
+        '200':
+          description: Retired.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FormatSummary' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /formats/{formatId}/versions/{version}/unretire:
+    post:
+      tags: [formats]
+      operationId: unretireFormat
+      summary: Brief 30 item 17 — put a retired version back in matching (Engineer, Admin); audited (format.unretire). An approval or alias review never does this.
+      parameters:
+        - name: formatId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: version
+          in: path
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason: { type: string, minLength: 1 }
+      responses:
+        '200':
+          description: Un-retired (active).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FormatSummary' }
+        '400': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /escalations:
+    get:
+      tags: [escalations]
+      operationId: listEscalations
+      summary: Brief 26 (ADR 0025) — the Needs investigation queue (UWManager, Admin), most recently seen first.
+      parameters:
+        - { name: status, in: query, schema: { type: string, enum: [open, new, investigating, resolved, wont-fix] }, description: 'open = new or investigating' }
+        - { name: reason, in: query, schema: { type: string } }
+        - { name: carrier, in: query, schema: { type: string } }
+      responses:
+        '200':
+          description: Escalations.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Escalation' } }
+        '403': { $ref: '#/components/responses/Error' }
+  /escalations/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string } }
+    get:
+      tags: [escalations]
+      operationId: getEscalation
+      summary: One escalation with its trace (identifiers and counts only).
+      responses:
+        '200':
+          description: The escalation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Escalation' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+    patch:
+      tags: [escalations]
+      operationId: setEscalationStatus
+      summary: Status change with a required note (audited as escalation.status; CloudEvent lossrun.escalation.updated).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status, note]
+              properties:
+                status: { type: string, enum: [new, investigating, resolved, wont-fix] }
+                note: { type: string, minLength: 1, maxLength: 2000 }
+      responses:
+        '200':
+          description: Updated.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Escalation' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /escalations/{id}/tuning-items:
+    post:
+      tags: [escalations]
+      operationId: createTuningItem
+      summary: Puts the case into the next tuning batch under a cause category (a)–(g) of tuning-loop.md; a new case moves to investigating.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [category, note]
+              properties:
+                category: { type: string, enum: [a, b, c, d, e, f, g], description: 'a glossary gap, b layout not expressible, c classifier miss, d scan quality, e rule too strict or loose, f source inconsistency, g tool bug' }
+                note: { type: string, minLength: 1, maxLength: 2000 }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  escalation: { $ref: '#/components/schemas/Escalation' }
+                  tuningItem: { $ref: '#/components/schemas/TuningItem' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /tuning-items:
+    get:
+      tags: [escalations]
+      operationId: listTuningItems
+      summary: Tuning items written from escalations (what lossrun tune reads), oldest first.
+      responses:
+        '200':
+          description: Tuning items.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/TuningItem' } }
+        '403': { $ref: '#/components/responses/Error' }
+  /documents/{documentId}/flag:
+    post:
+      tags: [escalations]
+      operationId: flagDocument
+      summary: Flag for engineering (reviewing roles) — joins or opens the manual-flag case for the document's layout; the note is the audit rationale.
+      parameters:
+        - { name: documentId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [note]
+              properties:
+                note: { type: string, minLength: 1, maxLength: 2000 }
+      responses:
+        '201':
+          description: The escalation the flag joined or opened.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Escalation' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /formats/{formatId}:
+    get:
+      tags: [formats]
+      operationId: getFormat
+      summary: One format version (latest unless `version`), with the spec (docs/evaluation/carrier-format.schema.json).
+      parameters:
+        - name: formatId
+          in: path
+          required: true
+          schema: { type: string }
+        - name: version
+          in: query
+          schema: { type: integer, minimum: 1 }
+      responses:
+        '200':
+          description: Summary and spec.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary: { $ref: '#/components/schemas/FormatSummary' }
+                  spec: { type: object, additionalProperties: true }
+        '404': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/features:
+    get:
+      tags: [analytics]
+      operationId: getQuoteFeatures
+      summary: Baseline feature snapshot of a quote (every catalog metric, per period, per-claim flags, lineage) — cached; Underwriter, UWManager, Admin. Brief 10.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+        - name: view
+          in: query
+          schema: { type: string, enum: [adjusted, reported, verified-only], default: adjusted }
+          description: adjusted = current values (after overrides); reported = values before each field's first override.
+      responses:
+        '200':
+          description: Canonical snapshot JSON (byte-identical to the client twin's output for the same input).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FeatureSnapshot' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '413': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/features/what-if:
+    post:
+      tags: [analytics]
+      operationId: quoteWhatIf
+      summary: Server recompute under a scenario — baseline, scenario and per-metric delta (parity with the client; pricing memo).
+      parameters: [{ $ref: '#/components/parameters/quoteId' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WhatIfRequest' }
+      responses:
+        '200':
+          description: Baseline, scenario and deltas.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/WhatIfResponse' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/claims:
+    get:
+      tags: [analytics]
+      operationId: getQuoteClaims
+      summary: The per-account claims payload (≤ 5,000 claims) the client what-if engine recomputes from, with baseline per-claim flags.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+        - name: view
+          in: query
+          schema: { type: string, enum: [adjusted, reported, verified-only], default: adjusted }
+      responses:
+        '200':
+          description: Engine input (amounts in integer cents) and flags.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QuoteClaims' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '413': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/quote-payload:
+    get:
+      tags: [analytics]
+      operationId: getQuotePayloadV2
+      summary: Quote payload v2 for the pricing engine (supersedes /documents/{documentId}/quote-payload) — features (adjusted and reported), per-period aggregates, canonical claims with flags, lineage summary, catalog version. See quote-payload.md.
+      description: 'Brief 24 step 3 (ADR 0024): the payload names the quote revision it reflects (quoteRevision, ETag "q-<n>"). A quote.payload command pins its URL with ?revision=<n>.'
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+        - name: revision
+          in: query
+          description: The quote revision a command pinned. A lower one than the current answers 409 revision-superseded; a higher one 404 no-such-revision.
+          schema: { type: integer, minimum: 0 }
+        - name: If-None-Match
+          in: header
+          description: 'ETag of a payload already held ("q-<n>"); 304 when it is the current revision.'
+          schema: { type: string }
+      responses:
+        '200':
+          description: Payload v2.
+          headers:
+            ETag: { description: '"q-<n>", n = quoteRevision.', schema: { type: string } }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QuotePayloadV2' }
+        '304':
+          description: The held ETag is the current revision.
+          headers:
+            ETag: { schema: { type: string } }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { description: 'revision-superseded: a newer quote revision exists.', content: { application/json: { schema: { $ref: '#/components/schemas/ApiError' } } } }
+  /catalog:
+    get:
+      tags: [analytics]
+      operationId: getCatalog
+      summary: The analytics catalog (docs/analytics/catalog.yaml as JSON) — metric definitions, units, tolerances, scenario parameters.
+      responses:
+        '200':
+          description: Catalog.
+          content:
+            application/json:
+              schema: { type: object, additionalProperties: true }
+  /formats/reset:
+    post:
+      tags: [formats]
+      operationId: resetLearnedFormats
+      summary: Pre-bake-off reset — retires every learned format version (hand specs kept); Admin only; one formats.reset audit event (brief 08d, runbook).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason: { type: string }
+                dryRun: { type: boolean, default: false }
+      responses:
+        '200':
+          description: The versions retired (or that would be, on a dry run).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dryRun: { type: boolean }
+                  retired: { type: array, items: { type: string } }
+                  kept: { type: integer }
+                  at: { type: string, format: date-time }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+  /webhooks/test:
+    post:
+      tags: [webhooks]
+      operationId: webhookTestSink
+      summary: Test sink for the outbound `upload.completed` webhook; authenticated by the HMAC signature.
+      security: []
+      parameters:
+        - name: X-LossRun-Signature
+          in: header
+          required: true
+          schema: { type: string, pattern: '^sha256=[0-9a-f]{64}$' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WebhookEnvelope' }
+      responses:
+        '200': { description: Signature valid; stored. }
+        '401': { $ref: '#/components/responses/Error' }
+  /me:
+    get:
+      tags: [workbench]
+      operationId: getMe
+      summary: The caller as the API sees them (the UI's role-aware navigation). Brief 11.
+      responses:
+        '200':
+          description: Caller.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MeView' }
+        '401': { $ref: '#/components/responses/Error' }
+  /quotes:
+    get:
+      tags: [workbench]
+      operationId: listQuotes
+      summary: Quotes with loss-run documents, most recently updated first (the quote selector). Underwriting roles. Brief 11. Retired quotes are left out unless `includeRetired=true` (brief 13).
+      parameters:
+        - { name: includeRetired, in: query, required: false, schema: { type: boolean, default: false } }
+      responses:
+        '200':
+          description: Quotes.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/QuoteSummary' } }
+        '403': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}:
+    patch:
+      tags: [workbench]
+      operationId: patchQuote
+      summary: Set a quote's display name and/or retire or restore it (UWManager, Admin). The quote id never changes and nothing is deleted; each change writes quote.rename / quote.retire / quote.restore to the audit ledger with the rationale. Brief 13 demo hygiene.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/QuoteLabelRequest' }
+      responses:
+        '200':
+          description: The label as stored.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QuoteLabel' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/owner:
+    post:
+      tags: [workbench]
+      operationId: setQuoteOwner
+      summary: Brief 32 item 4 — UWManager/Admin transfer the quote to an Applicant or clear its owner (null = underwriter roles only); audited as quote.owner.
+      parameters:
+        - { name: quoteId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/QuoteOwnerRequest' }
+      responses:
+        '200': { description: The owner record now held. }
+        '400': { description: bad-owner (no rationale, or an empty / over-long applicantUserId). }
+        '403': { description: Not UWManager or Admin. }
+  /quotes/{quoteId}/context:
+    get:
+      tags: [workbench]
+      operationId: getQuoteContext
+      summary: The quote's submission context (payroll / FTE per policy period, last day worked); empty when none was supplied. Report 10 answer 1.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      responses:
+        '200':
+          description: Context.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QuoteContext' }
+        '403': { $ref: '#/components/responses/Error' }
+    put:
+      tags: [workbench]
+      operationId: putQuoteContext
+      summary: Replaces the quote context (audited as quote.context). Feature snapshots key on it, so frequency and post-termination CT recompute. Uploads may also carry payrollByPeriod / fteByPeriod / lastDayWorked, which merge in.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/QuoteContext' }
+      responses:
+        '200':
+          description: The stored context.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/QuoteContext' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+  /documents/{documentId}/audit:
+    get:
+      tags: [workbench]
+      operationId: getDocumentAudit
+      summary: The document's audit trail, newest first (dbo.vAuditTrail with the ledger transaction that committed each row). Underwriting roles.
+      parameters:
+        - { $ref: '#/components/parameters/documentId' }
+      responses:
+        '200':
+          description: Audit trail.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuditTrailView' }
+        '403': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/audit:
+    get:
+      tags: [workbench]
+      operationId: getQuoteAudit
+      summary: The quote's audit trail — its documents' events and quote-level events (context, flag push, follow-ups, memo export; FieldPath quotes/{quoteId}).
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      responses:
+        '200':
+          description: Audit trail.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuditTrailView' }
+        '403': { $ref: '#/components/responses/Error' }
+  /costs:
+    get:
+      tags: [workbench]
+      operationId: getCosts
+      summary: POC-to-date metered cost by path and carrier, and per-document cost lines (cost-tracking.md §3). Reconciliation to the bill is brief 13 (null until then).
+      responses:
+        '200':
+          description: Cost summary.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CostSummary' }
+        '403': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/memo:
+    get:
+      tags: [workbench]
+      operationId: getQuoteMemo
+      summary: The pricing memo for the quote — Word (default) or its JSON twin. PDF is produced by the export pipeline (LibreOffice headless; docs/analytics/memo-pdf.md). Audited.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+        - name: format
+          in: query
+          schema: { type: string, enum: [docx, json], default: docx }
+      responses:
+        '200':
+          description: The memo.
+          content:
+            application/vnd.openxmlformats-officedocument.wordprocessingml.document: {}
+            application/json: {}
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/flags:
+    post:
+      tags: [workbench]
+      operationId: pushQuoteFlags
+      summary: Pushes the account's per-claim flags to the quote. Recorded and audited (quote.flags.pushed); delivery over Service Bus is brief 12b.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/FlagPushRequest' }
+      responses:
+        '200':
+          description: What was pushed.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FlagPushResult' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/follow-ups:
+    get:
+      tags: [workbench]
+      operationId: listFollowUps
+      summary: Follow-up actions assigned on the quote, newest first.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      responses:
+        '200':
+          description: Follow-ups.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/FollowUp' } }
+        '403': { $ref: '#/components/responses/Error' }
+    post:
+      tags: [workbench]
+      operationId: assignFollowUp
+      summary: Assigns a follow-up (request a missing year, confirm a reserve, …); audited as quote.followup.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/FollowUpRequest' }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/FollowUp' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+  /chat/turns:
+    post:
+      tags: [chat]
+      operationId: chatTurn
+      summary: Ask a question over the documents and claims in one scope (brief 12).
+      description: |
+        The scope (org | quote | workspace) comes from the body and the caller's role; the server injects it into every tool
+        (search_documents, query_claims, compute_metric) and post-filters every result, so the model cannot widen it.
+        Applicants may only use their own workspace (403 otherwise); Underwriters may use quote and workspace; org-wide is UWManager and Admin only.
+        With `Accept: text/event-stream` the response is Server-Sent Events: `tool` (ChatToolCall, as each tool finishes),
+        `delta` ({ text }, answer text as generated), then `final` (ChatTurnResult) or `error` (ApiError).
+        Every turn is written to dbo.ChatTurn (append-only ledger) with an audit event and its usage events.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ChatTurnRequest' }
+      responses:
+        '200':
+          description: The finished turn (JSON), or the event stream.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ChatTurnResult' }
+            text/event-stream:
+              schema: { type: string }
+        '400': { $ref: '#/components/responses/Error' }
+        '401': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+        '410': { $ref: '#/components/responses/Error' }
+        '503': { $ref: '#/components/responses/Error' }
+  /chat/conversations/{conversationId}:
+    get:
+      tags: [chat]
+      operationId: getConversation
+      summary: The caller's own conversation, oldest turn first (another user's is 404).
+      parameters:
+        - { name: conversationId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Conversation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ChatConversation' }
+        '404': { $ref: '#/components/responses/Error' }
+  /workspaces:
+    post:
+      tags: [chat]
+      operationId: createWorkspace
+      summary: Creates an ad-hoc workspace (private to the caller, expires after Chat:WorkspaceTtlHours, default 72).
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WorkspaceRequest' }
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ChatWorkspace' }
+  /workspaces/{workspaceId}:
+    get:
+      tags: [chat]
+      operationId: getWorkspace
+      summary: The caller's workspace (404 absent or another user's, 410 deleted or expired).
+      parameters:
+        - { name: workspaceId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: Workspace.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ChatWorkspace' }
+        '404': { $ref: '#/components/responses/Error' }
+        '410': { $ref: '#/components/responses/Error' }
+    delete:
+      tags: [chat]
+      operationId: deleteWorkspace
+      summary: Deletes the caller's workspace (audited); its chunks leave the index. Uploads stay in Blob (ADR 0005).
+      parameters:
+        - { name: workspaceId, in: path, required: true, schema: { type: string } }
+      responses:
+        '204': { description: Deleted. }
+        '404': { $ref: '#/components/responses/Error' }
+        '410': { $ref: '#/components/responses/Error' }
+  /reviews/{documentId}/reopen:
+    post:
+      tags: [reviews]
+      operationId: reopenReview
+      summary: Sends a processed document back to review (11 Answers 2). Underwriter, UWManager, Admin.
+      description: |
+        Creates a pending document-review item with `reopened: true`, sets the document's `reviewState` to `reopened`,
+        and writes a `review.reopened` audit event with the reason. Nothing else changes until a decision; the decision
+        (`POST /reviews/{documentId}/decision`) applies at once, outside the finished upload orchestration.
+      parameters:
+        - { name: documentId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReopenRequest' }
+      responses:
+        '201':
+          description: Reopened.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReviewItem' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+  /documents/{documentId}/overrides:
+    post:
+      tags: [documents]
+      operationId: overrideValues
+      summary: An underwriter's override on a processed document (outside a review).
+      description: |
+        Same command path as a review override: lineage `manual`, re-derived values, re-validation, audit rows, feature
+        snapshots of the quote invalidated, `review.decided` CloudEvent. 409 while the document has an open review, or
+        after 5 attempts when concurrent decisions keep taking the next revision.
+      parameters:
+        - { name: documentId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OverrideRequest' }
+      responses:
+        '200':
+          description: Applied.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OverrideResult' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+        '404': { $ref: '#/components/responses/Error' }
+        '409': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/annotations:
+    post:
+      tags: [integration]
+      operationId: annotateQuote
+      summary: Pushes a note to the quote record (audited as quote.annotation; delivered through the outbox).
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AnnotationRequest' }
+      responses:
+        '201':
+          description: Recorded and queued.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Annotation' }
+        '400': { $ref: '#/components/responses/Error' }
+        '403': { $ref: '#/components/responses/Error' }
+  /quotes/{quoteId}/integration:
+    get:
+      tags: [integration]
+      operationId: quoteIntegration
+      summary: What was sent to the quote system for this quote (commands and events) and what it answered, newest first.
+      parameters:
+        - { $ref: '#/components/parameters/quoteId' }
+      responses:
+        '200':
+          description: Outbox rows.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/OutboxEntry' } }
+        '403': { $ref: '#/components/responses/Error' }
+  /integration/outbox:
+    get:
+      tags: [integration]
+      operationId: outbox
+      summary: The latest 500 outbox rows across quotes (operations view).
+      responses:
+        '200':
+          description: Outbox rows.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/OutboxEntry' } }
+        '403': { $ref: '#/components/responses/Error' }
+webhooks:
+  upload.completed:
+    post:
+      summary: Sent when every document of an upload is processed (completed or awaiting review).
+      description: 'Body signed with HMAC-SHA256 (`X-LossRun-Signature: sha256=<hex>`; secret in Key Vault `webhook-secret`); event name in `X-LossRun-Event`.'
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/WebhookEnvelope' }
+      responses:
+        '200': { description: Received. }
+components:
+  securitySchemes:
+    entra:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Entra ID access token for the API app registration; app roles Applicant | Underwriter | UWManager | Admin.
+    basic:
+      type: http
+      scheme: basic
+      description: Demo host only (LOSSRUN_DEV_AUTH=basic).
+  parameters:
+    uploadId:
+      name: uploadId
+      in: path
+      required: true
+      schema: { type: string, pattern: '^up-[0-9a-f]{20}$' }
+    documentId:
+      name: documentId
+      in: path
+      required: true
+      schema: { type: string }
+    quoteId:
+      name: quoteId
+      in: path
+      required: true
+      schema: { type: string }
+    page:
+      name: page
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+  responses:
+    Error:
+      description: Error.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ApiError' }
+  schemas:
+    ApiError:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string }
+        message: { type: string }
+    BlobUploadRequest:
+      type: object
+      required: [files]
+      properties:
+        files:
+          type: array
+          items:
+            type: object
+            required: [fileName, blobUrl]
+            properties:
+              fileName: { type: string }
+              blobUrl: { type: string, format: uri, description: A blob in the POC storage account (read with the app's identity). }
+        quoteId: { type: string }
+        carrierHint: { type: string }
+        valuationDate: { type: string, format: date }
+        policyPeriods:
+          type: array
+          items: { $ref: '#/components/schemas/ContextPeriod' }
+        payrollByPeriod: { type: array, items: { $ref: '#/components/schemas/PeriodExposure' } }
+        fteByPeriod: { type: array, items: { $ref: '#/components/schemas/PeriodExposure' } }
+        lastDayWorked: { type: string, format: date }
+        targetPolicyEffectiveDate: { type: string, format: date }
+        requestedPolicyYears: { type: array, items: { type: integer } }
+    ContextPeriod:
+      type: object
+      required: [policyNumber]
+      properties:
+        policyNumber: { type: string }
+        effectiveDate: { type: string, format: date }
+        expirationDate: { type: string, format: date }
+    UploadAccepted:
+      type: object
+      required: [uploadId, statusUrl, eventsUrl, existing]
+      properties:
+        uploadId: { type: string }
+        statusUrl: { type: string }
+        eventsUrl: { type: string }
+        existing: { type: boolean }
+    SubmissionInfo:
+      type: object
+      required: [uploaderRole, uploaderId]
+      properties:
+        quoteId: { type: string }
+        carrierHint: { type: string }
+        uploaderRole: { type: string }
+        uploaderId: { type: string }
+        valuationDate: { type: string, format: date }
+        policyPeriods:
+          type: array
+          items: { $ref: '#/components/schemas/ContextPeriod' }
+        payrollByPeriod: { type: array, items: { $ref: '#/components/schemas/PeriodExposure' }, nullable: true }
+        fteByPeriod: { type: array, items: { $ref: '#/components/schemas/PeriodExposure' }, nullable: true }
+        lastDayWorked: { type: string, format: date, nullable: true }
+        workspaceId: { type: string, nullable: true, description: Set when the upload belongs to an ad-hoc chat workspace (brief 12). }
+        targetPolicyEffectiveDate: { type: string, format: date, nullable: true, description: 'Brief 29: the effective date of the policy being quoted (R-15).' }
+        requestedPolicyYears: { type: array, items: { type: integer }, nullable: true, description: 'Brief 29: policy years the submission asks for (R-25).' }
+    UploadManifest:
+      type: object
+      required: [uploadId, status, createdAt, submission, files, items]
+      properties:
+        uploadId: { type: string }
+        status: { type: string, enum: [received, processing, completed, awaiting-review, closed, failed] }
+        createdAt: { type: string, format: date-time }
+        completedAt: { type: string, format: date-time }
+        submission: { $ref: '#/components/schemas/SubmissionInfo' }
+        files:
+          type: array
+          items: { $ref: '#/components/schemas/ManifestFile' }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/ManifestItem' }
+        cost: { $ref: '#/components/schemas/UploadCost' }
+        firstClaimMs: { type: integer, description: Milliseconds after createdAt when the first loss-run claim was available. }
+        completedMs: { type: integer }
+    ManifestFile:
+      type: object
+      required: [fileName, sha256, sizeBytes, blobPath]
+      properties:
+        fileName: { type: string }
+        sha256: { type: string }
+        sizeBytes: { type: integer }
+        blobPath: { type: string }
+    ManifestItem:
+      type: object
+      required: [documentId, fileName, classification, status]
+      properties:
+        documentId: { type: string }
+        fileName: { type: string }
+        parentDocumentId: { type: string }
+        pageRange: { type: string }
+        classification: { type: string, description: LossRun, a classifier category (Payroll, Letter, …), or the file kind when unsupported. }
+        status: { type: string, enum: [processed, kept-not-processed, unsupported, processing, awaiting-review, rejected] }
+        reason: { type: string }
+        blobPath: { type: string }
+        routingTier: { type: string, description: ReplayAccepted | ReplayWithDelta | Learn | Review | Learned | Delta }
+        badge: { type: string, description: 'UI-ready routing badge, e.g. "format memory hit: … · 0 LLM calls"' }
+        formatRef: { type: string, description: formatId@version }
+        formatStatus: { type: string, enum: [shadow, active] }
+        claimCount: { type: integer }
+        costUsd: { type: number }
+        reviewKind: { type: string, enum: [document-review, confirm-format] }
+        unnormalizedValues: { type: integer, nullable: true, description: 'Brief 30 item 4: printed values the replay could not normalize; each sends the document to Review, with the field and its page or cell in the reasons.' }
+        keptRows:
+          type: array
+          nullable: true
+          description: "Brief 23 §2 (ADR 0020 amendment): rows of another line of business in this loss run, kept, not extracted. Listed and counted; never in claims, totals, metrics or the quote payload."
+          items:
+            type: object
+            required: [reason]
+            properties:
+              claimNumber: { type: string, nullable: true }
+              policyNumber: { type: string, nullable: true }
+              reason: { type: string, description: "line of business: <line> (<evidence>)" }
+              page: { type: integer, nullable: true }
+              totalIncurred: { type: number, nullable: true }
+    UploadCost:
+      type: object
+      required: [totalUsd, llmCalls, embeddingCalls, pages, byDocument]
+      properties:
+        totalUsd: { type: number }
+        llmCalls: { type: integer }
+        embeddingCalls: { type: integer }
+        pages: { type: integer }
+        byDocument:
+          type: object
+          additionalProperties: { type: number }
+    UploadProgress:
+      type: object
+      required: [step, elapsedMs, costSoFar]
+      properties:
+        step: { type: string, description: 'upload: expand | parse | process | completed | awaiting-review | reviews-expired; document: fingerprint | route | replay | delta | learn | validate | done' }
+        documentId: { type: string }
+        elapsedMs: { type: integer }
+        costSoFar: { type: number }
+        detail: { type: string }
+    UploadStatusView:
+      type: object
+      required: [uploadId, runtimeStatus, documents]
+      properties:
+        uploadId: { type: string }
+        runtimeStatus: { type: string, description: Durable runtime status of the upload orchestration. }
+        upload: { $ref: '#/components/schemas/UploadProgress' }
+        documents:
+          type: array
+          items: { $ref: '#/components/schemas/UploadProgress' }
+    DocumentResult:
+      type: object
+      required: [documentId, uploadId, revision, document, ruleOutcomes]
+      properties:
+        documentId: { type: string }
+        uploadId: { type: string }
+        revision: { type: integer, description: 1 as extracted; +1 per review decision. }
+        document:
+          type: object
+          description: LossRunDocument per docs/evaluation/canonical-schema.json, including `lineage` keyed by field path.
+          additionalProperties: true
+        ruleOutcomes:
+          type: array
+          items: { $ref: '#/components/schemas/RuleOutcome' }
+        routing:
+          type: object
+          description: RoutingDecision (tier, reasons, formatRef, badge, formatStatus, shadowReplay, confirmNewFormat, model/embedding calls).
+          additionalProperties: true
+        formatRef: { type: string }
+        cost:
+          type: object
+          description: DocumentCost (cost-tracking.md) — costUsd, llmCalls, embeddingCalls, pages, tokens, breakdown lines.
+          additionalProperties: true
+        reviewState: { type: string }
+        fieldStatus:
+          type: object
+          description: 'Brief 24 step 2: approved | unresolved | rejected per lineage path at this revision, derived on read (never stored) from the review state, the hard rules still failing, manual overrides and R-33 (required for quoting, rule-catalog.json quoteRules). Every lineage path plus every R-33 field the document should carry.'
+          additionalProperties: { $ref: '#/components/schemas/FieldStatus' }
+    FieldStatus:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string, enum: [approved, unresolved, rejected] }
+        reason: { type: string, description: 'document-rejected | review-pending | a hard rule id still failing on the field (e.g. R-10) | R-33 (required for quoting and null) | override (a reviewer set it).' }
+    Readiness:
+      type: object
+      description: 'Brief 24 step 2: ready when at least one document counts, none waits for review and no field of a counted document is unresolved. Rejected documents never block (they are excluded).'
+      required: [ready, blockingFields, blockingFieldCount, rejectedDocuments, pendingDocuments]
+      properties:
+        ready: { type: boolean }
+        blockingFields:
+          type: array
+          description: The first 200 unresolved fields; blockingFieldCount counts them all (a sum mismatch marks a column of every claim).
+          items:
+            type: object
+            properties:
+              documentId: { type: string }
+              fieldPath: { type: string }
+              status: { type: string, enum: [unresolved] }
+              reason: { type: string }
+        blockingFieldCount: { type: integer }
+        rejectedDocuments: { type: array, items: { type: object, properties: { documentId: { type: string }, revision: { type: integer }, reason: { type: string } } } }
+        pendingDocuments: { type: array, items: { type: object, properties: { documentId: { type: string }, revision: { type: integer }, reviewState: { type: string } } } }
+    RuleOutcome:
+      type: object
+      required: [ruleId, severity, status, message, affectedFields]
+      properties:
+        ruleId: { type: string }
+        severity: { type: string, enum: [hard, soft, flag] }
+        status: { type: string, enum: [pass, fail, notApplicable, notInformative] }
+        message: { type: string }
+        affectedFields:
+          type: array
+          items: { type: string }
+        claimId: { type: string }
+        periodIndex: { type: integer }
+        bindings: { type: object, additionalProperties: { type: string } }
+        detail: { type: string }
+        values: { type: object, additionalProperties: { type: string } }
+    ReviewItem:
+      type: object
+      required: [documentId, uploadId, kind, state, reasons, openedAt]
+      properties:
+        documentId: { type: string }
+        uploadId: { type: string }
+        kind: { type: string, enum: [document-review, confirm-format] }
+        state: { type: string, enum: [pending, decided, expired] }
+        reasons:
+          type: array
+          items: { type: string }
+        badge: { type: string }
+        formatRef: { type: string }
+        openedAt: { type: string, format: date-time }
+        decidedAt: { type: string, format: date-time }
+        reopened: { type: boolean, description: 'A processed document sent back to review (POST /reviews/{documentId}/reopen); its decision applies at once.' }
+        decision: { $ref: '#/components/schemas/ReviewDecision' }
+    FieldOverride:
+      type: object
+      required: [fieldPath, newValue, rationale]
+      properties:
+        fieldPath: { type: string, description: 'Lineage path, e.g. policyPeriods[0].claims[1].medical.paid' }
+        newValue: { description: "Brief 30 item 3: typed JSON of the field's canonical type, checked before the 202 (a wrong type is 400 bad-override-value naming the path): a number for money and counts; a string for identifiers and text (a digit-only claim number stays a string); true/false for flags; 'yyyy-MM-dd' for dates; an enum's schema name; { code, codeSystem } for a coded field (on its path, or on its .code path); null clears." }
+        rationale: { type: string, minLength: 1 }
+    ReviewDecisionRequest:
+      type: object
+      required: [action]
+      properties:
+        action: { type: string, enum: [accept, override, reject] }
+        overrides:
+          type: array
+          items: { $ref: '#/components/schemas/FieldOverride' }
+        promoteToFormat: { type: boolean, nullable: true, description: "Absent: true on a confirm-format item, false otherwise. Ignored with reject (brief 24)." }
+        rationale: { type: string }
+        aliases:
+          type: array
+          description: confirm-format reviews only (ADR 0019).
+          items: { $ref: '#/components/schemas/AliasDecision' }
+        formatChanges:
+          type: object
+          description: "Brief 34 A3, brief 35 Answers 2: changes to the document's format the reviewer confirms, never with reject (else 400 bad-format-change). { \"periods.fillDown\": true } answers a review whose reasons start 'policy cell blank on' and publishes a new shadow version with fill-down. { \"carrierNames.add\": \"<name as printed>\" } answers a review whose reasons start 'carrier name on the page differs from the format's' and publishes a version that knows the name, with the parent's status. Either way the document is replayed with the new version; audited as format.change."
+          properties:
+            periods.fillDown: { type: boolean, enum: [true] }
+            carrierNames.add: { type: string, maxLength: 200 }
+          additionalProperties: false
+    AliasDecision:
+      type: object
+      required: [header, canonicalField, action]
+      properties:
+        header: { type: string }
+        canonicalField: { type: string }
+        action: { type: string, enum: [accept, edit, reject] }
+        newField: { type: string, description: 'edit: the canonical field the header maps to instead.' }
+    AliasEvidence:
+      type: object
+      required: [documentId, formatRef, route, atUtc]
+      properties:
+        documentId: { type: string }
+        formatRef: { type: string }
+        route: { type: string, enum: [learn, replay] }
+        totalsTie: { type: [boolean, 'null'] }
+        atUtc: { type: string, format: date-time }
+    LearnedAlias:
+      type: object
+      required: [header, canonicalField, status, formatId, formatVersion, firstSeenDocumentId, firstSeenUtc, learnedBy, evidence]
+      properties:
+        id: { type: string }
+        header: { type: string }
+        canonicalField: { type: string }
+        status: { type: string, enum: [candidate, active, retired] }
+        carrierName: { type: string }
+        formatId: { type: string, description: The format whose verified learn introduced the alias. }
+        formatVersion: { type: string }
+        firstSeenDocumentId: { type: string }
+        firstSeenUtc: { type: string, format: date-time }
+        learnedBy:
+          type: object
+          properties: { model: { type: string }, modelVersion: { type: [string, 'null'] }, promptVersion: { type: string } }
+        confidence: { type: number }
+        totalsTie: { type: [boolean, 'null'] }
+        verificationGate: { type: [string, 'null'] }
+        evidence: { type: array, items: { $ref: '#/components/schemas/AliasEvidence' } }
+        reviewedBy: { type: [string, 'null'] }
+        activatedBy: { type: [string, 'null'] }
+        activatedUtc: { type: [string, 'null'], format: date-time }
+        activationReason: { type: [string, 'null'] }
+        retiredBy: { type: [string, 'null'] }
+        retiredUtc: { type: [string, 'null'], format: date-time }
+        retiredReason: { type: [string, 'null'] }
+        retiredAuditEventId: { type: [string, 'null'], description: 'The override that retired it: override:{documentId}@{revision}:{fieldPath}.' }
+        editedFrom: { type: [string, 'null'] }
+    ReviewDecision:
+      type: object
+      required: [documentId, action, overrides, promoteToFormat, user, role, at]
+      properties:
+        documentId: { type: string }
+        action: { type: string }
+        overrides:
+          type: array
+          items: { $ref: '#/components/schemas/FieldOverride' }
+        promoteToFormat: { type: boolean }
+        rationale: { type: string }
+        aliases:
+          type: array
+          items: { $ref: '#/components/schemas/AliasDecision' }
+        user: { type: string }
+        role: { type: string }
+        at: { type: string, format: date-time }
+        decisionId: { type: string, description: 'Brief 30 item 6: generated by the API; applying the decision is idempotent on it (its outbox rows are keyed on it).' }
+        formatChanges:
+          type: object
+          nullable: true
+          description: "Brief 34 A3, brief 35: the format changes the reviewer confirmed (see ReviewDecisionRequest.formatChanges)."
+          properties:
+            periods.fillDown: { type: boolean, enum: [true] }
+            carrierNames.add: { type: string, maxLength: 200 }
+          additionalProperties: false
+    Escalation:
+      type: object
+      description: Brief 26 (ADR 0025) — one engineering case per (reasonCode, formatFingerprint), counted. Version is the optimistic-concurrency token.
+      required: [id, reasonCode, formatFingerprint, documentIds, uploadIds, firstSeen, lastSeen, count, traceSummary, status, version]
+      properties:
+        id: { type: string }
+        reasonCode: { type: string, enum: [learn-exhausted, delta-exhausted, replay-failed-active-format, unhandled-exception, too-many-segments, cost-over-limit, repeated-review, rule-dominant, review-rate-spike, repeated-reopen, manual-flag, decision-apply-failed, missing-price, decision-postcommit-failed, override-unrevertable] }
+        formatFingerprint: { type: string, description: 'fp:<identity12>:<header12>, carrier:<hash12>[/R-nn], exception:<step>:<type>, or document:<id>' }
+        formatRef: { type: string, nullable: true }
+        carrier: { type: string, nullable: true }
+        documentIds: { type: array, items: { type: string }, maxItems: 50 }
+        uploadIds: { type: array, items: { type: string }, maxItems: 50 }
+        firstSeen: { type: string, format: date-time }
+        lastSeen: { type: string, format: date-time }
+        count: { type: integer, minimum: 1 }
+        traceSummary:
+          type: object
+          description: Identifiers and counts only — never a document value (reasons have numbers and quoted text removed).
+          properties:
+            ruleIds: { type: array, items: { type: string } }
+            reasons: { type: array, items: { type: string } }
+            counts: { type: object, additionalProperties: { type: number } }
+            step: { type: string, nullable: true }
+            exceptionType: { type: string, nullable: true }
+        status: { type: string, enum: [new, investigating, resolved, wont-fix] }
+        resolutionNote: { type: string, nullable: true }
+        tuningItemRef: { type: string, nullable: true }
+        version: { type: integer }
+        updatedAt: { type: string, format: date-time }
+        updatedBy: { type: string }
+    TuningItem:
+      type: object
+      required: [id, category, escalationId, reasonCode, formatFingerprint, documentIds, note, createdAt, createdBy]
+      properties:
+        id: { type: string }
+        category: { type: string, enum: [a, b, c, d, e, f, g] }
+        escalationId: { type: string }
+        reasonCode: { type: string }
+        formatFingerprint: { type: string }
+        formatRef: { type: string, nullable: true }
+        documentIds: { type: array, items: { type: string } }
+        note: { type: string }
+        createdAt: { type: string, format: date-time }
+        createdBy: { type: string }
+    FormatSummary:
+      type: object
+      required: [formatId, version, carrierName, fileKind, createdBy, createdAt, status]
+      properties:
+        formatId: { type: string }
+        version: { type: integer }
+        carrierName: { type: string }
+        fileKind: { type: string, enum: [pdf, spreadsheet] }
+        createdBy: { type: string }
+        createdAt: { type: string, format: date-time }
+        status: { type: string, enum: [shadow, active, retired] }
+        supersedes: { type: string }
+        verificationGate: { type: string, enum: [pdf-totals, spreadsheet-totals, spreadsheet-rules] }
+    QuotePayload:
+      type: object
+      required: [documentId, periods, claims]
+      properties:
+        documentId: { type: string }
+        carrierName: { type: string }
+        insuredName: { type: string }
+        valuationDate: { type: string, format: date }
+        valuationDateSource: { type: string, enum: [printed, submission], nullable: true, description: "Brief 23 Answers 2: submission when the run prints no valuation date and the submitter stated it (R-32)." }
+        periods:
+          type: array
+          items: { $ref: '#/components/schemas/QuotePeriod' }
+        claims:
+          type: array
+          items: { type: object, additionalProperties: true, description: Canonical Claim. }
+    QuotePeriod:
+      type: object
+      required: [claimCount, openCount, indemnity, medical, expense, total]
+      properties:
+        policyNumber: { type: string }
+        effectiveDate: { type: string, format: date }
+        expirationDate: { type: string, format: date }
+        claimCount: { type: integer }
+        openCount: { type: integer }
+        indemnity: { $ref: '#/components/schemas/MoneySums' }
+        medical: { $ref: '#/components/schemas/MoneySums' }
+        expense: { $ref: '#/components/schemas/MoneySums' }
+        total: { $ref: '#/components/schemas/MoneySums' }
+    MoneySums:
+      type: object
+      required: [paid, reserve, incurred]
+      properties:
+        paid: { type: number }
+        reserve: { type: number }
+        incurred: { type: number }
+    FeatureSnapshot:
+      type: object
+      description: Canonical feature snapshot (src/LossRun.Analytics; twin src/web/packages/metrics). Money in dollars, ratios 0–1 with 6 decimals, days with 1 decimal.
+      properties:
+        catalogVersion: { type: string }
+        view: { type: string, enum: [adjusted, reported, verified-only] }
+        quoteId: { type: string, nullable: true }
+        valuationDate: { type: string, format: date, nullable: true }
+        scenario: { $ref: '#/components/schemas/Scenario' }
+        inputsHash: { type: string, description: SHA-256 of the canonical input JSON. }
+        claims:
+          type: object
+          properties:
+            input: { type: integer }
+            nonWcExcluded: { type: integer }
+            scenarioExcluded: { type: integer }
+            included: { type: integer }
+        metrics:
+          type: array
+          items: { $ref: '#/components/schemas/MetricValue' }
+        perPeriod:
+          type: array
+          items: { type: object, additionalProperties: true }
+        perClaimFlags:
+          type: array
+          items:
+            type: object
+            properties:
+              claimId: { type: string }
+              flags: { type: array, items: { type: string, enum: [nonWc, excluded, ct, postTermination, large, litigated, nonCA, open] } }
+    MetricValue:
+      type: object
+      properties:
+        name: { type: string }
+        unit: { type: string, enum: [count, money, ratio, rate, days] }
+        value: { type: number, nullable: true }
+        notMeasurable: { type: string, description: 'Present only when value is null: the missing input ("no payroll in the submission context") or "no contributing claims".' }
+        breakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              key: { type: string }
+              value: { type: number, nullable: true }
+        contributors:
+          description: '"all" (every included claim) or the contributing claim ids.'
+          oneOf:
+            - { type: string, enum: [all] }
+            - { type: array, items: { type: string } }
+        overrides: { type: array, items: { type: string }, description: Overrides on contributing claims that changed one of the metric's inputs. }
+    Scenario:
+      type: object
+      nullable: true
+      description: What-if parameters (catalog.yaml scenario); null on a baseline snapshot.
+      properties:
+        excludeClaimIds: { type: array, items: { type: string } }
+        includeNonCA: { type: boolean, default: true }
+        includeCT: { type: boolean, default: true }
+        excludeCatastrophicAbove: { type: number, nullable: true, description: Dollars. }
+        trendFactorBpsByYear: { type: object, additionalProperties: { type: integer }, description: 'Policy year → basis points (10500 = ×1.05).' }
+        reserveFactorBps: { type: integer, description: '+1000 = reserves +10 %.' }
+        capPerClaim: { type: number, nullable: true, description: Dollars; paid first, then reserves. }
+    WhatIfRequest:
+      type: object
+      properties:
+        view: { type: string, enum: [adjusted, reported, verified-only], default: adjusted }
+        scenario: { $ref: '#/components/schemas/Scenario' }
+        context:
+          type: object
+          description: Exposures the documents do not carry (dollars).
+          properties:
+            payrollByYear: { type: object, additionalProperties: { type: number } }
+            fteByYear: { type: object, additionalProperties: { type: number } }
+            lastDayWorked: { type: string, format: date }
+            valuationDate: { type: string, format: date }
+    WhatIfResponse:
+      type: object
+      properties:
+        quoteId: { type: string }
+        view: { type: string }
+        scenarioHash: { type: string }
+        baseline: { $ref: '#/components/schemas/FeatureSnapshot' }
+        scenario: { $ref: '#/components/schemas/FeatureSnapshot' }
+        deltas:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              unit: { type: string }
+              baseline: { type: number, nullable: true }
+              scenario: { type: number, nullable: true }
+              delta: { type: number, nullable: true }
+    QuoteClaims:
+      type: object
+      properties:
+        catalogVersion: { type: string }
+        view: { type: string }
+        input:
+          type: object
+          description: 'Engine input: context, claims (amounts in integer cents), overrides.'
+          additionalProperties: true
+        perClaimFlags: { type: array, items: { type: object, additionalProperties: true } }
+        readiness: { $ref: '#/components/schemas/Readiness' }
+    QuotePayloadV2:
+      type: object
+      properties:
+        payloadVersion: { type: string, enum: ['2'] }
+        quoteId: { type: string }
+        quoteRevision: { type: integer, description: 'Brief 24 step 3 (ADR 0024): the quote revision (dbo.QuoteRevision) this payload reflects; 0 before the first upload completes. Also the ETag "q-<n>".' }
+        policyPeriods:
+          type: array
+          description: 'Brief 25: one row per policy period of every document of the quote (rejected and pending ones included, with excludedReason): documentId, uploadId, periodIndex, revision, policyNumber, effectiveDate, expirationDate, periodLabel, carrierName, valuationDate, valuationDateSource, detailLevel, noLossesStatement, excludedReason (rejected | pending-review | null), fieldStatus (identity fields not approved, with status and reason; their values are null).'
+          items: { type: object, additionalProperties: true }
+        featuresView: { type: string, enum: [verified-only], description: 'Brief 24 Answers 2: the payload never carries an unverified value. features (the "adjusted" key is the verified-only snapshot), periods, periodSummaries and claims leave out documents pending review (listed in excluded[] with reason pending-review) and null every unresolved field.' }
+        catalogVersion: { type: string }
+        valuationDate: { type: string, format: date, nullable: true }
+        generatedUtc: { type: string, format: date-time }
+        documents:
+          type: array
+          description: 'One entry per document that counts (rejected documents are in excluded): documentId, uploadId, revision, carrierName, insuredName, valuationDate, formatRef, routingTier, reviewState, claimCount, granularity (claim | period | mixed; ADR 0017: period when every policy period is summary-only), absentComponents (components the document prints no column for) and fieldStatusCounts (fields per status, brief 24).'
+          items: { type: object, additionalProperties: true }
+        features:
+          type: object
+          properties:
+            adjusted: { $ref: '#/components/schemas/FeatureSnapshot' }
+            reported: { $ref: '#/components/schemas/FeatureSnapshot' }
+        periods: { type: array, items: { type: object, additionalProperties: true } }
+        claims: { type: array, items: { type: object, additionalProperties: true }, description: 'Canonical claims with id, policyNumber, flags and fieldStatus (the claim fields that are not approved, by path relative to the claim). An unresolved or rejected value is null here, never the unverified extraction (brief 24 step 2).' }
+        readiness: { $ref: '#/components/schemas/Readiness' }
+        excluded:
+          type: array
+          description: Rejected documents, out of claims, features and periods; listed so the audit trail stays visible.
+          items:
+            type: object
+            properties:
+              documentId: { type: string }
+              uploadId: { type: string }
+              revision: { type: integer }
+              reason: { type: string, enum: [rejected] }
+              claimCount: { type: integer }
+        periodSummaries: { $ref: '#/components/schemas/PeriodSummaries' }
+        sourceAvailability:
+          type: array
+          description: 'Brief 19 Answers 1: per loss component a document does not print (canonical componentPresence { present: false }), the documents and the catalog metrics computed without it.'
+          items:
+            type: object
+            properties:
+              component: { type: string, enum: [indemnity, medical, expense] }
+              documents: { type: array, items: { type: string } }
+              metrics: { type: array, items: { type: string } }
+              note: { type: string }
+        lineage:
+          type: object
+          properties:
+            documents: { type: integer }
+            pendingReview: { type: integer }
+            reviewRate: { type: number }
+            valuationDates: { type: array, items: { type: string } }
+            formatVersions: { type: array, items: { type: string } }
+            extractors: { type: object, additionalProperties: { type: integer } }
+            overrides: { type: array, items: { type: object, additionalProperties: true } }
+    PeriodSummaries:
+      type: object
+      description: 'ADR 0017: summary-only policy periods (fiscal, report or policy year rows with counts and totals, no claims). They are not in claims or features; metrics computed from them are those catalog.yaml marks fromSummary: yes. Example: docs/ui/mock/quote-payload-period.json.'
+      required: [granularity, rows]
+      properties:
+        granularity: { type: string, enum: [period] }
+        rows:
+          type: array
+          items:
+            type: object
+            required: [documentId, periodIndex, lineagePath]
+            properties:
+              documentId: { type: string }
+              periodIndex: { type: integer }
+              periodKind: { type: string, nullable: true, enum: [policyTerm, fiscalYear, reportYear, accidentYear, calendarYear, null] }
+              periodLabel: { type: string, nullable: true }
+              policyNumber: { type: string, nullable: true }
+              effectiveDate: { type: string, format: date, nullable: true }
+              expirationDate: { type: string, format: date, nullable: true }
+              claimCount: { type: integer, nullable: true }
+              openCount: { type: integer, nullable: true }
+              closedCount: { type: integer, nullable: true }
+              paid: { type: number, nullable: true }
+              reserve: { type: number, nullable: true }
+              incurred: { type: number, nullable: true }
+              recoverySubrogation: { type: number, nullable: true }
+              recoveries:
+                type: object
+                nullable: true
+                properties:
+                  deductible: { type: number, nullable: true }
+                  reinsurance: { type: number, nullable: true }
+                  sif: { type: number, nullable: true }
+                  other: { type: number, nullable: true }
+              lineagePath: { type: string, description: 'Canonical path of the period subtotals; append a field (e.g. .total.incurred) to look up its lineage.' }
+        metrics:
+          type: object
+          nullable: true
+          description: 'Catalog metric name → { value, unit } or { notMeasurable }; null when the account has no summary-only period.'
+          additionalProperties: { type: object, additionalProperties: true }
+    WebhookEnvelope:
+      type: object
+      required: [event, uploadId, occurredAt, status, documents, awaitingReview, costUsd]
+      properties:
+        event: { type: string, enum: [upload.completed] }
+        uploadId: { type: string }
+        occurredAt: { type: string, format: date-time }
+        status: { type: string }
+        documents: { type: integer }
+        awaitingReview: { type: integer }
+        costUsd: { type: number }
+        sentAt: { type: string, format: date-time, description: 'Brief 30 item 30: when this delivery was signed (inside the signed body); a receiver refuses one more than 5 minutes from its clock.' }
+        nonce: { type: string, description: 'Brief 30 item 30: unique per delivery (inside the signed body); a receiver refuses one it has already seen (409 replayed).' }
+    MeView:
+      type: object
+      required: [userId, role, canReview]
+      properties:
+        userId: { type: string }
+        role: { type: string, enum: [Applicant, Underwriter, UWManager, Admin, Engineer, QuoteSystem] }
+        canReview: { type: boolean, description: 'Decides reviews, overrides values, acts on quotes.' }
+        canRead: { type: boolean, description: 'Brief 26: reads what a reviewer reads (true for Engineer, who cannot decide).' }
+    QuoteSummary:
+      type: object
+      required: [quoteId, documents, claims, pendingReview]
+      properties:
+        quoteId: { type: string }
+        documents: { type: integer }
+        claims: { type: integer }
+        insuredName: { type: string, nullable: true }
+        valuationDate: { type: string, format: date, nullable: true }
+        pendingReview: { type: integer }
+        updatedAt: { type: string, format: date-time, nullable: true }
+        displayName: { type: string, nullable: true, description: 'Set by PATCH /quotes/{quoteId}; show it in place of the id.' }
+        retiredAt: { type: string, format: date-time, nullable: true }
+    QuoteLabel:
+      type: object
+      required: [quoteId, updatedAt, updatedBy]
+      properties:
+        quoteId: { type: string }
+        displayName: { type: string, nullable: true }
+        retiredAt: { type: string, format: date-time, nullable: true }
+        retiredBy: { type: string, nullable: true }
+        updatedAt: { type: string, format: date-time }
+        updatedBy: { type: string }
+    QuoteOwnerRequest:
+      type: object
+      required: [rationale]
+      properties:
+        rationale: { type: string, description: Why (audited). }
+        applicantUserId: { type: string, nullable: true, maxLength: 256, description: The Applicant who may attach uploads and context; null clears the owner (underwriter roles only). }
+    QuoteLabelRequest:
+      type: object
+      required: [rationale]
+      properties:
+        rationale: { type: string, description: Why (audited). }
+        displayName: { type: string, nullable: true, maxLength: 256, description: Omit to keep; empty string clears it. }
+        retired: { type: boolean, nullable: true, description: true retires, false restores, omit to keep. }
+    PeriodExposure:
+      type: object
+      required: [effectiveDate, amount]
+      properties:
+        effectiveDate: { type: string, format: date, description: Policy period effective date; exposures sum by its year. }
+        amount: { type: number, minimum: 0, description: Payroll in dollars, or an FTE count. }
+        policyNumber: { type: string, nullable: true }
+    QuoteContext:
+      type: object
+      required: [quoteId]
+      properties:
+        quoteId: { type: string }
+        payrollByPeriod: { type: array, items: { $ref: '#/components/schemas/PeriodExposure' }, nullable: true }
+        fteByPeriod: { type: array, items: { $ref: '#/components/schemas/PeriodExposure' }, nullable: true }
+        lastDayWorked: { type: string, format: date, nullable: true, description: Account-level; a claim's own lastDayWorked (when the carrier prints it) wins. }
+        targetPolicyEffectiveDate: { type: string, format: date, nullable: true, description: 'Brief 29: the effective date of the policy being quoted (R-15).' }
+        requestedPolicyYears: { type: array, items: { type: integer }, nullable: true, description: 'Brief 29: policy years the submission asks for (R-25).' }
+        updatedAt: { type: string, format: date-time, nullable: true, readOnly: true }
+        updatedBy: { type: string, nullable: true, readOnly: true }
+    AuditTrailEntry:
+      type: object
+      required: [at, user, role, action]
+      properties:
+        id: { type: integer, nullable: true }
+        at: { type: string, format: date-time }
+        user: { type: string }
+        role: { type: string }
+        action: { type: string }
+        uploadId: { type: string, nullable: true }
+        documentId: { type: string, nullable: true }
+        revision: { type: integer, nullable: true }
+        fieldPath: { type: string, nullable: true }
+        oldValue: { type: string, nullable: true }
+        newValue: { type: string, nullable: true }
+        rationale: { type: string, nullable: true }
+        ledgerTransactionId: { type: integer, nullable: true }
+        committedAt: { type: string, format: date-time, nullable: true }
+        committedBy: { type: string, nullable: true }
+    AuditTrailView:
+      type: object
+      required: [entries, protection]
+      properties:
+        entries: { type: array, items: { $ref: '#/components/schemas/AuditTrailEntry' } }
+        protection: { type: string, enum: [ledger, append-only-blob] }
+        lastDigestAt: { type: string, format: date-time, nullable: true }
+    CostLine:
+      type: object
+      required: [service, meter, quantity, unit, unitPrice, costUsd]
+      properties:
+        service: { type: string }
+        meter: { type: string }
+        quantity: { type: number }
+        unit: { type: string }
+        unitPrice: { type: number }
+        costUsd: { type: number }
+        priceSource: { type: string, nullable: true }
+    CostByPath:
+      type: object
+      required: [path, documents, totalUsd, meanUsd, modelCalls]
+      properties:
+        path: { type: string }
+        documents: { type: integer }
+        totalUsd: { type: number }
+        meanUsd: { type: number }
+        modelCalls: { type: integer }
+    CostByCarrier:
+      type: object
+      required: [carrier, learnUsd, replayDocs, replayMeanUsd, replaySavingsUsd]
+      properties:
+        carrier: { type: string }
+        learnUsd: { type: number }
+        replayDocs: { type: integer }
+        replayMeanUsd: { type: number }
+        replaySavingsUsd: { type: number }
+        breakEvenDoc: { type: integer, nullable: true }
+    DocumentCostLine:
+      type: object
+      required: [documentId, path, costUsd, pages, modelCalls, computedAt, lines]
+      properties:
+        documentId: { type: string }
+        carrier: { type: string, nullable: true }
+        path: { type: string }
+        costUsd: { type: number }
+        pages: { type: integer }
+        modelCalls: { type: integer }
+        computedAt: { type: string, format: date-time }
+        lines: { type: array, items: { $ref: '#/components/schemas/CostLine' } }
+    CostReconciliation:
+      type: object
+      required: [meteredUsd, billedUsd, ratio, exportDate]
+      properties:
+        meteredUsd: { type: number }
+        billedUsd: { type: number }
+        ratio: { type: number }
+        exportDate: { type: string, format: date, description: Last day of the reconciled period. }
+        from: { type: string, format: date, nullable: true, description: First day of the reconciled period. }
+        platformBilledUsd: { type: number, nullable: true, description: 'Standing platform costs billed in the period (orchestration, compute, database, storage, search): not per document.' }
+        scope: { type: string, nullable: true, description: What the ratio covers and how gaps are explained (docs/evaluation/results/…-cost-reconciliation). }
+    CostSummary:
+      type: object
+      required: [pocToDateUsd, documentsProcessed, avgCostPerDocumentUsd, zeroModelCallShare, byPath, byCarrier, documents]
+      properties:
+        pocToDateUsd: { type: number }
+        documentsProcessed: { type: integer }
+        avgCostPerDocumentUsd: { type: number }
+        zeroModelCallShare: { type: number }
+        byPath: { type: array, items: { $ref: '#/components/schemas/CostByPath' } }
+        byCarrier: { type: array, items: { $ref: '#/components/schemas/CostByCarrier' } }
+        documents: { type: array, items: { $ref: '#/components/schemas/DocumentCostLine' } }
+        reconciliation: { allOf: [{ $ref: '#/components/schemas/CostReconciliation' }], nullable: true }
+    FlagPushRequest:
+      type: object
+      properties:
+        flags: { type: array, items: { type: string }, nullable: true, description: Push only these flags; all when omitted. }
+        rationale: { type: string, nullable: true }
+    FlagPushResult:
+      type: object
+      required: [quoteId, claims, flags, delivery, at]
+      properties:
+        quoteId: { type: string }
+        claims: { type: integer }
+        flags: { type: object, additionalProperties: { type: integer } }
+        delivery: { type: string }
+        at: { type: string, format: date-time }
+    FollowUpRequest:
+      type: object
+      required: [assignee, action]
+      properties:
+        assignee: { type: string }
+        action: { type: string }
+        note: { type: string, nullable: true }
+        claimIds: { type: array, items: { type: string }, nullable: true }
+        due: { type: string, format: date, nullable: true }
+    FollowUp:
+      type: object
+      required: [id, quoteId, assignee, action, claimIds, createdBy, createdAt]
+      properties:
+        id: { type: string }
+        quoteId: { type: string }
+        assignee: { type: string }
+        action: { type: string }
+        note: { type: string, nullable: true }
+        claimIds: { type: array, items: { type: string } }
+        due: { type: string, format: date, nullable: true }
+        createdBy: { type: string }
+        createdAt: { type: string, format: date-time }
+    ChatTurnRequest:
+      type: object
+      required: [scope, question]
+      properties:
+        scope: { type: string, enum: [org, quote, workspace] }
+        question: { type: string, maxLength: 2000 }
+        quoteId: { type: string, nullable: true, description: Required when scope is quote. }
+        workspaceId: { type: string, nullable: true, description: Required when scope is workspace. }
+        conversationId: { type: string, nullable: true, description: Continue a conversation (same user and scope, else 409). }
+    ChatCitation:
+      type: object
+      required: [ref, kind, label]
+      properties:
+        ref: { type: string, description: 'Id used inline in the text: S# (page chunk), C# (claim row), M# (metric).' }
+        kind: { type: string, enum: [page, claim, metric] }
+        label: { type: string }
+        documentId: { type: string, nullable: true }
+        page: { type: integer, nullable: true }
+        sheet: { type: string, nullable: true }
+        fieldPath: { type: string, nullable: true }
+        claimId: { type: string, nullable: true }
+        metric: { type: string, nullable: true }
+        fileName: { type: string, nullable: true }
+        quoteId: { type: string, nullable: true }
+    ChatToolCall:
+      type: object
+      required: [tool, arguments, results, ms, dropped]
+      properties:
+        tool: { type: string, enum: [search_documents, query_claims, compute_metric] }
+        arguments: { type: string, description: JSON the model passed; the scope is never among them. }
+        results: { type: integer }
+        ms: { type: integer, format: int64 }
+        dropped: { type: integer, description: Results removed by the post-filter scope check. }
+        note: { type: string, nullable: true }
+    ChatTurnUsage:
+      type: object
+      required: [modelCalls, inputTokens, cachedInputTokens, outputTokens, embeddings, searchQueries, costUsd, firstTokenMs, totalMs, lines]
+      properties:
+        modelCalls: { type: integer }
+        inputTokens: { type: integer, format: int64 }
+        cachedInputTokens: { type: integer, format: int64 }
+        outputTokens: { type: integer, format: int64 }
+        embeddings: { type: integer }
+        searchQueries: { type: integer }
+        costUsd: { type: number }
+        firstTokenMs: { type: integer, format: int64 }
+        totalMs: { type: integer, format: int64 }
+        lines: { type: array, items: { $ref: '#/components/schemas/CostLine' } }
+    ChatTurnResult:
+      type: object
+      required: [turnId, conversationId, userId, role, scope, question, text, notFound, citations, toolTrace, usage, at]
+      properties:
+        turnId: { type: string }
+        conversationId: { type: string }
+        userId: { type: string }
+        role: { type: string }
+        scope: { type: string, enum: [org, quote, workspace] }
+        quoteId: { type: string, nullable: true }
+        workspaceId: { type: string, nullable: true }
+        question: { type: string }
+        text: { type: string, description: 'Answer with inline refs ([S1], [C2], [M1]).' }
+        notFound: { type: boolean }
+        citations: { type: array, items: { $ref: '#/components/schemas/ChatCitation' } }
+        toolTrace: { type: array, items: { $ref: '#/components/schemas/ChatToolCall' } }
+        usage: { $ref: '#/components/schemas/ChatTurnUsage' }
+        at: { type: string, format: date-time }
+        invalidCitations: { type: array, items: { type: string }, nullable: true, description: Refs the model wrote that no tool returned this turn (dropped). }
+        capNote: { type: string, nullable: true, description: 'Set when a per-turn cap (6 tool calls, 12 document chunks) stopped a tool.' }
+        unverified: { type: array, items: { type: string }, nullable: true, description: 'Brief 24 step 5: names, dates or quotations in the answer that no tool returned this turn (fact guard); also a "fact-guard" entry in toolTrace.' }
+    ChatConversation:
+      type: object
+      required: [conversationId, turns]
+      properties:
+        conversationId: { type: string }
+        turns: { type: array, items: { $ref: '#/components/schemas/ChatTurnResult' } }
+    WorkspaceRequest:
+      type: object
+      properties:
+        name: { type: string, nullable: true, maxLength: 200 }
+    ChatWorkspace:
+      type: object
+      required: [workspaceId, ownerUserId, createdAt, expiresAt]
+      properties:
+        workspaceId: { type: string }
+        ownerUserId: { type: string }
+        name: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+        expiresAt: { type: string, format: date-time }
+        deletedAt: { type: string, format: date-time, nullable: true }
+    ReopenRequest:
+      type: object
+      required: [reason]
+      properties:
+        reason: { type: string }
+    OverrideRequest:
+      type: object
+      required: [overrides, rationale]
+      properties:
+        overrides: { type: array, items: { $ref: '#/components/schemas/FieldOverride' } }
+        rationale: { type: string }
+    OverrideResult:
+      type: object
+      required: [documentId, revision, changed, hardFailures, attempts, at]
+      properties:
+        documentId: { type: string }
+        revision: { type: integer }
+        changed: { type: integer }
+        hardFailures: { type: integer }
+        attempts: { type: integer, description: 1 unless a concurrent decision took the revision first. }
+        at: { type: string, format: date-time }
+    AnnotationRequest:
+      type: object
+      required: [text]
+      properties:
+        text: { type: string, maxLength: 4000 }
+        claimIds: { type: array, items: { type: string }, nullable: true }
+        category: { type: string, nullable: true }
+    Annotation:
+      type: object
+      required: [id, quoteId, text, claimIds, createdBy, createdAt, outboxId]
+      properties:
+        id: { type: string }
+        quoteId: { type: string }
+        text: { type: string }
+        claimIds: { type: array, items: { type: string } }
+        category: { type: string, nullable: true }
+        createdBy: { type: string }
+        createdAt: { type: string, format: date-time }
+        outboxId: { type: string, description: The Service Bus MessageId and the Idempotency-Key the quote system receives. }
+    OutboxEntry:
+      type: object
+      required: [id, channel, kind, payload, createdAt, createdBy, publishAttempts]
+      properties:
+        id: { type: string }
+        channel: { type: string, enum: [command, event] }
+        kind: { type: string, enum: [quote.flags, quote.annotation, quote.followup, quote.memo-link, quote.payload, upload.completed, review.decided, format.learned] }
+        quoteId: { type: string, nullable: true }
+        subject: { type: string, nullable: true }
+        payload: { type: object }
+        createdAt: { type: string, format: date-time }
+        createdBy: { type: string }
+        publishedAt: { type: string, format: date-time, nullable: true }
+        publishAttempts: { type: integer }
+        lastError: { type: string, nullable: true }
+        deliveredAt: { type: string, format: date-time, nullable: true }
+        deliveryStatus: { type: string, enum: [delivered, replayed, superseded, rejected], nullable: true, description: 'superseded: 409 stale-revision, the quote system holds a newer quoteRevision (ADR 0024); completed, not retried or dead-lettered.' }
+        delivery: { type: object, nullable: true, description: The quote system's status and body. }

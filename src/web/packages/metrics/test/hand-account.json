@@ -1,0 +1,78 @@
+{
+  "description": "Brief 10 hand-computed account: 7 WC claims over policy years 2022-2023 plus one GL row. Every expected value below was worked out by hand from docs/analytics/catalog.yaml (arithmetic in docs/analytics/hand-account-arithmetic.md); both the C# engine and the TypeScript twin assert them.",
+  "input": {
+    "context": { "quoteId": "Q-HAND-1", "valuationDate": "2025-06-30", "payrollCentsByYear": { "2022": 100000000, "2023": 200000000 }, "fteByYear": { "2022": 20, "2023": 40 }, "lastDayWorked": "2024-01-31" },
+    "claims": [
+      { "id": "d/0/0", "claimNumber": "A", "policyNumber": "P22", "policyYear": 2022, "dateOfInjury": "2022-03-01", "dateReported": "2022-03-05", "dateClosed": "2022-09-27", "status": "closed", "claimType": "indemnity", "natureCode": "52", "causeCode": "56", "bodyPartCode": "42", "typeOfLossCode": null, "description": "lifting box", "litigation": false, "cumulativeTrauma": null, "jurisdiction": "CA", "lineOfBusiness": "WC", "indemnityPaidCents": 4000000, "indemnityReserveCents": 0, "medicalPaidCents": 1500000, "medicalReserveCents": 0, "expensePaidCents": 100000, "expenseReserveCents": 0, "recoveryCents": null },
+      { "id": "d/0/1", "claimNumber": "B", "policyNumber": "P22", "policyYear": 2022, "dateOfInjury": "2022-06-10", "dateReported": "2022-08-01", "dateClosed": null, "status": "open", "claimType": "indemnity", "natureCode": "52", "causeCode": "97", "bodyPartCode": "42", "typeOfLossCode": null, "description": null, "litigation": true, "cumulativeTrauma": null, "jurisdiction": "CA", "lineOfBusiness": "WC", "indemnityPaidCents": 6000000, "indemnityReserveCents": 5000000, "medicalPaidCents": 2000000, "medicalReserveCents": 1000000, "expensePaidCents": 500000, "expenseReserveCents": 500000, "recoveryCents": null },
+      { "id": "d/0/2", "claimNumber": "C", "policyNumber": "P22", "policyYear": 2022, "dateOfInjury": "2022-11-20", "dateReported": "2022-11-21", "dateClosed": "2023-01-19", "status": "closed", "claimType": "medicalOnly", "natureCode": "40", "causeCode": "56", "bodyPartCode": "36", "typeOfLossCode": null, "description": null, "litigation": null, "cumulativeTrauma": null, "jurisdiction": "CA", "lineOfBusiness": "WC", "indemnityPaidCents": 0, "indemnityReserveCents": 0, "medicalPaidCents": 200000, "medicalReserveCents": 0, "expensePaidCents": 0, "expenseReserveCents": 0, "recoveryCents": null },
+      { "id": "d/0/3", "claimNumber": "D", "policyNumber": "P22", "policyYear": 2022, "dateOfInjury": "2022-12-15", "dateReported": "2023-02-14", "dateClosed": null, "status": "reopened", "claimType": "indemnity", "natureCode": "40", "causeCode": "29", "bodyPartCode": "36", "typeOfLossCode": null, "description": "Cumulative strain, both wrists", "litigation": false, "cumulativeTrauma": null, "jurisdiction": "NV", "lineOfBusiness": "WC", "indemnityPaidCents": 30000000, "indemnityReserveCents": 10000000, "medicalPaidCents": 5000000, "medicalReserveCents": 3000000, "expensePaidCents": 0, "expenseReserveCents": 0, "recoveryCents": null },
+      { "id": "d/1/0", "claimNumber": "E", "policyNumber": "P23", "policyYear": 2023, "dateOfInjury": "2023-04-01", "dateReported": "2023-04-11", "dateClosed": "2023-05-01", "status": "closed", "claimType": "medicalOnly", "natureCode": "52", "causeCode": "56", "bodyPartCode": "42", "typeOfLossCode": null, "description": null, "litigation": null, "cumulativeTrauma": null, "jurisdiction": "CA", "lineOfBusiness": "WC", "indemnityPaidCents": 0, "indemnityReserveCents": 0, "medicalPaidCents": 100000, "medicalReserveCents": 0, "expensePaidCents": 0, "expenseReserveCents": 0, "recoveryCents": 50000 },
+      { "id": "d/1/1", "claimNumber": "F", "policyNumber": "P23", "policyYear": 2023, "dateOfInjury": "2024-02-15", "dateReported": "2024-03-20", "dateClosed": null, "status": "open", "claimType": "indemnity", "natureCode": "60", "causeCode": null, "bodyPartCode": null, "typeOfLossCode": null, "description": null, "litigation": true, "cumulativeTrauma": null, "jurisdiction": "CA", "lineOfBusiness": "WC", "indemnityPaidCents": 1000000, "indemnityReserveCents": 4000000, "medicalPaidCents": 500000, "medicalReserveCents": 500000, "expensePaidCents": 0, "expenseReserveCents": 0, "recoveryCents": null },
+      { "id": "d/1/2", "claimNumber": "G", "policyNumber": "P23", "policyYear": 2023, "dateOfInjury": "2023-08-08", "dateReported": null, "dateClosed": null, "status": "closed", "claimType": null, "natureCode": null, "causeCode": null, "bodyPartCode": null, "typeOfLossCode": null, "description": null, "litigation": null, "cumulativeTrauma": null, "jurisdiction": null, "lineOfBusiness": "WC", "indemnityPaidCents": 0, "indemnityReserveCents": 0, "medicalPaidCents": 300000, "medicalReserveCents": 0, "expensePaidCents": 50000, "expenseReserveCents": 0, "recoveryCents": null, "reportOnly": true },
+      { "id": "d/1/3", "claimNumber": "H", "policyNumber": "P23", "policyYear": 2023, "dateOfInjury": "2023-09-01", "dateReported": "2023-09-02", "dateClosed": null, "status": "open", "claimType": "indemnity", "natureCode": null, "causeCode": null, "bodyPartCode": null, "typeOfLossCode": null, "description": "auto liability row", "litigation": null, "cumulativeTrauma": null, "jurisdiction": "CA", "lineOfBusiness": "GL", "indemnityPaidCents": 999900, "indemnityReserveCents": 0, "medicalPaidCents": 0, "medicalReserveCents": 0, "expensePaidCents": 0, "expenseReserveCents": 0, "recoveryCents": null }
+    ],
+    "overrides": [
+      { "id": "o1", "claimId": "d/0/1", "field": "indemnity.reserve" },
+      { "id": "o2", "claimId": "d/1/0", "field": "status" }
+    ]
+  },
+  "expected": {
+    "claim_count": { "value": "7", "contributors": "all", "overrides": [] },
+    "claim_count_with_financials": { "value": "6", "contributors": ["d/0/0", "d/0/1", "d/0/2", "d/0/3", "d/1/0", "d/1/1"], "overrides": [] },
+    "open_claim_count": { "value": "3", "contributors": ["d/0/1", "d/0/3", "d/1/1"], "overrides": [] },
+    "closed_claim_count": { "value": "4", "contributors": ["d/0/0", "d/0/2", "d/1/0", "d/1/2"], "overrides": ["o2"] },
+    "reopened_claim_count": { "value": "1", "contributors": ["d/0/3"] },
+    "medical_only_count": { "value": "2", "contributors": ["d/0/2", "d/1/0"] },
+    "lost_time_count": { "value": "4", "contributors": ["d/0/0", "d/0/1", "d/0/3", "d/1/1"] },
+    "lost_time_share": { "value": "0.571429" },
+    "paid_total": { "value": "512500", "breakdown": [["indemnity", "410000"], ["medical", "96000"], ["expense", "6500"]], "overrides": [] },
+    "reserve_total": { "value": "240000", "breakdown": [["indemnity", "190000"], ["medical", "45000"], ["expense", "5000"]], "overrides": ["o1"] },
+    "incurred_total": { "value": "752500", "breakdown": [["indemnity", "600000"], ["medical", "141000"], ["expense", "11500"]], "overrides": ["o1"] },
+    "frequency_per_100_payroll": { "value": "0.000233", "breakdown": [["2022", "0.0004"], ["2023", "0.00015"]] },
+    "frequency_per_100_fte": { "value": "11.666667", "breakdown": [["2022", "20"], ["2023", "7.5"]] },
+    "claim_count_by_policy_year": { "value": "2", "breakdown": [["2022", "4"], ["2023", "3"]] },
+    "severity_all": { "value": "107500", "overrides": ["o1"] },
+    "severity_lost_time": { "value": "186500", "contributors": ["d/0/0", "d/0/1", "d/0/3", "d/1/1"], "overrides": ["o1"] },
+    "paid_to_incurred": { "value": "0.681063" },
+    "large_loss_count": { "value": "2", "breakdown": [["100000", "2"], ["250000", "1"], ["500000", "0"]], "contributors": ["d/0/1", "d/0/3"] },
+    "large_loss_share": { "value": "0.837209", "breakdown": [["100000", "0.837209"], ["250000", "0.637874"], ["500000", "0"]] },
+    "capped_incurred": { "value": "522500", "breakdown": [["250000", "522500"], ["500000", "752500"]] },
+    "loss_drivers_cause_incurred": { "value": "480000", "breakdown": [["29", "480000"], ["97", "150000"], ["unknown", "63500"], ["56", "59000"]] },
+    "loss_drivers_cause_count": { "value": "3", "breakdown": [["56", "3"], ["unknown", "2"], ["29", "1"], ["97", "1"]] },
+    "loss_drivers_body_part_incurred": { "value": "482000", "breakdown": [["36", "482000"], ["42", "207000"], ["unknown", "63500"]] },
+    "loss_drivers_body_part_count": { "value": "3", "breakdown": [["42", "3"], ["36", "2"], ["unknown", "2"]] },
+    "loss_drivers_nature_incurred": { "value": "482000", "breakdown": [["40", "482000"], ["52", "207000"], ["60", "60000"], ["unknown", "3500"]] },
+    "loss_drivers_nature_count": { "value": "3", "breakdown": [["52", "3"], ["40", "2"], ["60", "1"], ["unknown", "1"]] },
+    "litigation_rate": { "value": "0.5", "contributors": ["d/0/0", "d/0/1", "d/0/3", "d/1/1"] },
+    "ct_share": { "value": "0.428571" },
+    "ct_indemnity_share": { "value": "0.75" },
+    "post_termination_ct_count": { "value": "1", "contributors": ["d/1/1"] },
+    "subrogation_recovery_rate": { "value": "0.5", "contributors": ["d/1/0"] },
+    "closure_median_days": { "value": "60", "contributors": ["d/0/0", "d/0/2", "d/1/0"] },
+    "open_claim_age": { "value": "3", "breakdown": [["<1y", "0"], ["1-2y", "1"], ["2-3y", "1"], ["3y+", "1"]] },
+    "reporting_lag_median_days": { "value": "22", "contributors": ["d/0/0", "d/0/1", "d/0/2", "d/0/3", "d/1/0", "d/1/1"] },
+    "reporting_lag_p90_days": { "value": "61" },
+    "reporting_lag_over_30_share": { "value": "0.5" },
+    "incurred_by_policy_year": { "value": "752500", "breakdown": [["2022", "688000"], ["2023", "64500"]] },
+    "paid_by_policy_year": { "value": "512500", "breakdown": [["2022", "493000"], ["2023", "19500"]] },
+    "severity_by_policy_year": { "value": "107500", "breakdown": [["2022", "172000"], ["2023", "21500"]] },
+    "paid_to_incurred_by_policy_year": { "value": "0.681063", "breakdown": [["2022", "0.71657"], ["2023", "0.302326"]] },
+    "non_ca_share": { "value": "0.142857", "breakdown": [["CA", "0.714286"], ["NV", "0.142857"], ["unknown", "0.142857"]] },
+    "non_wc_excluded_count": { "value": "1", "contributors": ["d/1/3"] }
+  },
+  "scenarios": [
+    {
+      "name": "exclude G and non-CA, trend 2023 +10 %, reserves +10 %, cap $300K",
+      "scenario": { "excludeClaimIds": ["d/1/2"], "includeNonCA": false, "trendFactorBpsByYear": { "2023": 11000 }, "reserveFactorBps": 1000, "capPerClaim": 300000 },
+      "claims": { "scenarioExcluded": 2, "included": 5 },
+      "expected": { "claim_count": "5", "incurred_total": "286550", "reserve_total": "125950", "severity_all": "57310" }
+    },
+    {
+      "name": "cap $100K: paid first, then reserves",
+      "scenario": { "capPerClaim": 100000 },
+      "claims": { "scenarioExcluded": 0, "included": 7 },
+      "expected": { "incurred_total": "322500", "paid_total": "262500", "reserve_total": "60000", "large_loss_count": "2" }
+    }
+  ]
+}

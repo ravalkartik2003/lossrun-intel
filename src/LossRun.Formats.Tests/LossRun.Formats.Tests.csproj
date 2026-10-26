@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <!-- Test-only JSON Schema validator, pinned to an MIT release (9.x is OSMF EULA); see THIRD-PARTY.md. -->
+    <PackageReference Include="JsonSchema.Net" Version="7.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Formats\LossRun.Formats.csproj" />
+    <ProjectReference Include="..\LossRun.Ingestion\LossRun.Ingestion.csproj" />
+    <ProjectReference Include="..\LossRun.Rules\LossRun.Rules.csproj" />
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\TestShared\*.cs" Link="Shared\%(Filename)%(Extension)" />
+    <None Include="..\TestShared\fixtures\*" Link="fixtures\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\TestShared\formats\**\*.json" Link="formats\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Graphs from the brief 08 evaluation run (synthetic corpus): scans whose fingerprint missed (08b recovery tests). -->
+    <None Include="..\TestShared\graphs\*.json" Link="graphs\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\TestShared\constructs\*.json" Link="constructs\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\LossRun.Ingestion.Tests\Recorded\*.json" Link="Recorded\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\docs\evaluation\carrier-format.schema.json" Link="schema\carrier-format.schema.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

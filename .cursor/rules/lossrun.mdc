@@ -1,0 +1,10 @@
+---
+description: lossrunresearch: where to start, hard constraints, the blind-run procedure
+alwaysApply: true
+---
+
+1. Read `CLAUDE.md` first: what this repo is, which document to read for which task, and the working rules.
+2. Hard constraints: Azure only; no labelled training data; learn a carrier's format once, then replay it deterministically with zero model calls (the model is the fallback); every extracted value carries cell-level lineage; every change is an append-only audit event.
+3. Model names, prices and infrastructure are configuration (`config/`, Terraform in `infra/`), never literals in code. SQL changes are rerunnable changesets in `db/changelog/`, every table in `dbo`.
+4. Never commit client documents, real loss runs, credentials or anything with PII. Synthetic samples only.
+5. Running the blind evaluation on a real archive: `docs/operations/blind-run.md` is the whole procedure, in order, with copy-pasteable commands.

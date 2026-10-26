@@ -1,0 +1,64 @@
+[
+  {
+    "formatId": "amtrust-pdf",
+    "version": 2,
+    "carrierName": "AmTrust North America",
+    "fileKind": "pdf",
+    "createdBy": "delta:gpt-5.4-mini@2026-03-17",
+    "createdAt": "2026-10-20T16:12:00Z",
+    "status": "active",
+    "supersedes": "amtrust-pdf@1",
+    "verificationGate": "pdf-totals",
+    "documentsProcessed": 212,
+    "modelCallsSaved": 212
+  },
+  {
+    "formatId": "pie-pdf",
+    "version": 1,
+    "carrierName": "Pie Insurance",
+    "fileKind": "pdf",
+    "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+    "createdAt": "2026-10-19T11:02:00Z",
+    "status": "active",
+    "verificationGate": "pdf-totals",
+    "documentsProcessed": 58,
+    "modelCallsSaved": 58
+  },
+  {
+    "formatId": "fictional-casualty-spreadsheet",
+    "version": 1,
+    "carrierName": "Fictional Casualty Group",
+    "fileKind": "spreadsheet",
+    "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+    "createdAt": "2026-10-22T14:03:29Z",
+    "status": "shadow",
+    "verificationGate": "spreadsheet-totals",
+    "documentsProcessed": 1,
+    "modelCallsSaved": 0
+  },
+  {
+    "formatId": "synthetic-mutual-pdf",
+    "version": 3,
+    "carrierName": "Synthetic Mutual Insurance Co.",
+    "fileKind": "pdf",
+    "createdBy": "hand",
+    "createdAt": "2026-10-22T12:40:00Z",
+    "status": "active",
+    "supersedes": "synthetic-mutual-pdf@2",
+    "verificationGate": "pdf-totals",
+    "documentsProcessed": 96,
+    "modelCallsSaved": 96
+  },
+  {
+    "formatId": "synthetic-mutual-pdf",
+    "version": 2,
+    "carrierName": "Synthetic Mutual Insurance Co.",
+    "fileKind": "pdf",
+    "createdBy": "delta:gpt-5.4-mini@2026-03-17",
+    "createdAt": "2026-10-21T20:10:00Z",
+    "status": "retired",
+    "verificationGate": "pdf-totals",
+    "documentsProcessed": 40,
+    "modelCallsSaved": 40
+  }
+]

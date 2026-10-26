@@ -1,0 +1,1689 @@
+{
+  "name": "scan-robustness",
+  "decision": "second opinion stays off: no trigger raised fully-correct documents above 8/24; page image: not measured",
+  "markdown": "### Scan robustness (06 answers 6\u20137)\r\n\r\n24 scans (c1 12, c2 12) across scan-150dpi-fax, scan-200dpi-rotated-noisy, scan-300dpi-clean; each replayed with the carrier\u0027s spec four ways. Claim-field accuracy (all printed claim, period and total fields) and key-field accuracy (claim #, DOI, indemnity/medical paid and reserve):\r\n\r\n| Rendering | Variant | Docs | Field accuracy | Key-field accuracy | Fully correct docs | Claims read / truth |\r\n|---|---|---:|---:|---:|---:|---:|\r\n| scan-150dpi-fax | cu\u002Bfallback | 8 | 87.7 % | 92.8 % | 0 | 102/102 |\r\n| scan-150dpi-fax | cu-tables-only | 8 | 87.7 % | 92.8 % | 0 | 102/102 |\r\n| scan-150dpi-fax | line-fallback-only | 8 | 64.8 % | 63.7 % | 0 | 99/102 |\r\n| scan-150dpi-fax | di-second-opinion | 8 | 86.0 % | 91.3 % | 0 | 102/102 |\r\n| scan-200dpi-rotated-noisy | cu\u002Bfallback | 8 | 98.2 % | 100.0 % | 4 | 102/102 |\r\n| scan-200dpi-rotated-noisy | cu-tables-only | 8 | 98.2 % | 100.0 % | 4 | 102/102 |\r\n| scan-200dpi-rotated-noisy | line-fallback-only | 8 | 95.3 % | 95.1 % | 0 | 109/102 |\r\n| scan-200dpi-rotated-noisy | di-second-opinion | 8 | 95.8 % | 99.8 % | 2 | 102/102 |\r\n| scan-300dpi-clean | cu\u002Bfallback | 8 | 99.6 % | 100.0 % | 4 | 102/102 |\r\n| scan-300dpi-clean | cu-tables-only | 8 | 99.6 % | 100.0 % | 4 | 102/102 |\r\n| scan-300dpi-clean | line-fallback-only | 8 | 99.6 % | 100.0 % | 0 | 114/102 |\r\n| scan-300dpi-clean | di-second-opinion | 8 | 99.8 % | 100.0 % | 5 | 102/102 |\r\n\r\nSecond-opinion trigger policies (DI replaces CU tables on the documents where the signal fires):\r\n\r\n| Trigger | Docs fired | Field accuracy | Fully correct docs | DI cost |\r\n|---|---:|---:|---:|---:|\r\n| never | 0 | 95.2 % | 8/24 | $0.00 |\r\n| always | 24 | 93.9 % | 7/24 | $0.24 |\r\n| zero-rows | 0 | 95.2 % | 8/24 | $0.00 |\r\n| hard-failure | 12 | 94.3 % | 8/24 | $0.12 |\r\n| fallback-rows | 0 | 95.2 % | 8/24 | $0.00 |\r\n| ocr-confidence\u003C0.9 | 2 | 95.0 % | 8/24 | $0.02 |\r\n\r\n**Decision (06 answer 6):** second opinion stays off: no trigger raised fully-correct documents above 8/24.\r\n\r\n**Decision (06 answer 7):** page image: not measured.\r\n",
+  "data": {
+    "rows": [
+      {
+        "doc": "c1-001-scan-150dpi-fax",
+        "carrier": "c1",
+        "inputType": "scan-150dpi-fax",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.941,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 181,
+            "correct": 173,
+            "keyFields": 72,
+            "keyCorrect": 68,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 10,
+            "fieldShare": 0.9558011049723757,
+            "keyShare": 0.9444444444444444,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 181,
+            "correct": 173,
+            "keyFields": 72,
+            "keyCorrect": 68,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 10,
+            "fieldShare": 0.9558011049723757,
+            "keyShare": 0.9444444444444444,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 181,
+            "correct": 173,
+            "keyFields": 72,
+            "keyCorrect": 68,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 10,
+            "fieldShare": 0.9558011049723757,
+            "keyShare": 0.9444444444444444,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 181,
+            "correct": 165,
+            "keyFields": 72,
+            "keyCorrect": 64,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 15,
+            "fieldShare": 0.9116022099447514,
+            "keyShare": 0.8888888888888888,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-001-scan-200dpi-rotated-noisy",
+        "carrier": "c1",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.979,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 181,
+            "correct": 165,
+            "keyFields": 72,
+            "keyCorrect": 72,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 18,
+            "fieldShare": 0.9116022099447514,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 181,
+            "correct": 165,
+            "keyFields": 72,
+            "keyCorrect": 72,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 18,
+            "fieldShare": 0.9116022099447514,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 181,
+            "correct": 105,
+            "keyFields": 72,
+            "keyCorrect": 42,
+            "truthClaims": 12,
+            "matchedClaims": 7,
+            "predictedClaims": 8,
+            "hardFailures": 13,
+            "fieldShare": 0.580110497237569,
+            "keyShare": 0.5833333333333334,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 181,
+            "correct": 165,
+            "keyFields": 72,
+            "keyCorrect": 72,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 18,
+            "fieldShare": 0.9116022099447514,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-001-scan-300dpi-clean",
+        "carrier": "c1",
+        "inputType": "scan-300dpi-clean",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.977,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 181,
+            "correct": 178,
+            "keyFields": 72,
+            "keyCorrect": 72,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 0,
+            "fieldShare": 0.9834254143646409,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 181,
+            "correct": 178,
+            "keyFields": 72,
+            "keyCorrect": 72,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 0,
+            "fieldShare": 0.9834254143646409,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 181,
+            "correct": 178,
+            "keyFields": 72,
+            "keyCorrect": 72,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 13,
+            "hardFailures": 1,
+            "fieldShare": 0.9834254143646409,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 181,
+            "correct": 181,
+            "keyFields": 72,
+            "keyCorrect": 72,
+            "truthClaims": 12,
+            "matchedClaims": 12,
+            "predictedClaims": 12,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-007-scan-150dpi-fax",
+        "carrier": "c1",
+        "inputType": "scan-150dpi-fax",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.935,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 229,
+            "correct": 219,
+            "keyFields": 90,
+            "keyCorrect": 86,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 9,
+            "fieldShare": 0.9563318777292577,
+            "keyShare": 0.9555555555555556,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 229,
+            "correct": 219,
+            "keyFields": 90,
+            "keyCorrect": 86,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 9,
+            "fieldShare": 0.9563318777292577,
+            "keyShare": 0.9555555555555556,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 229,
+            "correct": 219,
+            "keyFields": 90,
+            "keyCorrect": 86,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 9,
+            "fieldShare": 0.9563318777292577,
+            "keyShare": 0.9555555555555556,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 229,
+            "correct": 216,
+            "keyFields": 90,
+            "keyCorrect": 84,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 18,
+            "fieldShare": 0.9432314410480349,
+            "keyShare": 0.9333333333333333,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-007-scan-200dpi-rotated-noisy",
+        "carrier": "c1",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.978,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 16,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-007-scan-300dpi-clean",
+        "carrier": "c1",
+        "inputType": "scan-300dpi-clean",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.979,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 229,
+            "correct": 226,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 0,
+            "fieldShare": 0.9868995633187773,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 229,
+            "correct": 226,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 0,
+            "fieldShare": 0.9868995633187773,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 229,
+            "correct": 226,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 16,
+            "hardFailures": 1,
+            "fieldShare": 0.9868995633187773,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-015-scan-150dpi-fax",
+        "carrier": "c1",
+        "inputType": "scan-150dpi-fax",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.964,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 169,
+            "correct": 168,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 2,
+            "fieldShare": 0.9940828402366864,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 169,
+            "correct": 168,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 2,
+            "fieldShare": 0.9940828402366864,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 169,
+            "correct": 168,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 2,
+            "fieldShare": 0.9940828402366864,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 169,
+            "correct": 165,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 2,
+            "fieldShare": 0.9763313609467456,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-015-scan-200dpi-rotated-noisy",
+        "carrier": "c1",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.978,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 11,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-015-scan-300dpi-clean",
+        "carrier": "c1",
+        "inputType": "scan-300dpi-clean",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.977,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 11,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 169,
+            "correct": 169,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-022-scan-150dpi-fax",
+        "carrier": "c1",
+        "inputType": "scan-150dpi-fax",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.943,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 229,
+            "correct": 224,
+            "keyFields": 90,
+            "keyCorrect": 87,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 22,
+            "fieldShare": 0.9781659388646288,
+            "keyShare": 0.9666666666666667,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 229,
+            "correct": 224,
+            "keyFields": 90,
+            "keyCorrect": 87,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 22,
+            "fieldShare": 0.9781659388646288,
+            "keyShare": 0.9666666666666667,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 229,
+            "correct": 224,
+            "keyFields": 90,
+            "keyCorrect": 87,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 22,
+            "fieldShare": 0.9781659388646288,
+            "keyShare": 0.9666666666666667,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 229,
+            "correct": 223,
+            "keyFields": 90,
+            "keyCorrect": 88,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 16,
+            "fieldShare": 0.9737991266375546,
+            "keyShare": 0.9777777777777777,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-022-scan-200dpi-rotated-noisy",
+        "carrier": "c1",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.981,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 6,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 6,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 16,
+            "hardFailures": 8,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 229,
+            "correct": 226,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 6,
+            "fieldShare": 0.9868995633187773,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c1-022-scan-300dpi-clean",
+        "carrier": "c1",
+        "inputType": "scan-300dpi-clean",
+        "spec": "synthetic-mutual-pdf@1",
+        "meanOcrConfidence": 0.979,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 6,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 6,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 16,
+            "hardFailures": 8,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 229,
+            "correct": 229,
+            "keyFields": 90,
+            "keyCorrect": 90,
+            "truthClaims": 15,
+            "matchedClaims": 15,
+            "predictedClaims": 15,
+            "hardFailures": 6,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-000-scan-150dpi-fax",
+        "carrier": "c2",
+        "inputType": "scan-150dpi-fax",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.916,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 149,
+            "correct": 135,
+            "keyFields": 48,
+            "keyCorrect": 43,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 9,
+            "fieldShare": 0.9060402684563759,
+            "keyShare": 0.8958333333333334,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 149,
+            "correct": 135,
+            "keyFields": 48,
+            "keyCorrect": 43,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 9,
+            "fieldShare": 0.9060402684563759,
+            "keyShare": 0.8958333333333334,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 149,
+            "correct": 127,
+            "keyFields": 48,
+            "keyCorrect": 39,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 9,
+            "hardFailures": 11,
+            "fieldShare": 0.8523489932885906,
+            "keyShare": 0.8125,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 149,
+            "correct": 133,
+            "keyFields": 48,
+            "keyCorrect": 43,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 12,
+            "fieldShare": 0.8926174496644296,
+            "keyShare": 0.8958333333333334,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-000-scan-200dpi-rotated-noisy",
+        "carrier": "c2",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.965,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 149,
+            "correct": 136,
+            "keyFields": 48,
+            "keyCorrect": 48,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 9,
+            "fieldShare": 0.912751677852349,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 149,
+            "correct": 136,
+            "keyFields": 48,
+            "keyCorrect": 48,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 9,
+            "fieldShare": 0.912751677852349,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 149,
+            "correct": 149,
+            "keyFields": 48,
+            "keyCorrect": 48,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 10,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 149,
+            "correct": 126,
+            "keyFields": 48,
+            "keyCorrect": 47,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 8,
+            "fieldShare": 0.8456375838926175,
+            "keyShare": 0.9791666666666666,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-000-scan-300dpi-clean",
+        "carrier": "c2",
+        "inputType": "scan-300dpi-clean",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.968,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 149,
+            "correct": 149,
+            "keyFields": 48,
+            "keyCorrect": 48,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 149,
+            "correct": 149,
+            "keyFields": 48,
+            "keyCorrect": 48,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 149,
+            "correct": 149,
+            "keyFields": 48,
+            "keyCorrect": 48,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 10,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 149,
+            "correct": 149,
+            "keyFields": 48,
+            "keyCorrect": 48,
+            "truthClaims": 8,
+            "matchedClaims": 8,
+            "predictedClaims": 8,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-006-scan-150dpi-fax",
+        "carrier": "c2",
+        "inputType": "scan-150dpi-fax",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.887,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 175,
+            "correct": 127,
+            "keyFields": 60,
+            "keyCorrect": 50,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 35,
+            "fieldShare": 0.7257142857142858,
+            "keyShare": 0.8333333333333334,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 175,
+            "correct": 127,
+            "keyFields": 60,
+            "keyCorrect": 50,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 35,
+            "fieldShare": 0.7257142857142858,
+            "keyShare": 0.8333333333333334,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 175,
+            "correct": 114,
+            "keyFields": 60,
+            "keyCorrect": 50,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 13,
+            "hardFailures": 36,
+            "fieldShare": 0.6514285714285715,
+            "keyShare": 0.8333333333333334,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 175,
+            "correct": 123,
+            "keyFields": 60,
+            "keyCorrect": 48,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 34,
+            "fieldShare": 0.7028571428571428,
+            "keyShare": 0.8,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure",
+          "ocr-confidence\u003C0.9"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-006-scan-200dpi-rotated-noisy",
+        "carrier": "c2",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.963,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 175,
+            "correct": 175,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 175,
+            "correct": 175,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 175,
+            "correct": 175,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 12,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 175,
+            "correct": 151,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 12,
+            "fieldShare": 0.8628571428571429,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-006-scan-300dpi-clean",
+        "carrier": "c2",
+        "inputType": "scan-300dpi-clean",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.97,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 175,
+            "correct": 175,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 175,
+            "correct": 175,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 175,
+            "correct": 175,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 12,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 175,
+            "correct": 175,
+            "keyFields": 60,
+            "keyCorrect": 60,
+            "truthClaims": 10,
+            "matchedClaims": 10,
+            "predictedClaims": 10,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-007-scan-150dpi-fax",
+        "carrier": "c2",
+        "inputType": "scan-150dpi-fax",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.908,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 227,
+            "correct": 182,
+            "keyFields": 84,
+            "keyCorrect": 80,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 25,
+            "fieldShare": 0.801762114537445,
+            "keyShare": 0.9523809523809523,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 227,
+            "correct": 182,
+            "keyFields": 84,
+            "keyCorrect": 80,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 25,
+            "fieldShare": 0.801762114537445,
+            "keyShare": 0.9523809523809523,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 227,
+            "correct": 22,
+            "keyFields": 84,
+            "keyCorrect": 0,
+            "truthClaims": 14,
+            "matchedClaims": 0,
+            "predictedClaims": 9,
+            "hardFailures": 24,
+            "fieldShare": 0.09691629955947137,
+            "keyShare": 0,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 227,
+            "correct": 179,
+            "keyFields": 84,
+            "keyCorrect": 80,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 25,
+            "fieldShare": 0.788546255506608,
+            "keyShare": 0.9523809523809523,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-007-scan-200dpi-rotated-noisy",
+        "carrier": "c2",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.968,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 227,
+            "correct": 226,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 0,
+            "fieldShare": 0.9955947136563876,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 227,
+            "correct": 226,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 0,
+            "fieldShare": 0.9955947136563876,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 227,
+            "correct": 226,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 16,
+            "hardFailures": 2,
+            "fieldShare": 0.9955947136563876,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 227,
+            "correct": 225,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 0,
+            "fieldShare": 0.9911894273127754,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-007-scan-300dpi-clean",
+        "carrier": "c2",
+        "inputType": "scan-300dpi-clean",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.973,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 227,
+            "correct": 226,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 0,
+            "fieldShare": 0.9955947136563876,
+            "keyShare": 1,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 227,
+            "correct": 226,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 0,
+            "fieldShare": 0.9955947136563876,
+            "keyShare": 1,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 227,
+            "correct": 226,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 16,
+            "hardFailures": 2,
+            "fieldShare": 0.9955947136563876,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 227,
+            "correct": 225,
+            "keyFields": 84,
+            "keyCorrect": 84,
+            "truthClaims": 14,
+            "matchedClaims": 14,
+            "predictedClaims": 14,
+            "hardFailures": 0,
+            "fieldShare": 0.9911894273127754,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-014-scan-150dpi-fax",
+        "carrier": "c2",
+        "inputType": "scan-150dpi-fax",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.891,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 279,
+            "correct": 209,
+            "keyFields": 108,
+            "keyCorrect": 94,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 37,
+            "fieldShare": 0.7491039426523297,
+            "keyShare": 0.8703703703703703,
+            "clean": false
+          },
+          "cu-tables-only": {
+            "fields": 279,
+            "correct": 209,
+            "keyFields": 108,
+            "keyCorrect": 94,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 37,
+            "fieldShare": 0.7491039426523297,
+            "keyShare": 0.8703703703703703,
+            "clean": false
+          },
+          "line-fallback-only": {
+            "fields": 279,
+            "correct": 15,
+            "keyFields": 108,
+            "keyCorrect": 0,
+            "truthClaims": 18,
+            "matchedClaims": 0,
+            "predictedClaims": 16,
+            "hardFailures": 42,
+            "fieldShare": 0.053763440860215055,
+            "keyShare": 0,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 279,
+            "correct": 205,
+            "keyFields": 108,
+            "keyCorrect": 92,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 38,
+            "fieldShare": 0.7347670250896058,
+            "keyShare": 0.8518518518518519,
+            "clean": false
+          }
+        },
+        "signals": [
+          "hard-failure",
+          "ocr-confidence\u003C0.9"
+        ],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-014-scan-200dpi-rotated-noisy",
+        "carrier": "c2",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.963,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 279,
+            "correct": 279,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 279,
+            "correct": 279,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 279,
+            "correct": 279,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 20,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 279,
+            "correct": 278,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 0,
+            "fieldShare": 0.996415770609319,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      },
+      {
+        "doc": "c2-014-scan-300dpi-clean",
+        "carrier": "c2",
+        "inputType": "scan-300dpi-clean",
+        "spec": "fictional-casualty-group-pdf@1",
+        "meanOcrConfidence": 0.968,
+        "pages": 1,
+        "variants": {
+          "cu\u002Bfallback": {
+            "fields": 279,
+            "correct": 279,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "cu-tables-only": {
+            "fields": 279,
+            "correct": 279,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 0,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": true
+          },
+          "line-fallback-only": {
+            "fields": 279,
+            "correct": 279,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 20,
+            "hardFailures": 2,
+            "fieldShare": 1,
+            "keyShare": 1,
+            "clean": false
+          },
+          "di-second-opinion": {
+            "fields": 279,
+            "correct": 278,
+            "keyFields": 108,
+            "keyCorrect": 108,
+            "truthClaims": 18,
+            "matchedClaims": 18,
+            "predictedClaims": 18,
+            "hardFailures": 0,
+            "fieldShare": 0.996415770609319,
+            "keyShare": 1,
+            "clean": false
+          }
+        },
+        "signals": [],
+        "diCostUsd": 0.01
+      }
+    ],
+    "policies": [
+      {
+        "trigger": "never",
+        "fired": 0,
+        "accuracy": {
+          "fields": 4914,
+          "correct": 4676,
+          "keyFields": 1836,
+          "keyCorrect": 1792,
+          "truthClaims": 306,
+          "matchedClaims": 306,
+          "predictedClaims": 306,
+          "hardFailures": 188,
+          "fieldShare": 0.9515669515669516,
+          "keyShare": 0.9760348583877996,
+          "clean": false
+        },
+        "cleanDocs": 8,
+        "diCostUsd": 0
+      },
+      {
+        "trigger": "always",
+        "fired": 24,
+        "accuracy": {
+          "fields": 4914,
+          "correct": 4613,
+          "keyFields": 1836,
+          "keyCorrect": 1782,
+          "truthClaims": 306,
+          "matchedClaims": 306,
+          "predictedClaims": 306,
+          "hardFailures": 210,
+          "fieldShare": 0.9387464387464387,
+          "keyShare": 0.9705882352941176,
+          "clean": false
+        },
+        "cleanDocs": 7,
+        "diCostUsd": 0.24
+      },
+      {
+        "trigger": "zero-rows",
+        "fired": 0,
+        "accuracy": {
+          "fields": 4914,
+          "correct": 4676,
+          "keyFields": 1836,
+          "keyCorrect": 1792,
+          "truthClaims": 306,
+          "matchedClaims": 306,
+          "predictedClaims": 306,
+          "hardFailures": 188,
+          "fieldShare": 0.9515669515669516,
+          "keyShare": 0.9760348583877996,
+          "clean": false
+        },
+        "cleanDocs": 8,
+        "diCostUsd": 0
+      },
+      {
+        "trigger": "hard-failure",
+        "fired": 12,
+        "accuracy": {
+          "fields": 4914,
+          "correct": 4635,
+          "keyFields": 1836,
+          "keyCorrect": 1782,
+          "truthClaims": 306,
+          "matchedClaims": 306,
+          "predictedClaims": 306,
+          "hardFailures": 198,
+          "fieldShare": 0.9432234432234432,
+          "keyShare": 0.9705882352941176,
+          "clean": false
+        },
+        "cleanDocs": 8,
+        "diCostUsd": 0.12
+      },
+      {
+        "trigger": "fallback-rows",
+        "fired": 0,
+        "accuracy": {
+          "fields": 4914,
+          "correct": 4676,
+          "keyFields": 1836,
+          "keyCorrect": 1792,
+          "truthClaims": 306,
+          "matchedClaims": 306,
+          "predictedClaims": 306,
+          "hardFailures": 188,
+          "fieldShare": 0.9515669515669516,
+          "keyShare": 0.9760348583877996,
+          "clean": false
+        },
+        "cleanDocs": 8,
+        "diCostUsd": 0
+      },
+      {
+        "trigger": "ocr-confidence\u003C0.9",
+        "fired": 2,
+        "accuracy": {
+          "fields": 4914,
+          "correct": 4668,
+          "keyFields": 1836,
+          "keyCorrect": 1788,
+          "truthClaims": 306,
+          "matchedClaims": 306,
+          "predictedClaims": 306,
+          "hardFailures": 188,
+          "fieldShare": 0.9499389499389499,
+          "keyShare": 0.9738562091503268,
+          "clean": false
+        },
+        "cleanDocs": 8,
+        "diCostUsd": 0.02
+      }
+    ],
+    "imageRows": []
+  },
+  "spendUsd": 0.24
+}

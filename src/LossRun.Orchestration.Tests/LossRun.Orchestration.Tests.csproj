@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+    <!-- Test-only YAML reader for the OpenAPI conformance test (MIT). -->
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
+    <!-- MIT. SQL Server 2022 for the SQL system-of-record end-to-end test (skipped without Docker). -->
+    <PackageReference Include="Testcontainers.MsSql" Version="4.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Orchestration\LossRun.Orchestration.csproj" />
+    <ProjectReference Include="..\LossRun.DbDeploy\LossRun.DbDeploy.csproj" />
+    <Compile Include="..\LossRun.Data.Tests\SqlFixture.cs" Link="Shared\SqlFixture.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\TestShared\fixtures\*" Link="fixtures\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Brief 33: TaskFailureDetails captured by tools/capture-failures (the classifier's fixture). -->
+    <None Include="fixtures\captured-failures.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\TestShared\formats\**\*.json" Link="formats\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\LossRun.Ingestion.Tests\Recorded\*.json" Link="Recorded\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\LossRun.Learning.Tests\Specs\*.json" Link="Specs\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\docs\api\openapi.yaml" Link="api\openapi.yaml" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\..\docs\api\openapi.yaml')" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,60 @@
+{
+  "pocToDateUsd": 42.18,
+  "documentsProcessed": 318,
+  "avgCostPerDocumentUsd": 0.133,
+  "zeroModelCallShare": 0.84,
+  "byPath": [
+    {
+      "path": "replay",
+      "documents": 267,
+      "meanUsd": 0.0074
+    },
+    {
+      "path": "delta",
+      "documents": 9,
+      "meanUsd": 0.0125
+    },
+    {
+      "path": "learn",
+      "documents": 14,
+      "meanUsd": 0.0312
+    },
+    {
+      "path": "review",
+      "documents": 28,
+      "meanUsd": 0.0188
+    }
+  ],
+  "byCarrier": [
+    {
+      "carrier": "AmTrust",
+      "learnUsd": 0.0187,
+      "replayDocs": 212,
+      "replaySavingsUsd": 3.96,
+      "breakEvenDoc": 2
+    },
+    {
+      "carrier": "Pie",
+      "learnUsd": 0.0241,
+      "replayDocs": 58,
+      "replaySavingsUsd": 1.08,
+      "breakEvenDoc": 2
+    },
+    {
+      "carrier": "Synthetic Mutual",
+      "learnUsd": 0.0,
+      "replayDocs": 96,
+      "replaySavingsUsd": 1.79,
+      "breakEvenDoc": 1
+    }
+  ],
+  "reconciliation": {
+    "meteredUsd": 25.479,
+    "billedUsd": 35.923,
+    "ratio": 0.7093,
+    "exportDate": "2026-10-22",
+    "from": "2026-10-21",
+    "platformBilledUsd": 6.4618,
+    "scope": "Excluding the learn-reliability studies (2026-10-22 16:00-18:59 UTC, a test harness that metered nothing) the ratio is 0.94."
+  }
+}

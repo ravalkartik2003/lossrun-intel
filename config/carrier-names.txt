@@ -1,0 +1,33 @@
+# Real carrier, TPA and pool names (brief 20 §4) that code in src/ must not name or condition on: tools/generic-guard.sh.
+# Carrier knowledge lives in learned specs and the glossary; code is layout-generic (docs/architecture/carrier-format-memory.md).
+# Maintained from the glossary's `source` tags and carrierProvenance (docs/evaluation/glossary.json), the real samples'
+# carrier labels (the local sample corpus manifest) and the vendor research. One name per line, matched as whole words and
+# case-insensitively; prefix `cs:` for a name matched case-sensitively (one that is also an ordinary word, e.g. "axis").
+cs:AXIS
+AXIS Insurance
+Liberty Mutual
+cs:Starr
+Starr Indemnity
+Chubb
+Travelers
+cs:AIG
+Arch Specialty
+Texas Mutual
+Prestige PEO
+cs:Lloyds
+Lloyd's
+Berkshire Hathaway
+biBERK
+Pie Insurance
+AmTrust
+The Hartford
+Zenith National
+ICW Group
+Employers Holdings
+cs:CNA
+Zurich
+Hanover Insurance
+Markel
+Nationwide
+State Compensation Insurance Fund
+cs:SCIF

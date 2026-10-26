@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Brief 33: captures TaskFailureDetails exactly as the orchestrator receives them, with no Azure call: real exceptions built by the SDKs
+    pass through the Functions worker's own conversion (with the app's IExceptionPropertiesProvider) and back. The output is the classifier's
+    test fixture. Re-run it when a Durable, Functions worker, Azure.Core, SqlClient or EF package version changes:
+      dotnet run (project tools/capture-failures), output to src/LossRun.Orchestration.Tests/fixtures/captured-failures.json
+    Package versions are the ones LossRun.Functions resolves (obj/project.assets.json); keep them in step.
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);NU1603;NU1608;CA1303;CA1031;CA1812;CA2000;CA1305</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DurableTask.Worker" Version="1.26.0" />
+    <PackageReference Include="Microsoft.DurableTask.Worker.Grpc" Version="1.26.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.DurableTask" Version="1.20.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
+    <ProjectReference Include="..\..\src\LossRun.Orchestration\LossRun.Orchestration.csproj" />
+  </ItemGroup>
+</Project>

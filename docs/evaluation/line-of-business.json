@@ -1,0 +1,26 @@
+{
+  "lineOfBusinessVersion": "lob-0.2.0",
+  "description": "ADR 0020 (brief 20 Answers 1): the scope of the POC is workers' compensation. A loss-run segment whose printed claim types and line/coverage labels name another line of business is kept, not processed (manifest reason 'line of business: <line>'), listed to the user and indexed for chat, never learned. Workers' comp evidence comes from the glossary (claim.claimType and document.lineOfBusiness value aliases); this file lists the other lines' printed terms. Terms match as whole words, case- and punctuation-insensitive. 'ambiguous' terms name several lines (or none) and are not evidence. Code: LossRun.Ingestion.LineOfBusinessDetector (reads this file; never the other way round).",
+  "inScope": "workersCompensation",
+  "labels": ["claim type", "coverage", "coverage type", "line of business", "line", "lob", "policy type"],
+  "lines": {
+    "property": ["property", "building", "contents", "business income", "business personal property", "bpp", "inland marine", "inland mar", "fire", "windstorm", "wind", "hail", "flood", "boiler", "equipment breakdown"],
+    "auto": ["auto", "automobile", "commercial auto", "vehicle", "physical damage", "collision", "comprehensive", "auto liability", "uninsured motorist"],
+    "generalLiability": ["general liability", "gl", "cgl", "premises liability", "products liability", "products completed operations"],
+    "professionalLiability": ["errors and omissions", "e o", "directors and officers", "d o", "professional liability", "public officials liability", "law enforcement liability", "educators legal liability", "school leaders"],
+    "crime": ["crime", "fidelity", "employee dishonesty"],
+    "bond": ["bond", "surety"],
+    "cyber": ["cyber"],
+    "umbrella": ["umbrella", "excess liability"]
+  },
+  "rowSignalsDescription": "Brief 23 §2 (ADR 0020 amendment): signals that classify a claim row, not the document. A row whose claim.lineOfBusiness value or claim-type code names another line is kept, not extracted: it is listed on the period's keptRows with the reason 'line of business: <line> (<evidence>)', counted, and never enters claims or totals; R-10/R-12 tie the claims plus the kept rows to a printed total. Patterns are .NET regexes over the whole printed value (case-insensitive). A code the glossary resolves to a workers' comp claim type is in scope before any pattern is tried.",
+  "rowSignals": [
+    { "field": "claim.claimType", "pattern": "^(?:CB|CM)$", "line": "workersCompensation", "source": "public sample Travelers", "note": "file prefix: Workers Comp Indemnity / Medical Only (Loss Reports Quick Guide data items)" },
+    { "field": "claim.claimType", "pattern": "^(?:LR|ER)$", "line": "generalLiability", "source": "public sample Travelers", "note": "file prefix: General Liability / Product Liability" },
+    { "field": "claim.claimType", "pattern": "^(?:PP|AB|AD)$", "line": "auto", "source": "public sample Travelers", "note": "file prefix: auto liability (no-fault, bodily injury) and physical damage" },
+    { "field": "claim.claimType", "pattern": "^(?:FN|FR|BR|DR)$", "line": "property", "source": "public sample Travelers", "note": "file prefix: property, boiler/machinery, burglary" },
+    { "field": "claim.claimType", "pattern": "^FY$", "line": "crime", "source": "public sample Travelers", "note": "file prefix: fidelity" },
+    { "field": "claim.claimType", "pattern": "^SR$", "line": "bond", "source": "public sample Travelers", "note": "file prefix: surety" }
+  ],
+  "ambiguous": ["property casualty", "property and casualty", "liability", "casualty", "all lines", "multi line", "package"]
+}

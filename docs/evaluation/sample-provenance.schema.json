@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lossrun.local/schemas/sample-provenance.schema.json",
+  "title": "Provenance of the local sample documents (samples/provenance.json)",
+  "description": "One row per file in the local, never-committed samples/ folder (docs/evaluation/sample-review.md). The file itself stays on the machine; only this schema is committed. A source whose status stays 'unknown' is not usable outside this machine, which is already the rule for the whole folder.",
+  "type": "object",
+  "required": ["schemaVersion", "generated", "files"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "generated": { "type": "string", "format": "date" },
+    "files": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file" }
+    }
+  },
+  "$defs": {
+    "file": {
+      "type": "object",
+      "required": ["path", "sha256", "role", "use"],
+      "additionalProperties": false,
+      "properties": {
+        "path": { "type": "string", "description": "Relative to samples/, forward slashes.", "pattern": "^[^\\\\]+$" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "role": {
+          "enum": ["original", "reference", "intermediate", "redacted", "demo-copy", "synthetic"],
+          "description": "original: a downloaded loss run; reference: a downloaded document that is not a loss run (RFP, manual, valuation); intermediate: derived from an original before redaction (e.g. rasterized); redacted: a redacted copy; demo-copy: byte-identical copy of a redacted file staged for a demo; synthetic: made, not downloaded."
+        },
+        "use": {
+          "enum": ["local-testing", "reference-only", "do-not-use"],
+          "description": "local-testing: may be used for local extraction tests (never committed, never uploaded); reference-only: vocabulary and value ranges; do-not-use: kept for lineage, not for tests (e.g. an unredacted original)."
+        },
+        "source": { "$ref": "#/$defs/source" },
+        "derivedFrom": { "type": ["string", "null"], "description": "Path (relative to samples/) of the file this one was made from." },
+        "derivation": { "$ref": "#/$defs/derivation" },
+        "notes": { "type": "string" }
+      },
+      "allOf": [
+        { "if": { "properties": { "role": { "enum": ["original", "reference"] } } }, "then": { "required": ["source"] } },
+        { "if": { "properties": { "role": { "enum": ["intermediate", "redacted", "demo-copy"] } } }, "then": { "required": ["derivedFrom", "derivation"] } }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["recorded", "named", "unknown"], "description": "recorded: URL known; named: publisher known, URL not recorded; unknown: neither." },
+        "url": { "type": ["string", "null"] },
+        "publisher": { "type": ["string", "null"], "description": "The public body or vendor that published the document." },
+        "basis": { "enum": ["public-filing", "vendor-sample", "open-data", "unknown"], "description": "Why the document may be held: a public body's own published record, a vendor's published sample, an open-data release." },
+        "retrieved": { "type": ["string", "null"], "format": "date" }
+      }
+    },
+    "derivation": {
+      "type": "object",
+      "required": ["method"],
+      "additionalProperties": false,
+      "properties": {
+        "method": { "enum": ["excerpt", "rasterize", "excerpt-and-rasterize", "redact", "copy"], "description": "excerpt: pages copied as they are (brief 22: a guide's sample-report pages); excerpt-and-rasterize: pages copied and rendered to images." },
+        "tool": { "type": ["string", "null"] },
+        "version": { "type": ["string", "null"] },
+        "settings": { "type": ["string", "null"] },
+        "pages": { "type": ["string", "null"], "description": "Source pages used, e.g. '60-108'." },
+        "date": { "type": ["string", "null"], "format": "date" },
+        "history": {
+          "type": "array",
+          "description": "Earlier runs that produced this file's content (a re-run on a redacted copy keeps the first run's work).",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": { "tool": { "type": ["string", "null"] }, "version": { "type": ["string", "null"] }, "settings": { "type": ["string", "null"] }, "date": { "type": ["string", "null"] } }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+/*
+ * Loss Run Intelligence — design tokens (docs/ui/design-brief.md §3). The only place colors, type, spacing, radius, shadow
+ * and motion are defined; components read the CSS variables. If the client's DX theme package arrives, map its tokens
+ * onto these names here. Contrast of every pair the components use is asserted by apps/workbench/src/a11y/contrast.test.ts.
+ */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --ink: #15233b;
+  --ink-2: #3c4858;
+  --ink-3: #5f6b7b; /* brief #6B7686 is 4.32:1 on surface; one step darker holds ≥ 4.5:1 on every light background */
+  --surface: #f7f8f6;
+  --surface-raised: #ffffff;
+  --surface-sunken: #eef0ed;
+  --line: #d9dee3;
+  --line-strong: #7a8593; /* ≥ 3:1 for component boundaries (WCAG 1.4.11): inputs, meters, toggles */
+  --action: #1e5aa8;
+  --action-ink: #ffffff;
+  --action-tint: #e7eef8;
+  --verified: #1f7a4d;
+  --verified-tint: #e6f2ec;
+  --review: #a5590a; /* brief #B4620B measures 4.20:1 on surface (the brief lists 4.6); darkened to 4.89:1, 4.63:1 on its tint */
+  --review-tint: #fbf0e3;
+  --fail: #b3261e;
+  --fail-tint: #fbe9e7;
+  --learned: #5b4bb5;
+  --learned-tint: #efedf9;
+  --highlight: rgb(255 224 138 / 45%);
+  --highlight-edge: #b38600;
+  --rail: #15233b;
+  --rail-ink: #e8ecf1;
+  --rail-ink-2: #b7c0cc;
+  --rail-active: #24365a;
+  --thread: #1e5aa8;
+  --shadow-float: 0 2px 8px rgb(21 35 59 / 12%);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #e8ecf1;
+  --ink-2: #b7c0cc;
+  --ink-3: #909bab; /* brief #8793A3 is 4.32:1 on the action tint (selected rows); lightened one step */
+  --surface: #121a26;
+  --surface-raised: #182230;
+  --surface-sunken: #0e151f;
+  --line: #2a3544;
+  --line-strong: #738298;
+  --action: #7fb0f0;
+  --action-ink: #0e151f;
+  --action-tint: #1d2f4a;
+  --verified: #5bc48a;
+  --verified-tint: #15301f;
+  --review: #e6a14a;
+  --review-tint: #33260f;
+  --fail: #f08a80;
+  --fail-tint: #3a1a18;
+  --learned: #a99cf0;
+  --learned-tint: #262046;
+  --highlight: rgb(255 224 138 / 30%);
+  --highlight-edge: #ffe08a;
+  --rail: #0e151f;
+  --rail-ink: #e8ecf1;
+  --rail-ink-2: #b7c0cc;
+  --rail-active: #1d2f4a;
+  --thread: #7fb0f0;
+  --shadow-float: 0 2px 8px rgb(0 0 0 / 45%);
+}
+
+:root {
+  /* Type: Public Sans only, weights 400/500/600 (§3 Type). */
+  --font: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-meta: 12px;   --lh-meta: 16px;
+  --fs-dense: 13px;  --lh-dense: 18px;
+  --fs-body: 14px;   --lh-body: 20px;
+  --fs-section: 16px; --lh-section: 24px;
+  --fs-title: 20px;  --lh-title: 28px;
+  --fs-kpi: 28px;    --lh-kpi: 34px;
+  --fs-hero: 40px;   --lh-hero: 44px;
+
+  /* Spacing: 4px base. */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s6: 24px; --s8: 32px;
+  --gutter: 24px;
+
+  /* Shape. */
+  --r-input: 4px; --r-panel: 6px; --r-cell: 2px; --pill-h: 22px;
+
+  /* Density (§3: dense 32px, comfortable 40px rows). */
+  --row-h: 32px;
+
+  /* Frame. */
+  --rail-w: 56px; --rail-w-open: 200px; --topbar-h: 48px; --content-max: 1440px;
+
+  /* Motion: 120–200 ms ease-out; the two choreographed moments only. */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-fast: 120ms; --t-step: 200ms; --t-thread: 240ms;
+}
+
+[data-density="comfortable"] { --row-h: 40px; }
+
+@media (max-width: 1279px) {
+  :root { --gutter: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-step: 0ms; --t-thread: 0ms; }
+}

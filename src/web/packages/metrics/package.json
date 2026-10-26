@@ -1,0 +1,14 @@
+{
+  "name": "@lossrun/metrics",
+  "version": "1.0.0",
+  "description": "Client what-if twin of the LossRun analytics engine (brief 10): every catalog metric as pure TypeScript, byte-identical to the C# feature snapshots.",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "test": "node --test test/*.test.ts",
+    "bench": "node test/bench.ts"
+  }
+}

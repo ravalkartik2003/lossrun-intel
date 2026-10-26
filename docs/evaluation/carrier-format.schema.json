@@ -1,0 +1,260 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lossrun-poc/schemas/carrier-format.schema.json",
+  "title": "CarrierFormat",
+  "description": "Versioned, immutable carrier format spec replayed deterministically by LossRun.Formats (brief 05). Design: docs/architecture/carrier-format-memory.md KQ2 (CarrierFormat record), KQ1 (two-tier fingerprint), KQ4 (routing), KQ7 (drift/versioning). Published once as formats/{formatId}/{version}.json; a change is a new version. Per-field success counters live in the mutable sidecar formats/{formatId}/stats.json, not here.",
+  "specVersion": "carrier-format-0.2.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["specSchema", "formatId", "version", "carrierName", "fileKind", "createdBy", "createdAt", "fingerprint", "tableLocator", "columnMap", "periods"],
+  "properties": {
+    "specSchema": { "enum": ["carrier-format-0.1.0", "carrier-format-0.2.0", "carrier-format-0.3.0", "carrier-format-0.4.0", "carrier-format-0.5.0"], "description": "0.5.0 replaces claimStatusRule with statusFrom and adds absentComponents (brief 19 Answers 1-2). 0.2.0 adds `learning`; 0.3.0 adds `tableLocator.rowShape`, `periods.kind` and `periods.noLossesPattern` (ADR 0016, ADR 0017); 0.4.0 adds `tableLocator.records`, column-map `line` / `under` / `part` / `partPattern` / `components`, `claimStatusRule` and the `labelNext` locator (ADR 0018). Older specs remain valid." },
+    "formatId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Stable id of the format family (carrier + layout)." },
+    "version": { "type": "integer", "minimum": 1 },
+    "carrierName": { "type": "string" },
+    "carrierNames": {"type": "array", "items": {"type": "string"}, "description": "Brief 35: the carrier's other legal names (one carrier group prints several), added by a reviewer who answered \"same carrier\" in a review (formatChanges carrierNames.add); never written by the learn model. Carrier names compare without corporate words (Inc, Co, Insurance, Indemnity, Casualty, Mutual, Group, of America, The)."},
+    "fileKind": { "enum": ["pdf", "spreadsheet"] },
+    "createdBy": { "type": "string", "pattern": "^(hand|learn:.+|delta:.+)$", "description": "hand, learn:{model}@{modelVersion} or delta:{model}@{modelVersion}." },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "reviewedBy": { "type": ["string", "null"] },
+    "description": { "type": ["string", "null"] },
+    "supersedes": { "type": ["string", "null"], "description": "formatId@version this one replaces." },
+    "status": { "enum": ["shadow", "active", null], "description": "Status at publication (null = active). Live status is in the stats sidecar (lifecycle per version): shadow → active after 3 clean replays or underwriter approval; drift/delta versions inherit (06 review, Answers 4)." },
+    "learning": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "description": "How a learned spec was produced (brief 06); null for hand-written specs.",
+      "required": ["stage", "model", "promptVersion", "iterations", "sourceDocumentId"],
+      "properties": {
+        "stage": { "enum": ["learn", "delta"] },
+        "model": { "type": "string", "description": "Deployment name (configuration)." },
+        "modelVersion": { "type": ["string", "null"] },
+        "promptVersion": { "type": "string" },
+        "iterations": { "type": "integer", "minimum": 1 },
+        "inputTokens": { "type": "integer", "minimum": 0 },
+        "cachedInputTokens": { "type": "integer", "minimum": 0 },
+        "outputTokens": { "type": "integer", "minimum": 0 },
+        "pageImage": { "type": "boolean" },
+        "sourceDocumentId": { "type": "string" },
+        "verification": { "type": "string" },
+        "verificationGate": { "enum": ["pdf-totals", "spreadsheet-totals", "spreadsheet-rules", null], "description": "Gate that admitted the spec (ADR 0007 as amended in the 06 review)." },
+        "learnedFrom": { "type": ["string", "null"], "pattern": "^(native|spreadsheet|scan|scan-[0-9]+)$", "description": "Rendering of the exemplar the version was learned from (08b Answers 5): native, spreadsheet, scan-<dpi rounded to 50> or scan (resolution unknown). Low-resolution scans (< 280 dpi) are never learned from." }
+      }
+    },
+    "fingerprint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identityKey", "headerKey"],
+      "properties": {
+        "identityKey": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+        "headerKey": { "type": "string", "pattern": "^[0-9a-f]{32}$" },
+        "identityText": { "type": "string" },
+        "headerText": { "type": "string" },
+        "embedding": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["model", "threshold"],
+          "properties": {
+            "model": { "type": "string", "description": "Embedding deployment the centroid was built with (configuration value)." },
+            "threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+            "textNormalization": { "type": "string" }
+          }
+        }
+      }
+    },
+    "tableLocator": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sheet": { "type": ["string", "null"] },
+        "headerMatchMin": { "type": "number", "minimum": 0, "maximum": 1 },
+        "blockAnchor": { "type": ["string", "null"], "description": "Regex over paragraphs opening a policy-period block (groups policyNumber, effectiveDate, expirationDate)." },
+        "rowKinds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "regex"],
+            "properties": {
+              "kind": { "enum": ["subtotal", "grandTotal", "skip"] },
+              "regex": { "type": "string" },
+              "countsRegex": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "lineFallback": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "deskew": { "type": "boolean" },
+            "lineTolerance": { "type": "number", "exclusiveMinimum": 0 },
+            "minHeaderMatch": { "type": "number", "minimum": 0, "maximum": 1 },
+            "assignment": { "enum": ["headerLeftEdge"] }
+          }
+        },
+        "rowShape": { "enum": ["claims", "periodSummary"], "description": "claims (default): each data row is a claim. periodSummary (ADR 0017): each data row is one period of a summary-only run; money columns (claim.* or period.subtotals.*) and count columns (period.subtotals.claimCount|openCount|closedCount) fill that period's subtotals, period.* columns its label and dates." },
+        "records": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["mode"],
+          "description": "ADR 0018: a claim record printed on more than one line. rows: a row with a value under keySource opens a record and the rows after it without one are its lines 1, 2, ... (column-map entries with line and under). lines: each claim row owns the loose lines printed after it, outside the claim table (lineFields read them); a loose line a subtotal/grandTotal row kind matches is a total row, amounts assigned to columns by position. A record ends at the next key row or claim row, a total row, or maxLines. measures: each claim (or total) prints one row per measure, labelled in a cell ('Inc:', 'Pd:', 'O/S:'), under component columns ('Total | Claim | Medical | Expense'); a key row or a total row opens the record and the labelled rows after it are its measures. Map each component column to the component without a measure (claim.indemnity, claim.medical, claim.expense, claim.total); replay reads it on every measure row. In this mode a column headed 'Claim' or 'Loss' beside Medical and Expense is the indemnity component.",
+          "properties": {
+            "mode": { "enum": ["rows", "lines", "measures"] },
+            "keySource": { "type": ["string", "null"], "description": "rows: the printed header whose non-empty cell opens a record (default: the claim number column)." },
+            "maxLines": { "type": "integer", "minimum": 1, "maximum": 20 },
+            "measureLabels": {
+              "type": ["object", "null"],
+              "additionalProperties": false,
+              "description": "measures: .NET regexes over a whole cell naming each measure row; null uses the defaults (Pd / Paid, O/S / Outstanding / Reserve, Inc / Incurred, with an optional colon).",
+              "properties": {
+                "paid": { "type": ["string", "null"] },
+                "reserve": { "type": ["string", "null"] },
+                "incurred": { "type": ["string", "null"] }
+              }
+            },
+            "lineFields": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["pattern", "target", "normalizer"],
+                "properties": {
+                  "pattern": { "type": "string", "description": ".NET regex over a loose line, then over each part of it (values printed apart on one line, split at gaps wider than two word heights); group value is the value, else the whole match. Write the shape of the value (letters, digit runs, separators), never one printed value." },
+                  "target": { "type": "string", "pattern": "^claim[.][A-Za-z.]+$" },
+                  "normalizer": { "$ref": "#/$defs/Normalizer" },
+                  "offset": { "type": ["integer", "null"], "description": "0-based loose line after the claim row (negative from the record's last line); null: the first line the pattern matches." }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "columnMap": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "target", "normalizer"],
+        "properties": {
+          "source": { "type": "string", "description": "Printed header (composed form for stacked headers)." },
+          "target": { "type": "string", "pattern": "^(claim|period)\\.[A-Za-z.]+$" },
+          "normalizer": { "$ref": "#/$defs/Normalizer" },
+          "nullWhen": { "type": "array", "items": { "type": "string" } },
+          "line": { "type": "integer", "minimum": 0, "description": "ADR 0018 records: the record line the value is printed on (0 = the key line)." },
+          "under": { "type": ["string", "null"], "description": "ADR 0018 records: for line >= 1, the line-0 header the value is printed under." },
+          "part": { "type": ["integer", "null"], "minimum": 0, "description": "ADR 0018: position of the value in a stacked cell (a header 'Claim Number' over 'Claim Type': two entries with the same source, part 0 and 1). Lineage records the cell once with the part." },
+          "partPattern": { "type": ["string", "null"], "description": "Regex with groups p0, p1, ... for a stacked cell printed on one line; default: the cell's printed lines." },
+          "components": { "type": ["array", "null"], "items": { "enum": ["indemnity", "medical", "expense"] }, "minItems": 2, "description": "ADR 0018: for a claim.total.* column whose header names its components ('Paid CLM + MED + EXP', 'Total Incurred (Ind+Med)'); indemnity + medical sets document.totalComposition so R-29 (not R-20) checks the sum." }
+        }
+      }
+    },
+    "ignoredHeaders": { "type": "array", "items": { "type": "string" } },
+    "periods": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source"],
+      "properties": {
+        "source": { "enum": ["blockAnchor", "column"] },
+        "column": { "type": ["string", "null"] },
+        "fillDown": { "type": "boolean", "default": false, "description": "source column only (brief 30 item 20): the policy number is printed on the first row of a group only, so a blank policy cell means the period above. False: such a row is attached there as an issue for review. The learn lint sets it when the learning document shows the pattern: two or more blank policy cells, each under a printed policy, never a period's first row, the policy never repeated on the next row (brief 31)." },
+        "kind": { "enum": ["policyTerm", "fiscalYear", "reportYear", "accidentYear", "calendarYear", null], "description": "Canonical periodKind of every period (ADR 0017)." },
+        "noLossesPattern": { "type": ["string", "null"], "description": "Regex for the carrier's per-period 'no losses' statement (ADR 0016); null uses the default. A matching row without an amount marks its period and is not a claim." },
+        "lookup": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["sheet", "keyHeader"],
+          "properties": {
+            "sheet": { "type": "string" },
+            "keyHeader": { "type": "string" },
+            "rangeHeader": { "type": ["string", "null"] },
+            "rangeRegex": { "type": ["string", "null"] },
+            "effectiveHeader": { "type": ["string", "null"], "description": "Summary column holding the period effective date, when it is not printed as a range in one cell." },
+            "expirationHeader": { "type": ["string", "null"], "description": "Summary column holding the period expiration date (with effectiveHeader)." },
+            "subtotals": { "type": "object", "additionalProperties": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "documentFields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "locator"],
+        "properties": {
+          "target": { "type": "string", "pattern": "^(document\\.[A-Za-z.]+|period\\.(policyNumber|effectiveDate|expirationDate))$", "description": "document.* fields; period.policyNumber / effectiveDate / expirationDate only with a headerLabel locator, for a single-period run whose header block prints them (brief 23). One label is one field: never read two targets from the same label (only a policy period range may give both dates), and read document.carrierName from the carrier's own label (Carrier, Insurer), never from the insured's (brief 35)." },
+          "locator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type"],
+            "properties": {
+              "type": { "enum": ["paragraphRole", "regex", "regexPresent", "cell", "labelRight", "labelNext", "headerLabel", "const"], "description": "headerLabel (brief 23): label is the printed label of a header-block field ('Valued as of', 'Insured', 'Policy Period'); replay reads the value printed after it on its line, by the field's kind (a date, a name, a policy number, a date window)." },
+              "role": { "type": ["string", "null"] },
+              "pattern": { "type": ["string", "null"], "description": "regex / regexPresent: .NET regex over each paragraph, then over each printed line rebuilt from the OCR words (its parts first); on a spreadsheet, over each cell's text. Group value is the value, else the whole match. Prompt markup (a markdown '#', a paragraph role such as 'pageFooter:') is not printed text. A label and its value in two cells is labelRight, not a regex." },
+              "sheet": { "type": ["string", "null"] },
+              "a1": { "type": ["string", "null"] },
+              "label": { "type": ["string", "null"] },
+              "value": {}
+            }
+          },
+          "normalizer": { "$ref": "#/$defs/Normalizer" },
+          "reason": { "type": ["string", "null"], "description": "Required in review for const locators: why the value is declared rather than read." }
+        }
+      }
+    },
+    "derivedRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["target", "sum"],
+        "properties": {
+          "target": { "type": "string" },
+          "sum": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "when": { "enum": ["absent"] },
+          "appliesTo": { "type": "array", "items": { "enum": ["claim", "totals"] } }
+        }
+      }
+    },
+    "statusFrom": { "enum": ["closeDate", "unknown", null], "description": "Brief 19 Answers 2, per format: the run prints no status. closeDate: closed when a close date is printed, open otherwise (kept only when verified against printed open/closed counts). unknown: status unknown on every claim, flagged by R-30." },
+    "absentComponents": { "type": "array", "items": { "enum": ["indemnity", "medical", "expense"] }, "description": "Brief 19 Answers 1: components the run prints no column for. The canonical document records { present: false }; the learn gate does not require them." },
+    "periodBoundaries": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": { "expirationInclusive": { "type": "boolean" } }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "expectedApplicable": { "type": "array", "items": { "type": "string", "pattern": "^R-\\d{2}$" } },
+        "softOverrides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ruleId", "reason"],
+            "properties": { "ruleId": { "type": "string", "pattern": "^R-\\d{2}$" }, "reason": { "type": "string" } }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Normalizer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["text", "date", "currency", "integer", "enum", "claimNumber", "code", "boolean"] },
+        "glossaryField": { "type": ["string", "null"] },
+        "pattern": { "type": ["string", "null"] },
+        "format": { "type": ["string", "null"] },
+        "codeSystem": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

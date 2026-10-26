@@ -1,0 +1,306 @@
+{
+  "cases": 60,
+  "identical": 60,
+  "results": [
+    {
+      "name": "c1-000-native-pdf#0",
+      "same": true,
+      "ms": 24.299999952316284
+    },
+    {
+      "name": "c1-001-native-pdf#1",
+      "same": true,
+      "ms": 12.400000095367432
+    },
+    {
+      "name": "c1-002-native-pdf#2",
+      "same": true,
+      "ms": 18
+    },
+    {
+      "name": "c1-003-native-pdf#3",
+      "same": true,
+      "ms": 22
+    },
+    {
+      "name": "c1-004-native-pdf#4",
+      "same": true,
+      "ms": 26
+    },
+    {
+      "name": "c1-005-native-pdf#5",
+      "same": true,
+      "ms": 16.899999976158142
+    },
+    {
+      "name": "c1-006-native-pdf#0",
+      "same": true,
+      "ms": 15.799999952316284
+    },
+    {
+      "name": "c1-007-native-pdf#1",
+      "same": true,
+      "ms": 10.799999952316284
+    },
+    {
+      "name": "c1-008-native-pdf#2",
+      "same": true,
+      "ms": 16.100000023841858
+    },
+    {
+      "name": "c1-009-native-pdf#3",
+      "same": true,
+      "ms": 15.099999904632568
+    },
+    {
+      "name": "c1-010-native-pdf#4",
+      "same": true,
+      "ms": 17.199999928474426
+    },
+    {
+      "name": "c1-011-native-pdf#5",
+      "same": true,
+      "ms": 15
+    },
+    {
+      "name": "c1-012-native-pdf#0",
+      "same": true,
+      "ms": 14.399999976158142
+    },
+    {
+      "name": "c1-013-native-pdf#1",
+      "same": true,
+      "ms": 19.800000071525574
+    },
+    {
+      "name": "c1-014-native-pdf#2",
+      "same": true,
+      "ms": 21.299999952316284
+    },
+    {
+      "name": "c1-015-native-pdf#3",
+      "same": true,
+      "ms": 13.200000047683716
+    },
+    {
+      "name": "c1-016-native-pdf#4",
+      "same": true,
+      "ms": 18.700000047683716
+    },
+    {
+      "name": "c1-017-native-pdf#5",
+      "same": true,
+      "ms": 19.40000009536743
+    },
+    {
+      "name": "c1-018-native-pdf#0",
+      "same": true,
+      "ms": 21.5
+    },
+    {
+      "name": "c1-019-native-pdf#1",
+      "same": true,
+      "ms": 15.399999976158142
+    },
+    {
+      "name": "c1-020-native-pdf#2",
+      "same": true,
+      "ms": 14.799999952316284
+    },
+    {
+      "name": "c1-021-native-pdf#3",
+      "same": true,
+      "ms": 16.600000023841858
+    },
+    {
+      "name": "c1-022-native-pdf#4",
+      "same": true,
+      "ms": 12.799999952316284
+    },
+    {
+      "name": "c1-023-native-pdf#5",
+      "same": true,
+      "ms": 23
+    },
+    {
+      "name": "c1-024-native-pdf-locked#0",
+      "same": true,
+      "ms": 19.700000047683716
+    },
+    {
+      "name": "c1-025-native-pdf-locked#1",
+      "same": true,
+      "ms": 23.300000071525574
+    },
+    {
+      "name": "c1-026-native-pdf-locked#2",
+      "same": true,
+      "ms": 12
+    },
+    {
+      "name": "c1-027-native-pdf-locked#3",
+      "same": true,
+      "ms": 15.400000095367432
+    },
+    {
+      "name": "c1-028-native-pdf-locked#4",
+      "same": true,
+      "ms": 16.600000023841858
+    },
+    {
+      "name": "c1-029-native-pdf-locked#5",
+      "same": true,
+      "ms": 12.899999976158142
+    },
+    {
+      "name": "c1-030-native-pdf-bundle#0",
+      "same": true,
+      "ms": 16.5
+    },
+    {
+      "name": "c1-031-native-pdf-bundle#1",
+      "same": true,
+      "ms": 14.700000047683716
+    },
+    {
+      "name": "c1-032-native-pdf-bundle#2",
+      "same": true,
+      "ms": 21.399999976158142
+    },
+    {
+      "name": "c1-033-native-pdf-bundle#3",
+      "same": true,
+      "ms": 13.799999952316284
+    },
+    {
+      "name": "c1-034-native-pdf-bundle#4",
+      "same": true,
+      "ms": 17.100000023841858
+    },
+    {
+      "name": "c1-035-native-pdf-bundle#5",
+      "same": true,
+      "ms": 15.5
+    },
+    {
+      "name": "c1-036-native-pdf-bundle#0",
+      "same": true,
+      "ms": 20.40000009536743
+    },
+    {
+      "name": "c1-037-native-pdf-bundle#1",
+      "same": true,
+      "ms": 19
+    },
+    {
+      "name": "c2-000-native-pdf#2",
+      "same": true,
+      "ms": 13.899999976158142
+    },
+    {
+      "name": "c2-001-native-pdf#3",
+      "same": true,
+      "ms": 19.700000047683716
+    },
+    {
+      "name": "c2-002-native-pdf#4",
+      "same": true,
+      "ms": 17.700000047683716
+    },
+    {
+      "name": "c2-003-native-pdf#5",
+      "same": true,
+      "ms": 22.899999976158142
+    },
+    {
+      "name": "c2-004-native-pdf#0",
+      "same": true,
+      "ms": 22.800000071525574
+    },
+    {
+      "name": "c2-005-native-pdf#1",
+      "same": true,
+      "ms": 26.399999976158142
+    },
+    {
+      "name": "c2-006-native-pdf#2",
+      "same": true,
+      "ms": 11.700000047683716
+    },
+    {
+      "name": "c2-007-native-pdf#3",
+      "same": true,
+      "ms": 12
+    },
+    {
+      "name": "c2-008-native-pdf#4",
+      "same": true,
+      "ms": 23.5
+    },
+    {
+      "name": "c2-009-native-pdf#5",
+      "same": true,
+      "ms": 30.5
+    },
+    {
+      "name": "c2-010-native-pdf#0",
+      "same": true,
+      "ms": 32.10000002384186
+    },
+    {
+      "name": "c2-011-native-pdf#1",
+      "same": true,
+      "ms": 23.5
+    },
+    {
+      "name": "c2-012-native-pdf#2",
+      "same": true,
+      "ms": 14.799999952316284
+    },
+    {
+      "name": "c2-013-native-pdf#3",
+      "same": true,
+      "ms": 14.5
+    },
+    {
+      "name": "c2-014-native-pdf#4",
+      "same": true,
+      "ms": 11.299999952316284
+    },
+    {
+      "name": "c2-015-native-pdf#5",
+      "same": true,
+      "ms": 20.399999976158142
+    },
+    {
+      "name": "c2-016-native-pdf#0",
+      "same": true,
+      "ms": 31.200000047683716
+    },
+    {
+      "name": "c2-017-native-pdf#1",
+      "same": true,
+      "ms": 17.59999990463257
+    },
+    {
+      "name": "c2-018-native-pdf#2",
+      "same": true,
+      "ms": 13
+    },
+    {
+      "name": "c2-019-native-pdf#3",
+      "same": true,
+      "ms": 14.399999976158142
+    },
+    {
+      "name": "c2-020-native-pdf#4",
+      "same": true,
+      "ms": 18.200000047683716
+    },
+    {
+      "name": "c2-021-native-pdf#5",
+      "same": true,
+      "ms": 29.199999928474426
+    }
+  ]
+}

@@ -1,0 +1,568 @@
+{
+  "documentId": "doc-mock-summary-only",
+  "uploadId": "up-mock-summary-only",
+  "revision": 1,
+  "document": {
+    "schemaVersion": "0.5.0",
+    "documentId": "doc-mock-summary-only",
+    "carrierName": "Placeholder Assurance Co.",
+    "insuredName": "Synthetic Public Entity (mock)",
+    "lineOfBusiness": "WC",
+    "valuationDate": "2024-09-30",
+    "noLossesStatement": false,
+    "expenseTreatment": "separate",
+    "policyPeriods": [
+      {
+        "periodKind": "fiscalYear",
+        "periodLabel": "FY 2021-22",
+        "noLossesStatement": false,
+        "detailLevel": "summaryOnly",
+        "claims": [],
+        "subtotals": {
+          "claimCount": 7,
+          "openCount": 0,
+          "closedCount": 7,
+          "indemnity": {
+            "paid": 41250.0,
+            "reserve": 0.0,
+            "incurred": 41250.0
+          },
+          "medical": {
+            "paid": 28310.4,
+            "reserve": 0.0,
+            "incurred": 28310.4
+          },
+          "expense": {
+            "paid": 3120.0,
+            "reserve": 0.0,
+            "incurred": 3120.0
+          },
+          "total": {
+            "paid": 72680.4,
+            "reserve": 0.0,
+            "incurred": 72680.4
+          },
+          "recoveries": {
+            "deductible": 2500.0
+          }
+        }
+      },
+      {
+        "periodKind": "fiscalYear",
+        "periodLabel": "FY 2022-23",
+        "noLossesStatement": false,
+        "detailLevel": "summaryOnly",
+        "claims": [],
+        "subtotals": {
+          "claimCount": 11,
+          "openCount": 2,
+          "closedCount": 9,
+          "indemnity": {
+            "paid": 63800.25,
+            "reserve": 22000.0,
+            "incurred": 85800.25
+          },
+          "medical": {
+            "paid": 40125.1,
+            "reserve": 8400.0,
+            "incurred": 48525.1
+          },
+          "expense": {
+            "paid": 5210.75,
+            "reserve": 1500.0,
+            "incurred": 6710.75
+          },
+          "total": {
+            "paid": 109136.1,
+            "reserve": 31900.0,
+            "incurred": 141036.1
+          },
+          "recoveries": {
+            "deductible": 4000.0
+          }
+        }
+      },
+      {
+        "periodKind": "fiscalYear",
+        "periodLabel": "FY 2023-24",
+        "noLossesStatement": false,
+        "detailLevel": "summaryOnly",
+        "claims": [],
+        "subtotals": {
+          "claimCount": 9,
+          "openCount": 5,
+          "closedCount": 4,
+          "indemnity": {
+            "paid": 18900.0,
+            "reserve": 61000.0,
+            "incurred": 79900.0
+          },
+          "medical": {
+            "paid": 22780.6,
+            "reserve": 19250.0,
+            "incurred": 42030.6
+          },
+          "expense": {
+            "paid": 2105.0,
+            "reserve": 6000.0,
+            "incurred": 8105.0
+          },
+          "total": {
+            "paid": 43785.6,
+            "reserve": 86250.0,
+            "incurred": 130035.6
+          },
+          "recoveries": {
+            "deductible": 0.0
+          }
+        }
+      }
+    ],
+    "reportTotals": {
+      "claimCount": 27,
+      "openCount": 7,
+      "closedCount": 20,
+      "indemnity": {
+        "paid": 123950.25,
+        "reserve": 83000.0,
+        "incurred": 206950.25
+      },
+      "medical": {
+        "paid": 91216.1,
+        "reserve": 27650.0,
+        "incurred": 118866.1
+      },
+      "expense": {
+        "paid": 10435.75,
+        "reserve": 7500.0,
+        "incurred": 17935.75
+      },
+      "total": {
+        "paid": 225602.1,
+        "reserve": 118150.0,
+        "incurred": 343752.1
+      },
+      "recoveries": {
+        "deductible": 6500.0
+      }
+    },
+    "lineage": {
+      "carrierName": {
+        "documentId": "doc-mock-summary-only",
+        "extractor": "spec",
+        "sourceText": "const: carrier from the submission",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].periodLabel": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "A2",
+        "sourceText": "FY 2021-22",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.openCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "B2",
+        "sourceText": "0",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.closedCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "C2",
+        "sourceText": "7",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.claimCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "D2",
+        "sourceText": "7",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.indemnity.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "E2",
+        "sourceText": "41250.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.indemnity.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "F2",
+        "sourceText": "0.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.medical.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "G2",
+        "sourceText": "28310.40",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.medical.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "H2",
+        "sourceText": "0.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.expense.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "I2",
+        "sourceText": "3120.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.expense.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "J2",
+        "sourceText": "0.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.total.incurred": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "K2",
+        "sourceText": "72680.40",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[0].subtotals.recoveries.deductible": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "L2",
+        "sourceText": "2500.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].periodLabel": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "A3",
+        "sourceText": "FY 2022-23",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.openCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "B3",
+        "sourceText": "2",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.closedCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "C3",
+        "sourceText": "9",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.claimCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "D3",
+        "sourceText": "11",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.indemnity.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "E3",
+        "sourceText": "63800.25",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.indemnity.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "F3",
+        "sourceText": "22000.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.medical.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "G3",
+        "sourceText": "40125.10",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.medical.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "H3",
+        "sourceText": "8400.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.expense.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "I3",
+        "sourceText": "5210.75",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.expense.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "J3",
+        "sourceText": "1500.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.total.incurred": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "K3",
+        "sourceText": "141036.10",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[1].subtotals.recoveries.deductible": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "L3",
+        "sourceText": "4000.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].periodLabel": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "A4",
+        "sourceText": "FY 2023-24",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.openCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "B4",
+        "sourceText": "5",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.closedCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "C4",
+        "sourceText": "4",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.claimCount": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "D4",
+        "sourceText": "9",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.indemnity.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "E4",
+        "sourceText": "18900.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.indemnity.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "F4",
+        "sourceText": "61000.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.medical.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "G4",
+        "sourceText": "22780.60",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.medical.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "H4",
+        "sourceText": "19250.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.expense.paid": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "I4",
+        "sourceText": "2105.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.expense.reserve": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "J4",
+        "sourceText": "6000.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.total.incurred": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "K4",
+        "sourceText": "130035.60",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "policyPeriods[2].subtotals.recoveries.deductible": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "L4",
+        "sourceText": "0.00",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      },
+      "reportTotals.total.incurred": {
+        "documentId": "doc-mock-summary-only",
+        "sheet": "summary.csv",
+        "cell": "K5",
+        "sourceText": "343752.10",
+        "extractor": "replay",
+        "formatId": "placeholder-summary-csv",
+        "formatVersion": "1",
+        "confidence": 1.0
+      }
+    }
+  },
+  "ruleOutcomes": [
+    {
+      "ruleId": "R-26",
+      "severity": "hard",
+      "status": "pass",
+      "message": "Printed grand total total incurred does not equal the sum of the policy-period subtotals.",
+      "affectedFields": [
+        "reportTotals.total.incurred"
+      ]
+    },
+    {
+      "ruleId": "R-10",
+      "severity": "hard",
+      "status": "notApplicable",
+      "message": "Not applicable to summary-only periods.",
+      "affectedFields": []
+    }
+  ],
+  "routing": {
+    "tier": "review",
+    "reasons": [
+      "summary-only loss run (ADR 0017): period rows tie to the printed grand total (R-26); first document of the format \u2192 review"
+    ],
+    "formatRef": "placeholder-summary-csv@1",
+    "carrierName": "Placeholder Assurance Co."
+  },
+  "cost": {
+    "documentId": "doc-mock-summary-only",
+    "runId": "up-mock-summary-only",
+    "path": "Review",
+    "llmCalls": 0,
+    "pages": 1,
+    "tokensIn": 0,
+    "tokensOut": 0,
+    "costUsd": 0.0,
+    "breakdown": []
+  },
+  "reviewState": "pending"
+}

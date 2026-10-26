@@ -1,0 +1,219 @@
+{
+  "specSchema": "carrier-format-0.4.0",
+  "formatId": "construct-c7-claim-per-table",
+  "version": 1,
+  "carrierName": "Specimen Indemnity Co.",
+  "fileKind": "pdf",
+  "createdBy": "hand",
+  "createdAt": "2026-10-24T00:00:00+00:00",
+  "reviewedBy": "brief-19 (hand-authored for the ADR 0018 construct fixtures)",
+  "description": "Corpus-gen 0.4.0 construct c7: one small table per claim, then loose lines (claimant, claim type, the claim number alone); total lines with amounts under the table columns (records mode lines).",
+  "fingerprint": {
+    "identityKey": "",
+    "headerKey": "",
+    "identityText": "",
+    "headerText": "",
+    "embedding": null
+  },
+  "tableLocator": {
+    "headerMatchMin": 0.8,
+    "blockAnchor": "^Policy Number:\\s*(?<policyNumber>\\S+)\\s+Policy Term:\\s*(?<effectiveDate>\\d{2}/\\d{2}/\\d{4})\\s*-\\s*(?<expirationDate>\\d{2}/\\d{2}/\\d{4})$",
+    "rowKinds": [
+      {
+        "kind": "subtotal",
+        "regex": "^Policy Total:"
+      },
+      {
+        "kind": "grandTotal",
+        "regex": "^Total All Years:"
+      }
+    ],
+    "records": {
+      "mode": "lines",
+      "maxLines": 4,
+      "lineFields": [
+        {
+          "pattern": "^Claimant:\\s*(?<value>.+)$",
+          "target": "claim.claimantName",
+          "normalizer": {
+            "type": "text"
+          }
+        },
+        {
+          "pattern": "^Claim Type:\\s*(?<value>.+)$",
+          "target": "claim.claimType",
+          "normalizer": {
+            "type": "enum",
+            "glossaryField": "claim.claimType"
+          }
+        },
+        {
+          "pattern": "^(?<value>SPC-?\\d{2}-?\\d{5,6}|WC\\d{2}-\\d{4}-A)$",
+          "target": "claim.claimNumber",
+          "normalizer": {
+            "type": "claimNumber"
+          }
+        }
+      ]
+    }
+  },
+  "columnMap": [
+    {
+      "source": "Date of Loss",
+      "target": "claim.dateOfInjury",
+      "normalizer": {
+        "type": "date"
+      }
+    },
+    {
+      "source": "Status",
+      "target": "claim.status",
+      "normalizer": {
+        "type": "enum",
+        "glossaryField": "claim.status"
+      }
+    },
+    {
+      "source": "Status",
+      "target": "claim.rawStatus",
+      "normalizer": {
+        "type": "text"
+      }
+    },
+    {
+      "source": "Ind Paid",
+      "target": "claim.indemnity.paid",
+      "normalizer": {
+        "type": "currency"
+      }
+    },
+    {
+      "source": "Med Paid",
+      "target": "claim.medical.paid",
+      "normalizer": {
+        "type": "currency"
+      }
+    },
+    {
+      "source": "Exp Paid",
+      "target": "claim.expense.paid",
+      "normalizer": {
+        "type": "currency"
+      }
+    },
+    {
+      "source": "Ind Reserve",
+      "target": "claim.indemnity.reserve",
+      "normalizer": {
+        "type": "currency"
+      }
+    },
+    {
+      "source": "Med Reserve",
+      "target": "claim.medical.reserve",
+      "normalizer": {
+        "type": "currency"
+      }
+    },
+    {
+      "source": "Total Incurred",
+      "target": "claim.total.incurred",
+      "normalizer": {
+        "type": "currency"
+      }
+    }
+  ],
+  "ignoredHeaders": [],
+  "periods": {
+    "source": "blockAnchor"
+  },
+  "documentFields": [
+    {
+      "target": "document.carrierName",
+      "locator": {
+        "type": "regex",
+        "pattern": "(?<value>Specimen Indemnity Co\\.)"
+      },
+      "normalizer": {
+        "type": "text"
+      }
+    },
+    {
+      "target": "document.insuredName",
+      "locator": {
+        "type": "regex",
+        "pattern": "^Named Insured:\\s*(?<value>.+?)\\s*$"
+      },
+      "normalizer": {
+        "type": "text"
+      }
+    },
+    {
+      "target": "document.valuationDate",
+      "locator": {
+        "type": "regex",
+        "pattern": "Valuation Date:\\s*(?<value>\\d{2}/\\d{2}/\\d{4})"
+      },
+      "normalizer": {
+        "type": "date"
+      }
+    },
+    {
+      "target": "document.expenseTreatment",
+      "locator": {
+        "type": "const",
+        "value": "separate"
+      },
+      "reason": "Expense paid has its own column."
+    }
+  ],
+  "derivedRules": [
+    {
+      "target": "indemnity.incurred",
+      "sum": [
+        "indemnity.paid",
+        "indemnity.reserve"
+      ],
+      "when": "absent",
+      "appliesTo": [
+        "claim",
+        "totals"
+      ]
+    },
+    {
+      "target": "medical.incurred",
+      "sum": [
+        "medical.paid",
+        "medical.reserve"
+      ],
+      "when": "absent",
+      "appliesTo": [
+        "claim",
+        "totals"
+      ]
+    },
+    {
+      "target": "expense.incurred",
+      "sum": [
+        "expense.paid"
+      ],
+      "when": "absent",
+      "appliesTo": [
+        "claim",
+        "totals"
+      ]
+    }
+  ],
+  "periodBoundaries": {
+    "expirationInclusive": false
+  },
+  "validation": {
+    "expectedApplicable": [
+      "R-01",
+      "R-02",
+      "R-10",
+      "R-12"
+    ],
+    "softOverrides": []
+  }
+}

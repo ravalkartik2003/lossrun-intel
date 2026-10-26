@@ -1,0 +1,31 @@
+{
+  "slider": {
+    "samples": 20,
+    "p50": 88.10000002384186,
+    "p95": 129.60000002384186,
+    "max": 174.5,
+    "eventTimingMaxMs": 128,
+    "eventsOver16ms": 20,
+    "workerLine": "Scenario applied: 997 of 1000 claims included · recomputed in 8.3 ms in your browser"
+  },
+  "rowTrace": {
+    "samples": [
+      60.10000002384186,
+      17,
+      19.200000047683716,
+      29.799999952316284,
+      50.10000002384186
+    ],
+    "p50": 29.799999952316284,
+    "max": 60.10000002384186,
+    "note": "click → every thread path in the DOM (the 240 ms draw animation then runs)"
+  },
+  "documentMock": {
+    "samples": [
+      1210,
+      1133.2999999523163,
+      938.7999999523163
+    ],
+    "note": "ms from navigation start to page image + ledger cells rendered (mock API, Vite dev server)"
+  }
+}

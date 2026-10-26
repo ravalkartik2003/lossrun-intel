@@ -1,0 +1,15 @@
+{
+  "$comment": "Brief 26 (ADR 0025): thresholds for the engineering escalation queue. Data, never code. The pattern detector runs hourly over review items, rule outcomes and the format registry.",
+  "version": "1.0.0",
+  "maxCostUsd": 0.15,
+  "maxSegments": 3,
+  "fingerprintReviewCount": 3,
+  "fingerprintReviewWindowDays": 7,
+  "ruleShareOfCarrierDocuments": 0.8,
+  "ruleShareMinDocuments": 5,
+  "reviewRateDelta": 0.2,
+  "reviewRateBaselineDays": 30,
+  "reviewRateMinDocuments": 5,
+  "maxReopens": 2,
+  "digestHourUtc": 14
+}

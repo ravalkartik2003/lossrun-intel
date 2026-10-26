@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Contracts</RootNamespace>
+  </PropertyGroup>
+
+  <!-- The data files live in docs/evaluation (source of truth) and are embedded, never copied or edited here. -->
+  <ItemGroup>
+    <EmbeddedResource Include="$(EvaluationDataDir)canonical-schema.json" LogicalName="LossRun.Data.canonical-schema.json" Link="Data\canonical-schema.json" />
+    <EmbeddedResource Include="$(EvaluationDataDir)glossary.json" LogicalName="LossRun.Data.glossary.json" Link="Data\glossary.json" />
+    <EmbeddedResource Include="$(EvaluationDataDir)code-sets.json" LogicalName="LossRun.Data.code-sets.json" Link="Data\code-sets.json" />
+    <EmbeddedResource Include="$(EvaluationDataDir)line-of-business.json" LogicalName="LossRun.Data.line-of-business.json" Link="Data\line-of-business.json" />
+  </ItemGroup>
+
+</Project>

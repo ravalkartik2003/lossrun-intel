@@ -1,0 +1,60 @@
+# Brief 11 §7: the workbench's unit tests, typecheck, build and axe accessibility tests on every pull request that
+# touches the web workspace or the docs it reads (tokens, mocks, catalog). Mock mode only: no Azure access, no secrets.
+name: web
+
+on:
+  # The POC commits straight to main (report 11 Answers), so pushes run it too.
+  push:
+    branches: [main]
+    paths:
+      - "src/web/**"
+      - "docs/ui/**"
+      - "docs/analytics/catalog.yaml"
+      - "docs/evaluation/*.json"
+      - ".github/workflows/web.yml"
+  pull_request:
+    paths:
+      - "src/web/**"
+      - "docs/ui/**"
+      - "docs/analytics/catalog.yaml"
+      - "docs/evaluation/*.json"
+      - ".github/workflows/web.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: src/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.18"
+          cache: npm
+          cache-dependency-path: src/web/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - name: Metrics twin (parity with the C# engine)
+        run: npm test -w @lossrun/metrics
+      - name: Unit tests (contrast of every token pair, ledger ↔ lineage model, formatting)
+        run: npm test -w @lossrun/workbench
+      - name: Typecheck and build (live and mock)
+        run: |
+          npm run build -w @lossrun/workbench
+          npm run build:mock -w @lossrun/workbench
+      - name: Playwright browser
+        run: npx playwright install --with-deps chromium
+        working-directory: src/web/apps/workbench
+      - name: Accessibility (axe, seven screens × both themes; keyboard) and golden what-if parity
+        run: npx playwright test e2e/a11y.spec.ts e2e/keyboard.spec.ts e2e/golden.spec.ts
+        working-directory: src/web/apps/workbench
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: workbench-test-results
+          path: src/web/apps/workbench/test-results/
+          retention-days: 14

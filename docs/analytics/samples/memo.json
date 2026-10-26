@@ -1,0 +1,238 @@
+{
+  "title": "Underwriting loss analysis — quote Q-SAMPLE-10",
+  "generatedUtc": "2026-10-22T22:22:05.2287150+00:00",
+  "account": {
+    "quoteId": "Q-SAMPLE-10",
+    "insured": "Beta Tooling (synthetic); Zeta Landscaping (synthetic)",
+    "carriers": "Synthetic Mutual Insurance Co.",
+    "valuationDate": "2025-10-03",
+    "documents": 2,
+    "claims": "27"
+  },
+  "kpis": [
+    {
+      "metric": "claim_count",
+      "label": "Claims",
+      "asReported": "27",
+      "asAdjusted": "27"
+    },
+    {
+      "metric": "open_claim_count",
+      "label": "Open claims",
+      "asReported": "10",
+      "asAdjusted": "10"
+    },
+    {
+      "metric": "lost_time_share",
+      "label": "Lost-time share",
+      "asReported": "37.0 %",
+      "asAdjusted": "37.0 %"
+    },
+    {
+      "metric": "incurred_total",
+      "label": "Total incurred",
+      "asReported": "$1,454,058",
+      "asAdjusted": "$1,479,058"
+    },
+    {
+      "metric": "paid_total",
+      "label": "Total paid",
+      "asReported": "$1,240,822",
+      "asAdjusted": "$1,240,822"
+    },
+    {
+      "metric": "reserve_total",
+      "label": "Case reserves",
+      "asReported": "$213,236",
+      "asAdjusted": "$238,236"
+    },
+    {
+      "metric": "paid_to_incurred",
+      "label": "Paid-to-incurred",
+      "asReported": "85.3 %",
+      "asAdjusted": "83.9 %"
+    },
+    {
+      "metric": "severity_all",
+      "label": "Severity (all)",
+      "asReported": "$53,854",
+      "asAdjusted": "$54,780"
+    },
+    {
+      "metric": "severity_lost_time",
+      "label": "Severity (lost time)",
+      "asReported": "$91,527",
+      "asAdjusted": "$91,527"
+    },
+    {
+      "metric": "large_loss_count",
+      "label": "Large losses ≥ $100K",
+      "asReported": "4",
+      "asAdjusted": "4"
+    },
+    {
+      "metric": "capped_incurred",
+      "label": "Incurred capped at $250K",
+      "asReported": "$1,454,058",
+      "asAdjusted": "$1,479,058"
+    },
+    {
+      "metric": "reporting_lag_median_days",
+      "label": "Median reporting lag (days)",
+      "asReported": "8",
+      "asAdjusted": "8"
+    },
+    {
+      "metric": "closure_median_days",
+      "label": "Median days to close",
+      "asReported": "—",
+      "asAdjusted": "—"
+    }
+  ],
+  "trend": [
+    {
+      "policyYear": "2022",
+      "claims": "8",
+      "incurred": "$402,618",
+      "paid": "$350,318",
+      "severity": "$50,327",
+      "paidToIncurred": "87.0 %"
+    },
+    {
+      "policyYear": "2023",
+      "claims": "13",
+      "incurred": "$798,430",
+      "paid": "$705,545",
+      "severity": "$61,418",
+      "paidToIncurred": "88.4 %"
+    },
+    {
+      "policyYear": "2024",
+      "claims": "6",
+      "incurred": "$278,011",
+      "paid": "$184,959",
+      "severity": "$46,335",
+      "paidToIncurred": "66.5 %"
+    }
+  ],
+  "largeLosses": [
+    {
+      "claimNumber": "WC-23-0008",
+      "dateOfInjury": "2023-10-01",
+      "status": "open",
+      "incurred": "$117,831",
+      "flags": "large, open"
+    },
+    {
+      "claimNumber": "WC-23-0010",
+      "dateOfInjury": "2023-08-20",
+      "status": "closed",
+      "incurred": "$114,148",
+      "flags": "large"
+    },
+    {
+      "claimNumber": "WC-24-0007",
+      "dateOfInjury": "2024-04-12",
+      "status": "closed",
+      "incurred": "$112,808",
+      "flags": "large"
+    },
+    {
+      "claimNumber": "WC-23-0003",
+      "dateOfInjury": "2023-03-15",
+      "status": "open",
+      "incurred": "$105,773",
+      "flags": "large, open"
+    }
+  ],
+  "lossDrivers": [
+    {
+      "dimension": "Cause of injury",
+      "top": "not printed on these loss runs"
+    },
+    {
+      "dimension": "Part of body",
+      "top": "not printed on these loss runs"
+    },
+    {
+      "dimension": "Nature of injury",
+      "top": "not printed on these loss runs"
+    }
+  ],
+  "california": [
+    {
+      "metric": "ct_share",
+      "label": "Cumulative-trauma share (all claims)",
+      "asAdjusted": "0.0 %",
+      "note": "CA: CT 16.5 % of all claims (2025) and 26.6–31.6 % of indemnity claims (2024–2025); ~60 % post-termination (§B3)."
+    },
+    {
+      "metric": "ct_indemnity_share",
+      "label": "CT share of lost-time claims",
+      "asAdjusted": "0.0 %",
+      "note": "Compare with WCIRB's 26–32 % statewide."
+    },
+    {
+      "metric": "post_termination_ct_count",
+      "label": "Post-termination CT claims",
+      "asAdjusted": "—",
+      "note": "~60 % of CA CT claims are filed post-termination (§B3)."
+    },
+    {
+      "metric": "litigation_rate",
+      "label": "Litigation rate (lost time)",
+      "asAdjusted": "—",
+      "note": ">90 % of recent CA CT claims are litigated; 99 % of post-termination CT claims (WCIRB 2026, §B3)."
+    },
+    {
+      "metric": "non_ca_share",
+      "label": "Non-CA share",
+      "asAdjusted": "0.0 %",
+      "note": "CA experience rating uses CA USR losses only; separate non-CA rows (§B3)."
+    },
+    {
+      "metric": "non_wc_excluded_count",
+      "label": "Non-WC rows excluded",
+      "asAdjusted": "0",
+      "note": null
+    }
+  ],
+  "dataQuality": {
+    "documents": [
+      {
+        "documentId": "doc-73b35138fba6b230",
+        "routing": "ReplayAccepted",
+        "reviewState": null,
+        "revision": 1,
+        "claims": 12
+      },
+      {
+        "documentId": "doc-ebb00898278dd541",
+        "routing": "Review",
+        "reviewState": "override",
+        "revision": 2,
+        "claims": 15
+      }
+    ],
+    "reviewRate": "50 % of documents routed to review",
+    "overrides": [
+      {
+        "field": "policyPeriods[0].claims[0].indemnity.reserve",
+        "from": "0.00",
+        "to": "25000",
+        "rationale": "Adjuster letter 2025-08-12: indemnity reserve raised after IME (synthetic sample)",
+        "user": "underwriter",
+        "atUtc": "2026-10-22T22:21:25.5270000+00:00"
+      }
+    ],
+    "note": "1 override(s); every one is in the append-only ledger with its rationale. As reported is the value before each field's first override."
+  },
+  "lineage": {
+    "documents": "doc-73b35138fba6b230 r1, doc-ebb00898278dd541 r2",
+    "valuationDates": "2024-10-23, 2025-10-03",
+    "catalogVersion": "1.0.0",
+    "formatVersions": "synthetic-mutual-pdf@5",
+    "extractors": "derived 68, manual 1, replay 438, spec 9",
+    "inputsHash": "23483aa5d5612c89a1ed6df0f56bcb670fc4098e297abb006e183a88fa7671f9"
+  }
+}

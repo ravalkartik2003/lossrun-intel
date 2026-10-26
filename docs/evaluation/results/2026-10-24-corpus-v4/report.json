@@ -1,0 +1,4432 @@
+{
+  "run": {
+    "gitSha": "8636b72f3caa56668f4c20a3142da6061151e3d1\u002Bdirty",
+    "startedAt": "2026-10-24T18:40:04.5962986+00:00",
+    "finishedAt": "2026-10-24T19:01:24.4501414+00:00",
+    "mode": "local",
+    "cuInline": false,
+    "learnModel": "gpt-5.4-mini",
+    "learnModelVersion": "2026-03-17",
+    "deltaModel": "gpt-5.4-mini",
+    "deltaModelVersion": "2026-03-17",
+    "embeddingModel": "text-embedding-3-large",
+    "promptVersion": "learn-v7",
+    "learnGateVersion": "learn-gate-0.2.0",
+    "priceTableVersion": "0.1.0",
+    "catalogVersion": "0.7.0",
+    "corpusGeneratorVersion": "corpus-gen-0.5.0",
+    "corpusSeed": 8,
+    "documents": 326,
+    "registryAtEnd": [
+      {
+        "formatId": "fictional-casualty-group-pdf",
+        "version": 1,
+        "carrierName": "Fictional Casualty Group",
+        "fileKind": "pdf",
+        "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+        "createdAt": "2026-10-24T18:42:30.3140725+00:00",
+        "status": "active",
+        "verificationGate": "pdf-totals"
+      },
+      {
+        "formatId": "hypothetical-mutual-casualty-pdf",
+        "version": 1,
+        "carrierName": "Hypothetical Mutual Casualty",
+        "fileKind": "pdf",
+        "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+        "createdAt": "2026-10-24T18:45:40.6721984+00:00",
+        "status": "active",
+        "verificationGate": "pdf-totals"
+      },
+      {
+        "formatId": "illustrative-comp-assurance-pdf",
+        "version": 1,
+        "carrierName": "Illustrative Comp Assurance",
+        "fileKind": "pdf",
+        "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+        "createdAt": "2026-10-24T19:01:22.2927398+00:00",
+        "status": "shadow",
+        "verificationGate": "pdf-totals"
+      },
+      {
+        "formatId": "notional-workers-comp-exchange-xlsx",
+        "version": 1,
+        "carrierName": "Notional Workers Comp Exchange",
+        "fileKind": "spreadsheet",
+        "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+        "createdAt": "2026-10-24T18:44:00.5477709+00:00",
+        "status": "active",
+        "verificationGate": "spreadsheet-totals"
+      },
+      {
+        "formatId": "placeholder-assurance-co-csv",
+        "version": 1,
+        "carrierName": "Placeholder Assurance Co.",
+        "fileKind": "spreadsheet",
+        "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+        "createdAt": "2026-10-24T18:45:02.0130978+00:00",
+        "status": "active",
+        "verificationGate": "spreadsheet-rules"
+      },
+      {
+        "formatId": "sample-composite-mutual-csv",
+        "version": 1,
+        "carrierName": "Sample Composite Mutual",
+        "fileKind": "spreadsheet",
+        "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+        "createdAt": "2026-10-24T18:50:11.0661507+00:00",
+        "status": "active",
+        "verificationGate": "spreadsheet-rules"
+      },
+      {
+        "formatId": "specimen-indemnity-co-pdf",
+        "version": 1,
+        "carrierName": "Specimen Indemnity Co.",
+        "fileKind": "pdf",
+        "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+        "createdAt": "2026-10-24T18:56:11.5186288+00:00",
+        "status": "shadow",
+        "verificationGate": "pdf-totals"
+      },
+      {
+        "formatId": "synthetic-mutual-csv",
+        "version": 1,
+        "carrierName": "Synthetic Mutual Insurance Co.",
+        "fileKind": "spreadsheet",
+        "createdBy": "hand",
+        "createdAt": "2026-10-22T00:00:00+00:00",
+        "status": "active"
+      },
+      {
+        "formatId": "synthetic-mutual-pdf",
+        "version": 1,
+        "carrierName": "Synthetic Mutual Insurance Co.",
+        "fileKind": "pdf",
+        "createdBy": "hand",
+        "createdAt": "2026-10-22T00:00:00+00:00",
+        "status": "active"
+      },
+      {
+        "formatId": "synthetic-mutual-pdf",
+        "version": 2,
+        "carrierName": "Synthetic Mutual Insurance Co.",
+        "fileKind": "pdf",
+        "createdBy": "hand",
+        "createdAt": "2026-10-22T20:00:00+00:00",
+        "status": "active",
+        "supersedes": "synthetic-mutual-pdf@1"
+      },
+      {
+        "formatId": "synthetic-mutual-pdf",
+        "version": 3,
+        "carrierName": "Synthetic Mutual Insurance Co.",
+        "fileKind": "pdf",
+        "createdBy": "hand",
+        "createdAt": "2026-10-22T21:00:00+00:00",
+        "status": "active",
+        "supersedes": "synthetic-mutual-pdf@2"
+      },
+      {
+        "formatId": "synthetic-mutual-pdf",
+        "version": 5,
+        "carrierName": "Synthetic Mutual Insurance Co.",
+        "fileKind": "pdf",
+        "createdBy": "hand",
+        "createdAt": "2026-10-22T23:00:00+00:00",
+        "status": "active",
+        "supersedes": "synthetic-mutual-pdf@4"
+      },
+      {
+        "formatId": "synthetic-mutual-xlsx",
+        "version": 1,
+        "carrierName": "Synthetic Mutual Insurance Co.",
+        "fileKind": "spreadsheet",
+        "createdBy": "hand",
+        "createdAt": "2026-10-22T00:00:00+00:00",
+        "status": "active"
+      }
+    ]
+  },
+  "documents": 326,
+  "fieldValues": 176235,
+  "totalCostUsd": 4.2924734690,
+  "keyFieldAccuracy": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 48834,
+        "n": 66702,
+        "value": 0.7321219753530629,
+        "lower": 0.6735789945965734,
+        "upper": 0.7835653114843645,
+        "designEffect": 269.67,
+        "clusters": 326
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 15492,
+        "n": 17526,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 205.64,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 16080,
+        "n": 16416,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 370.94,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 17262,
+        "n": 32760,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 252.87,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 9990,
+        "n": 10920,
+        "value": 0.9148351648351648,
+        "lower": 0.8023769099107323,
+        "upper": 0.9697435197465141,
+        "designEffect": 211.88,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 7272,
+        "n": 10920,
+        "value": 0.6659340659340659,
+        "lower": 0.5127998182145707,
+        "upper": 0.7908131701569315,
+        "designEffect": 264.55,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 10920,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.00042446718656577405,
+        "designEffect": 1,
+        "clusters": 51
+      }
+    }
+  ],
+  "keyFieldAccuracyByTemplate": [
+    {
+      "segment": "seen \u00B7 native-pdf",
+      "value": {
+        "successes": 7326,
+        "n": 7416,
+        "value": 0.9878640776699029,
+        "lower": 0.921788929786028,
+        "upper": 1,
+        "designEffect": 101.12,
+        "clusters": 38
+      }
+    },
+    {
+      "segment": "seen \u00B7 scan",
+      "value": {
+        "successes": 9090,
+        "n": 14724,
+        "value": 0.617359413202934,
+        "lower": 0.49568867703912184,
+        "upper": 0.7259431880382409,
+        "designEffect": 226.33,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "first-seen \u00B7 native-pdf",
+      "value": {
+        "successes": 528,
+        "n": 2130,
+        "value": 0.24788732394366197,
+        "lower": 0.07583126224365974,
+        "upper": 0.5531691594022736,
+        "designEffect": 199.11,
+        "clusters": 15
+      }
+    },
+    {
+      "segment": "first-seen \u00B7 xlsx-csv",
+      "value": {
+        "successes": 720,
+        "n": 720,
+        "value": 1,
+        "lower": 0.993598812689588,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 3
+      }
+    },
+    {
+      "segment": "first-seen \u00B7 scan",
+      "value": {
+        "successes": 48,
+        "n": 1542,
+        "value": 0.0311284046692607,
+        "lower": 0,
+        "upper": 0.20358354322775288,
+        "designEffect": 63.48,
+        "clusters": 10
+      }
+    },
+    {
+      "segment": "unseen-repeat \u00B7 native-pdf",
+      "value": {
+        "successes": 7638,
+        "n": 7980,
+        "value": 0.9571428571428572,
+        "lower": 0.7882681469796583,
+        "upper": 1,
+        "designEffect": 310.88,
+        "clusters": 34
+      }
+    },
+    {
+      "segment": "unseen-repeat \u00B7 xlsx-csv",
+      "value": {
+        "successes": 15360,
+        "n": 15696,
+        "value": 0.9785932721712538,
+        "lower": 0.8654139956367471,
+        "upper": 1,
+        "designEffect": 388.73,
+        "clusters": 83
+      }
+    },
+    {
+      "segment": "unseen-repeat \u00B7 scan",
+      "value": {
+        "successes": 8124,
+        "n": 16494,
+        "value": 0.4925427428155693,
+        "lower": 0.3713085299226041,
+        "upper": 0.614660368921723,
+        "designEffect": 270.33,
+        "clusters": 71
+      }
+    }
+  ],
+  "allFieldAccuracy": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 128451,
+        "n": 176235,
+        "value": 0.7288620308111329,
+        "lower": 0.6776424463917348,
+        "upper": 0.774664712595279,
+        "designEffect": 549.43,
+        "clusters": 326
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 35464,
+        "n": 40111,
+        "value": 0.8841464934805914,
+        "lower": 0.7995020707037506,
+        "upper": 0.9370297621188881,
+        "designEffect": 450.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 53315,
+        "n": 60791,
+        "value": 0.8770212695958284,
+        "lower": 0.8294225693046215,
+        "upper": 0.9129122137499082,
+        "designEffect": 249.58,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 39672,
+        "n": 75333,
+        "value": 0.526621799211501,
+        "lower": 0.44195631231396204,
+        "upper": 0.6097836015763771,
+        "designEffect": 569.93,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 23000,
+        "n": 25111,
+        "value": 0.9159332563418422,
+        "lower": 0.8049563677260047,
+        "upper": 0.9700955067260318,
+        "designEffect": 479.18,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 16672,
+        "n": 25111,
+        "value": 0.6639321412926605,
+        "lower": 0.511990941068162,
+        "upper": 0.788350173848114,
+        "designEffect": 599.03,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 25111,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.0001846297617139622,
+        "designEffect": 1,
+        "clusters": 51
+      }
+    }
+  ],
+  "claimJointPass": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 5642,
+        "n": 11117,
+        "value": 0.5075110191598453,
+        "lower": 0.4484927285296431,
+        "upper": 0.5663207065609754,
+        "designEffect": 40.75,
+        "clusters": 326
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 183,
+        "n": 2736,
+        "value": 0.0668859649122807,
+        "lower": 0.025127061411113302,
+        "upper": 0.15168392029402938,
+        "designEffect": 37.24,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 1665,
+        "n": 1820,
+        "value": 0.9148351648351648,
+        "lower": 0.8023769099107323,
+        "upper": 0.9697435197465141,
+        "designEffect": 35.31,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 1212,
+        "n": 1820,
+        "value": 0.6659340659340659,
+        "lower": 0.5127998182145707,
+        "upper": 0.7908131701569315,
+        "designEffect": 44.09,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 1820,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.0025416794620436054,
+        "designEffect": 1,
+        "clusters": 51
+      }
+    }
+  ],
+  "documentAllCorrect": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 143,
+        "n": 326,
+        "value": 0.4386503067484663,
+        "lower": 0.38487932269541564,
+        "upper": 0.49390142262827436,
+        "designEffect": 1.04,
+        "clusters": 326
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 66,
+        "n": 87,
+        "value": 0.7586206896551724,
+        "lower": 0.6578481527387486,
+        "upper": 0.8373206648047623,
+        "designEffect": 1.01,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 6,
+        "n": 86,
+        "value": 0.06976744186046512,
+        "lower": 0.029534423010707037,
+        "upper": 0.14679239846518527,
+        "designEffect": 1,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 71,
+        "n": 153,
+        "value": 0.46405228758169936,
+        "lower": 0.3868748326701733,
+        "upper": 0.5429906501016667,
+        "designEffect": 1,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 42,
+        "n": 51,
+        "value": 0.8235294117647058,
+        "lower": 0.6951745212500331,
+        "upper": 0.9065600181506839,
+        "designEffect": 1,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 29,
+        "n": 51,
+        "value": 0.5686274509803921,
+        "lower": 0.4295909306413681,
+        "upper": 0.6976399054736517,
+        "designEffect": 1.05,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 51,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.08367866068840317,
+        "designEffect": 1,
+        "clusters": 51
+      }
+    }
+  ],
+  "claimRowRecall": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 8139,
+        "n": 11117,
+        "value": 0.7321219753530629,
+        "lower": 0.6721344489961089,
+        "upper": 0.7846786383410199,
+        "designEffect": 47.08,
+        "clusters": 326
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.801902026585293,
+        "upper": 0.9357876793555369,
+        "designEffect": 31.13,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8763230644436675,
+        "upper": 1,
+        "designEffect": 60.69,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4434760808969518,
+        "upper": 0.6088926481733534,
+        "designEffect": 40.1,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 1665,
+        "n": 1820,
+        "value": 0.9148351648351648,
+        "lower": 0.81508770429559,
+        "upper": 0.9660657924802545,
+        "designEffect": 29.43,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 1212,
+        "n": 1820,
+        "value": 0.6659340659340659,
+        "lower": 0.5072546997668412,
+        "upper": 0.7944901881390245,
+        "designEffect": 47.3,
+        "clusters": 51
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 1820,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.0025416794620436054,
+        "designEffect": 1,
+        "clusters": 51
+      }
+    }
+  ],
+  "claimRowPrecision": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 8139,
+        "n": 8139,
+        "value": 1,
+        "lower": 0.999430575836767,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 239
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2582,
+        "value": 1,
+        "lower": 0.9982071437373982,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 73
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2680,
+        "value": 1,
+        "lower": 0.9982725958387791,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 85
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 2877,
+        "n": 2877,
+        "value": 1,
+        "lower": 0.9983906974887421,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 81
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 1665,
+        "n": 1665,
+        "value": 1,
+        "lower": 0.9972223320348321,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 46
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 1212,
+        "n": 1212,
+        "value": 1,
+        "lower": 0.9961879037563027,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 35
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      }
+    }
+  ],
+  "classificationPrecision": {
+    "successes": 326,
+    "n": 326,
+    "value": 1,
+    "lower": 0.9859655887243951,
+    "upper": 1,
+    "designEffect": 1,
+    "clusters": 326
+  },
+  "classificationRecall": {
+    "successes": 326,
+    "n": 326,
+    "value": 1,
+    "lower": 0.9859655887243951,
+    "upper": 1,
+    "designEffect": 1,
+    "clusters": 326
+  },
+  "bundleSplitExact": "8/8",
+  "dqFirstPass": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 239,
+        "n": 317,
+        "value": 0.7539432176656151,
+        "lower": 0.7013237903132875,
+        "upper": 0.7999625921004941,
+        "designEffect": 1.09,
+        "clusters": 317
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 85,
+        "value": 0.8588235294117647,
+        "lower": 0.7677195388105058,
+        "upper": 0.9188968311604568,
+        "designEffect": 1,
+        "clusters": 85
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 85,
+        "n": 85,
+        "value": 1,
+        "lower": 0.9481376421336349,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 85
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 81,
+        "n": 147,
+        "value": 0.5510204081632653,
+        "lower": 0.470324874925804,
+        "upper": 0.6291172818343223,
+        "designEffect": 1,
+        "clusters": 147
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 46,
+        "n": 49,
+        "value": 0.9387755102040817,
+        "lower": 0.8285232747576508,
+        "upper": 0.985231699278853,
+        "designEffect": 1,
+        "clusters": 49
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 35,
+        "n": 49,
+        "value": 0.7142857142857143,
+        "lower": 0.5727963049888825,
+        "upper": 0.8237488354694731,
+        "designEffect": 1.03,
+        "clusters": 49
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 49,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.08681112403848726,
+        "designEffect": 1,
+        "clusters": 49
+      }
+    }
+  ],
+  "quoteSuccess": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 239,
+        "n": 317,
+        "value": 0.7539432176656151,
+        "lower": 0.7013237903132875,
+        "upper": 0.7999625921004941,
+        "designEffect": 1.09,
+        "clusters": 317
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 85,
+        "value": 0.8588235294117647,
+        "lower": 0.7677195388105058,
+        "upper": 0.9188968311604568,
+        "designEffect": 1,
+        "clusters": 85
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 85,
+        "n": 85,
+        "value": 1,
+        "lower": 0.9481376421336349,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 85
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 81,
+        "n": 147,
+        "value": 0.5510204081632653,
+        "lower": 0.470324874925804,
+        "upper": 0.6291172818343223,
+        "designEffect": 1,
+        "clusters": 147
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 46,
+        "n": 49,
+        "value": 0.9387755102040817,
+        "lower": 0.8285232747576508,
+        "upper": 0.985231699278853,
+        "designEffect": 1,
+        "clusters": 49
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 35,
+        "n": 49,
+        "value": 0.7142857142857143,
+        "lower": 0.5727963049888825,
+        "upper": 0.8237488354694731,
+        "designEffect": 1.03,
+        "clusters": 49
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 0,
+        "n": 49,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.08681112403848726,
+        "designEffect": 1,
+        "clusters": 49
+      }
+    }
+  ],
+  "stp": [
+    {
+      "segment": "seen",
+      "value": {
+        "successes": 80,
+        "n": 106,
+        "value": 0.7547169811320755,
+        "lower": 0.6643836053960244,
+        "upper": 0.8272340456254992,
+        "designEffect": 1,
+        "clusters": 106
+      }
+    },
+    {
+      "segment": "first-seen",
+      "value": {
+        "successes": 7,
+        "n": 28,
+        "value": 0.25,
+        "lower": 0.12417933852399093,
+        "upper": 0.43614231469574444,
+        "designEffect": 1,
+        "clusters": 28
+      }
+    },
+    {
+      "segment": "unseen-repeat",
+      "value": {
+        "successes": 152,
+        "n": 183,
+        "value": 0.8306010928961749,
+        "lower": 0.7676036418140134,
+        "upper": 0.8793877641265456,
+        "designEffect": 1.05,
+        "clusters": 183
+      }
+    }
+  ],
+  "stpStrict": [
+    {
+      "segment": "seen",
+      "value": {
+        "successes": 80,
+        "n": 106,
+        "value": 0.7547169811320755,
+        "lower": 0.6643836053960244,
+        "upper": 0.8272340456254992,
+        "designEffect": 1,
+        "clusters": 106
+      }
+    },
+    {
+      "segment": "first-seen",
+      "value": {
+        "successes": 0,
+        "n": 28,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.14301638504912692,
+        "designEffect": 1,
+        "clusters": 28
+      }
+    },
+    {
+      "segment": "unseen-repeat",
+      "value": {
+        "successes": 135,
+        "n": 183,
+        "value": 0.7377049180327869,
+        "lower": 0.6688117629208484,
+        "upper": 0.7966755287026722,
+        "designEffect": 1.02,
+        "clusters": 183
+      }
+    }
+  ],
+  "guardrailSourceInconsistentToReview": {
+    "successes": 9,
+    "n": 9,
+    "value": 1,
+    "lower": 0.6553597277243224,
+    "upper": 1,
+    "designEffect": 1,
+    "clusters": 9
+  },
+  "thresholds": [
+    {
+      "criterion": "Claim # and DOI, normalized exact",
+      "segment": "native (PDF \u002B XLSX/CSV)",
+      "threshold": 0.98,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 10524,
+        "n": 11314,
+        "value": 0.9301750044193036,
+        "lower": 0.8793293788069975,
+        "upper": 0.9613086517239046,
+        "designEffect": 69.06,
+        "clusters": 173
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Claim # and DOI, normalized exact",
+      "segment": "scan \u2265 300 dpi",
+      "threshold": 0.95,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 3330,
+        "n": 3640,
+        "value": 0.9148351648351648,
+        "lower": 0.8023769099107323,
+        "upper": 0.9697435197465141,
+        "designEffect": 70.63,
+        "clusters": 51
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Claim # and DOI, normalized exact",
+      "segment": "scan \u003C 200 dpi / fax",
+      "threshold": 0.9,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 2424,
+        "n": 7280,
+        "value": 0.33296703296703295,
+        "lower": 0.2423953067222437,
+        "upper": 0.4377394102428663,
+        "designEffect": 84.13,
+        "clusters": 102
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Indemnity/medical paid and reserve per claim",
+      "segment": "native (PDF \u002B XLSX/CSV)",
+      "threshold": 0.97,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 21048,
+        "n": 22628,
+        "value": 0.9301750044193036,
+        "lower": 0.8793293788069975,
+        "upper": 0.9613086517239046,
+        "designEffect": 138.12,
+        "clusters": 173
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Indemnity/medical paid and reserve per claim",
+      "segment": "scans",
+      "threshold": 0.93,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 11508,
+        "n": 21840,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 168.58,
+        "clusters": 153
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Claim-level completeness (all printed fields right)",
+      "segment": "native (PDF \u002B XLSX/CSV)",
+      "threshold": 0.9,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 2765,
+        "n": 5657,
+        "value": 0.4887749690648754,
+        "lower": 0.40752381621413136,
+        "upper": 0.57062361354484,
+        "designEffect": 40.26,
+        "clusters": 173
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Claim-level completeness (all printed fields right)",
+      "segment": "scans",
+      "threshold": 0.8,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Straight-through (no human touch)",
+      "segment": "recurring template (seen \u002B unseen repeats)",
+      "threshold": 0.8,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 232,
+        "n": 289,
+        "value": 0.8027681660899654,
+        "lower": 0.7528801074773214,
+        "upper": 0.8447128722480551,
+        "designEffect": 1,
+        "clusters": 289
+      },
+      "pass": true,
+      "robustPass": false
+    },
+    {
+      "criterion": "Straight-through (no human touch)",
+      "segment": "first-seen template",
+      "threshold": 0.65,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 7,
+        "n": 28,
+        "value": 0.25,
+        "lower": 0.12417933852399093,
+        "upper": 0.43614231469574444,
+        "designEffect": 1,
+        "clusters": 28
+      },
+      "pass": false,
+      "robustPass": false
+    },
+    {
+      "criterion": "Auto-classification precision (loss run vs other)",
+      "segment": "bundles \u002B singles",
+      "threshold": 0.97,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 326,
+        "n": 326,
+        "value": 1,
+        "lower": 0.9859655887243951,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 326
+      },
+      "pass": true,
+      "robustPass": true
+    },
+    {
+      "criterion": "Auto-classification recall (loss run vs other)",
+      "segment": "bundles \u002B singles",
+      "threshold": 0.95,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 326,
+        "n": 326,
+        "value": 1,
+        "lower": 0.9859655887243951,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 326
+      },
+      "pass": true,
+      "robustPass": true
+    },
+    {
+      "criterion": "Data-quality first-pass rate (hard rules, consistent docs)",
+      "segment": "all",
+      "threshold": 0.85,
+      "basis": "evaluation-and-wc-domain.md A2 (Inferences)",
+      "measured": {
+        "successes": 239,
+        "n": 317,
+        "value": 0.7539432176656151,
+        "lower": 0.7013237903132875,
+        "upper": 0.7999625921004941,
+        "designEffect": 1.09,
+        "clusters": 317
+      },
+      "pass": false,
+      "robustPass": false
+    }
+  ],
+  "requirement": [
+    {
+      "criterion": "Extraction accuracy (key fields: Claim #, DOI, paid/reserve splits) \u2014 by input type, see the deck table",
+      "measured": "native PDF, recurring template 100.0% [100.0%\u2013100.0%] (n=13386, docs=63); XLSX / CSV 100.0% [100.0%\u2013100.0%] (n=14982, docs=79); scan \u2265 300 dpi 100.0% [100.0%\u2013100.0%] (n=9990, docs=46); scan 200 dpi rotated 100.0% [99.9%\u2013100.0%] (n=7272, docs=35); construct: two-line records (c6) 100.0% [99.6%\u2013100.0%] (n=1278, docs=6); construct: one table per claim (c7) 100.0% [99.1%\u2013100.0%] (n=516, docs=3); construct: stacked cells (c8) 100.0% [98.5%\u2013100.0%] (n=312, docs=1); construct: component-sum headers (c9) 100.0% [99.6%\u2013100.0%] (n=1098, docs=6)",
+      "proposedTarget": "committed rows: \u2265 99% native recurring, \u2265 98% native first-seen and XLSX/CSV, \u2265 95% scans \u2265 300 dpi",
+      "preFill": "native PDF, recurring template 100.0% [98.9%\u2013100.0%] (n=432, docs=2); native PDF, first-seen template 100.0% [91.2%\u2013100.0%] (n=48, docs=1); XLSX / CSV 100.0% [98.6%\u2013100.0%] (n=336, docs=1); scan \u2265 300 dpi 100.0% [98.9%\u2013100.0%] (n=432, docs=2); scan 200 dpi rotated 99.8% [99.6%\u201399.9%] (n=3150, docs=13); fax \u003C 200 dpi 89.1% [86.2%\u201391.4%] (n=10422, docs=48); narrative statement 0.0% [0.0%\u20130.2%] (n=1992, docs=12); construct: one table per claim (c7) 100.0% [98.7%\u2013100.0%] (n=342, docs=3); construct: stacked cells (c8) 100.0% [99.4%\u2013100.0%] (n=714, docs=5)"
+    },
+    {
+      "criterion": "End-to-end latency, \u2264 15 MB upload (per document, in-process pipeline incl. CU)",
+      "measured": "p50 0.3 s, p95 20.2 s over 326 documents (deployed API figures: the API work)",
+      "proposedTarget": "\u2264 60 s p95 (proposed)"
+    },
+    {
+      "criterion": "Auto-classification precision / recall",
+      "measured": "100.0% [98.6%\u2013100.0%] (n=326, docs=326) / 100.0% [98.6%\u2013100.0%] (n=326, docs=326); bundle split exact 8/8",
+      "proposedTarget": "\u2265 97% / \u2265 95% (A2)"
+    },
+    {
+      "criterion": "Data-quality validation pass rate, first pass",
+      "measured": "75.4% [70.1%\u201380.0%] (n=317, docs=317) \u2014 blended, mixes the by-design review rows (fax, narrative); not for the deck: use the by-input-type table",
+      "proposedTarget": "\u2265 85% (A2)"
+    },
+    {
+      "criterion": "Quote success rate (priceable submissions)",
+      "measured": "75.4% [70.1%\u201380.0%] (n=317, docs=317) \u2014 blended, mixes the by-design review rows; not for the deck: use the by-input-type table",
+      "proposedTarget": "\u2265 90% of valid uploads (proposed)"
+    }
+  ],
+  "fieldMatrix": [
+    {
+      "segment": "claim.accidentDescription \u00B7 xlsx-csv",
+      "value": {
+        "successes": 1398,
+        "n": 1398,
+        "value": 1,
+        "lower": 0.9966934994556466,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "claim.causeOfInjury \u00B7 xlsx-csv",
+      "value": {
+        "successes": 0,
+        "n": 2553,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.0018131865748135286,
+        "designEffect": 1,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.claimantName \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.claimantName \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.claimantName \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.claimNumber \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.claimNumber \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.claimNumber \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.claimType \u00B7 native-pdf",
+      "value": {
+        "successes": 1359,
+        "n": 1550,
+        "value": 0.8767741935483871,
+        "lower": 0.7554261086170362,
+        "upper": 0.9449763600227541,
+        "designEffect": 30.62,
+        "clusters": 50
+      }
+    },
+    {
+      "segment": "claim.claimType \u00B7 scan",
+      "value": {
+        "successes": 1515,
+        "n": 2454,
+        "value": 0.617359413202934,
+        "lower": 0.49568867703912173,
+        "upper": 0.7259431880382408,
+        "designEffect": 37.72,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "claim.claimType \u00B7 xlsx-csv",
+      "value": {
+        "successes": 1099,
+        "n": 1155,
+        "value": 0.9515151515151515,
+        "lower": 0.742342108892351,
+        "upper": 1,
+        "designEffect": 59.93,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "claim.dateClosed \u00B7 native-pdf",
+      "value": {
+        "successes": 1223,
+        "n": 1371,
+        "value": 0.8920495988329686,
+        "lower": 0.7496634433461904,
+        "upper": 0.9624272277705703,
+        "designEffect": 36.09,
+        "clusters": 37
+      }
+    },
+    {
+      "segment": "claim.dateClosed \u00B7 scan",
+      "value": {
+        "successes": 1362,
+        "n": 3006,
+        "value": 0.4530938123752495,
+        "lower": 0.3432754055172362,
+        "upper": 0.5676738705810529,
+        "designEffect": 41.84,
+        "clusters": 81
+      }
+    },
+    {
+      "segment": "claim.dateClosed \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2497,
+        "n": 2553,
+        "value": 0.9780650215432825,
+        "lower": 0.8807881692716998,
+        "upper": 1,
+        "designEffect": 52.22,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.dateOfInjury \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.dateOfInjury \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.dateOfInjury \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.dateReported \u00B7 native-pdf",
+      "value": {
+        "successes": 2496,
+        "n": 2778,
+        "value": 0.8984881209503239,
+        "lower": 0.8094949522443439,
+        "upper": 0.9501807264717202,
+        "designEffect": 35.51,
+        "clusters": 81
+      }
+    },
+    {
+      "segment": "claim.dateReported \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.dateReported \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2497,
+        "n": 2553,
+        "value": 0.9780650215432825,
+        "lower": 0.8807881692716998,
+        "upper": 1,
+        "designEffect": 52.22,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.expense.incurred \u00B7 xlsx-csv",
+      "value": {
+        "successes": 1099,
+        "n": 1155,
+        "value": 0.9515151515151515,
+        "lower": 0.742342108892351,
+        "upper": 1,
+        "designEffect": 59.93,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "claim.expense.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.expense.paid \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.expense.paid \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.expense.reserve \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.indemnity.incurred \u00B7 xlsx-csv",
+      "value": {
+        "successes": 1099,
+        "n": 1155,
+        "value": 0.9515151515151515,
+        "lower": 0.742342108892351,
+        "upper": 1,
+        "designEffect": 59.93,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "claim.indemnity.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.indemnity.paid \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.indemnity.paid \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.indemnity.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.indemnity.reserve \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.indemnity.reserve \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.jurisdictionState \u00B7 native-pdf",
+      "value": {
+        "successes": 213,
+        "n": 213,
+        "value": 1,
+        "lower": 0.9786710803889861,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      }
+    },
+    {
+      "segment": "claim.jurisdictionState \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2497,
+        "n": 2553,
+        "value": 0.9780650215432825,
+        "lower": 0.8807881692716998,
+        "upper": 1,
+        "designEffect": 52.22,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.lastDayWorked \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2497,
+        "n": 2553,
+        "value": 0.9780650215432825,
+        "lower": 0.8807881692716998,
+        "upper": 1,
+        "designEffect": 52.22,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.lineOfBusiness \u00B7 xlsx-csv",
+      "value": {
+        "successes": 1383,
+        "n": 1398,
+        "value": 0.9892703862660944,
+        "lower": 0.9727511734239687,
+        "upper": 0.9965848422710584,
+        "designEffect": 3.46,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "claim.litigationFlag \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2497,
+        "n": 2553,
+        "value": 0.9780650215432825,
+        "lower": 0.8807881692716998,
+        "upper": 1,
+        "designEffect": 52.22,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.medical.incurred \u00B7 xlsx-csv",
+      "value": {
+        "successes": 1099,
+        "n": 1155,
+        "value": 0.9515151515151515,
+        "lower": 0.742342108892351,
+        "upper": 1,
+        "designEffect": 59.93,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "claim.medical.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.medical.paid \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.medical.paid \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.medical.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.medical.reserve \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.medical.reserve \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.natureOfInjury \u00B7 xlsx-csv",
+      "value": {
+        "successes": 0,
+        "n": 2553,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.0018131865748135286,
+        "designEffect": 1,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.partOfBody \u00B7 xlsx-csv",
+      "value": {
+        "successes": 0,
+        "n": 1155,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.003999510893896362,
+        "designEffect": 1,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "claim.recoverySubrogation \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2494,
+        "n": 2553,
+        "value": 0.9768899334116725,
+        "lower": 0.8833645054303567,
+        "upper": 1,
+        "designEffect": 49.4,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "claim.status \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.status \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.status \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.total.incurred \u00B7 native-pdf",
+      "value": {
+        "successes": 2582,
+        "n": 2921,
+        "value": 0.8839438548442314,
+        "lower": 0.7969503138035422,
+        "upper": 0.9378193942835241,
+        "designEffect": 34.27,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "claim.total.incurred \u00B7 scan",
+      "value": {
+        "successes": 2877,
+        "n": 5460,
+        "value": 0.5269230769230769,
+        "lower": 0.4414136924267981,
+        "upper": 0.6108817894503162,
+        "designEffect": 42.15,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "claim.total.incurred \u00B7 xlsx-csv",
+      "value": {
+        "successes": 2680,
+        "n": 2736,
+        "value": 0.97953216374269,
+        "lower": 0.8747655583894263,
+        "upper": 1,
+        "designEffect": 61.82,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "claim.total.paid \u00B7 xlsx-csv",
+      "value": {
+        "successes": 183,
+        "n": 183,
+        "value": 1,
+        "lower": 0.9752568132489045,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      }
+    },
+    {
+      "segment": "claim.total.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 1010,
+        "n": 1075,
+        "value": 0.9395348837209302,
+        "lower": 0.7358962014660166,
+        "upper": 1,
+        "designEffect": 52.72,
+        "clusters": 28
+      }
+    },
+    {
+      "segment": "claim.total.reserve \u00B7 scan",
+      "value": {
+        "successes": 1362,
+        "n": 2757,
+        "value": 0.4940152339499456,
+        "lower": 0.3720810413460384,
+        "upper": 0.6166655536092029,
+        "designEffect": 45.67,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "claim.total.reserve \u00B7 xlsx-csv",
+      "value": {
+        "successes": 183,
+        "n": 183,
+        "value": 1,
+        "lower": 0.9752568132489045,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      }
+    },
+    {
+      "segment": "document.carrierName \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 87,
+        "value": 0.8390804597701149,
+        "lower": 0.7464809353971663,
+        "upper": 0.9029617056170195,
+        "designEffect": 1,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "document.carrierName \u00B7 scan",
+      "value": {
+        "successes": 81,
+        "n": 153,
+        "value": 0.5294117647058824,
+        "lower": 0.45008838627436376,
+        "upper": 0.6072769188694606,
+        "designEffect": 1.01,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "document.carrierName \u00B7 xlsx-csv",
+      "value": {
+        "successes": 79,
+        "n": 80,
+        "value": 0.9875,
+        "lower": 0.9259140454276431,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 80
+      }
+    },
+    {
+      "segment": "document.insuredName \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 87,
+        "value": 0.8390804597701149,
+        "lower": 0.7464809353971663,
+        "upper": 0.9029617056170195,
+        "designEffect": 1,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "document.insuredName \u00B7 scan",
+      "value": {
+        "successes": 74,
+        "n": 153,
+        "value": 0.48366013071895425,
+        "lower": 0.4058495123519382,
+        "upper": 0.5622711616352618,
+        "designEffect": 1,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "document.insuredName \u00B7 xlsx-csv",
+      "value": {
+        "successes": 39,
+        "n": 40,
+        "value": 0.975,
+        "lower": 0.8502070312279614,
+        "upper": 1,
+        "designEffect": 1.1,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "document.reportRunDate \u00B7 native-pdf",
+      "value": {
+        "successes": 63,
+        "n": 69,
+        "value": 0.9130434782608695,
+        "lower": 0.8197691945927786,
+        "upper": 0.9627522001652312,
+        "designEffect": 1,
+        "clusters": 69
+      }
+    },
+    {
+      "segment": "document.reportRunDate \u00B7 scan",
+      "value": {
+        "successes": 81,
+        "n": 153,
+        "value": 0.5294117647058824,
+        "lower": 0.45008838627436376,
+        "upper": 0.6072769188694606,
+        "designEffect": 1.01,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "document.valuationDate \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 87,
+        "value": 0.8390804597701149,
+        "lower": 0.7464809353971663,
+        "upper": 0.9029617056170195,
+        "designEffect": 1,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "document.valuationDate \u00B7 scan",
+      "value": {
+        "successes": 81,
+        "n": 153,
+        "value": 0.5294117647058824,
+        "lower": 0.45008838627436376,
+        "upper": 0.6072769188694606,
+        "designEffect": 1.01,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "document.valuationDate \u00B7 xlsx-csv",
+      "value": {
+        "successes": 85,
+        "n": 86,
+        "value": 0.9883720930232558,
+        "lower": 0.9246510302205538,
+        "upper": 1,
+        "designEffect": 1.13,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "grandTotal.claimCount \u00B7 native-pdf",
+      "value": {
+        "successes": 63,
+        "n": 81,
+        "value": 0.7777777777777778,
+        "lower": 0.6750059981227713,
+        "upper": 0.8553950651470238,
+        "designEffect": 1,
+        "clusters": 81
+      }
+    },
+    {
+      "segment": "grandTotal.claimCount \u00B7 scan",
+      "value": {
+        "successes": 78,
+        "n": 153,
+        "value": 0.5098039215686274,
+        "lower": 0.43132751623232357,
+        "upper": 0.5878000793753564,
+        "designEffect": 1,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "grandTotal.closedCount \u00B7 native-pdf",
+      "value": {
+        "successes": 37,
+        "n": 38,
+        "value": 0.9736842105263158,
+        "lower": 0.8485984774430644,
+        "upper": 1,
+        "designEffect": 1.05,
+        "clusters": 38
+      }
+    },
+    {
+      "segment": "grandTotal.closedCount \u00B7 scan",
+      "value": {
+        "successes": 40,
+        "n": 72,
+        "value": 0.5555555555555556,
+        "lower": 0.44084031391489753,
+        "upper": 0.664642889045653,
+        "designEffect": 1,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "grandTotal.expense.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 84,
+        "value": 0.8690476190476191,
+        "lower": 0.7788383657453565,
+        "upper": 0.9269786913664032,
+        "designEffect": 1,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "grandTotal.expense.paid \u00B7 scan",
+      "value": {
+        "successes": 78,
+        "n": 144,
+        "value": 0.5416666666666666,
+        "lower": 0.4602527464940129,
+        "upper": 0.6209152837107957,
+        "designEffect": 1,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "grandTotal.indemnity.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 84,
+        "value": 0.8690476190476191,
+        "lower": 0.7788383657453565,
+        "upper": 0.9269786913664032,
+        "designEffect": 1,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "grandTotal.indemnity.paid \u00B7 scan",
+      "value": {
+        "successes": 78,
+        "n": 144,
+        "value": 0.5416666666666666,
+        "lower": 0.4602527464940129,
+        "upper": 0.6209152837107957,
+        "designEffect": 1,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "grandTotal.indemnity.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 84,
+        "value": 0.8690476190476191,
+        "lower": 0.7788383657453565,
+        "upper": 0.9269786913664032,
+        "designEffect": 1,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "grandTotal.indemnity.reserve \u00B7 scan",
+      "value": {
+        "successes": 78,
+        "n": 144,
+        "value": 0.5416666666666666,
+        "lower": 0.4602527464940129,
+        "upper": 0.6209152837107957,
+        "designEffect": 1,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "grandTotal.medical.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 84,
+        "value": 0.8690476190476191,
+        "lower": 0.7788383657453565,
+        "upper": 0.9269786913664032,
+        "designEffect": 1,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "grandTotal.medical.paid \u00B7 scan",
+      "value": {
+        "successes": 78,
+        "n": 144,
+        "value": 0.5416666666666666,
+        "lower": 0.4602527464940129,
+        "upper": 0.6209152837107957,
+        "designEffect": 1,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "grandTotal.medical.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 84,
+        "value": 0.8690476190476191,
+        "lower": 0.7788383657453565,
+        "upper": 0.9269786913664032,
+        "designEffect": 1,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "grandTotal.medical.reserve \u00B7 scan",
+      "value": {
+        "successes": 78,
+        "n": 144,
+        "value": 0.5416666666666666,
+        "lower": 0.4602527464940129,
+        "upper": 0.6209152837107957,
+        "designEffect": 1,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "grandTotal.openCount \u00B7 native-pdf",
+      "value": {
+        "successes": 37,
+        "n": 38,
+        "value": 0.9736842105263158,
+        "lower": 0.8485984774430644,
+        "upper": 1,
+        "designEffect": 1.05,
+        "clusters": 38
+      }
+    },
+    {
+      "segment": "grandTotal.openCount \u00B7 scan",
+      "value": {
+        "successes": 40,
+        "n": 72,
+        "value": 0.5555555555555556,
+        "lower": 0.44084031391489753,
+        "upper": 0.664642889045653,
+        "designEffect": 1,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "grandTotal.total.incurred \u00B7 native-pdf",
+      "value": {
+        "successes": 73,
+        "n": 87,
+        "value": 0.8390804597701149,
+        "lower": 0.7464809353971663,
+        "upper": 0.9029617056170195,
+        "designEffect": 1,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "grandTotal.total.incurred \u00B7 scan",
+      "value": {
+        "successes": 78,
+        "n": 153,
+        "value": 0.5098039215686274,
+        "lower": 0.43132751623232357,
+        "upper": 0.5878000793753564,
+        "designEffect": 1,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "grandTotal.total.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 0,
+        "n": 3,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.6174715726082352,
+        "designEffect": 1,
+        "clusters": 3
+      }
+    },
+    {
+      "segment": "grandTotal.total.paid \u00B7 scan",
+      "value": {
+        "successes": 0,
+        "n": 9,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.3446402722756776,
+        "designEffect": 1,
+        "clusters": 9
+      }
+    },
+    {
+      "segment": "grandTotal.total.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 26,
+        "n": 31,
+        "value": 0.8387096774193549,
+        "lower": 0.6669339788261047,
+        "upper": 0.9345020250056552,
+        "designEffect": 1.02,
+        "clusters": 31
+      }
+    },
+    {
+      "segment": "grandTotal.total.reserve \u00B7 scan",
+      "value": {
+        "successes": 38,
+        "n": 81,
+        "value": 0.4691358024691358,
+        "lower": 0.3643249548470223,
+        "upper": 0.576741593678556,
+        "designEffect": 1,
+        "clusters": 81
+      }
+    },
+    {
+      "segment": "period.effectiveDate \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 261,
+        "value": 0.8390804597701149,
+        "lower": 0.7465821322979145,
+        "upper": 0.9029123879398959,
+        "designEffect": 3,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "period.effectiveDate \u00B7 scan",
+      "value": {
+        "successes": 244,
+        "n": 459,
+        "value": 0.5315904139433552,
+        "lower": 0.45189021142262886,
+        "upper": 0.6097109528148992,
+        "designEffect": 3.06,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "period.effectiveDate \u00B7 xlsx-csv",
+      "value": {
+        "successes": 254,
+        "n": 257,
+        "value": 0.9883268482490273,
+        "lower": 0.9244967547202848,
+        "upper": 1,
+        "designEffect": 3.38,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "period.expirationDate \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 261,
+        "value": 0.8390804597701149,
+        "lower": 0.7465821322979145,
+        "upper": 0.9029123879398959,
+        "designEffect": 3,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "period.expirationDate \u00B7 scan",
+      "value": {
+        "successes": 244,
+        "n": 459,
+        "value": 0.5315904139433552,
+        "lower": 0.45189021142262886,
+        "upper": 0.6097109528148992,
+        "designEffect": 3.06,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "period.expirationDate \u00B7 xlsx-csv",
+      "value": {
+        "successes": 254,
+        "n": 257,
+        "value": 0.9883268482490273,
+        "lower": 0.9244967547202848,
+        "upper": 1,
+        "designEffect": 3.38,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "period.policyNumber \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 261,
+        "value": 0.8390804597701149,
+        "lower": 0.7465821322979145,
+        "upper": 0.9029123879398959,
+        "designEffect": 3,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "period.policyNumber \u00B7 scan",
+      "value": {
+        "successes": 244,
+        "n": 459,
+        "value": 0.5315904139433552,
+        "lower": 0.45189021142262886,
+        "upper": 0.6097109528148992,
+        "designEffect": 3.06,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "period.policyNumber \u00B7 xlsx-csv",
+      "value": {
+        "successes": 254,
+        "n": 257,
+        "value": 0.9883268482490273,
+        "lower": 0.9244967547202848,
+        "upper": 1,
+        "designEffect": 3.38,
+        "clusters": 86
+      }
+    },
+    {
+      "segment": "subtotal.claimCount \u00B7 native-pdf",
+      "value": {
+        "successes": 189,
+        "n": 243,
+        "value": 0.7777777777777778,
+        "lower": 0.6756781254455847,
+        "upper": 0.8550072412578867,
+        "designEffect": 2.96,
+        "clusters": 81
+      }
+    },
+    {
+      "segment": "subtotal.claimCount \u00B7 scan",
+      "value": {
+        "successes": 243,
+        "n": 459,
+        "value": 0.5294117647058824,
+        "lower": 0.44997435708675415,
+        "upper": 0.6073867915617318,
+        "designEffect": 3.05,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "subtotal.claimCount \u00B7 xlsx-csv",
+      "value": {
+        "successes": 116,
+        "n": 119,
+        "value": 0.9747899159663865,
+        "lower": 0.8490358040977298,
+        "upper": 1,
+        "designEffect": 3.31,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "subtotal.closedCount \u00B7 native-pdf",
+      "value": {
+        "successes": 111,
+        "n": 114,
+        "value": 0.9736842105263158,
+        "lower": 0.8490128056269057,
+        "upper": 1,
+        "designEffect": 3.13,
+        "clusters": 38
+      }
+    },
+    {
+      "segment": "subtotal.closedCount \u00B7 scan",
+      "value": {
+        "successes": 129,
+        "n": 216,
+        "value": 0.5972222222222222,
+        "lower": 0.48212848990306767,
+        "upper": 0.7025364173643757,
+        "designEffect": 2.98,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "subtotal.expense.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 252,
+        "value": 0.8690476190476191,
+        "lower": 0.7811907435572436,
+        "upper": 0.9259616130691153,
+        "designEffect": 2.87,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "subtotal.expense.paid \u00B7 scan",
+      "value": {
+        "successes": 243,
+        "n": 432,
+        "value": 0.5625,
+        "lower": 0.4840133383271143,
+        "upper": 0.6379787297167834,
+        "designEffect": 2.77,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "subtotal.indemnity.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 252,
+        "value": 0.8690476190476191,
+        "lower": 0.7811907435572436,
+        "upper": 0.9259616130691153,
+        "designEffect": 2.87,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "subtotal.indemnity.paid \u00B7 scan",
+      "value": {
+        "successes": 243,
+        "n": 432,
+        "value": 0.5625,
+        "lower": 0.4840133383271143,
+        "upper": 0.6379787297167834,
+        "designEffect": 2.77,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "subtotal.indemnity.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 252,
+        "value": 0.8690476190476191,
+        "lower": 0.7811907435572436,
+        "upper": 0.9259616130691153,
+        "designEffect": 2.87,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "subtotal.indemnity.reserve \u00B7 scan",
+      "value": {
+        "successes": 243,
+        "n": 432,
+        "value": 0.5625,
+        "lower": 0.4840133383271143,
+        "upper": 0.6379787297167834,
+        "designEffect": 2.77,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "subtotal.medical.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 252,
+        "value": 0.8690476190476191,
+        "lower": 0.7811907435572436,
+        "upper": 0.9259616130691153,
+        "designEffect": 2.87,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "subtotal.medical.paid \u00B7 scan",
+      "value": {
+        "successes": 243,
+        "n": 432,
+        "value": 0.5625,
+        "lower": 0.4840133383271143,
+        "upper": 0.6379787297167834,
+        "designEffect": 2.77,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "subtotal.medical.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 252,
+        "value": 0.8690476190476191,
+        "lower": 0.7811907435572436,
+        "upper": 0.9259616130691153,
+        "designEffect": 2.87,
+        "clusters": 84
+      }
+    },
+    {
+      "segment": "subtotal.medical.reserve \u00B7 scan",
+      "value": {
+        "successes": 243,
+        "n": 432,
+        "value": 0.5625,
+        "lower": 0.4840133383271143,
+        "upper": 0.6379787297167834,
+        "designEffect": 2.77,
+        "clusters": 144
+      }
+    },
+    {
+      "segment": "subtotal.openCount \u00B7 native-pdf",
+      "value": {
+        "successes": 111,
+        "n": 123,
+        "value": 0.9024390243902439,
+        "lower": 0.7748070402106241,
+        "upper": 0.9653995384825625,
+        "designEffect": 2.8,
+        "clusters": 41
+      }
+    },
+    {
+      "segment": "subtotal.openCount \u00B7 scan",
+      "value": {
+        "successes": 129,
+        "n": 243,
+        "value": 0.5308641975308642,
+        "lower": 0.424636284508484,
+        "upper": 0.6343673697339113,
+        "designEffect": 2.92,
+        "clusters": 81
+      }
+    },
+    {
+      "segment": "subtotal.openCount \u00B7 xlsx-csv",
+      "value": {
+        "successes": 116,
+        "n": 119,
+        "value": 0.9747899159663865,
+        "lower": 0.8490358040977298,
+        "upper": 1,
+        "designEffect": 3.31,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "subtotal.total.incurred \u00B7 native-pdf",
+      "value": {
+        "successes": 219,
+        "n": 261,
+        "value": 0.8390804597701149,
+        "lower": 0.7465821322979145,
+        "upper": 0.9029123879398959,
+        "designEffect": 3,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "subtotal.total.incurred \u00B7 scan",
+      "value": {
+        "successes": 243,
+        "n": 459,
+        "value": 0.5294117647058824,
+        "lower": 0.44997435708675415,
+        "upper": 0.6073867915617318,
+        "designEffect": 3.05,
+        "clusters": 153
+      }
+    },
+    {
+      "segment": "subtotal.total.incurred \u00B7 xlsx-csv",
+      "value": {
+        "successes": 116,
+        "n": 119,
+        "value": 0.9747899159663865,
+        "lower": 0.8490358040977298,
+        "upper": 1,
+        "designEffect": 3.31,
+        "clusters": 40
+      }
+    },
+    {
+      "segment": "subtotal.total.paid \u00B7 native-pdf",
+      "value": {
+        "successes": 0,
+        "n": 9,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.3446402722756776,
+        "designEffect": 1,
+        "clusters": 3
+      }
+    },
+    {
+      "segment": "subtotal.total.paid \u00B7 scan",
+      "value": {
+        "successes": 0,
+        "n": 27,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.14756463443086926,
+        "designEffect": 1,
+        "clusters": 9
+      }
+    },
+    {
+      "segment": "subtotal.total.reserve \u00B7 native-pdf",
+      "value": {
+        "successes": 78,
+        "n": 93,
+        "value": 0.8387096774193549,
+        "lower": 0.6666648216504969,
+        "upper": 0.934592460756619,
+        "designEffect": 3.07,
+        "clusters": 31
+      }
+    },
+    {
+      "segment": "subtotal.total.reserve \u00B7 scan",
+      "value": {
+        "successes": 114,
+        "n": 243,
+        "value": 0.4691358024691358,
+        "lower": 0.3651684202487332,
+        "upper": 0.5758527418332928,
+        "designEffect": 2.95,
+        "clusters": 81
+      }
+    }
+  ],
+  "routing": [
+    {
+      "carrier": "c1",
+      "inputType": "native-pdf",
+      "docs": 38,
+      "tiers": {
+        "ReplayAccepted": 37,
+        "Review": 1
+      }
+    },
+    {
+      "carrier": "c1",
+      "inputType": "scan-150dpi-fax",
+      "docs": 24,
+      "tiers": {
+        "Review": 24
+      }
+    },
+    {
+      "carrier": "c1",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "docs": 24,
+      "tiers": {
+        "ReplayAccepted": 20,
+        "Review": 4
+      }
+    },
+    {
+      "carrier": "c1",
+      "inputType": "scan-300dpi-clean",
+      "docs": 24,
+      "tiers": {
+        "ReplayAccepted": 23,
+        "Review": 1
+      }
+    },
+    {
+      "carrier": "c2",
+      "inputType": "native-pdf",
+      "docs": 28,
+      "tiers": {
+        "Review": 2,
+        "ReplayAccepted": 26
+      }
+    },
+    {
+      "carrier": "c2",
+      "inputType": "scan-150dpi-fax",
+      "docs": 24,
+      "tiers": {
+        "Review": 24
+      }
+    },
+    {
+      "carrier": "c2",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "docs": 24,
+      "tiers": {
+        "Review": 9,
+        "ReplayAccepted": 15
+      }
+    },
+    {
+      "carrier": "c2",
+      "inputType": "scan-300dpi-clean",
+      "docs": 24,
+      "tiers": {
+        "Learned": 1,
+        "ReplayAccepted": 22,
+        "Review": 1
+      }
+    },
+    {
+      "carrier": "c3",
+      "inputType": "native-pdf",
+      "docs": 3,
+      "tiers": {
+        "Review": 3
+      }
+    },
+    {
+      "carrier": "c3",
+      "inputType": "scan-150dpi-fax",
+      "docs": 3,
+      "tiers": {
+        "Review": 3
+      }
+    },
+    {
+      "carrier": "c3",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "docs": 3,
+      "tiers": {
+        "Review": 3
+      }
+    },
+    {
+      "carrier": "c3",
+      "inputType": "scan-300dpi-clean",
+      "docs": 3,
+      "tiers": {
+        "Review": 3
+      }
+    },
+    {
+      "carrier": "c4",
+      "inputType": "xlsx",
+      "docs": 40,
+      "tiers": {
+        "Learned": 1,
+        "ReplayAccepted": 38,
+        "Review": 1
+      }
+    },
+    {
+      "carrier": "c5",
+      "inputType": "csv",
+      "docs": 40,
+      "tiers": {
+        "Learned": 1,
+        "ReplayAccepted": 39
+      }
+    },
+    {
+      "carrier": "c6",
+      "inputType": "native-pdf",
+      "docs": 6,
+      "tiers": {
+        "Learned": 1,
+        "ReplayAccepted": 5
+      }
+    },
+    {
+      "carrier": "c7",
+      "inputType": "native-pdf",
+      "docs": 6,
+      "tiers": {
+        "Review": 3,
+        "Learned": 1,
+        "ReplayAccepted": 2
+      }
+    },
+    {
+      "carrier": "c8",
+      "inputType": "native-pdf",
+      "docs": 6,
+      "tiers": {
+        "Review": 5,
+        "Learned": 1
+      }
+    },
+    {
+      "carrier": "c9",
+      "inputType": "csv",
+      "docs": 6,
+      "tiers": {
+        "Learned": 1,
+        "ReplayAccepted": 5
+      }
+    }
+  ],
+  "latencyByBucket": [
+    {
+      "segment": "all",
+      "docs": 326,
+      "p50Seconds": 0.3,
+      "p95Seconds": 20.2,
+      "meanCostUsd": 0.01317,
+      "totalCostUsd": 4.2925,
+      "llmCalls": 228
+    },
+    {
+      "segment": "native-pdf",
+      "docs": 87,
+      "p50Seconds": 1.8,
+      "p95Seconds": 65.8,
+      "meanCostUsd": 0.02428,
+      "totalCostUsd": 2.1121,
+      "llmCalls": 91
+    },
+    {
+      "segment": "xlsx-csv",
+      "docs": 86,
+      "p50Seconds": 0.1,
+      "p95Seconds": 0.2,
+      "meanCostUsd": 0.00227,
+      "totalCostUsd": 0.1956,
+      "llmCalls": 9
+    },
+    {
+      "segment": "scan (all)",
+      "docs": 153,
+      "p50Seconds": 0.3,
+      "p95Seconds": 3,
+      "meanCostUsd": 0.01297,
+      "totalCostUsd": 1.9848,
+      "llmCalls": 128
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "docs": 51,
+      "p50Seconds": 0.4,
+      "p95Seconds": 2.8,
+      "meanCostUsd": 0.01385,
+      "totalCostUsd": 0.7065,
+      "llmCalls": 45
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "docs": 51,
+      "p50Seconds": 0.3,
+      "p95Seconds": 3,
+      "meanCostUsd": 0.01229,
+      "totalCostUsd": 0.6268,
+      "llmCalls": 41
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "docs": 51,
+      "p50Seconds": 1.6,
+      "p95Seconds": 3.3,
+      "meanCostUsd": 0.01277,
+      "totalCostUsd": 0.6515,
+      "llmCalls": 42
+    }
+  ],
+  "latencyByTier": [
+    {
+      "segment": "Learned",
+      "docs": 7,
+      "p50Seconds": 53,
+      "p95Seconds": 81,
+      "meanCostUsd": 0.07093,
+      "totalCostUsd": 0.4965,
+      "llmCalls": 24
+    },
+    {
+      "segment": "ReplayAccepted",
+      "docs": 232,
+      "p50Seconds": 0.2,
+      "p95Seconds": 3.7,
+      "meanCostUsd": 0.00859,
+      "totalCostUsd": 1.9920,
+      "llmCalls": 96
+    },
+    {
+      "segment": "Review",
+      "docs": 87,
+      "p50Seconds": 1.7,
+      "p95Seconds": 65.8,
+      "meanCostUsd": 0.02074,
+      "totalCostUsd": 1.8039,
+      "llmCalls": 108
+    }
+  ],
+  "errors": [
+    {
+      "segment": "all",
+      "ok": 128451,
+      "missing": 41666,
+      "wrong": 0,
+      "wrongButPlausible": 6118
+    },
+    {
+      "segment": "native-pdf",
+      "ok": 35464,
+      "missing": 4647,
+      "wrong": 0,
+      "wrongButPlausible": 0
+    },
+    {
+      "segment": "xlsx-csv",
+      "ok": 53315,
+      "missing": 1365,
+      "wrong": 0,
+      "wrongButPlausible": 6111
+    },
+    {
+      "segment": "scan (all)",
+      "ok": 39672,
+      "missing": 35654,
+      "wrong": 0,
+      "wrongButPlausible": 7
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "ok": 23000,
+      "missing": 2107,
+      "wrong": 0,
+      "wrongButPlausible": 4
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "ok": 16672,
+      "missing": 8436,
+      "wrong": 0,
+      "wrongButPlausible": 3
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "ok": 0,
+      "missing": 25111,
+      "wrong": 0,
+      "wrongButPlausible": 0
+    }
+  ],
+  "strata": [
+    {
+      "stratum": "missing-year",
+      "docs": 11,
+      "quoteSuccess": {
+        "successes": 8,
+        "n": 11,
+        "value": 0.7272727272727273,
+        "lower": 0.42893920305680755,
+        "upper": 0.9079549014911805,
+        "designEffect": 1,
+        "clusters": 11
+      },
+      "keyFieldAccuracy": {
+        "successes": 1428,
+        "n": 1866,
+        "value": 0.7652733118971061,
+        "lower": 0.41751109979476186,
+        "upper": 0.9439236915284209,
+        "designEffect": 227.28,
+        "clusters": 11
+      },
+      "review": 3
+    },
+    {
+      "stratum": "partial-run",
+      "docs": 10,
+      "quoteSuccess": {
+        "successes": 8,
+        "n": 10,
+        "value": 0.8,
+        "lower": 0.47936758802400486,
+        "upper": 0.9541127301603605,
+        "designEffect": 1,
+        "clusters": 10
+      },
+      "keyFieldAccuracy": {
+        "successes": 2142,
+        "n": 2676,
+        "value": 0.8004484304932735,
+        "lower": 0.4758623644864163,
+        "upper": 0.9553379175025561,
+        "designEffect": 274.15,
+        "clusters": 10
+      },
+      "review": 2
+    },
+    {
+      "stratum": "closed-only",
+      "docs": 10,
+      "quoteSuccess": {
+        "successes": 8,
+        "n": 10,
+        "value": 0.8,
+        "lower": 0.47936758802400486,
+        "upper": 0.9541127301603605,
+        "designEffect": 1,
+        "clusters": 10
+      },
+      "keyFieldAccuracy": {
+        "successes": 630,
+        "n": 804,
+        "value": 0.7835820895522388,
+        "lower": 0.4607070972971707,
+        "upper": 0.9462265726852357,
+        "designEffect": 82.41,
+        "clusters": 10
+      },
+      "review": 2
+    },
+    {
+      "stratum": "reopened",
+      "docs": 15,
+      "quoteSuccess": {
+        "successes": 9,
+        "n": 15,
+        "value": 0.6,
+        "lower": 0.35672468064668095,
+        "upper": 0.8024986586340216,
+        "designEffect": 1,
+        "clusters": 15
+      },
+      "keyFieldAccuracy": {
+        "successes": 1782,
+        "n": 2802,
+        "value": 0.6359743040685225,
+        "lower": 0.37651110377531216,
+        "upper": 0.835460782670886,
+        "designEffect": 206.38,
+        "clusters": 15
+      },
+      "review": 6
+    },
+    {
+      "stratum": "cat-outlier",
+      "docs": 10,
+      "quoteSuccess": {
+        "successes": 7,
+        "n": 10,
+        "value": 0.7,
+        "lower": 0.39232529580699177,
+        "upper": 0.896661582982585,
+        "designEffect": 1,
+        "clusters": 10
+      },
+      "keyFieldAccuracy": {
+        "successes": 1746,
+        "n": 2502,
+        "value": 0.697841726618705,
+        "lower": 0.3873594409726054,
+        "upper": 0.8966753262557823,
+        "designEffect": 256.02,
+        "clusters": 10
+      },
+      "review": 3
+    },
+    {
+      "stratum": "multi-policy",
+      "docs": 10,
+      "quoteSuccess": {
+        "successes": 8,
+        "n": 10,
+        "value": 0.8,
+        "lower": 0.47936758802400486,
+        "upper": 0.9541127301603605,
+        "designEffect": 1,
+        "clusters": 10
+      },
+      "keyFieldAccuracy": {
+        "successes": 2046,
+        "n": 2610,
+        "value": 0.7839080459770115,
+        "lower": 0.45854639359748056,
+        "upper": 0.9470709991901312,
+        "designEffect": 271.69,
+        "clusters": 10
+      },
+      "review": 2
+    },
+    {
+      "stratum": "non-ca",
+      "docs": 5,
+      "quoteSuccess": {
+        "successes": 5,
+        "n": 5,
+        "value": 1,
+        "lower": 0.5109451363405613,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 5
+      },
+      "keyFieldAccuracy": {
+        "successes": 1104,
+        "n": 1104,
+        "value": 1,
+        "lower": 0.9958164633722029,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 5
+      },
+      "review": 0
+    },
+    {
+      "stratum": "summary-only-period",
+      "docs": 9,
+      "quoteSuccess": {
+        "successes": 7,
+        "n": 9,
+        "value": 0.7777777777777778,
+        "lower": 0.442792370540456,
+        "upper": 0.9465714896111863,
+        "designEffect": 1,
+        "clusters": 9
+      },
+      "keyFieldAccuracy": {
+        "successes": 1674,
+        "n": 2196,
+        "value": 0.7622950819672131,
+        "lower": 0.4069664773426731,
+        "upper": 0.9446034885644023,
+        "designEffect": 281.33,
+        "clusters": 9
+      },
+      "review": 2
+    },
+    {
+      "stratum": "source-inconsistent",
+      "docs": 9,
+      "quoteSuccess": {
+        "successes": 0,
+        "n": 9,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.3446402722756776,
+        "designEffect": 1,
+        "clusters": 9
+      },
+      "keyFieldAccuracy": {
+        "successes": 0,
+        "n": 2064,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.002241849448762192,
+        "designEffect": 1,
+        "clusters": 9
+      },
+      "review": 9
+    },
+    {
+      "stratum": "password-protected",
+      "docs": 10,
+      "quoteSuccess": {
+        "successes": 10,
+        "n": 10,
+        "value": 1,
+        "lower": 0.6791126907593795,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 10
+      },
+      "keyFieldAccuracy": {
+        "successes": 1854,
+        "n": 1854,
+        "value": 1,
+        "lower": 0.9975048212292787,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 10
+      },
+      "review": 0
+    },
+    {
+      "stratum": "bundle",
+      "docs": 8,
+      "quoteSuccess": {
+        "successes": 8,
+        "n": 8,
+        "value": 1,
+        "lower": 0.6278320518731421,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 8
+      },
+      "keyFieldAccuracy": {
+        "successes": 1590,
+        "n": 1590,
+        "value": 1,
+        "lower": 0.9970916719263221,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 8
+      },
+      "review": 0
+    },
+    {
+      "stratum": "non-wc-rows",
+      "docs": 5,
+      "quoteSuccess": {
+        "successes": 5,
+        "n": 5,
+        "value": 1,
+        "lower": 0.5109451363405613,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 5
+      },
+      "keyFieldAccuracy": {
+        "successes": 1578,
+        "n": 1578,
+        "value": 1,
+        "lower": 0.9970696169264873,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 5
+      },
+      "review": 0
+    }
+  ],
+  "preFillKeyFieldAccuracy": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 14731,
+        "n": 17868,
+        "value": 0.8244347436758451,
+        "lower": 0.7542042365296127,
+        "upper": 0.8780770694242801,
+        "designEffect": 122.03,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 1536,
+        "n": 2034,
+        "value": 0.7551622418879056,
+        "lower": 0.4640125770113469,
+        "upper": 0.9211141215485369,
+        "designEffect": 172.13,
+        "clusters": 14
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 336,
+        "n": 336,
+        "value": 1,
+        "lower": 0.9863778713269836,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 12859,
+        "n": 15498,
+        "value": 0.8297199638663053,
+        "lower": 0.7608164806272997,
+        "upper": 0.8820914838883582,
+        "designEffect": 103.74,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 432,
+        "n": 930,
+        "value": 0.4645161290322581,
+        "lower": 0.13488828099084404,
+        "upper": 0.8283143544535065,
+        "designEffect": 224.81,
+        "clusters": 5
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 3144,
+        "n": 3648,
+        "value": 0.8618421052631579,
+        "lower": 0.6335297788095475,
+        "upper": 0.9656343807296333,
+        "designEffect": 197.36,
+        "clusters": 16
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 9283,
+        "n": 10920,
+        "value": 0.8500915750915751,
+        "lower": 0.7922426812098243,
+        "upper": 0.8941816074406256,
+        "designEffect": 56.98,
+        "clusters": 51
+      }
+    }
+  ],
+  "preFillAllFieldAccuracy": [
+    {
+      "segment": "all",
+      "value": {
+        "successes": 33925,
+        "n": 41602,
+        "value": 0.8154656026152589,
+        "lower": 0.7505838672860106,
+        "upper": 0.8666237541250439,
+        "designEffect": 240.8,
+        "clusters": 87
+      }
+    },
+    {
+      "segment": "native-pdf",
+      "value": {
+        "successes": 3407,
+        "n": 4619,
+        "value": 0.7376055423251786,
+        "lower": 0.46584174416840995,
+        "upper": 0.9037969454359498,
+        "designEffect": 343.42,
+        "clusters": 14
+      }
+    },
+    {
+      "segment": "xlsx-csv",
+      "value": {
+        "successes": 1197,
+        "n": 1365,
+        "value": 0.8769230769230769,
+        "lower": 0.8583975532477185,
+        "upper": 0.893333038577696,
+        "designEffect": 1,
+        "clusters": 1
+      }
+    },
+    {
+      "segment": "scan (all)",
+      "value": {
+        "successes": 29321,
+        "n": 35618,
+        "value": 0.823207367061598,
+        "lower": 0.7579978925347503,
+        "upper": 0.8739479382666001,
+        "designEffect": 212.29,
+        "clusters": 72
+      }
+    },
+    {
+      "segment": "scan-300dpi-clean",
+      "value": {
+        "successes": 1015,
+        "n": 2107,
+        "value": 0.48172757475083056,
+        "lower": 0.14411468856558896,
+        "upper": 0.8368858324610261,
+        "designEffect": 506.51,
+        "clusters": 5
+      }
+    },
+    {
+      "segment": "scan-200dpi-rotated-noisy",
+      "value": {
+        "successes": 7238,
+        "n": 8400,
+        "value": 0.8616666666666667,
+        "lower": 0.6456418222171227,
+        "upper": 0.9624735236931594,
+        "designEffect": 414.3,
+        "clusters": 16
+      }
+    },
+    {
+      "segment": "scan-150dpi-fax",
+      "value": {
+        "successes": 21068,
+        "n": 25111,
+        "value": 0.8389948628091275,
+        "lower": 0.7850964619822026,
+        "upper": 0.8815422837779666,
+        "designEffect": 111.3,
+        "clusters": 51
+      }
+    }
+  ],
+  "targets": [
+    {
+      "target": "Recurring-template delivered key-field accuracy",
+      "segment": "native PDF",
+      "threshold": 0.99,
+      "measured": {
+        "successes": 14964,
+        "n": 15396,
+        "value": 0.9719407638347622,
+        "lower": 0.8838249180589647,
+        "upper": 1,
+        "designEffect": 268.74,
+        "clusters": 72
+      },
+      "pass": false
+    },
+    {
+      "target": "Key fields",
+      "segment": "scan \u2265 300 dpi",
+      "threshold": 0.95,
+      "measured": {
+        "successes": 9990,
+        "n": 10920,
+        "value": 0.9148351648351648,
+        "lower": 0.8023769099107323,
+        "upper": 0.9697435197465141,
+        "designEffect": 211.88,
+        "clusters": 51
+      },
+      "pass": false
+    },
+    {
+      "target": "Key fields",
+      "segment": "scan 200 dpi rotated",
+      "threshold": 0.9,
+      "measured": {
+        "successes": 7272,
+        "n": 10920,
+        "value": 0.6659340659340659,
+        "lower": 0.5127998182145707,
+        "upper": 0.7908131701569315,
+        "designEffect": 264.55,
+        "clusters": 51
+      },
+      "pass": false
+    },
+    {
+      "target": "Key fields (reported, not promised)",
+      "segment": "fax 150 dpi",
+      "threshold": 0,
+      "measured": {
+        "successes": 0,
+        "n": 10920,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.00042446718656577405,
+        "designEffect": 1,
+        "clusters": 51
+      },
+      "pass": true,
+      "note": "reported"
+    },
+    {
+      "target": "DQ first pass (source-consistent)",
+      "segment": "excluding narrative",
+      "threshold": 0.85,
+      "measured": {
+        "successes": 239,
+        "n": 305,
+        "value": 0.7836065573770492,
+        "lower": 0.7338852553969343,
+        "upper": 0.8262726995183513,
+        "designEffect": 1,
+        "clusters": 305
+      },
+      "pass": false
+    },
+    {
+      "target": "STP",
+      "segment": "recurring templates",
+      "threshold": 0.85,
+      "measured": {
+        "successes": 232,
+        "n": 289,
+        "value": 0.8027681660899654,
+        "lower": 0.7528801074773214,
+        "upper": 0.8447128722480551,
+        "designEffect": 1,
+        "clusters": 289
+      },
+      "pass": false
+    },
+    {
+      "target": "STP (context: fax is reported, not promised)",
+      "segment": "recurring templates excluding fax",
+      "threshold": 0.85,
+      "measured": {
+        "successes": 232,
+        "n": 243,
+        "value": 0.9547325102880658,
+        "lower": 0.9198714980982835,
+        "upper": 0.9754400148120216,
+        "designEffect": 1,
+        "clusters": 243
+      },
+      "pass": true
+    },
+    {
+      "target": "DQ first pass (context)",
+      "segment": "excluding narrative and fax",
+      "threshold": 0.85,
+      "measured": {
+        "successes": 239,
+        "n": 259,
+        "value": 0.9227799227799228,
+        "lower": 0.883175908964816,
+        "upper": 0.9500259798548029,
+        "designEffect": 1,
+        "clusters": 259
+      },
+      "pass": true
+    },
+    {
+      "target": "Recurring-template delivered key-field accuracy (context)",
+      "segment": "native PDF, source-consistent",
+      "threshold": 0.99,
+      "measured": {
+        "successes": 14964,
+        "n": 14964,
+        "value": 1,
+        "lower": 0.9996902107235617,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 70
+      },
+      "pass": true
+    },
+    {
+      "target": "Learn/repair model calls per document",
+      "segment": "c1 \u002B c2",
+      "threshold": 0.3,
+      "pass": true,
+      "note": "0.048 per document (10 calls / 210 documents); target \u003C 0.3"
+    }
+  ],
+  "callsByCarrier": [
+    {
+      "carrier": "c1",
+      "docs": 110,
+      "learnCalls": 0,
+      "perDocument": 0,
+      "zeroCallDocs": 110
+    },
+    {
+      "carrier": "c2",
+      "docs": 100,
+      "learnCalls": 10,
+      "perDocument": 0.1,
+      "zeroCallDocs": 97
+    },
+    {
+      "carrier": "c3",
+      "docs": 12,
+      "learnCalls": 0,
+      "perDocument": 0,
+      "zeroCallDocs": 12
+    },
+    {
+      "carrier": "c4",
+      "docs": 40,
+      "learnCalls": 4,
+      "perDocument": 0.1,
+      "zeroCallDocs": 39
+    },
+    {
+      "carrier": "c5",
+      "docs": 40,
+      "learnCalls": 3,
+      "perDocument": 0.075,
+      "zeroCallDocs": 39
+    },
+    {
+      "carrier": "c6",
+      "docs": 6,
+      "learnCalls": 2,
+      "perDocument": 0.333,
+      "zeroCallDocs": 5
+    },
+    {
+      "carrier": "c7",
+      "docs": 6,
+      "learnCalls": 19,
+      "perDocument": 3.167,
+      "zeroCallDocs": 2
+    },
+    {
+      "carrier": "c8",
+      "docs": 6,
+      "learnCalls": 30,
+      "perDocument": 5,
+      "zeroCallDocs": 0
+    },
+    {
+      "carrier": "c9",
+      "docs": 6,
+      "learnCalls": 2,
+      "perDocument": 0.333,
+      "zeroCallDocs": 5
+    }
+  ],
+  "deck": [
+    {
+      "row": "native PDF, recurring template",
+      "docs": 65,
+      "committed": true,
+      "target": 0.99,
+      "delivered": {
+        "successes": 13386,
+        "n": 13386,
+        "value": 1,
+        "lower": 0.9996537034251871,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 63
+      },
+      "reviewRate": {
+        "successes": 2,
+        "n": 65,
+        "value": 0.03076923076923077,
+        "lower": 0.0015939207470580183,
+        "upper": 0.11480420334962149,
+        "designEffect": 1.05,
+        "clusters": 65
+      },
+      "preFill": {
+        "successes": 432,
+        "n": 432,
+        "value": 1,
+        "lower": 0.9893744410456259,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 2
+      },
+      "modelCallsPerDocument": 0,
+      "note": "met",
+      "consistentDocs": 63,
+      "dqDelivered": {
+        "successes": 63,
+        "n": 63,
+        "value": 1,
+        "lower": 0.9312142627674187,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 63
+      },
+      "quoteDelivered": {
+        "successes": 63,
+        "n": 63,
+        "value": 1,
+        "lower": 0.9312142627674187,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 63
+      },
+      "consistentReviewRate": {
+        "successes": 0,
+        "n": 63,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.06878573723258133,
+        "designEffect": 1,
+        "clusters": 63
+      },
+      "insufficient": false
+    },
+    {
+      "row": "native PDF, first-seen template",
+      "docs": 1,
+      "committed": true,
+      "target": 0.98,
+      "delivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "reviewRate": {
+        "successes": 1,
+        "n": 1,
+        "value": 1,
+        "lower": 0.1674994832336325,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      },
+      "preFill": {
+        "successes": 48,
+        "n": 48,
+        "value": 1,
+        "lower": 0.9115330415381405,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      },
+      "modelCallsPerDocument": 5,
+      "note": "insufficient sample (n = 1 document): no verdict",
+      "consistentDocs": 1,
+      "dqDelivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "quoteDelivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "consistentReviewRate": {
+        "successes": 1,
+        "n": 1,
+        "value": 1,
+        "lower": 0.1674994832336325,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      },
+      "insufficient": true
+    },
+    {
+      "row": "XLSX / CSV",
+      "docs": 80,
+      "committed": true,
+      "target": 0.98,
+      "delivered": {
+        "successes": 14982,
+        "n": 14982,
+        "value": 1,
+        "lower": 0.999690582807948,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 79
+      },
+      "reviewRate": {
+        "successes": 1,
+        "n": 80,
+        "value": 0.0125,
+        "lower": 0,
+        "upper": 0.07408595457235677,
+        "designEffect": 1,
+        "clusters": 80
+      },
+      "preFill": {
+        "successes": 336,
+        "n": 336,
+        "value": 1,
+        "lower": 0.9863778713269836,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      },
+      "modelCallsPerDocument": 0.088,
+      "note": "met",
+      "consistentDocs": 79,
+      "dqDelivered": {
+        "successes": 79,
+        "n": 79,
+        "value": 1,
+        "lower": 0.9444073454144506,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 79
+      },
+      "quoteDelivered": {
+        "successes": 79,
+        "n": 79,
+        "value": 1,
+        "lower": 0.9444073454144506,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 79
+      },
+      "consistentReviewRate": {
+        "successes": 0,
+        "n": 79,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.05559265458554938,
+        "designEffect": 1,
+        "clusters": 79
+      },
+      "insufficient": false
+    },
+    {
+      "row": "scan \u2265 300 dpi",
+      "docs": 48,
+      "committed": true,
+      "target": 0.95,
+      "delivered": {
+        "successes": 9990,
+        "n": 9990,
+        "value": 1,
+        "lower": 0.999536035262807,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 46
+      },
+      "reviewRate": {
+        "successes": 2,
+        "n": 48,
+        "value": 0.041666666666666664,
+        "lower": 0.003654931602459971,
+        "upper": 0.147603521583647,
+        "designEffect": 1,
+        "clusters": 48
+      },
+      "preFill": {
+        "successes": 432,
+        "n": 432,
+        "value": 1,
+        "lower": 0.9893744410456259,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 2
+      },
+      "modelCallsPerDocument": 0.083,
+      "note": "met",
+      "consistentDocs": 46,
+      "dqDelivered": {
+        "successes": 46,
+        "n": 46,
+        "value": 1,
+        "lower": 0.9080244074155507,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 46
+      },
+      "quoteDelivered": {
+        "successes": 46,
+        "n": 46,
+        "value": 1,
+        "lower": 0.9080244074155507,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 46
+      },
+      "consistentReviewRate": {
+        "successes": 0,
+        "n": 46,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.0919755925844495,
+        "designEffect": 1,
+        "clusters": 46
+      },
+      "insufficient": false
+    },
+    {
+      "row": "scan 200 dpi rotated",
+      "docs": 48,
+      "committed": false,
+      "delivered": {
+        "successes": 7272,
+        "n": 7272,
+        "value": 1,
+        "lower": 0.9993627276610341,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 35
+      },
+      "reviewRate": {
+        "successes": 13,
+        "n": 48,
+        "value": 0.2708333333333333,
+        "lower": 0.16457156359315278,
+        "upper": 0.4110576629999007,
+        "designEffect": 1,
+        "clusters": 48
+      },
+      "preFill": {
+        "successes": 3144,
+        "n": 3150,
+        "value": 0.9980952380952381,
+        "lower": 0.9957417390224769,
+        "upper": 0.999235351903674,
+        "designEffect": 1,
+        "clusters": 13
+      },
+      "modelCallsPerDocument": 0,
+      "note": "measured, not committed; review rate 27.1%, pre-fill 99.8%",
+      "consistentDocs": 46,
+      "dqDelivered": {
+        "successes": 35,
+        "n": 35,
+        "value": 1,
+        "lower": 0.8823669865108011,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 35
+      },
+      "quoteDelivered": {
+        "successes": 35,
+        "n": 35,
+        "value": 1,
+        "lower": 0.8823669865108011,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 35
+      },
+      "consistentReviewRate": {
+        "successes": 11,
+        "n": 46,
+        "value": 0.2391304347826087,
+        "lower": 0.13757859436615621,
+        "upper": 0.3808945695683273,
+        "designEffect": 1,
+        "clusters": 46
+      },
+      "insufficient": false
+    },
+    {
+      "row": "fax \u003C 200 dpi",
+      "docs": 48,
+      "committed": false,
+      "delivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "reviewRate": {
+        "successes": 48,
+        "n": 48,
+        "value": 1,
+        "lower": 0.9115330415381405,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 48
+      },
+      "preFill": {
+        "successes": 9283,
+        "n": 10422,
+        "value": 0.8907119554787949,
+        "lower": 0.861700407232886,
+        "upper": 0.9142910279432246,
+        "designEffect": 18.99,
+        "clusters": 48
+      },
+      "modelCallsPerDocument": 0.021,
+      "note": "routed to review by design; pre-fill 89.1%",
+      "consistentDocs": 46,
+      "dqDelivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "quoteDelivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "consistentReviewRate": {
+        "successes": 46,
+        "n": 46,
+        "value": 1,
+        "lower": 0.9080244074155507,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 46
+      },
+      "insufficient": false
+    },
+    {
+      "row": "narrative statement",
+      "docs": 12,
+      "committed": false,
+      "delivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "reviewRate": {
+        "successes": 12,
+        "n": 12,
+        "value": 1,
+        "lower": 0.7180146748745655,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 12
+      },
+      "preFill": {
+        "successes": 0,
+        "n": 1992,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.002322701376195666,
+        "designEffect": 1,
+        "clusters": 12
+      },
+      "modelCallsPerDocument": 0,
+      "note": "routed to review by design; pre-fill is the statement\u0027s paragraphs, no structured values",
+      "consistentDocs": 12,
+      "dqDelivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "quoteDelivered": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "consistentReviewRate": {
+        "successes": 12,
+        "n": 12,
+        "value": 1,
+        "lower": 0.7180146748745655,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 12
+      },
+      "insufficient": false
+    },
+    {
+      "row": "construct: two-line records (c6)",
+      "docs": 6,
+      "committed": false,
+      "delivered": {
+        "successes": 1278,
+        "n": 1278,
+        "value": 1,
+        "lower": 0.9963840963460953,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "reviewRate": {
+        "successes": 0,
+        "n": 6,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.44278078156794093,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "preFill": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "modelCallsPerDocument": 0.333,
+      "note": "measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0%",
+      "consistentDocs": 6,
+      "dqDelivered": {
+        "successes": 6,
+        "n": 6,
+        "value": 1,
+        "lower": 0.5572192184320591,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "quoteDelivered": {
+        "successes": 6,
+        "n": 6,
+        "value": 1,
+        "lower": 0.5572192184320591,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "consistentReviewRate": {
+        "successes": 0,
+        "n": 6,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.44278078156794093,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "insufficient": false
+    },
+    {
+      "row": "construct: one table per claim (c7)",
+      "docs": 6,
+      "committed": false,
+      "delivered": {
+        "successes": 516,
+        "n": 516,
+        "value": 1,
+        "lower": 0.9910895367050468,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 3
+      },
+      "reviewRate": {
+        "successes": 3,
+        "n": 6,
+        "value": 0.5,
+        "lower": 0.18389207406865365,
+        "upper": 0.8161079259313464,
+        "designEffect": 1.04,
+        "clusters": 6
+      },
+      "preFill": {
+        "successes": 342,
+        "n": 342,
+        "value": 1,
+        "lower": 0.9866138153487037,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 3
+      },
+      "modelCallsPerDocument": 3.167,
+      "note": "measured, not committed (construct coverage: first document learned, then replayed); review rate 50.0%",
+      "consistentDocs": 6,
+      "dqDelivered": {
+        "successes": 3,
+        "n": 3,
+        "value": 1,
+        "lower": 0.3825284273917647,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 3
+      },
+      "quoteDelivered": {
+        "successes": 3,
+        "n": 3,
+        "value": 1,
+        "lower": 0.3825284273917647,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 3
+      },
+      "consistentReviewRate": {
+        "successes": 3,
+        "n": 6,
+        "value": 0.5,
+        "lower": 0.18389207406865365,
+        "upper": 0.8161079259313464,
+        "designEffect": 1.04,
+        "clusters": 6
+      },
+      "insufficient": false
+    },
+    {
+      "row": "construct: stacked cells (c8)",
+      "docs": 6,
+      "committed": false,
+      "delivered": {
+        "successes": 312,
+        "n": 312,
+        "value": 1,
+        "lower": 0.9853446121637803,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      },
+      "reviewRate": {
+        "successes": 5,
+        "n": 6,
+        "value": 0.8333333333333334,
+        "lower": 0.4178044862396138,
+        "upper": 0.988639319322804,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "preFill": {
+        "successes": 714,
+        "n": 714,
+        "value": 1,
+        "lower": 0.9935453510786939,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 5
+      },
+      "modelCallsPerDocument": 5,
+      "note": "measured, not committed (construct coverage: first document learned, then replayed); review rate 83.3%",
+      "consistentDocs": 6,
+      "dqDelivered": {
+        "successes": 1,
+        "n": 1,
+        "value": 1,
+        "lower": 0.1674994832336325,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      },
+      "quoteDelivered": {
+        "successes": 1,
+        "n": 1,
+        "value": 1,
+        "lower": 0.1674994832336325,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 1
+      },
+      "consistentReviewRate": {
+        "successes": 5,
+        "n": 6,
+        "value": 0.8333333333333334,
+        "lower": 0.4178044862396138,
+        "upper": 0.988639319322804,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "insufficient": false
+    },
+    {
+      "row": "construct: component-sum headers (c9)",
+      "docs": 6,
+      "committed": false,
+      "delivered": {
+        "successes": 1098,
+        "n": 1098,
+        "value": 1,
+        "lower": 0.9957936938658211,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "reviewRate": {
+        "successes": 0,
+        "n": 6,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.44278078156794093,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "preFill": {
+        "successes": 0,
+        "n": 0,
+        "value": 0,
+        "lower": 0,
+        "upper": 0,
+        "designEffect": 1,
+        "clusters": 0
+      },
+      "modelCallsPerDocument": 0.333,
+      "note": "measured, not committed (construct coverage: first document learned, then replayed); review rate 0.0%",
+      "consistentDocs": 6,
+      "dqDelivered": {
+        "successes": 6,
+        "n": 6,
+        "value": 1,
+        "lower": 0.5572192184320591,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "quoteDelivered": {
+        "successes": 6,
+        "n": 6,
+        "value": 1,
+        "lower": 0.5572192184320591,
+        "upper": 1,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "consistentReviewRate": {
+        "successes": 0,
+        "n": 6,
+        "value": 0,
+        "lower": 0,
+        "upper": 0.44278078156794093,
+        "designEffect": 1,
+        "clusters": 6
+      },
+      "insufficient": false
+    }
+  ]
+}

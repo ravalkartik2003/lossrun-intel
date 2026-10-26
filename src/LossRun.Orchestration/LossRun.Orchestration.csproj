@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Orchestration</RootNamespace>
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- MIT. TaskOrchestrationContext for the orchestrators (hosted by the Functions DurableTask extension). -->
+    <PackageReference Include="Microsoft.DurableTask.Abstractions" Version="1.27.0" />
+    <PackageReference Include="Azure.Storage.Queues" Version="12.28.1" />
+    <!-- MIT. Entra ID bearer validation (OIDC metadata + JWT). -->
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="8.23.0" />
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.23.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Api.Contracts\LossRun.Api.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Data\LossRun.Data.csproj" />
+    <ProjectReference Include="..\LossRun.Analytics\LossRun.Analytics.csproj" />
+    <ProjectReference Include="..\LossRun.Learning\LossRun.Learning.csproj" />
+    <ProjectReference Include="..\LossRun.Formats\LossRun.Formats.csproj" />
+    <ProjectReference Include="..\LossRun.Ingestion\LossRun.Ingestion.csproj" />
+    <ProjectReference Include="..\LossRun.Rules\LossRun.Rules.csproj" />
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LossRun.Orchestration.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Brief 33 (ADR 0028): which activity failures the Durable layer retries is data, not code. -->
+    <EmbeddedResource Include="..\..\config\retry-policy.json" LogicalName="LossRun.Config.retry-policy.json" Link="Config\retry-policy.json" />
+  </ItemGroup>
+</Project>

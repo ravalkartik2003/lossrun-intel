@@ -1,0 +1,18 @@
+{
+  "description": "Model deployments used by the learn path (brief 06). Configuration, never literals in code (CLAUDE.md). Values mirror the Terraform outputs learn_model / delta_model / embedding_model (ADR 0004: learn and delta both on gpt-5.4-mini until gpt-5.2 quota is granted). The version is the deployment's model version: the Responses API returns only the deployment name. Environment variables LOSSRUN_LEARN_MODEL, LOSSRUN_LEARN_MODEL_VERSION, LOSSRUN_DELTA_MODEL, LOSSRUN_DELTA_MODEL_VERSION and LOSSRUN_EMBEDDING_MODEL override these. maxIterations: learn iteration budget per file kind (08b).",
+  "learnModel": "gpt-5.4-mini",
+  "learnModelVersion": "2026-03-17",
+  "deltaModel": "gpt-5.4-mini",
+  "deltaModelVersion": "2026-03-17",
+  "embeddingModel": "text-embedding-3-large",
+  "modelVersions": {
+    "description": "Brief 35 §7: the deployed model version of every model the learn path may run. When LOSSRUN_LEARN_MODEL (or LOSSRUN_DELTA_MODEL) names a model without its _VERSION variable, the version comes from here, so a learn-model study records the right version. gpt-5.2 is the production recommendation (ADR 0004); learnModel stays gpt-5.4-mini until the brief 35 wake decides by the acceptance table.",
+    "gpt-5.4-mini": "2026-03-17",
+    "gpt-5.2": "2025-12-11"
+  },
+  "maxIterations": {
+    "pdf": 5,
+    "spreadsheet": 5,
+    "source": "brief 08b learn-reliability study (sequential, 10 trials per carrier, native rendering): PDF 13/20 published within 4 iterations, 15/20 within 5; spreadsheets 19/20 within 4, 20/20 within 5"
+  }
+}

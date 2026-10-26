@@ -1,0 +1,6 @@
+account_id,metric,breakdown_key,expected_value,unit,valuation_date,prepared_by,notes
+c1-000-native-pdf,claim_count,,50,count,2025-08-06,example,synthetic example row (corpus v2 truth)
+c1-000-native-pdf,open_claim_count,,23,count,2025-08-06,example,
+c1-000-native-pdf,incurred_total,,2802851.20,money,2025-08-06,example,dollars
+c1-000-native-pdf,large_loss_count,250000,0,count,2025-08-06,example,breakdown key = threshold in dollars
+c1-000-native-pdf,paid_to_incurred,,,ratio,2025-08-06,example,blank expected = not provided by the actuary (row not scored)

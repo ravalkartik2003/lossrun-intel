@@ -1,0 +1,10 @@
+.git
+eval-runs
+.lossrun
+infra
+**/bin
+**/obj
+**/node_modules
+docs/ui/figma-export
+docs/evaluation/results
+src/web

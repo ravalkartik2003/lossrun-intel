@@ -1,0 +1,2239 @@
+{
+  "note": "Chat turns recorded from the live API (scripts/record-chat.mjs, brief 12) over synthetic documents; the mock replays their events. Ids are the live ones.",
+  "recordedAt": "2026-10-23T11:27:59.235Z",
+  "quoteId": "Q-DEMO-11",
+  "suggestions": {
+    "org": [
+      "How many claims across all documents are open?",
+      "Which documents are kept but not processed?"
+    ],
+    "quote": [
+      "What is the largest open claim?",
+      "What is the total incurred, and how much is still reserved?",
+      "What does the broker's letter say?"
+    ],
+    "workspace": [
+      "Summarize the files in my workspace.",
+      "What is the total incurred in these loss runs?"
+    ]
+  },
+  "turns": [
+    {
+      "scope": "quote",
+      "question": "What is the largest open claim?",
+      "events": [
+        {
+          "atMs": 1619,
+          "event": "tool",
+          "data": {
+            "tool": "query_claims",
+            "arguments": "{\"filter\":{\"Status\":\"open-or-reopened\",\"ClaimType\":null,\"PolicyYear\":null,\"PolicyNumber\":null,\"Carrier\":null,\"ClaimNumber\":null,\"MinIncurred\":null,\"MaxIncurred\":null,\"Litigated\":null,\"CumulativeTrauma\":null,\"Jurisdiction\":null},\"orderBy\":\"incurred_desc\",\"limit\":5,\"view\":\"adjusted\"}",
+            "results": 3,
+            "ms": 252,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 1621,
+          "event": "tool",
+          "data": {
+            "tool": "compute_metric",
+            "arguments": "{\"metric\":\"open_claim_count\",\"filter\":{\"Status\":\"open-or-reopened\",\"ClaimType\":null,\"PolicyYear\":null,\"PolicyNumber\":null,\"Carrier\":null,\"ClaimNumber\":null,\"MinIncurred\":null,\"MaxIncurred\":null,\"Litigated\":null,\"CumulativeTrauma\":null,\"Jurisdiction\":null},\"scenario\":null,\"view\":\"adjusted\"}",
+            "results": 1,
+            "ms": 12,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 2439,
+          "event": "delta",
+          "data": {
+            "text": "The"
+          }
+        },
+        {
+          "atMs": 2439,
+          "event": "delta",
+          "data": {
+            "text": " largest"
+          }
+        },
+        {
+          "atMs": 2443,
+          "event": "delta",
+          "data": {
+            "text": " open"
+          }
+        },
+        {
+          "atMs": 2450,
+          "event": "delta",
+          "data": {
+            "text": " claim"
+          }
+        },
+        {
+          "atMs": 2451,
+          "event": "delta",
+          "data": {
+            "text": " is"
+          }
+        },
+        {
+          "atMs": 2455,
+          "event": "delta",
+          "data": {
+            "text": " claim"
+          }
+        },
+        {
+          "atMs": 2476,
+          "event": "delta",
+          "data": {
+            "text": " "
+          }
+        },
+        {
+          "atMs": 2505,
+          "event": "delta",
+          "data": {
+            "text": "22"
+          }
+        },
+        {
+          "atMs": 2507,
+          "event": "delta",
+          "data": {
+            "text": "-F"
+          }
+        },
+        {
+          "atMs": 2509,
+          "event": "delta",
+          "data": {
+            "text": "C"
+          }
+        },
+        {
+          "atMs": 2511,
+          "event": "delta",
+          "data": {
+            "text": "-"
+          }
+        },
+        {
+          "atMs": 2528,
+          "event": "delta",
+          "data": {
+            "text": "003"
+          }
+        },
+        {
+          "atMs": 2528,
+          "event": "delta",
+          "data": {
+            "text": "42"
+          }
+        },
+        {
+          "atMs": 2555,
+          "event": "delta",
+          "data": {
+            "text": ", a"
+          }
+        },
+        {
+          "atMs": 2588,
+          "event": "delta",
+          "data": {
+            "text": " reopened claim"
+          }
+        },
+        {
+          "atMs": 2602,
+          "event": "delta",
+          "data": {
+            "text": " with incurred"
+          }
+        },
+        {
+          "atMs": 2629,
+          "event": "delta",
+          "data": {
+            "text": " of $"
+          }
+        },
+        {
+          "atMs": 2631,
+          "event": "delta",
+          "data": {
+            "text": "11,"
+          }
+        },
+        {
+          "atMs": 2655,
+          "event": "delta",
+          "data": {
+            "text": "900."
+          }
+        },
+        {
+          "atMs": 2656,
+          "event": "delta",
+          "data": {
+            "text": "00 ["
+          }
+        },
+        {
+          "atMs": 2681,
+          "event": "delta",
+          "data": {
+            "text": "C1]."
+          }
+        },
+        {
+          "atMs": 2713,
+          "event": "delta",
+          "data": {
+            "text": " There are "
+          }
+        },
+        {
+          "atMs": 2740,
+          "event": "delta",
+          "data": {
+            "text": "3 open claims"
+          }
+        },
+        {
+          "atMs": 2872,
+          "event": "delta",
+          "data": {
+            "text": " total [M"
+          }
+        },
+        {
+          "atMs": 2872,
+          "event": "delta",
+          "data": {
+            "text": "1]."
+          }
+        },
+        {
+          "atMs": 3387,
+          "event": "final",
+          "data": {
+            "turnId": "turn-03ee29d2a31b49adaa5f524cda565aab",
+            "conversationId": "conv-a5f25e4ae2e345d6893d54c14e0dfb52",
+            "userId": "underwriter",
+            "role": "Underwriter",
+            "scope": "quote",
+            "quoteId": "Q-DEMO-11",
+            "question": "What is the largest open claim?",
+            "text": "The largest open claim is claim 22-FC-00342, a reopened claim with incurred of $11,900.00 [C1]. There are 3 open claims total [M1].",
+            "notFound": false,
+            "citations": [
+              {
+                "ref": "C1",
+                "kind": "claim",
+                "label": "22-FC-00342 · lossrun2-native.pdf · p.1",
+                "documentId": "doc-5209d62bf384ad6a",
+                "page": 1,
+                "fieldPath": "policyPeriods[0].claims[1].total.incurred",
+                "claimId": "doc-5209d62bf384ad6a/0/1",
+                "fileName": "lossrun2-native.pdf",
+                "quoteId": "Q-DEMO-11"
+              },
+              {
+                "ref": "M1",
+                "kind": "metric",
+                "label": "Open claims · catalog 1.1.0",
+                "metric": "open_claim_count"
+              }
+            ],
+            "toolTrace": [
+              {
+                "tool": "query_claims",
+                "arguments": "{\"filter\":{\"Status\":\"open-or-reopened\",\"ClaimType\":null,\"PolicyYear\":null,\"PolicyNumber\":null,\"Carrier\":null,\"ClaimNumber\":null,\"MinIncurred\":null,\"MaxIncurred\":null,\"Litigated\":null,\"CumulativeTrauma\":null,\"Jurisdiction\":null},\"orderBy\":\"incurred_desc\",\"limit\":5,\"view\":\"adjusted\"}",
+                "results": 3,
+                "ms": 252,
+                "dropped": 0
+              },
+              {
+                "tool": "compute_metric",
+                "arguments": "{\"metric\":\"open_claim_count\",\"filter\":{\"Status\":\"open-or-reopened\",\"ClaimType\":null,\"PolicyYear\":null,\"PolicyNumber\":null,\"Carrier\":null,\"ClaimNumber\":null,\"MinIncurred\":null,\"MaxIncurred\":null,\"Litigated\":null,\"CumulativeTrauma\":null,\"Jurisdiction\":null},\"scenario\":null,\"view\":\"adjusted\"}",
+                "results": 1,
+                "ms": 12,
+                "dropped": 0
+              }
+            ],
+            "usage": {
+              "modelCalls": 2,
+              "inputTokens": 4480,
+              "cachedInputTokens": 3072,
+              "outputTokens": 207,
+              "embeddings": 0,
+              "searchQueries": 0,
+              "costUsd": 0.002417,
+              "firstTokenMs": 2170,
+              "totalMs": 2752,
+              "lines": [
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "cachedInputTokens (gpt-5.4-mini)",
+                  "quantity": 3072,
+                  "unit": "token",
+                  "unitPrice": 7.5e-8,
+                  "costUsd": 0.0002304,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (gpt-5.4-mini)",
+                  "quantity": 1408,
+                  "unit": "token",
+                  "unitPrice": 8.25e-7,
+                  "costUsd": 0.0011616,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing (Retail Prices API, eastus2, 2026-10-21)"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "outputTokens (gpt-5.4-mini)",
+                  "quantity": 207,
+                  "unit": "token",
+                  "unitPrice": 0.00000495,
+                  "costUsd": 0.00102465,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                }
+              ]
+            },
+            "at": "2026-10-23T11:26:10.5560362+00:00"
+          }
+        }
+      ]
+    },
+    {
+      "scope": "quote",
+      "question": "What is the total incurred, and how much is still reserved?",
+      "events": [
+        {
+          "atMs": 1820,
+          "event": "tool",
+          "data": {
+            "tool": "query_claims",
+            "arguments": "{\"filter\":null,\"orderBy\":\"incurred_desc\",\"limit\":5,\"view\":\"adjusted\"}",
+            "results": 5,
+            "ms": 236,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 1820,
+          "event": "tool",
+          "data": {
+            "tool": "compute_metric",
+            "arguments": "{\"metric\":\"incurred_total\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+            "results": 1,
+            "ms": 0,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 1820,
+          "event": "tool",
+          "data": {
+            "tool": "compute_metric",
+            "arguments": "{\"metric\":\"reserve_total\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+            "results": 1,
+            "ms": 0,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 5729,
+          "event": "delta",
+          "data": {
+            "text": "Total"
+          }
+        },
+        {
+          "atMs": 5732,
+          "event": "delta",
+          "data": {
+            "text": " incurred"
+          }
+        },
+        {
+          "atMs": 5737,
+          "event": "delta",
+          "data": {
+            "text": " is"
+          }
+        },
+        {
+          "atMs": 5762,
+          "event": "delta",
+          "data": {
+            "text": " $"
+          }
+        },
+        {
+          "atMs": 5765,
+          "event": "delta",
+          "data": {
+            "text": "49"
+          }
+        },
+        {
+          "atMs": 5786,
+          "event": "delta",
+          "data": {
+            "text": ","
+          }
+        },
+        {
+          "atMs": 5787,
+          "event": "delta",
+          "data": {
+            "text": "220"
+          }
+        },
+        {
+          "atMs": 5933,
+          "event": "delta",
+          "data": {
+            "text": "."
+          }
+        },
+        {
+          "atMs": 6075,
+          "event": "delta",
+          "data": {
+            "text": "00"
+          }
+        },
+        {
+          "atMs": 6153,
+          "event": "delta",
+          "data": {
+            "text": " ["
+          }
+        },
+        {
+          "atMs": 6189,
+          "event": "delta",
+          "data": {
+            "text": "M"
+          }
+        },
+        {
+          "atMs": 6217,
+          "event": "delta",
+          "data": {
+            "text": "1"
+          }
+        },
+        {
+          "atMs": 6239,
+          "event": "delta",
+          "data": {
+            "text": "],"
+          }
+        },
+        {
+          "atMs": 6300,
+          "event": "delta",
+          "data": {
+            "text": " and total"
+          }
+        },
+        {
+          "atMs": 6307,
+          "event": "delta",
+          "data": {
+            "text": " reserves still"
+          }
+        },
+        {
+          "atMs": 6478,
+          "event": "delta",
+          "data": {
+            "text": " outstanding are"
+          }
+        },
+        {
+          "atMs": 6504,
+          "event": "delta",
+          "data": {
+            "text": " $5"
+          }
+        },
+        {
+          "atMs": 6587,
+          "event": "delta",
+          "data": {
+            "text": ",700"
+          }
+        },
+        {
+          "atMs": 6600,
+          "event": "delta",
+          "data": {
+            "text": ".00"
+          }
+        },
+        {
+          "atMs": 6704,
+          "event": "delta",
+          "data": {
+            "text": " [M"
+          }
+        },
+        {
+          "atMs": 6791,
+          "event": "delta",
+          "data": {
+            "text": "2]."
+          }
+        },
+        {
+          "atMs": 7645,
+          "event": "final",
+          "data": {
+            "turnId": "turn-a952af587bea40c99622843499acae73",
+            "conversationId": "conv-0066cc9e44284e31ba1b6d6081ae4f5c",
+            "userId": "underwriter",
+            "role": "Underwriter",
+            "scope": "quote",
+            "quoteId": "Q-DEMO-11",
+            "question": "What is the total incurred, and how much is still reserved?",
+            "text": "Total incurred is $49,220.00 [M1], and total reserves still outstanding are $5,700.00 [M2].",
+            "notFound": false,
+            "citations": [
+              {
+                "ref": "M1",
+                "kind": "metric",
+                "label": "Total incurred · catalog 1.1.0",
+                "metric": "incurred_total"
+              },
+              {
+                "ref": "M2",
+                "kind": "metric",
+                "label": "Total reserves · catalog 1.1.0",
+                "metric": "reserve_total"
+              }
+            ],
+            "toolTrace": [
+              {
+                "tool": "query_claims",
+                "arguments": "{\"filter\":null,\"orderBy\":\"incurred_desc\",\"limit\":5,\"view\":\"adjusted\"}",
+                "results": 5,
+                "ms": 236,
+                "dropped": 0
+              },
+              {
+                "tool": "compute_metric",
+                "arguments": "{\"metric\":\"incurred_total\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+                "results": 1,
+                "ms": 0,
+                "dropped": 0
+              },
+              {
+                "tool": "compute_metric",
+                "arguments": "{\"metric\":\"reserve_total\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+                "results": 1,
+                "ms": 0,
+                "dropped": 0
+              }
+            ],
+            "usage": {
+              "modelCalls": 2,
+              "inputTokens": 5070,
+              "cachedInputTokens": 3072,
+              "outputTokens": 169,
+              "embeddings": 0,
+              "searchQueries": 0,
+              "costUsd": 0.002715,
+              "firstTokenMs": 5560,
+              "totalMs": 7121,
+              "lines": [
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "cachedInputTokens (gpt-5.4-mini)",
+                  "quantity": 3072,
+                  "unit": "token",
+                  "unitPrice": 7.5e-8,
+                  "costUsd": 0.0002304,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (gpt-5.4-mini)",
+                  "quantity": 1998,
+                  "unit": "token",
+                  "unitPrice": 8.25e-7,
+                  "costUsd": 0.00164835,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing (Retail Prices API, eastus2, 2026-10-21)"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "outputTokens (gpt-5.4-mini)",
+                  "quantity": 169,
+                  "unit": "token",
+                  "unitPrice": 0.00000495,
+                  "costUsd": 0.00083655,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                }
+              ]
+            },
+            "at": "2026-10-23T11:26:18.2143068+00:00"
+          }
+        }
+      ]
+    },
+    {
+      "scope": "quote",
+      "question": "What does the broker's letter say?",
+      "events": [
+        {
+          "atMs": 1613,
+          "event": "tool",
+          "data": {
+            "tool": "search_documents",
+            "arguments": "{\"query\":\"broker letter\",\"top\":5}",
+            "results": 4,
+            "ms": 548,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 2502,
+          "event": "delta",
+          "data": {
+            "text": "The"
+          }
+        },
+        {
+          "atMs": 2505,
+          "event": "delta",
+          "data": {
+            "text": " broker"
+          }
+        },
+        {
+          "atMs": 2505,
+          "event": "delta",
+          "data": {
+            "text": "’s"
+          }
+        },
+        {
+          "atMs": 2525,
+          "event": "delta",
+          "data": {
+            "text": " letter"
+          }
+        },
+        {
+          "atMs": 2527,
+          "event": "delta",
+          "data": {
+            "text": " says"
+          }
+        },
+        {
+          "atMs": 2533,
+          "event": "delta",
+          "data": {
+            "text": " they"
+          }
+        },
+        {
+          "atMs": 2550,
+          "event": "delta",
+          "data": {
+            "text": " are"
+          }
+        },
+        {
+          "atMs": 2576,
+          "event": "delta",
+          "data": {
+            "text": " enclosing"
+          }
+        },
+        {
+          "atMs": 2578,
+          "event": "delta",
+          "data": {
+            "text": " the"
+          }
+        },
+        {
+          "atMs": 2579,
+          "event": "delta",
+          "data": {
+            "text": " loss"
+          }
+        },
+        {
+          "atMs": 2581,
+          "event": "delta",
+          "data": {
+            "text": " history"
+          }
+        },
+        {
+          "atMs": 2602,
+          "event": "delta",
+          "data": {
+            "text": " and"
+          }
+        },
+        {
+          "atMs": 2602,
+          "event": "delta",
+          "data": {
+            "text": " payroll"
+          }
+        },
+        {
+          "atMs": 2606,
+          "event": "delta",
+          "data": {
+            "text": " information for"
+          }
+        },
+        {
+          "atMs": 2626,
+          "event": "delta",
+          "data": {
+            "text": " Acme"
+          }
+        },
+        {
+          "atMs": 2635,
+          "event": "delta",
+          "data": {
+            "text": " Widgets ("
+          }
+        },
+        {
+          "atMs": 2650,
+          "event": "delta",
+          "data": {
+            "text": "synthetic"
+          }
+        },
+        {
+          "atMs": 2650,
+          "event": "delta",
+          "data": {
+            "text": ") to"
+          }
+        },
+        {
+          "atMs": 2663,
+          "event": "delta",
+          "data": {
+            "text": " support the"
+          }
+        },
+        {
+          "atMs": 2663,
+          "event": "delta",
+          "data": {
+            "text": " workers’"
+          }
+        },
+        {
+          "atMs": 2679,
+          "event": "delta",
+          "data": {
+            "text": " compensation renewal effective"
+          }
+        },
+        {
+          "atMs": 2704,
+          "event": "delta",
+          "data": {
+            "text": " December 1"
+          }
+        },
+        {
+          "atMs": 2718,
+          "event": "delta",
+          "data": {
+            "text": ", 202"
+          }
+        },
+        {
+          "atMs": 2825,
+          "event": "delta",
+          "data": {
+            "text": "4, and"
+          }
+        },
+        {
+          "atMs": 2825,
+          "event": "delta",
+          "data": {
+            "text": " asks the underwriting"
+          }
+        },
+        {
+          "atMs": 2825,
+          "event": "delta",
+          "data": {
+            "text": " team to let"
+          }
+        },
+        {
+          "atMs": 2965,
+          "event": "delta",
+          "data": {
+            "text": " them know if anything"
+          }
+        },
+        {
+          "atMs": 2965,
+          "event": "delta",
+          "data": {
+            "text": " else is needed to"
+          }
+        },
+        {
+          "atMs": 2965,
+          "event": "delta",
+          "data": {
+            "text": " complete the quote ["
+          }
+        },
+        {
+          "atMs": 3129,
+          "event": "delta",
+          "data": {
+            "text": "S1]."
+          }
+        },
+        {
+          "atMs": 3553,
+          "event": "final",
+          "data": {
+            "turnId": "turn-150cc7e364ab419a88826866dfb27486",
+            "conversationId": "conv-dc69420af8dd4ffe853b779ff66a44cb",
+            "userId": "underwriter",
+            "role": "Underwriter",
+            "scope": "quote",
+            "quoteId": "Q-DEMO-11",
+            "question": "What does the broker's letter say?",
+            "text": "The broker’s letter says they are enclosing the loss history and payroll information for Acme Widgets (synthetic) to support the workers’ compensation renewal effective December 1, 2024, and asks the underwriting team to let them know if anything else is needed to complete the quote [S1].",
+            "notFound": false,
+            "citations": [
+              {
+                "ref": "S1",
+                "kind": "page",
+                "label": "bundle.pdf · p.3",
+                "documentId": "doc-9997d9e37c0fcb03-p3-3",
+                "page": 3,
+                "fileName": "bundle.pdf",
+                "quoteId": "Q-DEMO-11"
+              }
+            ],
+            "toolTrace": [
+              {
+                "tool": "search_documents",
+                "arguments": "{\"query\":\"broker letter\",\"top\":5}",
+                "results": 4,
+                "ms": 548,
+                "dropped": 0
+              }
+            ],
+            "usage": {
+              "modelCalls": 2,
+              "inputTokens": 6125,
+              "cachedInputTokens": 3072,
+              "outputTokens": 164,
+              "embeddings": 1,
+              "searchQueries": 1,
+              "costUsd": 0.004561,
+              "firstTokenMs": 2272,
+              "totalMs": 2906,
+              "lines": [
+                {
+                  "service": "AISearch",
+                  "meter": "semanticQueries",
+                  "quantity": 1,
+                  "unit": "query",
+                  "unitPrice": 0.001,
+                  "costUsd": 0.001,
+                  "priceSource": "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Azure%20Cognitive%20Search'%20and%20armRegionName%20eq%20'eastus2'%20and%20priceType%20eq%20'Consumption'"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "cachedInputTokens (gpt-5.4-mini)",
+                  "quantity": 3072,
+                  "unit": "token",
+                  "unitPrice": 7.5e-8,
+                  "costUsd": 0.0002304,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (gpt-5.4-mini)",
+                  "quantity": 3053,
+                  "unit": "token",
+                  "unitPrice": 8.25e-7,
+                  "costUsd": 0.002518725,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing (Retail Prices API, eastus2, 2026-10-21)"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (text-embedding-3-large)",
+                  "quantity": 2,
+                  "unit": "token",
+                  "unitPrice": 1.43e-7,
+                  "costUsd": 2.86e-7,
+                  "priceSource": "https://prices.azure.com/api/retail/prices?api-version=2023-01-01-preview&$filter=armRegionName%20eq%20'eastus2'%20and%20contains(meterName,'embedding-3-large')"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "outputTokens (gpt-5.4-mini)",
+                  "quantity": 164,
+                  "unit": "token",
+                  "unitPrice": 0.00000495,
+                  "costUsd": 0.0008118,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                }
+              ]
+            },
+            "at": "2026-10-23T11:26:21.7059503+00:00"
+          }
+        }
+      ]
+    },
+    {
+      "scope": "org",
+      "question": "How many claims across all documents are open?",
+      "events": [
+        {
+          "atMs": 14709,
+          "event": "tool",
+          "data": {
+            "tool": "compute_metric",
+            "arguments": "{\"metric\":\"open_claim_count\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+            "results": 1,
+            "ms": 13664,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 15454,
+          "event": "delta",
+          "data": {
+            "text": "There"
+          }
+        },
+        {
+          "atMs": 15471,
+          "event": "delta",
+          "data": {
+            "text": " are"
+          }
+        },
+        {
+          "atMs": 15475,
+          "event": "delta",
+          "data": {
+            "text": " "
+          }
+        },
+        {
+          "atMs": 15490,
+          "event": "delta",
+          "data": {
+            "text": "267"
+          }
+        },
+        {
+          "atMs": 15493,
+          "event": "delta",
+          "data": {
+            "text": " open"
+          }
+        },
+        {
+          "atMs": 15498,
+          "event": "delta",
+          "data": {
+            "text": " claims"
+          }
+        },
+        {
+          "atMs": 15503,
+          "event": "delta",
+          "data": {
+            "text": " across"
+          }
+        },
+        {
+          "atMs": 15534,
+          "event": "delta",
+          "data": {
+            "text": " all"
+          }
+        },
+        {
+          "atMs": 15537,
+          "event": "delta",
+          "data": {
+            "text": " documents"
+          }
+        },
+        {
+          "atMs": 15543,
+          "event": "delta",
+          "data": {
+            "text": " ["
+          }
+        },
+        {
+          "atMs": 15549,
+          "event": "delta",
+          "data": {
+            "text": "M"
+          }
+        },
+        {
+          "atMs": 15556,
+          "event": "delta",
+          "data": {
+            "text": "1"
+          }
+        },
+        {
+          "atMs": 15564,
+          "event": "delta",
+          "data": {
+            "text": "]."
+          }
+        },
+        {
+          "atMs": 16111,
+          "event": "final",
+          "data": {
+            "turnId": "turn-b3fae07a88ee4222b8105c37e7a7a3f0",
+            "conversationId": "conv-f5473e83c0d3428890d2040e1ff8b02f",
+            "userId": "underwriter",
+            "role": "Underwriter",
+            "scope": "org",
+            "question": "How many claims across all documents are open?",
+            "text": "There are 267 open claims across all documents [M1].",
+            "notFound": false,
+            "citations": [
+              {
+                "ref": "M1",
+                "kind": "metric",
+                "label": "Open claims · catalog 1.1.0",
+                "metric": "open_claim_count"
+              }
+            ],
+            "toolTrace": [
+              {
+                "tool": "compute_metric",
+                "arguments": "{\"metric\":\"open_claim_count\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+                "results": 1,
+                "ms": 13664,
+                "dropped": 0
+              }
+            ],
+            "usage": {
+              "modelCalls": 2,
+              "inputTokens": 3823,
+              "cachedInputTokens": 3072,
+              "outputTokens": 78,
+              "embeddings": 0,
+              "searchQueries": 0,
+              "costUsd": 0.001236,
+              "firstTokenMs": 15428,
+              "totalMs": 15738,
+              "lines": [
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "cachedInputTokens (gpt-5.4-mini)",
+                  "quantity": 3072,
+                  "unit": "token",
+                  "unitPrice": 7.5e-8,
+                  "costUsd": 0.0002304,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (gpt-5.4-mini)",
+                  "quantity": 751,
+                  "unit": "token",
+                  "unitPrice": 8.25e-7,
+                  "costUsd": 0.000619575,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing (Retail Prices API, eastus2, 2026-10-21)"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "outputTokens (gpt-5.4-mini)",
+                  "quantity": 78,
+                  "unit": "token",
+                  "unitPrice": 0.00000495,
+                  "costUsd": 0.0003861,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                }
+              ]
+            },
+            "at": "2026-10-23T11:26:37.8905088+00:00"
+          }
+        }
+      ]
+    },
+    {
+      "scope": "org",
+      "question": "Which documents are kept but not processed?",
+      "events": [
+        {
+          "atMs": 3531,
+          "event": "tool",
+          "data": {
+            "tool": "search_documents",
+            "arguments": "{\"query\":\"kept but not processed\",\"top\":5}",
+            "results": 5,
+            "ms": 565,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 4753,
+          "event": "tool",
+          "data": {
+            "tool": "search_documents",
+            "arguments": "{\"query\":\"processed\",\"top\":6}",
+            "results": 6,
+            "ms": 429,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 7207,
+          "event": "tool",
+          "data": {
+            "tool": "search_documents",
+            "arguments": "{\"query\":\"kept\",\"top\":6}",
+            "results": 6,
+            "ms": 374,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 10236,
+          "event": "tool",
+          "data": {
+            "tool": "search_documents",
+            "arguments": "{\"query\":\"not processed\",\"top\":6}",
+            "results": 6,
+            "ms": 482,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 12787,
+          "event": "delta",
+          "data": {
+            "text": "The"
+          }
+        },
+        {
+          "atMs": 12796,
+          "event": "delta",
+          "data": {
+            "text": " kept"
+          }
+        },
+        {
+          "atMs": 12807,
+          "event": "delta",
+          "data": {
+            "text": "-but"
+          }
+        },
+        {
+          "atMs": 12807,
+          "event": "delta",
+          "data": {
+            "text": "-not"
+          }
+        },
+        {
+          "atMs": 12808,
+          "event": "delta",
+          "data": {
+            "text": "-"
+          }
+        },
+        {
+          "atMs": 12812,
+          "event": "delta",
+          "data": {
+            "text": "processed"
+          }
+        },
+        {
+          "atMs": 12822,
+          "event": "delta",
+          "data": {
+            "text": " documents"
+          }
+        },
+        {
+          "atMs": 12823,
+          "event": "delta",
+          "data": {
+            "text": " in"
+          }
+        },
+        {
+          "atMs": 12838,
+          "event": "delta",
+          "data": {
+            "text": " scope"
+          }
+        },
+        {
+          "atMs": 12851,
+          "event": "delta",
+          "data": {
+            "text": " appear"
+          }
+        },
+        {
+          "atMs": 12866,
+          "event": "delta",
+          "data": {
+            "text": " to"
+          }
+        },
+        {
+          "atMs": 12883,
+          "event": "delta",
+          "data": {
+            "text": " be"
+          }
+        },
+        {
+          "atMs": 12883,
+          "event": "delta",
+          "data": {
+            "text": " the"
+          }
+        },
+        {
+          "atMs": 12902,
+          "event": "delta",
+          "data": {
+            "text": " non-loss"
+          }
+        },
+        {
+          "atMs": 12902,
+          "event": "delta",
+          "data": {
+            "text": "-run items"
+          }
+        },
+        {
+          "atMs": 12902,
+          "event": "delta",
+          "data": {
+            "text": ": the"
+          }
+        },
+        {
+          "atMs": 12903,
+          "event": "delta",
+          "data": {
+            "text": " ACORD"
+          }
+        },
+        {
+          "atMs": 12912,
+          "event": "delta",
+          "data": {
+            "text": " application pages"
+          }
+        },
+        {
+          "atMs": 12927,
+          "event": "delta",
+          "data": {
+            "text": " in `"
+          }
+        },
+        {
+          "atMs": 12929,
+          "event": "delta",
+          "data": {
+            "text": "c1"
+          }
+        },
+        {
+          "atMs": 12962,
+          "event": "delta",
+          "data": {
+            "text": "-030-native"
+          }
+        },
+        {
+          "atMs": 12962,
+          "event": "delta",
+          "data": {
+            "text": "-pdf-b"
+          }
+        },
+        {
+          "atMs": 12994,
+          "event": "delta",
+          "data": {
+            "text": "undle.pdf`"
+          }
+        },
+        {
+          "atMs": 13099,
+          "event": "delta",
+          "data": {
+            "text": " and `c"
+          }
+        },
+        {
+          "atMs": 13099,
+          "event": "delta",
+          "data": {
+            "text": "1-031"
+          }
+        },
+        {
+          "atMs": 13099,
+          "event": "delta",
+          "data": {
+            "text": "-native-pdf"
+          }
+        },
+        {
+          "atMs": 13099,
+          "event": "delta",
+          "data": {
+            "text": "-bundle.pdf`"
+          }
+        },
+        {
+          "atMs": 13099,
+          "event": "delta",
+          "data": {
+            "text": " [S7]["
+          }
+        },
+        {
+          "atMs": 13099,
+          "event": "delta",
+          "data": {
+            "text": "S8], plus"
+          }
+        },
+        {
+          "atMs": 13211,
+          "event": "delta",
+          "data": {
+            "text": " the correspondence pages in those"
+          }
+        },
+        {
+          "atMs": 13211,
+          "event": "delta",
+          "data": {
+            "text": " same bundles [S9"
+          }
+        },
+        {
+          "atMs": 13211,
+          "event": "delta",
+          "data": {
+            "text": "][S10]. I"
+          }
+        },
+        {
+          "atMs": 13312,
+          "event": "delta",
+          "data": {
+            "text": " did not find a document explicitly"
+          }
+        },
+        {
+          "atMs": 13312,
+          "event": "delta",
+          "data": {
+            "text": " saying “ke"
+          }
+        },
+        {
+          "atMs": 13312,
+          "event": "delta",
+          "data": {
+            "text": "pt but not processed” beyond"
+          }
+        },
+        {
+          "atMs": 13312,
+          "event": "delta",
+          "data": {
+            "text": " those classifications [S7][S"
+          }
+        },
+        {
+          "atMs": 13425,
+          "event": "delta",
+          "data": {
+            "text": "8"
+          }
+        },
+        {
+          "atMs": 13425,
+          "event": "delta",
+          "data": {
+            "text": "][S9][S10]."
+          }
+        },
+        {
+          "atMs": 14616,
+          "event": "final",
+          "data": {
+            "turnId": "turn-a14f85896b0b49d6a16024f216b2f6f9",
+            "conversationId": "conv-62337d5b08f44553be60514a8dd54ba9",
+            "userId": "underwriter",
+            "role": "Underwriter",
+            "scope": "org",
+            "question": "Which documents are kept but not processed?",
+            "text": "The kept-but-not-processed documents in scope appear to be the non-loss-run items: the ACORD application pages in `c1-030-native-pdf-bundle.pdf` and `c1-031-native-pdf-bundle.pdf` [S7][S8], plus the correspondence pages in those same bundles [S9][S10]. I did not find a document explicitly saying “kept but not processed” beyond those classifications [S7][S8][S9][S10].",
+            "notFound": false,
+            "citations": [
+              {
+                "ref": "S7",
+                "kind": "page",
+                "label": "c1-031-native-pdf-bundle.pdf · p.4",
+                "documentId": "doc-a895cb9965c2c3c8-p4-4",
+                "page": 4,
+                "fileName": "c1-031-native-pdf-bundle.pdf",
+                "quoteId": "EVAL12-10231130-Q3"
+              },
+              {
+                "ref": "S8",
+                "kind": "page",
+                "label": "c1-030-native-pdf-bundle.pdf · p.4",
+                "documentId": "doc-42c4960965b761f6-p4-4",
+                "page": 4,
+                "fileName": "c1-030-native-pdf-bundle.pdf",
+                "quoteId": "EVAL12-10231130-Q1"
+              },
+              {
+                "ref": "S9",
+                "kind": "page",
+                "label": "c1-030-native-pdf-bundle.pdf · p.5",
+                "documentId": "doc-42c4960965b761f6-p5-5",
+                "page": 5,
+                "fileName": "c1-030-native-pdf-bundle.pdf",
+                "quoteId": "EVAL12-10231130-Q1"
+              },
+              {
+                "ref": "S10",
+                "kind": "page",
+                "label": "c1-031-native-pdf-bundle.pdf · p.5",
+                "documentId": "doc-a895cb9965c2c3c8-p5-5",
+                "page": 5,
+                "fileName": "c1-031-native-pdf-bundle.pdf",
+                "quoteId": "EVAL12-10231130-Q3"
+              }
+            ],
+            "toolTrace": [
+              {
+                "tool": "search_documents",
+                "arguments": "{\"query\":\"kept but not processed\",\"top\":5}",
+                "results": 5,
+                "ms": 565,
+                "dropped": 0
+              },
+              {
+                "tool": "search_documents",
+                "arguments": "{\"query\":\"processed\",\"top\":6}",
+                "results": 6,
+                "ms": 429,
+                "dropped": 0
+              },
+              {
+                "tool": "search_documents",
+                "arguments": "{\"query\":\"kept\",\"top\":6}",
+                "results": 6,
+                "ms": 374,
+                "dropped": 0
+              },
+              {
+                "tool": "search_documents",
+                "arguments": "{\"query\":\"not processed\",\"top\":6}",
+                "results": 6,
+                "ms": 482,
+                "dropped": 0
+              }
+            ],
+            "usage": {
+              "modelCalls": 5,
+              "inputTokens": 39828,
+              "cachedInputTokens": 24576,
+              "outputTokens": 627,
+              "embeddings": 4,
+              "searchQueries": 4,
+              "costUsd": 0.021531,
+              "firstTokenMs": 12623,
+              "totalMs": 13469,
+              "lines": [
+                {
+                  "service": "AISearch",
+                  "meter": "semanticQueries",
+                  "quantity": 4,
+                  "unit": "query",
+                  "unitPrice": 0.001,
+                  "costUsd": 0.004,
+                  "priceSource": "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Azure%20Cognitive%20Search'%20and%20armRegionName%20eq%20'eastus2'%20and%20priceType%20eq%20'Consumption'"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "cachedInputTokens (gpt-5.4-mini)",
+                  "quantity": 24576,
+                  "unit": "token",
+                  "unitPrice": 7.5e-8,
+                  "costUsd": 0.0018432,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (gpt-5.4-mini)",
+                  "quantity": 15252,
+                  "unit": "token",
+                  "unitPrice": 8.25e-7,
+                  "costUsd": 0.0125829,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing (Retail Prices API, eastus2, 2026-10-21)"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (text-embedding-3-large)",
+                  "quantity": 8,
+                  "unit": "token",
+                  "unitPrice": 1.43e-7,
+                  "costUsd": 0.000001144,
+                  "priceSource": "https://prices.azure.com/api/retail/prices?api-version=2023-01-01-preview&$filter=armRegionName%20eq%20'eastus2'%20and%20contains(meterName,'embedding-3-large')"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "outputTokens (gpt-5.4-mini)",
+                  "quantity": 627,
+                  "unit": "token",
+                  "unitPrice": 0.00000495,
+                  "costUsd": 0.00310365,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                }
+              ]
+            },
+            "at": "2026-10-23T11:26:51.8720786+00:00"
+          }
+        }
+      ]
+    },
+    {
+      "scope": "workspace",
+      "question": "Summarize the files in my workspace.",
+      "events": [
+        {
+          "atMs": 1254,
+          "event": "tool",
+          "data": {
+            "tool": "search_documents",
+            "arguments": "{\"query\":\"\",\"top\":6}",
+            "results": 1,
+            "ms": 193,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 2550,
+          "event": "tool",
+          "data": {
+            "tool": "search_documents",
+            "arguments": "{\"query\":\"Policy SYN-WC-2201 subtotal open closed valuation run date insured carrier claims\",\"top\":6}",
+            "results": 1,
+            "ms": 377,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 3787,
+          "event": "tool",
+          "data": {
+            "tool": "query_claims",
+            "arguments": "{\"filter\":null,\"orderBy\":\"incurred_desc\",\"limit\":25,\"view\":null}",
+            "results": 10,
+            "ms": 103,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 3804,
+          "event": "tool",
+          "data": {
+            "tool": "compute_metric",
+            "arguments": "{\"metric\":\"claim_count\",\"filter\":null,\"scenario\":null,\"view\":null}",
+            "results": 1,
+            "ms": 16,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 3804,
+          "event": "tool",
+          "data": {
+            "tool": "compute_metric",
+            "arguments": "{\"metric\":\"incurred_total\",\"filter\":null,\"scenario\":null,\"view\":null}",
+            "results": 1,
+            "ms": 0,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 5164,
+          "event": "delta",
+          "data": {
+            "text": "Your"
+          }
+        },
+        {
+          "atMs": 5171,
+          "event": "delta",
+          "data": {
+            "text": " workspace"
+          }
+        },
+        {
+          "atMs": 5176,
+          "event": "delta",
+          "data": {
+            "text": " contains"
+          }
+        },
+        {
+          "atMs": 5181,
+          "event": "delta",
+          "data": {
+            "text": " "
+          }
+        },
+        {
+          "atMs": 5186,
+          "event": "delta",
+          "data": {
+            "text": "1"
+          }
+        },
+        {
+          "atMs": 5190,
+          "event": "delta",
+          "data": {
+            "text": " loss"
+          }
+        },
+        {
+          "atMs": 5196,
+          "event": "delta",
+          "data": {
+            "text": "-run"
+          }
+        },
+        {
+          "atMs": 5199,
+          "event": "delta",
+          "data": {
+            "text": " file"
+          }
+        },
+        {
+          "atMs": 5206,
+          "event": "delta",
+          "data": {
+            "text": ":"
+          }
+        },
+        {
+          "atMs": 5210,
+          "event": "delta",
+          "data": {
+            "text": " `"
+          }
+        },
+        {
+          "atMs": 5230,
+          "event": "delta",
+          "data": {
+            "text": "c"
+          }
+        },
+        {
+          "atMs": 5234,
+          "event": "delta",
+          "data": {
+            "text": "1"
+          }
+        },
+        {
+          "atMs": 5238,
+          "event": "delta",
+          "data": {
+            "text": "-"
+          }
+        },
+        {
+          "atMs": 5244,
+          "event": "delta",
+          "data": {
+            "text": "015-native"
+          }
+        },
+        {
+          "atMs": 5247,
+          "event": "delta",
+          "data": {
+            "text": "-pdf"
+          }
+        },
+        {
+          "atMs": 5254,
+          "event": "delta",
+          "data": {
+            "text": ".pdf`"
+          }
+        },
+        {
+          "atMs": 5262,
+          "event": "delta",
+          "data": {
+            "text": " for Synthetic"
+          }
+        },
+        {
+          "atMs": 5265,
+          "event": "delta",
+          "data": {
+            "text": " Mutual Insurance"
+          }
+        },
+        {
+          "atMs": 5275,
+          "event": "delta",
+          "data": {
+            "text": " Co."
+          }
+        },
+        {
+          "atMs": 5284,
+          "event": "delta",
+          "data": {
+            "text": " covering insured"
+          }
+        },
+        {
+          "atMs": 5300,
+          "event": "delta",
+          "data": {
+            "text": " Delta Bakery ("
+          }
+        },
+        {
+          "atMs": 5312,
+          "event": "delta",
+          "data": {
+            "text": "synthetic),"
+          }
+        },
+        {
+          "atMs": 5344,
+          "event": "delta",
+          "data": {
+            "text": " valued as of"
+          }
+        },
+        {
+          "atMs": 5457,
+          "event": "delta",
+          "data": {
+            "text": " 10/"
+          }
+        },
+        {
+          "atMs": 5457,
+          "event": "delta",
+          "data": {
+            "text": "27/202"
+          }
+        },
+        {
+          "atMs": 5457,
+          "event": "delta",
+          "data": {
+            "text": "4 and run"
+          }
+        },
+        {
+          "atMs": 5457,
+          "event": "delta",
+          "data": {
+            "text": " on 10/"
+          }
+        },
+        {
+          "atMs": 5457,
+          "event": "delta",
+          "data": {
+            "text": "30/2024"
+          }
+        },
+        {
+          "atMs": 5457,
+          "event": "delta",
+          "data": {
+            "text": " [S1]."
+          }
+        },
+        {
+          "atMs": 5558,
+          "event": "delta",
+          "data": {
+            "text": " It shows 10 claims"
+          }
+        },
+        {
+          "atMs": 5558,
+          "event": "delta",
+          "data": {
+            "text": " total, with 2"
+          }
+        },
+        {
+          "atMs": 5559,
+          "event": "delta",
+          "data": {
+            "text": " open and 8 closed"
+          }
+        },
+        {
+          "atMs": 5559,
+          "event": "delta",
+          "data": {
+            "text": " [M1], and total"
+          }
+        },
+        {
+          "atMs": 5695,
+          "event": "delta",
+          "data": {
+            "text": " incurred of $"
+          }
+        },
+        {
+          "atMs": 5695,
+          "event": "delta",
+          "data": {
+            "text": "562,901.76 ["
+          }
+        },
+        {
+          "atMs": 5695,
+          "event": "delta",
+          "data": {
+            "text": "M2]. The biggest claim is"
+          }
+        },
+        {
+          "atMs": 5695,
+          "event": "delta",
+          "data": {
+            "text": " WC"
+          }
+        },
+        {
+          "atMs": 5695,
+          "event": "delta",
+          "data": {
+            "text": "-24-0009 at $"
+          }
+        },
+        {
+          "atMs": 5695,
+          "event": "delta",
+          "data": {
+            "text": "107,483.43 incurred,"
+          }
+        },
+        {
+          "atMs": 5800,
+          "event": "delta",
+          "data": {
+            "text": " and the file spans policy years 202"
+          }
+        },
+        {
+          "atMs": 5800,
+          "event": "delta",
+          "data": {
+            "text": "1, 2022, and 202"
+          }
+        },
+        {
+          "atMs": 5800,
+          "event": "delta",
+          "data": {
+            "text": "3 [C1]."
+          }
+        },
+        {
+          "atMs": 6756,
+          "event": "final",
+          "data": {
+            "turnId": "turn-4c3ce51e1f014afd81eee1e775546a89",
+            "conversationId": "conv-848a3eb05714468185046b7e37404fc0",
+            "userId": "applicant",
+            "role": "Applicant",
+            "scope": "workspace",
+            "workspaceId": "ws-7d0179702bec4eb8",
+            "question": "Summarize the files in my workspace.",
+            "text": "Your workspace contains 1 loss-run file: `c1-015-native-pdf.pdf` for Synthetic Mutual Insurance Co. covering insured Delta Bakery (synthetic), valued as of 10/27/2024 and run on 10/30/2024 [S1]. It shows 10 claims total, with 2 open and 8 closed [M1], and total incurred of $562,901.76 [M2]. The biggest claim is WC-24-0009 at $107,483.43 incurred, and the file spans policy years 2021, 2022, and 2023 [C1].",
+            "notFound": false,
+            "citations": [
+              {
+                "ref": "S1",
+                "kind": "page",
+                "label": "c1-015-native-pdf.pdf · p.1",
+                "documentId": "doc-c7ecf8798a125e3e",
+                "page": 1,
+                "fileName": "c1-015-native-pdf.pdf"
+              },
+              {
+                "ref": "M1",
+                "kind": "metric",
+                "label": "Claim count · catalog 1.1.0",
+                "metric": "claim_count"
+              },
+              {
+                "ref": "M2",
+                "kind": "metric",
+                "label": "Total incurred · catalog 1.1.0",
+                "metric": "incurred_total"
+              },
+              {
+                "ref": "C1",
+                "kind": "claim",
+                "label": "WC-24-0009 · c1-015-native-pdf.pdf · p.1",
+                "documentId": "doc-c7ecf8798a125e3e",
+                "page": 1,
+                "fieldPath": "policyPeriods[2].claims[0].total.incurred",
+                "claimId": "doc-c7ecf8798a125e3e/2/0",
+                "fileName": "c1-015-native-pdf.pdf"
+              }
+            ],
+            "toolTrace": [
+              {
+                "tool": "search_documents",
+                "arguments": "{\"query\":\"\",\"top\":6}",
+                "results": 1,
+                "ms": 193,
+                "dropped": 0
+              },
+              {
+                "tool": "search_documents",
+                "arguments": "{\"query\":\"Policy SYN-WC-2201 subtotal open closed valuation run date insured carrier claims\",\"top\":6}",
+                "results": 1,
+                "ms": 377,
+                "dropped": 0
+              },
+              {
+                "tool": "query_claims",
+                "arguments": "{\"filter\":null,\"orderBy\":\"incurred_desc\",\"limit\":25,\"view\":null}",
+                "results": 10,
+                "ms": 103,
+                "dropped": 0
+              },
+              {
+                "tool": "compute_metric",
+                "arguments": "{\"metric\":\"claim_count\",\"filter\":null,\"scenario\":null,\"view\":null}",
+                "results": 1,
+                "ms": 16,
+                "dropped": 0
+              },
+              {
+                "tool": "compute_metric",
+                "arguments": "{\"metric\":\"incurred_total\",\"filter\":null,\"scenario\":null,\"view\":null}",
+                "results": 1,
+                "ms": 0,
+                "dropped": 0
+              }
+            ],
+            "usage": {
+              "modelCalls": 4,
+              "inputTokens": 14764,
+              "cachedInputTokens": 9216,
+              "outputTokens": 447,
+              "embeddings": 2,
+              "searchQueries": 2,
+              "costUsd": 0.009483,
+              "firstTokenMs": 4997,
+              "totalMs": 5874,
+              "lines": [
+                {
+                  "service": "AISearch",
+                  "meter": "semanticQueries",
+                  "quantity": 2,
+                  "unit": "query",
+                  "unitPrice": 0.001,
+                  "costUsd": 0.002,
+                  "priceSource": "https://prices.azure.com/api/retail/prices?$filter=serviceName%20eq%20'Azure%20Cognitive%20Search'%20and%20armRegionName%20eq%20'eastus2'%20and%20priceType%20eq%20'Consumption'"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "cachedInputTokens (gpt-5.4-mini)",
+                  "quantity": 9216,
+                  "unit": "token",
+                  "unitPrice": 7.5e-8,
+                  "costUsd": 0.0006912,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (gpt-5.4-mini)",
+                  "quantity": 5548,
+                  "unit": "token",
+                  "unitPrice": 8.25e-7,
+                  "costUsd": 0.0045771,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing (Retail Prices API, eastus2, 2026-10-21)"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (text-embedding-3-large)",
+                  "quantity": 16,
+                  "unit": "token",
+                  "unitPrice": 1.43e-7,
+                  "costUsd": 0.000002288,
+                  "priceSource": "https://prices.azure.com/api/retail/prices?api-version=2023-01-01-preview&$filter=armRegionName%20eq%20'eastus2'%20and%20contains(meterName,'embedding-3-large')"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "outputTokens (gpt-5.4-mini)",
+                  "quantity": 447,
+                  "unit": "token",
+                  "unitPrice": 0.00000495,
+                  "costUsd": 0.00221265,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                }
+              ]
+            },
+            "at": "2026-10-23T11:27:51.018613+00:00"
+          }
+        }
+      ]
+    },
+    {
+      "scope": "workspace",
+      "question": "What is the total incurred in these loss runs?",
+      "events": [
+        {
+          "atMs": 2486,
+          "event": "tool",
+          "data": {
+            "tool": "compute_metric",
+            "arguments": "{\"metric\":\"incurred_total\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+            "results": 1,
+            "ms": 105,
+            "dropped": 0
+          }
+        },
+        {
+          "atMs": 6726,
+          "event": "delta",
+          "data": {
+            "text": "The"
+          }
+        },
+        {
+          "atMs": 6730,
+          "event": "delta",
+          "data": {
+            "text": " total"
+          }
+        },
+        {
+          "atMs": 6754,
+          "event": "delta",
+          "data": {
+            "text": " incurred"
+          }
+        },
+        {
+          "atMs": 6759,
+          "event": "delta",
+          "data": {
+            "text": " is"
+          }
+        },
+        {
+          "atMs": 6774,
+          "event": "delta",
+          "data": {
+            "text": " $"
+          }
+        },
+        {
+          "atMs": 6777,
+          "event": "delta",
+          "data": {
+            "text": "562"
+          }
+        },
+        {
+          "atMs": 6780,
+          "event": "delta",
+          "data": {
+            "text": ","
+          }
+        },
+        {
+          "atMs": 6802,
+          "event": "delta",
+          "data": {
+            "text": "901"
+          }
+        },
+        {
+          "atMs": 6808,
+          "event": "delta",
+          "data": {
+            "text": "."
+          }
+        },
+        {
+          "atMs": 6811,
+          "event": "delta",
+          "data": {
+            "text": "76"
+          }
+        },
+        {
+          "atMs": 6818,
+          "event": "delta",
+          "data": {
+            "text": " ["
+          }
+        },
+        {
+          "atMs": 6833,
+          "event": "delta",
+          "data": {
+            "text": "M"
+          }
+        },
+        {
+          "atMs": 6842,
+          "event": "delta",
+          "data": {
+            "text": "1"
+          }
+        },
+        {
+          "atMs": 6850,
+          "event": "delta",
+          "data": {
+            "text": "]."
+          }
+        },
+        {
+          "atMs": 7491,
+          "event": "final",
+          "data": {
+            "turnId": "turn-3ae4e8668291466ab4e063d616789562",
+            "conversationId": "conv-6bb0d536949c401da5c5cf0663280151",
+            "userId": "applicant",
+            "role": "Applicant",
+            "scope": "workspace",
+            "workspaceId": "ws-7d0179702bec4eb8",
+            "question": "What is the total incurred in these loss runs?",
+            "text": "The total incurred is $562,901.76 [M1].",
+            "notFound": false,
+            "citations": [
+              {
+                "ref": "M1",
+                "kind": "metric",
+                "label": "Total incurred · catalog 1.1.0",
+                "metric": "incurred_total"
+              }
+            ],
+            "toolTrace": [
+              {
+                "tool": "compute_metric",
+                "arguments": "{\"metric\":\"incurred_total\",\"filter\":null,\"scenario\":null,\"view\":\"adjusted\"}",
+                "results": 1,
+                "ms": 105,
+                "dropped": 0
+              }
+            ],
+            "usage": {
+              "modelCalls": 2,
+              "inputTokens": 3932,
+              "cachedInputTokens": 3072,
+              "outputTokens": 86,
+              "embeddings": 0,
+              "searchQueries": 0,
+              "costUsd": 0.001366,
+              "firstTokenMs": 6506,
+              "totalMs": 6918,
+              "lines": [
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "cachedInputTokens (gpt-5.4-mini)",
+                  "quantity": 3072,
+                  "unit": "token",
+                  "unitPrice": 7.5e-8,
+                  "costUsd": 0.0002304,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "inputTokens (gpt-5.4-mini)",
+                  "quantity": 860,
+                  "unit": "token",
+                  "unitPrice": 8.25e-7,
+                  "costUsd": 0.0007095,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing (Retail Prices API, eastus2, 2026-10-21)"
+                },
+                {
+                  "service": "AzureOpenAI",
+                  "meter": "outputTokens (gpt-5.4-mini)",
+                  "quantity": 86,
+                  "unit": "token",
+                  "unitPrice": 0.00000495,
+                  "costUsd": 0.0004257,
+                  "priceSource": "docs/architecture/azure-extraction-stack.md §Pricing"
+                }
+              ]
+            },
+            "at": "2026-10-23T11:27:58.8712615+00:00"
+          }
+        }
+      ]
+    }
+  ]
+}

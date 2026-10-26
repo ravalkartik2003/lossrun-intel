@@ -1,0 +1,12 @@
+# The learn-prompt artefact (brief 20 Answers 3): what the learn model is told and how its answers are linted.
+# A change to any of these files changes docs/evaluation/learn-prompt-artefact.json, and a pull request that changes the
+# artefact must attach a corpus v5 results folder whose run.json records the same artefact (tools/prompt-gate.py).
+# One path per line; a * in the file name matches within that folder.
+src/LossRun.Learning/PromptBuilder.cs
+src/LossRun.Learning/ModelSchema.cs
+# The repair chain: which repairs run, and in what order (brief 20 Answers 2).
+src/LossRun.Learning/FormatLearner.cs
+src/LossRun.Learning/SpecLint*.cs
+docs/evaluation/carrier-format.schema.json
+# Brief 29 Answers 1: the glossary is rendered into the learn prompt (PromptBuilder.BuildPrefix): a glossary edit is a prompt edit.
+docs/evaluation/glossary.json

@@ -1,0 +1,35 @@
+// Brief 12b: server-side evidence for a load-test window (Log Analytics workspace of the Application Insights resource, terraform output app_insights_name).
+// Replace the two datetimes with the run's start and end (UTC). Run each query separately.
+
+// 1. Per-endpoint server time (the API's own duration, without client network).
+let start = datetime(2026-10-23T00:00:00Z); let finish = datetime(2026-10-23T00:00:00Z);
+AppRequests
+| where TimeGenerated between (start .. finish)
+| where AppRoleName startswith "{{function_app_name}}"
+| summarize requests = count(), failed = countif(Success == false), p50 = percentile(DurationMs, 50), p95 = percentile(DurationMs, 95), max = max(DurationMs) by Name
+| order by requests desc;
+
+// 2. Throttling on Content Understanding and the model deployments (criterion: 0 x 429).
+let start = datetime(2026-10-23T00:00:00Z); let finish = datetime(2026-10-23T00:00:00Z);
+AppDependencies
+| where TimeGenerated between (start .. finish)
+| where Target has_any ("cognitiveservices", "openai", "services.ai.azure.com")
+| summarize calls = count(), throttled = countif(ResultCode == "429"), failed = countif(Success == false) by Target, ResultCode;
+
+// 3. Function instances serving requests, per minute.
+let start = datetime(2026-10-23T00:00:00Z); let finish = datetime(2026-10-23T00:00:00Z);
+AppRequests
+| where TimeGenerated between (start .. finish)
+| where AppRoleName startswith "{{function_app_name}}"
+| summarize instances = dcount(AppRoleInstance), requests = count() by bin(TimeGenerated, 1m)
+| order by TimeGenerated asc;
+
+// 4. Features reads: snapshot hits vs recomputes are labelled client-side (features-hit / features-miss); server-side the
+//    split shows as two duration modes. Dependencies per request show where time goes.
+let start = datetime(2026-10-23T00:00:00Z); let finish = datetime(2026-10-23T00:00:00Z);
+AppRequests
+| where TimeGenerated between (start .. finish)
+| where Name in ("DocumentOverrides", "GetQuoteFeatures", "QuoteWhatIf", "GetDocument", "ChatTurn")
+| join kind=leftouter (AppDependencies | where TimeGenerated between (start .. finish)
+    | summarize sql = countif(DependencyType == "SQL"), sqlMs = sumif(DurationMs, DependencyType == "SQL") by OperationId) on OperationId
+| summarize p95 = percentile(DurationMs, 95), sqlCallsP50 = percentile(sql, 50), sqlMsP95 = percentile(sqlMs, 95) by Name;

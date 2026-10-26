@@ -1,0 +1,105 @@
+{
+  "samples": 1357,
+  "errors": 0,
+  "startMs": 1792769942141,
+  "endMs": 1792770593003,
+  "labels": {
+    "chat": {
+      "samples": 158,
+      "errorPct": 0.0,
+      "p50": 2881,
+      "p95": 7400,
+      "max": 23477,
+      "codes": {
+        "200": 158
+      }
+    },
+    "document": {
+      "samples": 333,
+      "errorPct": 0.0,
+      "p50": 237,
+      "p95": 465,
+      "max": 1576,
+      "codes": {
+        "200": 333
+      }
+    },
+    "features-hit": {
+      "samples": 119,
+      "errorPct": 0.0,
+      "p50": 101,
+      "p95": 158,
+      "max": 2095,
+      "codes": {
+        "200": 119
+      }
+    },
+    "features-miss": {
+      "samples": 56,
+      "errorPct": 0.0,
+      "p50": 481,
+      "p95": 693,
+      "max": 3957,
+      "codes": {
+        "200": 56
+      }
+    },
+    "override": {
+      "samples": 161,
+      "errorPct": 0.0,
+      "p50": 557,
+      "p95": 860,
+      "max": 1611,
+      "codes": {
+        "200": 161
+      }
+    },
+    "upload": {
+      "samples": 10,
+      "errorPct": 0.0,
+      "p50": 368,
+      "p95": 3870,
+      "max": 3870,
+      "codes": {
+        "202": 10
+      }
+    },
+    "what-if": {
+      "samples": 520,
+      "errorPct": 0.0,
+      "p50": 131,
+      "p95": 364,
+      "max": 3621,
+      "codes": {
+        "200": 520
+      }
+    }
+  },
+  "errorPct": 0.0,
+  "criteria": [
+    {
+      "label": "features-hit",
+      "p95LimitMs": 300,
+      "p95": 158,
+      "pass": true
+    },
+    {
+      "label": "override",
+      "p95LimitMs": 1500,
+      "p95": 860,
+      "pass": true
+    },
+    {
+      "label": "document",
+      "p95LimitMs": 1000,
+      "p95": 465,
+      "pass": true
+    },
+    {
+      "label": "all",
+      "errorPctLimit": 0.5,
+      "errorPct": 0.0,
+      "pass": true
+    }
+  ]
+}

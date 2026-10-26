@@ -1,0 +1,67 @@
+# Organisation sandbox — copy to sandbox.tfvars, fill the <placeholders>, never commit secrets.
+# Everything else is the same code and modules as the POC; what changes is quota, region, ownership and the posture
+# (ADR 0027): any environment other than "poc" refuses Basic auth, allows no localhost origin by default, turns
+# diagnostics on, scopes identities per secret / per container, and lets the provider register missing resource providers.
+# Checked offline by infra/tests/sandbox.tftest.hcl (terraform test -var-file=environments/sandbox.tfvars.example).
+location    = "eastus2" # the organisation's primary region
+name_prefix = "lossrun"
+environment = "sandbox"
+owner       = "<team or owner tag>"
+
+model_deployments = {
+  "gpt-5.2"                = { model_name = "gpt-5.2", model_version = "2025-12-11", capacity = 300 }      # learn model, Data Zone
+  "gpt-5.4-mini"           = { model_name = "gpt-5.4-mini", model_version = "2026-03-17", capacity = 300 } # delta, classification, chat
+  "text-embedding-3-large" = { model_name = "text-embedding-3-large", model_version = "1", capacity = 100 }
+}
+# Set deploy_gpt52 = false while the quota request for gpt-5.2 is pending, or while Azure's risk check refuses the deployment
+# (the POC's subscription: still refused on 2026-10-26): the gpt-5.2 deployment is then skipped and the learn path
+# (app setting, model version, CU completion alias) uses delta_model instead (ADR 0004). Nothing else changes. Every figure
+# in the governance pack is measured on gpt-5.4-mini; gpt-5.2 is the recommendation, to switch to after the learn-model study
+# (ADR 0004 amendment 1).
+deploy_gpt52        = true
+learn_model         = "gpt-5.2"
+learn_model_version = "2025-12-11" # recorded on learned specs and usage events; must match model_deployments above
+delta_model         = "gpt-5.4-mini"
+delta_model_version = "2026-03-17"
+chat_model          = "gpt-5.4-mini"
+embedding_model     = "text-embedding-3-large"
+
+sql_location       = "eastus2" # same region as the app (ADR 0003 explains the POC's cross-region exception)
+sql_use_free_limit = false
+# The Entra SQL admin: a group, so it outlives one person. Its display name and object id (identity team).
+sql_admin_login     = "<Entra admin group display name>"
+sql_admin_object_id = "<object id of that group>"
+
+search_enabled  = true
+search_sku      = "basic" # standard before the historical backfill
+search_location = "eastus2"
+
+cu_inline_max_pages = 0 # GA async API only in the organisation (no preview inline path)
+demo_mode           = false
+
+# ---- Sign-in (ADR 0008, ADR 0027). Basic auth is refused outside the poc environment.
+api_auth_mode = "entra"
+# Either the identity team creates the API app registration (the usual case) and hands over these two values,
+# which become the app settings Auth__TenantId and Auth__Audience:
+auth_tenant_id = "<organisation tenant id>"
+auth_audience  = "<Application ID URI or client id of the API app registration>"
+# ...or this stack creates it (needs app-creation rights in the tenant): remove the two lines above and set this to true.
+create_entra_app = false
+# ui_redirect_uris = ["https://<static web app host>/"]   # the SPA redirect on that registration
+
+# ---- Where Terraform runs. The CU defaults and the AzureWebJobsStorage blanking are local-exec PowerShell scripts.
+# Windows PowerShell is the default; on Linux / macOS / a pipeline agent:
+local_exec_interpreter = ["pwsh", "-NoProfile", "-File"]
+
+# ---- Cost and alerting
+# First day of the daily cost export: RFC3339, in the future at apply time (the API refuses a past date).
+cost_export_start       = "<YYYY-MM-DD of the day after the first apply>T00:00:00Z"
+cost_export_end         = "<one year later>T00:00:00Z"
+budget_monthly_usd      = 500                                 # resource-group budget; alerts at 100 % actual and 80 % forecast
+escalation_alert_emails = ["<engineering distribution list>"] # empty = the subscription Owners, by role
+
+# ---- Subscription-level settings (ADR 0027): the subscription owner's decision, not this stack's.
+defender_ai_enabled = false # Defender for Cloud AI threat protection is a subscription-wide plan; opt in deliberately
+# diagnostics_enabled = true              # default outside poc: diagnostic settings to Log Analytics + SQL auditing
+# resource_provider_registrations = "none" # if the subscription owner registered the providers already (infra/README.md)
+# log_analytics_daily_quota_gb = 5        # diagnostics count against the daily cap

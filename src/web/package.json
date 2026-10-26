@@ -1,0 +1,16 @@
+{
+  "name": "lossrun-web",
+  "private": true,
+  "description": "Loss Run Intelligence web workspace (brief 11): the workbench app, the design system and the metrics twin.",
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "dev": "npm run dev -w @lossrun/workbench",
+    "dev:mock": "npm run dev:mock -w @lossrun/workbench",
+    "build": "npm run build -w @lossrun/workbench",
+    "typecheck": "npm run typecheck -w @lossrun/workbench",
+    "test": "npm test -w @lossrun/metrics && npm test -w @lossrun/workbench",
+    "e2e": "npm run e2e -w @lossrun/workbench",
+    "ladle": "npm run ladle -w @lossrun/ui"
+  },
+  "engines": { "node": ">=22.18" }
+}

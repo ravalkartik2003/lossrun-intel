@@ -1,0 +1,419 @@
+{
+  "catalogVersion": "0.12.0",
+  "schemaVersion": "0.10.0",
+  "expressionLanguageVersion": "1",
+  "description": "Validation rule catalog for canonical loss run documents (canonical-schema.json). All ids are PROVISIONAL: the client's R-01..R-15 catalog was not in the repo when this was built (brief 03), so ids follow the brief's must-cover order and will be renumbered to that catalog when it lands. Rules are pure data; LossRun.Rules evaluates them deterministically with no I/O, on every document including replay hits.",
+  "expressionLanguage": {
+    "paths": "Dotted paths into the canonical document rooted at `claim`, `period`, `document`, `context` (RuleContext) or `item` (current element inside sum/count/unique). `document.claims` is every claim across all policy periods. `{var}` placeholders are bound by `forEach`.",
+    "values": "{path}, {const}, {param} (rule params), {add:[...]} (strict: null if any operand null), {sumNonNull:[...]} (nulls ignored; null only if all null), {sub:[a,b]}, {sum:{over,path}} (nulls ignored; null if all null), {count:{over,where?}}, {daysBetween:[from,to]} (to - from in days), {coalesce:[...]}, {collect:{over,path,transform?}} (array of item values; transform `year` maps dates to years).",
+    "predicates": "{cmp:eq|ne|lt|le|gt|ge, left, right, tolerance?, normalize?} (numeric tolerance in USD; normalize `text` compares strings as normalized text, case, punctuation and spacing ignored, since 0.12.0), {and:[...]}, {or:[...]}, {not:p}, {allKnown:[...]} (checks only the operands whose data is present), {in:{value, values}}, {isNull:v}, {notNull:v}, {notBlank:v}, {unique:{over, key, normalize?}}, {subsetOf:{value, of}} (every element of the value array is in `of`; unknown when value is null or empty).",
+    "nullSemantics": "Three-valued: a comparison with a null operand is unknown. `when` not true -> not-applicable. `assert` true -> pass, false -> fail, unknown -> not-applicable (missing data is scored by completeness, not by these rules). Since 0.4.0 a pass is reported as not-informative when a value the rule read was derived by the carrier format (lineage extractor `derived`) purely from other values the same rule read (e.g. R-02 on incurred = paid + reserve): it is listed separately and counted with n/a in pass-rate denominators; it never blocks.",
+    "severity": "hard = blocks straight-through (routes to review) and counts toward the first-pass hard-rule rate; soft = warning to the reviewer/underwriter; flag = routing signal (jurisdiction split, exclude from WC metrics, lag/large-loss analytics), never an error and never counted in pass rates.",
+    "conditionalSeverity": "`severity` is the default; `severityOverrides` is an ordered list of {when, severity, reason} evaluated per instance, and the first override whose `when` is true sets the outcome's severity (e.g. R-20 hard only when expenseTreatment = separate; R-07/R-08 soft for cumulative trauma).",
+    "emit": "Optional {name: value-expression} map; each non-null value is returned on the outcome in RuleOutcome.values (e.g. R-23 lagDays) for analytics, whether the rule passes or fails."
+  },
+  "rules": [
+    {
+      "id": "R-01",
+      "status": "provisional",
+      "name": "Paid does not exceed incurred",
+      "severity": "hard",
+      "scope": "claim",
+      "forEach": [{ "var": "c", "in": ["indemnity", "medical", "expense", "total"] }],
+      "assert": { "cmp": "le", "left": { "path": "claim.{c}.paid" }, "right": { "path": "claim.{c}.incurred" }, "tolerance": 1.0 },
+      "message": "{c} paid exceeds {c} incurred on claim {claimNumber}.",
+      "source": "evaluation-and-wc-domain.md B4 H5; NCRB USR edits 000082/000083"
+    },
+    {
+      "id": "R-02",
+      "status": "provisional",
+      "name": "Incurred equals paid plus reserve (±$1)",
+      "severity": "hard",
+      "scope": "claim",
+      "forEach": [{ "var": "c", "in": ["indemnity", "medical", "expense", "total"] }],
+      "assert": { "cmp": "eq", "left": { "path": "claim.{c}.incurred" }, "right": { "add": [{ "path": "claim.{c}.paid" }, { "path": "claim.{c}.reserve" }] }, "tolerance": 1.0 },
+      "message": "{c} incurred is not {c} paid + {c} reserve (±$1) on claim {claimNumber}.",
+      "source": "evaluation-and-wc-domain.md B4 H6; Milliman casualty glossary (incurred = paid + case reserve)"
+    },
+    {
+      "id": "R-03",
+      "status": "provisional",
+      "name": "No negative amounts outside recovery columns",
+      "severity": "hard",
+      "scope": "claim",
+      "forEach": [
+        { "var": "c", "in": ["indemnity", "medical", "expense", "total"] },
+        { "var": "m", "in": ["paid", "reserve", "incurred"] }
+      ],
+      "assert": { "cmp": "ge", "left": { "path": "claim.{c}.{m}" }, "right": { "const": 0 } },
+      "message": "{c} {m} is negative on claim {claimNumber}; recoveries belong in recoverySubrogation.",
+      "source": "evaluation-and-wc-domain.md B4 H10; Kentucky data reporting ('No negative amounts may be entered')",
+      "caNote": "Carriers sometimes print paid net of recoveries in parentheses; the normalizer must route those to recoverySubrogation rather than store a negative paid."
+    },
+    {
+      "id": "R-04",
+      "status": "provisional",
+      "name": "Closed claims carry zero reserves",
+      "severity": "soft",
+      "scope": "claim",
+      "forEach": [{ "var": "c", "in": ["indemnity", "medical", "expense", "total"] }],
+      "when": { "cmp": "eq", "left": { "path": "claim.status" }, "right": { "const": "closed" } },
+      "assert": { "cmp": "eq", "left": { "path": "claim.{c}.reserve" }, "right": { "const": 0 }, "tolerance": 0.005 },
+      "message": "Closed claim {claimNumber} still carries a {c} reserve.",
+      "source": "evaluation-and-wc-domain.md B4 H9/S9 (soft per brief 03); MA stat plan status 1 'no future payments are expected'; Racklify red flag 'Closed claims that still appear open'"
+    },
+    {
+      "id": "R-05",
+      "status": "provisional",
+      "name": "Medical-only claims carry zero indemnity",
+      "severity": "hard",
+      "scope": "claim",
+      "forEach": [{ "var": "m", "in": ["paid", "reserve", "incurred"] }],
+      "when": { "cmp": "eq", "left": { "path": "claim.claimType" }, "right": { "const": "medicalOnly" } },
+      "assert": { "cmp": "eq", "left": { "path": "claim.indemnity.{m}" }, "right": { "const": 0 }, "tolerance": 0.005 },
+      "message": "Medical-only claim {claimNumber} has indemnity {m}; it may have converted to indemnity.",
+      "source": "evaluation-and-wc-domain.md B4 H8/S8; NCRB USR edit 000069 (incurred indemnity must be zero for injury code 6 or 7)"
+    },
+    {
+      "id": "R-06",
+      "status": "provisional",
+      "name": "Date of injury not after valuation date",
+      "severity": "hard",
+      "scope": "claim",
+      "assert": { "cmp": "le", "left": { "path": "claim.dateOfInjury" }, "right": { "path": "document.valuationDate" } },
+      "message": "Claim {claimNumber} date of injury is after the run's valuation date.",
+      "source": "evaluation-and-wc-domain.md B4 H3"
+    },
+    {
+      "id": "R-07",
+      "status": "provisional",
+      "name": "Date of injury not after date reported",
+      "severity": "hard",
+      "scope": "claim",
+      "assert": { "cmp": "le", "left": { "path": "claim.dateOfInjury" }, "right": { "path": "claim.dateReported" } },
+      "severityOverrides": [
+        {
+          "when": { "or": [ { "cmp": "eq", "left": { "path": "claim.cumulativeTrauma" }, "right": { "const": true } }, { "in": { "value": { "path": "claim.typeOfLossCode" }, "values": ["02", "03"] } } ] },
+          "severity": "soft",
+          "reason": "Cumulative trauma: CA LC 5412 date of injury can be set after the claim is reported."
+        }
+      ],
+      "message": "Claim {claimNumber} was reported before its date of injury.",
+      "source": "evaluation-and-wc-domain.md B4 H3; brief 03 Answers 6 (soft for CT)",
+      "caNote": "For CA cumulative trauma the LC 5412 date can be set after the claim is reported, so this rule is soft for CT claims; review rather than auto-correct."
+    },
+    {
+      "id": "R-08",
+      "status": "provisional",
+      "name": "Date of injury falls within the claim's policy period",
+      "severity": "hard",
+      "scope": "claim",
+      "assert": {
+        "and": [
+          { "cmp": "ge", "left": { "path": "claim.dateOfInjury" }, "right": { "path": "period.effectiveDate" } },
+          { "cmp": "lt", "left": { "path": "claim.dateOfInjury" }, "right": { "path": "period.expirationDate" } }
+        ]
+      },
+      "severityOverrides": [
+        {
+          "when": { "or": [ { "cmp": "eq", "left": { "path": "claim.cumulativeTrauma" }, "right": { "const": true } }, { "in": { "value": { "path": "claim.typeOfLossCode" }, "values": ["02", "03"] } } ] },
+          "severity": "soft",
+          "reason": "Cumulative trauma: CA LC 5412 DOI may post-date the exposure period / employment."
+        }
+      ],
+      "message": "Claim {claimNumber} date of injury is outside its policy period.",
+      "source": "evaluation-and-wc-domain.md B4 H4/S4",
+      "caNote": "CA cumulative trauma: the LC 5412 date of injury requires disability plus knowledge of industrial causation and can fall after employment ended (B3; ~60% of CT claims are filed post-termination), so this rule is soft for CT claims."
+    },
+    {
+      "id": "R-09",
+      "status": "provisional",
+      "name": "No duplicate claim numbers within the run",
+      "severity": "hard",
+      "scope": "document",
+      "assert": { "unique": { "over": "document.claims", "key": { "path": "item.claimNumber" }, "normalize": "claimNumber" } },
+      "message": "Duplicate claim numbers on the run (after normalization).",
+      "source": "evaluation-and-wc-domain.md B4 H2; NCRB USR edit 000066",
+      "caNote": "A run spanning carriers/TPAs may legitimately repeat a number across carriers (B4 S2); split such runs per carrier before applying this rule."
+    },
+    {
+      "id": "R-10",
+      "status": "provisional",
+      "name": "Policy-period money subtotals reconcile to claim rows (±$1)",
+      "severity": "hard",
+      "scope": "period",
+      "forEach": [
+        { "var": "c", "in": ["indemnity", "medical", "expense", "total"] },
+        { "var": "m", "in": ["paid", "reserve", "incurred"] }
+      ],
+      "when": { "and": [ { "notNull": { "path": "period.subtotals" } }, { "cmp": "ne", "left": { "path": "period.detailLevel" }, "right": { "const": "summaryOnly" } } ] },
+      "assert": {"or": [{"cmp": "eq", "left": {"path": "period.subtotals.{c}.{m}"}, "right": {"sum": {"over": "period.claims", "path": "item.{c}.{m}"}}, "tolerance": 1.0}, {"cmp": "eq", "left": {"path": "period.subtotals.{c}.{m}"}, "right": {"add": [{"sum": {"over": "period.claims", "path": "item.{c}.{m}"}}, {"sum": {"over": "period.keptRows", "path": "item.{c}.{m}"}}]}, "tolerance": 1.0}]},
+      "message": "Printed {c} {m} subtotal for policy {policyNumber} does not equal the sum of its claim rows.",
+      "source": "evaluation-and-wc-domain.md B4 H11; strategy report (printed subtotals are the free oracle for the learn loop); not applicable to summary-only periods (brief 03 Answers 2)"
+    },
+    {
+      "id": "R-11",
+      "status": "provisional",
+      "name": "Policy-period claim counts reconcile to claim rows",
+      "severity": "hard",
+      "scope": "period",
+      "when": { "and": [ { "notNull": { "path": "period.subtotals" } }, { "cmp": "ne", "left": { "path": "period.detailLevel" }, "right": { "const": "summaryOnly" } } ] },
+      "assert": {"allKnown": [{"or": [{"cmp": "eq", "left": {"path": "period.subtotals.claimCount"}, "right": {"count": {"over": "period.claims"}}}, {"cmp": "eq", "left": {"path": "period.subtotals.claimCount"}, "right": {"add": [{"count": {"over": "period.claims"}}, {"count": {"over": "period.keptRows"}}]}}]}, {"or": [{"cmp": "eq", "left": {"path": "period.subtotals.openCount"}, "right": {"count": {"over": "period.claims", "where": {"in": {"value": {"path": "item.status"}, "values": ["open", "reopened"]}}}}}, {"cmp": "eq", "left": {"path": "period.subtotals.openCount"}, "right": {"add": [{"count": {"over": "period.claims", "where": {"in": {"value": {"path": "item.status"}, "values": ["open", "reopened"]}}}}, {"count": {"over": "period.keptRows", "where": {"in": {"value": {"path": "item.status"}, "values": ["open", "reopened"]}}}}]}}]}, {"or": [{"cmp": "eq", "left": {"path": "period.subtotals.closedCount"}, "right": {"count": {"over": "period.claims", "where": {"cmp": "eq", "left": {"path": "item.status"}, "right": {"const": "closed"}}}}}, {"cmp": "eq", "left": {"path": "period.subtotals.closedCount"}, "right": {"add": [{"count": {"over": "period.claims", "where": {"cmp": "eq", "left": {"path": "item.status"}, "right": {"const": "closed"}}}}, {"count": {"over": "period.keptRows", "where": {"cmp": "eq", "left": {"path": "item.status"}, "right": {"const": "closed"}}}}]}}]}]},
+      "message": "Printed open/closed/total claim counts for policy {policyNumber} do not match the claim rows (reopened counts as open).",
+      "source": "evaluation-and-wc-domain.md B4 H12; TJC loss run 'Summary Total For' Open/Closed/TOTAL blocks; not applicable to summary-only periods (brief 03 Answers 2)"
+    },
+    {
+      "id": "R-12",
+      "status": "provisional",
+      "name": "Grand money totals reconcile to all claim rows (±$1)",
+      "severity": "hard",
+      "scope": "document",
+      "forEach": [
+        { "var": "c", "in": ["indemnity", "medical", "expense", "total"] },
+        { "var": "m", "in": ["paid", "reserve", "incurred"] }
+      ],
+      "when": { "and": [ { "notNull": { "path": "document.reportTotals" } }, { "cmp": "eq", "left": { "count": { "over": "document.policyPeriods", "where": { "cmp": "eq", "left": { "path": "item.detailLevel" }, "right": { "const": "summaryOnly" } } } }, "right": { "const": 0 } } ] },
+      "assert": {"or": [{"cmp": "eq", "left": {"path": "document.reportTotals.{c}.{m}"}, "right": {"sum": {"over": "document.claims", "path": "item.{c}.{m}"}}, "tolerance": 1.0}, {"cmp": "eq", "left": {"path": "document.reportTotals.{c}.{m}"}, "right": {"add": [{"sum": {"over": "document.claims", "path": "item.{c}.{m}"}}, {"sum": {"over": "document.keptRows", "path": "item.{c}.{m}"}}]}, "tolerance": 1.0}]},
+      "message": "Printed grand total {c} {m} does not equal the sum of all claim rows.",
+      "source": "evaluation-and-wc-domain.md B4 H11; not applicable when any period is summary-only (brief 03b Answers 1; R-26 covers those runs)"
+    },
+    {
+      "id": "R-13",
+      "status": "provisional",
+      "name": "Grand claim counts reconcile to all claim rows",
+      "severity": "hard",
+      "scope": "document",
+      "when": { "and": [ { "notNull": { "path": "document.reportTotals" } }, { "cmp": "eq", "left": { "count": { "over": "document.policyPeriods", "where": { "cmp": "eq", "left": { "path": "item.detailLevel" }, "right": { "const": "summaryOnly" } } } }, "right": { "const": 0 } } ] },
+      "assert": {"allKnown": [{"or": [{"cmp": "eq", "left": {"path": "document.reportTotals.claimCount"}, "right": {"count": {"over": "document.claims"}}}, {"cmp": "eq", "left": {"path": "document.reportTotals.claimCount"}, "right": {"add": [{"count": {"over": "document.claims"}}, {"count": {"over": "document.keptRows"}}]}}]}, {"or": [{"cmp": "eq", "left": {"path": "document.reportTotals.openCount"}, "right": {"count": {"over": "document.claims", "where": {"in": {"value": {"path": "item.status"}, "values": ["open", "reopened"]}}}}}, {"cmp": "eq", "left": {"path": "document.reportTotals.openCount"}, "right": {"add": [{"count": {"over": "document.claims", "where": {"in": {"value": {"path": "item.status"}, "values": ["open", "reopened"]}}}}, {"count": {"over": "document.keptRows", "where": {"in": {"value": {"path": "item.status"}, "values": ["open", "reopened"]}}}}]}}]}, {"or": [{"cmp": "eq", "left": {"path": "document.reportTotals.closedCount"}, "right": {"count": {"over": "document.claims", "where": {"cmp": "eq", "left": {"path": "item.status"}, "right": {"const": "closed"}}}}}, {"cmp": "eq", "left": {"path": "document.reportTotals.closedCount"}, "right": {"add": [{"count": {"over": "document.claims", "where": {"cmp": "eq", "left": {"path": "item.status"}, "right": {"const": "closed"}}}}, {"count": {"over": "document.keptRows", "where": {"cmp": "eq", "left": {"path": "item.status"}, "right": {"const": "closed"}}}}]}}]}]},
+      "message": "Printed grand-total claim counts do not match the claim rows (reopened counts as open).",
+      "source": "evaluation-and-wc-domain.md B4 H12; not applicable when any period is summary-only (brief 03b Answers 1)"
+    },
+    {
+      "id": "R-14",
+      "status": "provisional",
+      "name": "'No losses' statement means zero claim rows for that policy period",
+      "severity": "hard",
+      "scope": "period",
+      "when": { "cmp": "eq", "left": { "path": "period.noLossesStatement" }, "right": { "const": true } },
+      "assert": { "cmp": "eq", "left": { "count": { "over": "period.claims" } }, "right": { "const": 0 } },
+      "message": "Policy period {policyNumber} states no losses but claim rows were extracted for it.",
+      "source": "evaluation-and-wc-domain.md B4 H13; Vouch ('no losses were reported'); NJ 291A ('NONE'). Scoped per policy period since 0.5.0 (ADR 0016): real runs print 'no claims for this policy year' for some terms and claim rows for others (brief 17, P8). A document-level statement no period can take applies to every period"
+    },
+    {
+      "id": "R-15",
+      "status": "provisional",
+      "name": "Valuation date is current for the quote",
+      "severity": "soft",
+      "scope": "document",
+      "params": { "maxDays": 100 },
+      "assert": { "cmp": "le", "left": { "daysBetween": [{ "path": "document.valuationDate" }, { "path": "context.targetPolicyEffectiveDate" }] }, "right": { "param": "maxDays" } },
+      "message": "Valuation date is more than {maxDays} days before the target policy effective date (stale loss run).",
+      "source": "evaluation-and-wc-domain.md B3/B4 S16; State Fund: 'valued within 100 days of the policy inception date'",
+      "caNote": "100 days is State Fund's requirement; other CA carriers use 30/60/90 days (ICW, Foresight). Set maxDays per receiving carrier. Not applicable without RuleContext.targetPolicyEffectiveDate."
+    },
+    {
+      "id": "R-16",
+      "status": "provisional",
+      "name": "Reopened claims show an open reserve",
+      "severity": "soft",
+      "scope": "claim",
+      "when": { "cmp": "eq", "left": { "path": "claim.status" }, "right": { "const": "reopened" } },
+      "assert": {
+        "or": [
+          { "cmp": "gt", "left": { "path": "claim.total.reserve" }, "right": { "const": 0 } },
+          { "cmp": "gt", "left": { "path": "claim.indemnity.reserve" }, "right": { "const": 0 } },
+          { "cmp": "gt", "left": { "path": "claim.medical.reserve" }, "right": { "const": 0 } },
+          { "cmp": "gt", "left": { "path": "claim.expense.reserve" }, "right": { "const": 0 } }
+        ]
+      },
+      "message": "Reopened claim {claimNumber} has no open reserve.",
+      "source": "evaluation-and-wc-domain.md B2 Inferences and B4 S14 (single-valuation part only; cross-valuation reopen detection needs the claim history store, brief 09). Brief 08 eval run: the prior-close-date part was dropped — many formats print no close-date column, so it failed every reopened claim of those carriers (4 on one 43-claim run → review) without saying anything about the claim."
+    },
+    {
+      "id": "R-17",
+      "status": "provisional",
+      "name": "Jurisdiction is California",
+      "severity": "flag",
+      "scope": "claim",
+      "params": { "expectedJurisdictions": ["CA"] },
+      "assert": { "in": { "value": { "coalesce": [{ "path": "claim.jurisdictionState" }, { "path": "document.jurisdictionState" }] }, "values": { "param": "expectedJurisdictions" } } },
+      "message": "Claim {claimNumber} is not a California claim; CA experience rating uses CA USR data only.",
+      "source": "evaluation-and-wc-domain.md B3 Inferences; B4 S19; flag per brief 03 Answers 6 (routes to jurisdiction split)"
+    },
+    {
+      "id": "R-18",
+      "status": "provisional",
+      "name": "Line of business is workers' compensation",
+      "severity": "flag",
+      "scope": "claim",
+      "params": { "expectedLines": ["WC"] },
+      "assert": { "in": { "value": { "coalesce": [{ "path": "claim.lineOfBusiness" }, { "path": "document.lineOfBusiness" }] }, "values": { "param": "expectedLines" } } },
+      "message": "Claim {claimNumber} is not a WC claim (mixed-line run).",
+      "source": "evaluation-and-wc-domain.md B4 S20; lossrx ('coverage must be filtered first'); flag per brief 03 Answers 6 (exclude from WC metrics)"
+    },
+    {
+      "id": "R-19",
+      "status": "provisional",
+      "name": "Claim number present when incurred exceeds $2,000",
+      "severity": "hard",
+      "scope": "claim",
+      "params": { "threshold": 2000 },
+      "when": { "cmp": "gt", "left": { "coalesce": [{ "path": "claim.total.incurred" }, { "sumNonNull": [{ "path": "claim.indemnity.incurred" }, { "path": "claim.medical.incurred" }, { "path": "claim.expense.incurred" }] }] }, "right": { "param": "threshold" } },
+      "assert": { "notBlank": { "path": "claim.claimNumber" } },
+      "message": "A claim with incurred over ${threshold} has no claim number.",
+      "source": "evaluation-and-wc-domain.md B4 H1; NCRB USR edit 000077"
+    },
+    {
+      "id": "R-20",
+      "status": "provisional",
+      "name": "Total columns equal the sum of components (±$1)",
+      "severity": "soft",
+      "scope": "claim",
+      "forEach": [{ "var": "m", "in": ["paid", "reserve", "incurred"] }],
+      "when": { "cmp": "ne", "left": { "coalesce": [{ "path": "document.totalComposition" }, { "const": "allComponents" }] }, "right": { "const": "indemnityMedical" } },
+      "assert": { "cmp": "eq", "left": { "path": "claim.total.{m}" }, "right": { "add": [{ "path": "claim.indemnity.{m}" }, { "path": "claim.medical.{m}" }, { "path": "claim.expense.{m}" }] }, "tolerance": 1.0 },
+      "severityOverrides": [
+        { "when": { "cmp": "eq", "left": { "path": "document.expenseTreatment" }, "right": { "const": "separate" } }, "severity": "hard", "reason": "Expense is printed in its own columns, so the identity must hold." }
+      ],
+      "message": "Total {m} on claim {claimNumber} is not indemnity + medical + expense (±$1).",
+      "source": "evaluation-and-wc-domain.md B4 H7; brief 03 Answers 6 (hard only when expenseTreatment = separate); not applicable when the format declares totals of indemnity + medical only (ADR 0018, R-29)",
+      "caNote": "Not applicable when a component column is absent; soft unless the carrier format declares expense as separate columns."
+    },
+    {
+      "id": "R-21",
+      "status": "provisional",
+      "name": "Reported and closed dates are consistent with injury and valuation dates",
+      "severity": "hard",
+      "scope": "claim",
+      "assert": {
+        "allKnown": [
+          { "cmp": "le", "left": { "path": "claim.dateReported" }, "right": { "path": "document.valuationDate" } },
+          { "cmp": "le", "left": { "path": "claim.dateClosed" }, "right": { "path": "document.valuationDate" } },
+          { "cmp": "ge", "left": { "path": "claim.dateClosed" }, "right": { "path": "claim.dateOfInjury" } }
+        ]
+      },
+      "message": "Claim {claimNumber} has a report or close date after the valuation date, or a close date before the injury.",
+      "source": "evaluation-and-wc-domain.md B4 H3 (extended to report/close dates); AMS360 close date auto-filled from final payment"
+    },
+    {
+      "id": "R-22",
+      "status": "provisional",
+      "name": "Net incurred below gross requires a recovery amount",
+      "severity": "soft",
+      "scope": "claim",
+      "when": { "cmp": "lt", "left": { "path": "claim.netIncurred" }, "right": { "path": "claim.total.incurred" }, "tolerance": 1.0 },
+      "assert": { "and": [ { "notNull": { "path": "claim.recoverySubrogation" } }, { "cmp": "gt", "left": { "path": "claim.recoverySubrogation" }, "right": { "const": 0 } } ] },
+      "message": "Claim {claimNumber} shows net incurred below gross incurred but no recovery amount.",
+      "source": "evaluation-and-wc-domain.md B4 S10; WCIRB ERP subrogated-claim rule (gross × net/gross); CDI Peeters decision on timely subrogation reporting"
+    },
+    {
+      "id": "R-23",
+      "status": "provisional",
+      "name": "Report lag within the allowed days",
+      "severity": "flag",
+      "scope": "claim",
+      "params": { "maxLagDays": 30 },
+      "assert": { "cmp": "le", "left": { "daysBetween": [{ "path": "claim.dateOfInjury" }, { "path": "claim.dateReported" }] }, "right": { "param": "maxLagDays" } },
+      "emit": { "lagDays": { "daysBetween": [{ "path": "claim.dateOfInjury" }, { "path": "claim.dateReported" }] } },
+      "message": "Claim {claimNumber} was reported more than {maxLagDays} days after the date of injury.",
+      "source": "evaluation-and-wc-domain.md B3/B4 S17 (Workforce.com: lag between date of loss and date reported); threshold per brief 03 Answers 8"
+    },
+    {
+      "id": "R-24",
+      "status": "provisional",
+      "name": "Large loss",
+      "severity": "flag",
+      "scope": "claim",
+      "params": { "largeLossThreshold": 100000 },
+      "assert": { "cmp": "lt", "left": { "coalesce": [{ "path": "claim.total.incurred" }, { "sumNonNull": [{ "path": "claim.indemnity.incurred" }, { "path": "claim.medical.incurred" }, { "path": "claim.expense.incurred" }] }] }, "right": { "param": "largeLossThreshold" } },
+      "message": "Claim {claimNumber} total incurred is at or above the ${largeLossThreshold} large-loss threshold.",
+      "source": "evaluation-and-wc-domain.md B4 S18; threshold per brief 03 Answers 8 (analytics caps such as $250K trend or the $1M NCCI cap are metric params, not this rule)"
+    },
+    {
+      "id": "R-25",
+      "status": "provisional",
+      "name": "Every requested policy year is on the run",
+      "severity": "soft",
+      "scope": "document",
+      "assert": { "subsetOf": { "value": { "path": "context.requestedPolicyYears" }, "of": { "collect": { "over": "document.policyPeriods", "path": "item.effectiveDate", "transform": "year" } } } },
+      "message": "One or more requested policy years have no policy period on the run.",
+      "source": "evaluation-and-wc-domain.md B4 S15; State Fund (four years of loss runs); WCIRB (no mod on partial data); brief 03 Answers 8",
+      "caNote": "Policy year = calendar year of the policy effective date. Not applicable until the submission context supplies RuleContext.requestedPolicyYears (brief 11)."
+    },
+    {
+      "id": "R-26",
+      "status": "provisional",
+      "name": "Period subtotals sum to the grand totals (±$1)",
+      "severity": "hard",
+      "scope": "document",
+      "forEach": [
+        { "var": "c", "in": ["indemnity", "medical", "expense", "total"] },
+        { "var": "m", "in": ["paid", "reserve", "incurred"] }
+      ],
+      "when": { "and": [ { "notNull": { "path": "document.reportTotals" } }, { "cmp": "eq", "left": { "count": { "over": "document.policyPeriods", "where": { "isNull": { "path": "item.subtotals" } } } }, "right": { "const": 0 } } ] },
+      "assert": { "cmp": "eq", "left": { "path": "document.reportTotals.{c}.{m}" }, "right": { "sum": { "over": "document.policyPeriods", "path": "item.subtotals.{c}.{m}" } }, "tolerance": 1.0 },
+      "message": "Printed grand total {c} {m} does not equal the sum of the policy-period subtotals.",
+      "source": "brief 03b Answers 1; evaluation-and-wc-domain.md B4 H11 (applies to summary-only runs, where R-12 cannot)"
+    },
+    {
+      "id": "R-27",
+      "status": "provisional",
+      "name": "A policy period with no claim rows says so",
+      "severity": "flag",
+      "scope": "period",
+      "when": { "and": [ { "cmp": "eq", "left": { "count": { "over": "period.claims" } }, "right": { "const": 0 } }, { "isNull": { "path": "period.subtotals" } } ] },
+      "assert": { "cmp": "eq", "left": { "path": "period.noLossesStatement" }, "right": { "const": true } },
+      "message": "Policy period {policyNumber} has no claim rows, no printed totals and no 'no losses' statement: confirm the term really had no claims.",
+      "source": "evaluation-and-wc-domain.md B4 H13 (companion of R-14); ADR 0016 (brief 18, P8): the third case of the per-period no-losses rule. A routing signal, not an error: an empty term without a statement is usually a term with no claims, but it is also what a missed table looks like. Summary-only periods (printed totals) are not empty"
+    },
+    {
+      "id": "R-28",
+      "status": "provisional",
+      "name": "A 'no losses' statement is tied to a policy period",
+      "severity": "flag",
+      "scope": "document",
+      "assert": { "cmp": "ne", "left": { "path": "document.unattributedNoLossesStatement" }, "right": { "const": true } },
+      "message": "The run prints a 'no losses' statement, but every policy period read lists claims: a period heading was probably not read.",
+      "source": "evaluation-and-wc-domain.md B4 H13 (companion of R-14 and R-27); brief 18 Answers 3: the mirror of R-27, a routing signal for the reviewer"
+    },
+    {
+      "id": "R-29",
+      "status": "provisional",
+      "name": "Indemnity + medical totals equal their components (±$1)",
+      "severity": "soft",
+      "scope": "claim",
+      "forEach": [{ "var": "m", "in": ["paid", "reserve", "incurred"] }],
+      "when": { "cmp": "eq", "left": { "path": "document.totalComposition" }, "right": { "const": "indemnityMedical" } },
+      "assert": { "cmp": "eq", "left": { "path": "claim.total.{m}" }, "right": { "add": [{ "path": "claim.indemnity.{m}" }, { "path": "claim.medical.{m}" }] }, "tolerance": 1.0 },
+      "severityOverrides": [
+        { "when": { "cmp": "eq", "left": { "path": "document.expenseTreatment" }, "right": { "const": "separate" } }, "severity": "hard", "reason": "Expense is printed in its own columns, so the named components must add up to the total." }
+      ],
+      "message": "Total {m} on claim {claimNumber} is not indemnity + medical (±$1), as its header names.",
+      "source": "evaluation-and-wc-domain.md B4 H7 (as R-20); ADR 0018: a header naming its components ('Total Incurred (Ind+Med)') declares the sum the verification checks"
+    },
+    {
+      "id": "R-30",
+      "status": "provisional",
+      "name": "Claim status is printed or verified",
+      "severity": "flag",
+      "scope": "document",
+      "assert": { "cmp": "eq", "left": { "count": { "over": "document.claims", "where": { "cmp": "eq", "left": { "path": "item.status" }, "right": { "const": "unknown" } } } }, "right": { "const": 0 } },
+      "message": "Claim status is unknown on some claims: the format prints no status and deriving it from the close date was not verified against printed open/closed counts.",
+      "source": "evaluation-and-wc-domain.md B4 (status vocabulary); brief 19 Answers 2: status from the close date only per format and verified, otherwise unknown and flagged"
+    },
+    {"id": "R-31", "status": "provisional", "name": "Kept rows of other lines have a printed total to reconcile against", "severity": "flag", "scope": "document", "when": {"cmp": "gt", "left": {"count": {"over": "document.keptRows"}}, "right": {"const": 0}}, "assert": {"or": [{"notNull": {"path": "document.reportTotals"}}, {"cmp": "gt", "left": {"count": {"over": "document.policyPeriods", "where": {"notNull": {"path": "item.subtotals"}}}}, "right": {"const": 0}}]}, "message": "Rows of another line of business were kept, not extracted, and the run prints no total to reconcile the workers' comp rows against: check that no kept row is a workers' comp claim.", "source": "evaluation-and-wc-domain.md B4 (reconciliation); brief 23 Answers 1 (ADR 0020 amendment): a flag shown in the review panel and the manifest, not a review trigger"},
+    {"id": "R-32", "status": "provisional", "name": "The valuation date is printed on the run", "severity": "flag", "scope": "document", "when": {"notNull": {"path": "document.valuationDate"}}, "assert": {"not": {"cmp": "eq", "left": {"path": "document.valuationDateSource"}, "right": {"const": "submission"}}}, "message": "The run prints no valuation date: the date is as stated by the submitter.", "source": "evaluation-and-wc-domain.md B1 (valuation date); brief 23 Answers 2: the submission's valuation date is used, never silently (lineage source submission; quote payload and pricing memo state it)"},
+    {"id": "R-34", "status": "provisional", "name": "Carrier and insured are different names", "severity": "soft", "scope": "document", "when": {"and": [{"notBlank": {"path": "document.carrierName"}}, {"notBlank": {"path": "document.insuredName"}}]}, "assert": {"cmp": "ne", "left": {"path": "document.carrierName"}, "right": {"path": "document.insuredName"}, "normalize": "text"}, "message": "The carrier name and the insured name are the same: one of them may have been read from the other's label. A self-insured employer can print its own name as both; confirm which.", "source": "evaluation-and-wc-domain.md B1 (carrier and insured, header-block fields); brief 35 §4 (brief 34 wake, corpus v5 c8: the insured delivered as the carrier on every replay). Soft, never blocking: a self-insured employer legitimately prints one name as both"}
+  ],
+  "quoteRules": [
+    {"id": "R-33", "status": "provisional", "name": "Required for quoting", "severity": "hard", "scope": "quote",
+     "requiredFields": ["carrierName", "valuationDate",
+       {"path": "policyPeriods[*].effectiveDate", "unless": "summaryOnlyLabelledPeriod"},
+       {"path": "policyPeriods[*].expirationDate", "unless": "summaryOnlyLabelledPeriod"},
+       "policyPeriods[*].claims[*].claimNumber", "policyPeriods[*].claims[*].dateOfInjury", "policyPeriods[*].claims[*].status",
+       "policyPeriods[*].claims[*].total.incurred"],
+     "conditions": {"summaryOnlyLabelledPeriod": "Period dates are required whenever the document has claim rows (a claim without a policy period cannot be allocated). They are not required for a period of a document without claim rows that is summary-only and carries its own year or range (periodLabel or periodKind, ADR 0017)."},
+     "message": "A value the quote needs is missing or not yet verified.",
+     "source": "evaluation-and-wc-domain.md A2 (key fields per claim); brief 24 step 2, review plan 2026-10-25 section 1 change 3, brief 24 Answers 1 (conditional period dates): quote readiness only, never document routing (the evaluator does not read quoteRules). Field list is an assumption to confirm with underwriting"}
+  ]
+}

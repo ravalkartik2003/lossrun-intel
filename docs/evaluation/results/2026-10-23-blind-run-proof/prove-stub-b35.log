@@ -1,0 +1,78 @@
+== 0. build
+Time Elapsed 00:00:06.56
+== 1. import
+imported 10 file(s), 17 page(s), 1.7 MB; skipped 1
+
+| carrier | csv | native-pdf | scan-150dpi-fax | scan-200dpi-rotated-noisy | xlsx | zip | total |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Fictional Casualty Group | 0 | 1 | 0 | 1 | 0 | 0 | 2 |
+| Notional Workers Comp Exchange | 0 | 0 | 0 | 0 | 1 | 1 | 2 |
+| Placeholder Assurance Co. | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| Synthetic Mutual Insurance Co. | 0 | 3 | 2 | 0 | 0 | 0 | 5 |
+
+strata with fewer than 2 files (cannot appear on both the tuning and the blind side): Fictional Casualty Group x native-pdf; Fictional Casualty Group x scan-200dpi-rotated-noisy; Notional Workers Comp Exchange x zip; Notional Workers Comp Exchange x xlsx; Placeholder Assurance Co. x csv
+packages (stratum bundle): 1, containing 2 xlsx
+with a 100-file tuning set the blind set would hold 0 file(s) (protocol: 300-500)
+skipped readme.txt: not a loss-run file type (.txt)
+
+truth-request.csv: 12 policy row(s), 2 carrier row(s) for files not readable before OCR
+== 2. truth request (to the data team)
+carrier,policy_number,period_start,period_end,documents,note
+Fictional Casualty Group,FCG-WC-2101,2021-01-01,2022-01-01,1,
+Fictional Casualty Group,FCG-WC-2301,2023-01-01,2024-01-01,1,
+Notional Workers Comp Exchange,NWX-2021-01,2021-10-01,2022-10-01,1,
+Notional Workers Comp Exchange,NWX-2022-01,2022-10-01,2023-10-01,2,
+Notional Workers Comp Exchange,NWX-2023-01,2023-10-01,2024-10-01,1,
+Notional Workers Comp Exchange,NWX-2024-01,2024-10-01,2025-10-01,2,
+Placeholder Assurance Co.,PAC-WC-20221,2022-03-15,2023-03-15,1,
+Placeholder Assurance Co.,PAC-WC-20231,2023-03-15,2024-03-15,1,
+Placeholder Assurance Co.,PAC-WC-20241,2024-03-15,2025-03-15,1,
+Synthetic Mutual Insurance Co.,SYN-WC-2201,2022-07-01,2023-07-01,2,
+Synthetic Mutual Insurance Co.,SYN-WC-2301,2023-07-01,2024-07-01,2,
+Synthetic Mutual Insurance Co.,SYN-WC-2401,2024-07-01,2025-07-01,1,
+Fictional Casualty Group,,,,1,"1 file(s) of this carrier print no policy readable before OCR (scans, images, protected files): request every policy of this carrier for the accounts in the pool"
+Synthetic Mutual Insurance Co.,,,,3,"3 file(s) of this carrier print no policy readable before OCR (scans, images, protected files): request every policy of this carrier for the accounts in the pool"
+== 3. seal (the seed lives in the sealed envelope, not the shared shell)
+seal: WARNING no --policies map: the split unit is the logical document, so one policy can have documents on both sides (the tuning loop then sees blind claims of that policy as archive-only; tuning-loop.md 1). Ask the data team for the document  policy map.
+sealed: 2 tuning, 8 blind; blind manifest sha256 6ab82cfe835ac5cddcc85fd62e163a1c9ed371a93d27aed1c4edd5198ae9cf4c
+== 6.1 verify (against the published blind manifest hash)
+seal verified: 8 blind file(s) match; blind manifest sha256 6ab82cfe835ac5cddcc85fd62e163a1c9ed371a93d27aed1c4edd5198ae9cf4c (recomputed, equals the published value)
+== 6.2 run (stub, limit 3, blind only) into $WORK/blind/
+eval run: refusing --only-blind with --out 'eval-runs/blind-proof-b35/results/build': blind results go under a 'blind' folder (e.g. $WORK/blind/results), where the tuning loop refuses to read them (docs/operations/blind-run.md, section 6).
+refused --out without a blind segment (exit 2)
+eval run (stub): 3 to process, 0 already done  eval-runs/blind-proof-b35/blind/results/build
+[1/3] fictional-casualty-group-loss-run-6ec9ccec: Review ú 1.7s ú $0.0136 ú LLM 1
+[2/3] fictional-casualty-group-scanned-loss-run-28a523ea: Review ú 0.2s ú $0.0124 ú LLM 1
+[3/3] notional-workers-comp-exchange-broker-package-ab219245: Review,Review ú 0.2s ú $0.0000 ú LLM 0
+CU cache: 2 hit(s) (their pages meter at list price, so the report shows what the run would cost); 0 miss(es): not run (stub)
+== 7. align
+adjudication.xlsx: 355 row(s) for the evaluator
+aligned 0 ú archive-only 355 ú extracted-only 0 ú disagreements 0
+== 8. adjudicate adjudication.xlsx (scripted from the generator's ground truth) + truth
+adjudication.xlsx filled: {'In the archive, not extracted': 275, 'attributed to a document': 80}
+adjudication: 355 row(s); archive-only  exclude (blank, default): 275 ú archive-only  archive-correct (blank, default): 80
+archive-only claims left at the default (dropped from the truth): 275
+eval truth: refusing - 275 archive claim(s) were not extracted and have no decision, so the truth would drop them and score the extractor against its own view. Decide each row (a Document and archive-correct, or exclude) in adjudication.xlsx, or pass --accept-defaults to accept the drops (blind-run.md, section 8).
+truth refused the defaulted archive-only rows (exit 3)
+adjudication: 355 row(s); archive-only  exclude (blank, default): 275 ú archive-only  archive-correct (blank, default): 80
+archive-only claims left at the default (dropped from the truth): 275
+truth: 2 document(s), 80 claim(s); 2 with comparable amounts  eval-runs/blind-proof-b35/corpus\truth
+== 9. score
+1 document(s) scored without truth: operational numbers only
+scored 3 documents, 647 field values  eval-runs/blind-proof-b35/blind/report/build
+== seal-break checks
+SEAL BROKEN: 8 problem(s) since sealing - do not run or score (docs/operations/blind-run.md, section 6):
+  Fictional Casualty Group/loss-run.pdf
+  Fictional Casualty Group/scanned-loss-run.pdf
+  Notional Workers Comp Exchange/broker-package.zip
+  Notional Workers Comp Exchange/claims-export.xlsx
+  Placeholder Assurance Co/claims.csv
+  Synthetic Mutual Insurance Co/protected-loss-run.pdf
+  Synthetic Mutual Insurance Co/submission-package.pdf
+  phone-photo-of-loss-run.png
+verify refused a moved blind set (exit 1)
+seal verified: 7 blind file(s) match; blind manifest sha256 3ac0d73ff6848058554e7d4ec99a4993f4f6b534616093ca84f2fd74b757a070 (recomputed; pass --published-hash to compare with the published value)
+SEAL BROKEN: 1 problem(s) since sealing - do not run or score (docs/operations/blind-run.md, section 6):
+  seal-manifest.json: the blind list hashes to 3ac0d73ff6848058554e7d4ec99a4993f4f6b534616093ca84f2fd74b757a070, not the published 6ab82cfe835ac5cddcc85fd62e163a1c9ed371a93d27aed1c4edd5198ae9cf4c
+verify refused an edited blind list against the published hash (exit 1)
+== done

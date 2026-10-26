@@ -1,0 +1,230 @@
+{
+  "recordedAt": "2026-10-23T01:11:12.391Z",
+  "quoteId": "Q-DEMO-11",
+  "uploadId": "up-5ef86052f242da354666",
+  "files": [
+    "bundle.pdf",
+    "lossrun2-native.pdf"
+  ],
+  "events": [
+    {
+      "atMs": 3816,
+      "event": "progress",
+      "data": {
+        "uploadId": "up-5ef86052f242da354666",
+        "runtimeStatus": "Pending",
+        "documents": []
+      }
+    },
+    {
+      "atMs": 4382,
+      "event": "progress",
+      "data": {
+        "uploadId": "up-5ef86052f242da354666",
+        "runtimeStatus": "Running",
+        "upload": {
+          "step": "expand",
+          "elapsedMs": 0,
+          "costSoFar": 0
+        },
+        "documents": []
+      }
+    },
+    {
+      "atMs": 6077,
+      "event": "progress",
+      "data": {
+        "uploadId": "up-5ef86052f242da354666",
+        "runtimeStatus": "Running",
+        "upload": {
+          "step": "parse",
+          "elapsedMs": 2331,
+          "costSoFar": 0,
+          "detail": "2 file(s)"
+        },
+        "documents": []
+      }
+    },
+    {
+      "atMs": 11774,
+      "event": "progress",
+      "data": {
+        "uploadId": "up-5ef86052f242da354666",
+        "runtimeStatus": "Running",
+        "upload": {
+          "step": "process",
+          "elapsedMs": 7851,
+          "costSoFar": 0,
+          "detail": "2 loss run(s), 2 other item(s)"
+        },
+        "documents": [
+          {
+            "step": "fingerprint",
+            "documentId": "doc-9997d9e37c0fcb03-p1-1",
+            "elapsedMs": 0,
+            "costSoFar": 0
+          },
+          {
+            "step": "fingerprint",
+            "documentId": "doc-5209d62bf384ad6a",
+            "elapsedMs": 0,
+            "costSoFar": 0
+          }
+        ]
+      }
+    },
+    {
+      "atMs": 13664,
+      "event": "progress",
+      "data": {
+        "uploadId": "up-5ef86052f242da354666",
+        "runtimeStatus": "Running",
+        "upload": {
+          "step": "process",
+          "elapsedMs": 7851,
+          "costSoFar": 0,
+          "detail": "2 loss run(s), 2 other item(s)"
+        },
+        "documents": [
+          {
+            "step": "validate",
+            "documentId": "doc-9997d9e37c0fcb03-p1-1",
+            "elapsedMs": 1648,
+            "costSoFar": 0
+          },
+          {
+            "step": "validate",
+            "documentId": "doc-5209d62bf384ad6a",
+            "elapsedMs": 1647,
+            "costSoFar": 0.0075
+          }
+        ]
+      }
+    },
+    {
+      "atMs": 15530,
+      "event": "progress",
+      "data": {
+        "uploadId": "up-5ef86052f242da354666",
+        "runtimeStatus": "Running",
+        "upload": {
+          "step": "process",
+          "elapsedMs": 7851,
+          "costSoFar": 0,
+          "detail": "2 loss run(s), 2 other item(s)"
+        },
+        "documents": [
+          {
+            "step": "done",
+            "documentId": "doc-9997d9e37c0fcb03-p1-1",
+            "elapsedMs": 3585,
+            "costSoFar": 0,
+            "detail": "ReplayAccepted"
+          },
+          {
+            "step": "done",
+            "documentId": "doc-5209d62bf384ad6a",
+            "elapsedMs": 3721,
+            "costSoFar": 0.0075,
+            "detail": "ReplayAccepted · confirm-format"
+          }
+        ]
+      }
+    },
+    {
+      "atMs": 15530,
+      "event": "end",
+      "data": {
+        "status": "completed"
+      }
+    }
+  ],
+  "manifest": {
+    "uploadId": "up-5ef86052f242da354666",
+    "status": "completed",
+    "createdAt": "2026-10-23T01:11:13.217+00:00",
+    "completedAt": "2026-10-23T01:11:27.538+00:00",
+    "submission": {
+      "quoteId": "Q-DEMO-11",
+      "uploaderRole": "Underwriter",
+      "uploaderId": "underwriter"
+    },
+    "files": [
+      {
+        "fileName": "bundle.pdf",
+        "sha256": "cdf669d18e081de4079614ad275ad31ecbcf401c84b26793d2c07a366a3a3142",
+        "sizeBytes": 162157,
+        "blobPath": "uploads/up-5ef86052f242da354666/bundle.pdf"
+      },
+      {
+        "fileName": "lossrun2-native.pdf",
+        "sha256": "3247a38b361a7e19c9a659ff8fdc145ceb55348f283081e87597469215981f4a",
+        "sizeBytes": 83301,
+        "blobPath": "uploads/up-5ef86052f242da354666/lossrun2-native.pdf"
+      }
+    ],
+    "items": [
+      {
+        "documentId": "doc-9997d9e37c0fcb03-p2-2",
+        "fileName": "bundle.pdf",
+        "parentDocumentId": "doc-9997d9e37c0fcb03",
+        "pageRange": "2-2",
+        "classification": "Payroll",
+        "status": "kept-not-processed",
+        "reason": "classified as Payroll (confidence n/a); kept, not extracted",
+        "blobPath": "uploads/up-5ef86052f242da354666/bundle.pdf"
+      },
+      {
+        "documentId": "doc-9997d9e37c0fcb03-p3-3",
+        "fileName": "bundle.pdf",
+        "parentDocumentId": "doc-9997d9e37c0fcb03",
+        "pageRange": "3-3",
+        "classification": "Correspondence",
+        "status": "kept-not-processed",
+        "reason": "classified as Correspondence (confidence n/a); kept, not extracted",
+        "blobPath": "uploads/up-5ef86052f242da354666/bundle.pdf"
+      },
+      {
+        "documentId": "doc-9997d9e37c0fcb03-p1-1",
+        "fileName": "bundle.pdf",
+        "parentDocumentId": "doc-9997d9e37c0fcb03",
+        "pageRange": "1-1",
+        "classification": "LossRun",
+        "status": "processed",
+        "blobPath": "uploads/up-5ef86052f242da354666/documents/doc-9997d9e37c0fcb03-p1-1/graph.json",
+        "routingTier": "ReplayAccepted",
+        "badge": "format memory hit: Synthetic Mutual Insurance Co. synthetic-mutual-pdf v5 · 0 LLM calls",
+        "formatRef": "synthetic-mutual-pdf@5",
+        "formatStatus": "active",
+        "claimCount": 3,
+        "costUsd": 0
+      },
+      {
+        "documentId": "doc-5209d62bf384ad6a",
+        "fileName": "lossrun2-native.pdf",
+        "classification": "LossRun",
+        "status": "processed",
+        "blobPath": "uploads/up-5ef86052f242da354666/documents/doc-5209d62bf384ad6a/graph.json",
+        "routingTier": "ReplayAccepted",
+        "badge": "format learned · shadow 2/3: Fictional Casualty Group fictional-casualty-group-pdf v1 · 0 LLM calls",
+        "formatRef": "fictional-casualty-group-pdf@1",
+        "formatStatus": "shadow",
+        "claimCount": 4,
+        "costUsd": 0.0075,
+        "reviewKind": "confirm-format"
+      }
+    ],
+    "cost": {
+      "totalUsd": 0.02699655,
+      "llmCalls": 1,
+      "embeddingCalls": 0,
+      "pages": 4,
+      "byDocument": {
+        "doc-5209d62bf384ad6a": 0.0075,
+        "doc-9997d9e37c0fcb03": 0.01949655
+      }
+    },
+    "firstClaimMs": 13888,
+    "completedMs": 14320
+  }
+}

@@ -1,0 +1,485 @@
+{
+  "glossaryVersion": "0.4.3",
+  "schemaVersion": "0.10.0",
+  "description": "Canonical field -> observed header aliases, plus value aliases for enumerated fields and component/measure words for stacked headers. Seeded from docs/evaluation/evaluation-and-wc-domain.md B1/B2. `source` is `research:<section> (<origin>)` or a carrier id; `confidence` is the prior that the header maps to the field without further context. The format registry (briefs 04/05) appends learned mappings under `carrierProvenance`; it never edits seeded aliases in place.",
+  "sources": {
+    "research:B1-guides": "Field inventories from broker/carrier guides and statutes (Cal. Ins. Code §11663.5, State Fund, ICW, Foresight, Racklify, Vouch, Workforce.com, AMS360, ACORD) — evaluation-and-wc-domain.md B1",
+    "research:B1-TJC": "Real TPA loss run (Tyler Junior College RFP addendum) — evaluation-and-wc-domain.md B1",
+    "research:B1-statutory": "Statutory self-insurer loss-report forms (AZ ICA, RI SI-14, KY, MO WC-83, NJ 291A, NM AER) — evaluation-and-wc-domain.md B1",
+    "research:B1-inference": "Alias families recommended in evaluation-and-wc-domain.md B1 Inferences",
+    "research:B2": "Status / claim-type / indicator vocabularies — evaluation-and-wc-domain.md B2",
+    "research:B4": "Reconciliation sources — evaluation-and-wc-domain.md B4",
+    "adr:0016": "ADR 0016 — R-14 scoped per policy period (brief 18): per-period 'no losses' statements",
+    "adr:0017": "ADR 0017 — summary-only loss runs (brief 18): period-summary rows and recoveries by kind",
+    "brief17:fitness-run": "Columns seen in the brief 17 real-sample fitness run (docs/evaluation/results/2026-10-24-real-samples/), deliberately left unmapped",
+    "brief17:answers-2": "Brief 17 Answers 2: 'Loss' is a conditional component word, indemnity only beside a separate medical column",
+    "real-sample alvin-isd-loss-runs.pdf": "Header printed in the real sample alvin-isd-loss-runs.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "real-sample axis-cameron-county.pdf": "Header printed in the real sample axis-cameron-county.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "real-sample collin-county-wc.pdf": "Header printed in the real sample collin-county-wc.pdf (local, redacted, never committed; brief 19, docs/evaluation/results/2026-10-24-real-samples-3/).",
+    "real-sample laccd.pdf": "Header printed in the real sample laccd.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "real-sample liberty-mutual-mercedes-isd.pdf": "Header printed in the real sample liberty-mutual-mercedes-isd.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "real-sample point-isabel-isd.pdf": "Header printed in the real sample point-isabel-isd.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "real-sample marin-exhibits.pdf": "Header printed in the real sample marin-exhibits.pdf (local, redacted, never committed; brief 19, docs/evaluation/results/2026-10-24-real-samples-3/).",
+    "real-sample sf-hacp-wc-add1.pdf": "Header printed in the real sample sf-hacp-wc-add1.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "real-sample starr-cameron-county.pdf": "Header printed in the real sample starr-cameron-county.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "real-sample stcharles-wc.pdf": "Header printed in the real sample stcharles-wc.pdf (local, redacted, never committed; brief 17 fitness run, docs/evaluation/results/2026-10-24-real-samples/).",
+    "public sample Travelers": "Header printed in Travelers' published agent guides (CMS Loss Reports manual 2004, Loss Reports Quick Guide 2010; sample reports for fictitious insureds; local, never committed; brief 22, docs/evaluation/results/2026-10-24-major-carriers/).",
+    "public sample State Compensation Insurance Fund": "Term defined on State Fund's published broker page 'Loss Run Information and Terms' (statefundca.com, retrieved 2026-10-24; brief 22)."
+  },
+  "fields": {
+    "document.carrierName": {
+      "aliases": [
+        { "header": "Carrier", "source": "research:B1-guides", "confidence": 0.9 },
+        { "header": "Carrier Name", "source": "research:B1-guides", "confidence": 0.95 },
+        { "header": "Insurer", "source": "research:B1-inference", "confidence": 0.8 },
+        { "header": "Insurance Company", "source": "research:B1-inference", "confidence": 0.8 }
+      ]
+    },
+    "document.tpaName": {
+      "aliases": [
+        { "header": "TPA", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Third Party Administrator", "source": "research:B1-guides", "confidence": 0.9 },
+        { "header": "Claims Administrator", "source": "research:B1-inference", "confidence": 0.7 }
+      ]
+    },
+    "document.insuredName": {
+      "aliases": [
+        { "header": "Insured", "source": "research:B1-guides", "confidence": 0.9 },
+        { "header": "Insured Name", "source": "research:B1-guides", "confidence": 0.95 },
+        { "header": "Named Insured", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Policyholder", "source": "research:B1-guides", "confidence": 0.85 },
+        { "header": "Employer", "source": "research:B1-inference", "confidence": 0.75 },
+        { "header": "Member", "source": "research:B1-inference", "confidence": 0.5, "note": "lossrx dataset column; pooled programs" }
+      ]
+    },
+    "document.lineOfBusiness": {
+      "aliases": [
+        { "header": "Coverage", "source": "research:B1-inference", "confidence": 0.7 },
+        { "header": "Coverage Line", "source": "research:B1-guides", "confidence": 0.85 },
+        { "header": "Line of Business", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "LOB", "source": "research:B1-inference", "confidence": 0.85 },
+        { "header": "Coverage Part", "source": "research:B1-guides", "confidence": 0.7 },
+        { "header": "Line of Insurance", "source": "public sample Travelers", "confidence": 0.9, "note": "printed per claim (WC, AL, GL, ...); claim.lineOfBusiness reads these aliases" }
+      ],
+      "valueAliases": {
+        "WC": [
+          { "value": "WC", "source": "research:B1-inference", "confidence": 0.99 },
+          { "value": "Workers Compensation", "source": "research:B1-inference", "confidence": 0.99 },
+          { "value": "Workers' Comp", "source": "research:B1-inference", "confidence": 0.99 },
+          { "value": "WCMO", "source": "research:B2", "confidence": 0.9, "note": "lossrx claim_type prefix" },
+          { "value": "WCIN", "source": "research:B2", "confidence": 0.9 }
+        ],
+        "EL": [ { "value": "EL", "source": "research:B2", "confidence": 0.9 }, { "value": "Employers Liability", "source": "research:B2", "confidence": 0.95 } ],
+        "GL": [ { "value": "GL", "source": "research:B1-inference", "confidence": 0.9 } ],
+        "AL": [ { "value": "AL", "source": "research:B1-inference", "confidence": 0.9 }, { "value": "Auto", "source": "research:B1-inference", "confidence": 0.8 } ]
+      }
+    },
+    "document.jurisdictionState": {
+      "aliases": [
+        { "header": "Jurisdiction", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "State", "source": "research:B1-inference", "confidence": 0.6, "note": "ambiguous with insured mailing state" },
+        { "header": "Loss State", "source": "research:B1-inference", "confidence": 0.85 }
+      ]
+    },
+    "document.valuationDate": {
+      "aliases": [
+        { "header": "As of", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Valued as of", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Valuation Date", "source": "research:B1-guides", "confidence": 0.95 },
+        { "header": "Evaluation Date", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Eval Date", "source": "research:B1-inference", "confidence": 0.85, "note": "lossrx eval_date" },
+        { "header": "Reporting Date", "source": "research:B1-statutory", "confidence": 0.7, "note": "AZ ICA: cut-off date for data on the form" },
+        { "header": "Run Date", "source": "research:B1-inference", "confidence": 0.5, "note": "often the print date, not the valuation", "appliesTo": "label" },
+        { "header": "Loss Run Date", "source": "research:B1-inference", "confidence": 0.6 },
+        { "header": "TOTALS AS OF", "source": "research:B1-TJC", "confidence": 0.9 },
+        { "header": "Policy Year As of", "source": "research:B1-TJC", "confidence": 0.85 }
+      ]
+    },
+    "document.reportRunDate": {
+      "aliases": [
+        { "header": "Run Date", "source": "research:B1-inference", "confidence": 0.6, "appliesTo": "label" },
+        { "header": "Printed", "source": "research:B1-inference", "confidence": 0.6 },
+        { "header": "Report Date", "source": "research:B1-inference", "confidence": 0.3, "note": "usually claim report date; only header-level occurrences mean run date", "appliesTo": "label" }
+      ]
+    },
+    "document.noLossesStatement": {
+      "aliases": [
+        { "header": "No losses were reported", "source": "research:B1-guides", "confidence": 0.95, "note": "Vouch" },
+        { "header": "NONE", "source": "research:B1-statutory", "confidence": 0.7, "note": "NJ 291A: write NONE if no claims" },
+        { "header": "No Claims", "source": "research:B1-inference", "confidence": 0.85 },
+        { "header": "Loss Free", "source": "research:B1-inference", "confidence": 0.7 }
+      ]
+    },
+    "document.reportTotals.claimCount": {
+      "aliases": [
+        { "header": "TOTAL", "source": "research:B1-TJC", "confidence": 0.6, "note": "TJC count block Open/Closed/TOTAL", "appliesTo": "grandTotalRow" },
+        { "header": "Total Claims", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Number of Claims", "source": "research:B1-guides", "confidence": 0.9, "note": "ACORD 130" },
+        { "header": "Claim Count", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "# of Claims", "source": "public sample Travelers", "confidence": 0.9 }
+      ]
+    },
+    "document.reportTotals.openCount": {
+      "aliases": [ { "header": "Open", "source": "research:B1-TJC", "confidence": 0.8, "appliesTo": "grandTotalRow" }, { "header": "Open Claims", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "Total Nbr Open", "source": "real-sample stcharles-wc.pdf", "confidence": 0.85 } ]
+    },
+    "document.reportTotals.closedCount": {
+      "aliases": [ { "header": "Closed", "source": "research:B1-TJC", "confidence": 0.8, "appliesTo": "grandTotalRow" }, { "header": "Closed Claims", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "Total Nbr Closed", "source": "real-sample stcharles-wc.pdf", "confidence": 0.85 } ]
+    },
+    "period.policyNumber": {
+      "aliases": [
+        { "header": "Policy #", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Policy No", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Pol No", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Policy", "source": "research:B1-inference", "confidence": 0.7 },
+        { "header": "Policy Number", "source": "research:B1-guides", "confidence": 0.98 }
+      ]
+    },
+    "period.effectiveDate": {
+      "aliases": [
+        { "header": "Eff", "source": "research:B1-inference", "confidence": 0.85 },
+        { "header": "Effective Date", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Policy Period", "source": "research:B1-inference", "confidence": 0.6, "note": "range 'MM/DD/YYYY - MM/DD/YYYY'; split into effective/expiration" },
+        { "header": "Policy Year", "source": "research:B1-TJC", "confidence": 0.5, "note": "range or a single year; split by normalizer" },
+        { "header": "Term", "source": "research:B1-inference", "confidence": 0.5 },
+        { "header": "Year Effective", "source": "research:B1-guides", "confidence": 0.7, "note": "ACORD 130" },
+        { "header": "Program Year", "source": "research:B1-inference", "confidence": 0.5, "note": "lossrx" },
+        { "header": "Policy Eff Dt", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.9 },
+        { "header": "Inception Date", "source": "real-sample starr-cameron-county.pdf", "confidence": 0.85 },
+        { "header": "Policy Eff Date", "source": "public sample Travelers", "confidence": 0.9 }
+      ]
+    },
+    "period.expirationDate": {
+      "aliases": [
+        { "header": "Exp", "source": "research:B1-inference", "confidence": 0.85 },
+        { "header": "Expiration Date", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Policy Period", "source": "research:B1-inference", "confidence": 0.6, "note": "range; second date" },
+        { "header": "Policy Exp Dt", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.9 }
+      ]
+    },
+    "period.periodLabel": {
+      "aliases": [
+        { "header": "Fiscal Year", "source": "adr:0017", "confidence": 0.85, "note": "summary-only runs by fiscal year; periodKind fiscalYear" },
+        { "header": "FY", "source": "adr:0017", "confidence": 0.6 },
+        { "header": "Report Year", "source": "adr:0017", "confidence": 0.85, "note": "regulatory summaries by report year; periodKind reportYear" },
+        { "header": "Accident Year", "source": "adr:0017", "confidence": 0.8, "note": "periodKind accidentYear" },
+        { "header": "Calendar Year", "source": "adr:0017", "confidence": 0.8, "note": "periodKind calendarYear" }
+      ]
+    },
+    "period.subtotals.claimCount": {
+      "aliases": [
+        { "header": "Claims", "source": "research:B1-inference", "confidence": 0.7, "note": "count column of a policy summary sheet (brief 13)" }, { "header": "Summary Total For", "source": "research:B1-TJC", "confidence": 0.7, "note": "block label; counts follow as Open/Closed/TOTAL" }, { "header": "TOTAL", "source": "research:B1-TJC", "confidence": 0.6 } ]
+    },
+    "period.subtotals.openCount": { "aliases": [ { "header": "Open", "source": "research:B1-TJC", "confidence": 0.8 } ] },
+    "period.subtotals.closedCount": { "aliases": [ { "header": "Closed", "source": "research:B1-TJC", "confidence": 0.8 } ] },
+    "claim.claimNumber": {
+      "aliases": [
+        { "header": "Claim #", "source": "research:B1-inference", "confidence": 0.98 },
+        { "header": "Claim No", "source": "research:B1-inference", "confidence": 0.98 },
+        { "header": "Claim Number", "source": "research:B1-guides", "confidence": 0.99 },
+        { "header": "ClaimNo/Sts", "source": "research:B1-TJC", "confidence": 0.9, "note": "claim number with -C/-O status suffix; normalizer splits status" },
+        { "header": "Commission claim number", "source": "research:B1-statutory", "confidence": 0.85, "note": "AZ ICA" },
+        { "header": "DWC claim number", "source": "research:B1-statutory", "confidence": 0.85, "note": "KY" },
+        { "header": "File #", "source": "research:B1-inference", "confidence": 0.7 },
+        { "header": "Occurrence Number", "source": "research:B1-inference", "confidence": 0.7, "note": "lossrx occurrence_number" },
+        { "header": "Claim Reference", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.85 }
+      ]
+    },
+    "claim.claimantName": {
+      "aliases": [
+        { "header": "Claimant", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Claimant Name", "source": "research:B1-TJC", "confidence": 0.98 },
+        { "header": "Claimant Name/ Occupation", "source": "research:B1-TJC", "confidence": 0.85, "note": "name and occupation stacked" },
+        { "header": "Employee Name", "source": "research:B1-statutory", "confidence": 0.95, "note": "AZ ICA" },
+        { "header": "Name of Injured or Deceased", "source": "research:B1-statutory", "confidence": 0.95, "note": "NJ 291A" },
+        { "header": "Injured Worker", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Claimant(s)", "source": "real-sample axis-cameron-county.pdf", "confidence": 0.9 }
+      ]
+    },
+    "claim.dateOfInjury": {
+      "aliases": [
+        { "header": "DOI", "source": "research:B1-inference", "confidence": 0.98 },
+        { "header": "Date of Injury", "source": "research:B1-TJC", "confidence": 0.99 },
+        { "header": "Date of Loss", "source": "research:B1-guides", "confidence": 0.95 },
+        { "header": "DOL", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Date of Accident", "source": "research:B1-statutory", "confidence": 0.95, "note": "NJ 291A" },
+        { "header": "Accident Date", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Loss Date", "source": "research:B1-guides", "confidence": 0.95, "note": "AMS360; lossrx loss_date" },
+        { "header": "Occurrence Date", "source": "research:B1-guides", "confidence": 0.8, "note": "AMS360 has both Loss Date and Occurrence Date" },
+        { "header": "Date of Incident", "source": "research:B1-guides", "confidence": 0.9, "note": "Vouch" },
+        { "header": "Year of Injury", "source": "research:B1-statutory", "confidence": 0.4, "note": "RI SI-14 summary forms; year only" },
+        { "header": "Incident Date", "source": "real-sample sf-hacp-wc-add1.pdf", "confidence": 0.9 }, { "header": "Injury Date", "source": "real-sample collin-county-wc.pdf", "confidence": 0.9, "note": "stacked over 'Closed' / 'Reported' (ADR 0018)" }
+      ]
+    },
+    "claim.dateReported": {
+      "aliases": [
+        { "header": "Report Date", "source": "research:B1-TJC", "confidence": 0.9 },
+        { "header": "Date Reported", "source": "research:B1-guides", "confidence": 0.95 },
+        { "header": "Rept Date", "source": "research:B1-inference", "confidence": 0.9, "note": "lossrx rept_date" },
+        { "header": "Reported to Carrier", "source": "research:B1-guides", "confidence": 0.9, "note": "ICW" },
+        { "header": "Reported Date", "source": "research:B1-guides", "confidence": 0.95 },
+        { "header": "Reported", "source": "research:B1-inference", "confidence": 0.85, "note": "bare column label next to DOI; added per brief 04 Answers 6" },
+        { "header": "Date Received", "source": "real-sample laccd.pdf", "confidence": 0.8 },
+        { "header": "Notice Date", "source": "public sample Travelers", "confidence": 0.9, "note": "the date the carrier was notified" }
+      ]
+    },
+    "claim.dateClosed": {
+      "aliases": [
+        { "header": "Date Closed", "source": "research:B1-guides", "confidence": 0.95, "note": "AMS360 (auto-filled from final payment)" },
+        { "header": "Closed Date", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Status Date", "source": "research:B1-inference", "confidence": 0.5, "note": "ACORD ClaimStatusDt; close date only when status is closed" },
+        { "header": "Close Date", "source": "real-sample starr-cameron-county.pdf", "confidence": 0.95 }
+      ]
+    },
+    "claim.status": {
+      "aliases": [
+        { "header": "Status", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Sts", "source": "research:B1-TJC", "confidence": 0.9 },
+        { "header": "Claim Status", "source": "research:B1-guides", "confidence": 0.98 },
+        { "header": "Open/Closed", "source": "research:B1-guides", "confidence": 0.9 },
+        { "header": "O/C", "source": "public sample Travelers", "confidence": 0.9, "note": "open / closed flag" }
+      ],
+      "valueAliases": {
+        "open": [
+          { "value": "Open", "source": "research:B2", "confidence": 0.99 },
+          { "value": "O", "source": "research:B2", "confidence": 0.95, "note": "lossrx; TJC -O suffix" },
+          { "value": "0", "source": "research:B2", "confidence": 0.8, "note": "stat-plan status code" },
+          { "value": "Open in litigation", "source": "research:B2", "confidence": 0.95, "note": "AMS360; also sets litigationFlag" },
+          { "value": "Open hold for submission", "source": "research:B2", "confidence": 0.8, "note": "AMS360" },
+          { "value": "L", "source": "research:B2", "confidence": 0.6, "note": "KY pending litigation indicator; open claims carry no indicator otherwise" },
+          { "value": "I", "source": "research:B2", "confidence": 0.4, "note": "lossrx status I (unverified meaning: incurred-only/IBNR?)", "status": "candidate" },
+          { "value": "X", "source": "public sample Travelers", "confidence": 0.8, "note": "census only: a newly reported claim without financial information (Loss Reports Quick Guide data items); also sets reportOnly", "sets": { "claim.reportOnly": true } }
+        ],
+        "closed": [
+          { "value": "Closed", "source": "research:B2", "confidence": 0.99 },
+          { "value": "C", "source": "research:B2", "confidence": 0.95 },
+          { "value": "1", "source": "research:B2", "confidence": 0.8, "note": "stat-plan status code" },
+          { "value": "Closed and hold", "source": "research:B2", "confidence": 0.9 },
+          { "value": "Closed without payment", "source": "research:B2", "confidence": 0.95 },
+          { "value": "Closed in subrogation", "source": "research:B2", "confidence": 0.9, "note": "keeps recovery activity; do not treat residual recovery as a reserve" },
+          { "value": "Closed no claim", "source": "research:B2", "confidence": 0.9 }
+        ],
+        "reopened": [
+          { "value": "Reopened", "source": "research:B2", "confidence": 0.99 },
+          { "value": "Re-opened", "source": "research:B2", "confidence": 0.99, "note": "AMS360" },
+          { "value": "R", "source": "research:B2", "confidence": 0.9, "note": "lossrx" },
+          { "value": "RO", "source": "research:B2", "confidence": 0.85, "note": "CarrierFormat enumMap example" },
+          { "value": "2", "source": "research:B2", "confidence": 0.8, "note": "NCCI USR status 2" }
+        ]
+      }
+    },
+    "claim.claimType": {
+      "aliases": [
+        { "header": "Injury Type", "source": "research:B1-TJC", "confidence": 0.8, "valueShape": "word" },
+        { "header": "Type", "source": "research:B1-inference", "confidence": 0.5 },
+        { "header": "Claim Type", "source": "research:B1-guides", "confidence": 0.95 },
+        { "header": "MO/IND", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Lost Time", "source": "research:B1-guides", "confidence": 0.7, "note": "flag column: Y => indemnity" },
+        { "header": "File Prefix", "source": "public sample Travelers", "confidence": 0.8, "note": "Travelers file prefix: CB (WC indemnity) or CM (WC medical only); other prefixes name other lines" }
+      ],
+      "valueAliases": {
+        "medicalOnly": [
+          { "value": "Medical Only", "source": "research:B2", "confidence": 0.99 },
+          { "value": "MO", "source": "research:B2", "confidence": 0.95 },
+          { "value": "Med Only", "source": "research:B2", "confidence": 0.95 },
+          { "value": "WCMO", "source": "research:B2", "confidence": 0.95, "note": "lossrx" },
+          { "value": "M", "source": "research:B2", "confidence": 0.7, "note": "IAIABC DN74 (unverified)" },
+          { "value": "06", "source": "research:B2", "confidence": 0.9, "note": "stat-plan injury type 06" },
+          { "value": "07", "source": "research:B2", "confidence": 0.85, "note": "contract medical" },
+          { "value": "CM", "source": "public sample Travelers", "confidence": 0.9, "note": "Travelers file prefix, Workers Comp Medical Only (Loss Reports Quick Guide data items)" }
+        ],
+        "indemnity": [
+          { "value": "Indemnity", "source": "research:B2", "confidence": 0.99 },
+          { "value": "IND", "source": "research:B2", "confidence": 0.95 },
+          { "value": "Lost Time", "source": "research:B2", "confidence": 0.95 },
+          { "value": "LT", "source": "research:B2", "confidence": 0.85 },
+          { "value": "WCIN", "source": "research:B2", "confidence": 0.95, "note": "lossrx" },
+          { "value": "I", "source": "research:B2", "confidence": 0.7, "note": "IAIABC DN74 (unverified)" },
+          { "value": "CB", "source": "public sample Travelers", "confidence": 0.9, "note": "Travelers file prefix, Workers Comp Indemnity (Loss Reports Quick Guide data items)" }
+        ]
+      }
+    },
+    "claim.injuryTypeCode": {
+      "aliases": [ { "header": "Injury Type", "source": "research:B1-TJC", "confidence": 0.6, "note": "code or text; if 2-digit code use code-sets statPlan.injuryType", "valueShape": "code" }, { "header": "Inj Type", "source": "research:B1-inference", "confidence": 0.8 } ]
+    },
+    "claim.lastDayWorked": {
+      "aliases": [ { "header": "Last Day Worked", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "LDW", "source": "research:B1-inference", "confidence": 0.7 }, { "header": "Termination Date", "source": "research:B1-inference", "confidence": 0.6, "note": "employment termination, not claim closure; field added by report 10 answer 1" } ]
+    },
+    "claim.typeOfLossCode": {
+      "aliases": [ { "header": "Type of Loss", "source": "research:B2", "confidence": 0.9 }, { "header": "Loss Type", "source": "research:B1-inference", "confidence": 0.6 } ]
+    },
+    "claim.cumulativeTrauma": {
+      "aliases": [ { "header": "CT", "source": "research:B1-inference", "confidence": 0.6 }, { "header": "Cumulative Trauma", "source": "research:B1-inference", "confidence": 0.9 } ],
+      "valueAliases": {
+        "true": [
+          { "value": "CT", "source": "research:B1-inference", "confidence": 0.8, "note": "B3 inference: also derived from nature 60-83, cause 97/98, type of loss 02/03" },
+          { "value": "Cumulative", "source": "research:B1-inference", "confidence": 0.85 },
+          { "value": "Repetitive", "source": "research:B1-inference", "confidence": 0.6 }
+        ]
+      }
+    },
+    "claim.natureOfInjury": {
+      "aliases": [
+        { "header": "Nature", "source": "research:B1-inference", "confidence": 0.9 },
+        { "header": "Nature of Injury", "source": "research:B1-statutory", "confidence": 0.98, "note": "NJ 291A" },
+        { "header": "Injury Description", "source": "research:B1-inference", "confidence": 0.6, "note": "may mix nature and body part" }
+      ]
+    },
+    "claim.causeOfInjury": {
+      "aliases": [ { "header": "Cause", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "Cause of Loss", "source": "research:B1-guides", "confidence": 0.9 }, { "header": "Cause of Injury", "source": "research:B1-inference", "confidence": 0.98 }, { "header": "Loss Cause", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.9 }, { "header": "Accident Cause", "source": "public sample Travelers", "confidence": 0.9 } ]
+    },
+    "claim.partOfBody": {
+      "aliases": [ { "header": "Body Part", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "Part", "source": "research:B1-inference", "confidence": 0.6 }, { "header": "Body Parts", "source": "research:B1-guides", "confidence": 0.95, "note": "ICW" }, { "header": "Part of Body", "source": "research:B1-inference", "confidence": 0.98 } ]
+    },
+    "claim.accidentDescription": {
+      "aliases": [ { "header": "Accident Description", "source": "research:B1-guides", "confidence": 0.95, "note": "ICW" }, { "header": "Loss Description", "source": "research:B1-guides", "confidence": 0.9, "note": "Racklify" }, { "header": "Description", "source": "research:B1-guides", "confidence": 0.6 }, { "header": "Description of Loss", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.9 }, { "header": "Description of Claim", "source": "real-sample starr-cameron-county.pdf", "confidence": 0.9 }, { "header": "Description of Accident", "source": "public sample Travelers", "confidence": 0.95 } ]
+    },
+    "claim.litigationFlag": {
+      "aliases": [
+        { "header": "Litigated", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Litigation", "source": "research:B1-guides", "confidence": 0.9, "note": "ICW litigation status" },
+        { "header": "Atty", "source": "research:B1-inference", "confidence": 0.8 },
+        { "header": "Attorney Represented", "source": "research:B1-inference", "confidence": 0.95 },
+        { "header": "Claimant's Attorney Fees Incurred", "source": "research:B2", "confidence": 0.4, "note": "MA stat plan amount; >0 is a weak litigation signal (record provenance)" }
+      ],
+      "valueAliases": {
+        "true": [ { "value": "Y", "source": "research:B1-inference", "confidence": 0.9 }, { "value": "Yes", "source": "research:B1-inference", "confidence": 0.95 }, { "value": "L", "source": "research:B2", "confidence": 0.7, "note": "KY indicator" }, { "value": "Open in litigation", "source": "research:B2", "confidence": 0.95 } ],
+        "false": [ { "value": "N", "source": "research:B1-inference", "confidence": 0.9 }, { "value": "No", "source": "research:B1-inference", "confidence": 0.95 } ]
+      }
+    },
+    "claim.reportOnly": {
+      "aliases": [
+        { "header": "Incident Indicator", "source": "public sample Travelers", "confidence": 0.9, "note": "Y: the claim is recorded for reporting purposes only" },
+        { "header": "Incident Only", "source": "research:B1-inference", "confidence": 0.85 },
+        { "header": "Report Only", "source": "research:B1-inference", "confidence": 0.85 },
+        { "header": "Record Only", "source": "research:B1-inference", "confidence": 0.8 }
+      ],
+      "valueAliases": {
+        "true": [ { "value": "Y", "source": "public sample Travelers", "confidence": 0.9 }, { "value": "Yes", "source": "research:B1-inference", "confidence": 0.95 } ],
+        "false": [ { "value": "N", "source": "public sample Travelers", "confidence": 0.9 }, { "value": "No", "source": "research:B1-inference", "confidence": 0.95 } ]
+      }
+    },
+    "claim.jurisdictionState": {
+      "aliases": [ { "header": "Loss State", "source": "research:B1-inference", "confidence": 0.9, "note": "lossrx loss_state" }, { "header": "Jurisdiction", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "State", "source": "research:B1-inference", "confidence": 0.6 }, { "header": "Claimant State", "source": "research:B1-inference", "confidence": 0.3, "note": "residence, not jurisdiction" }, { "header": "Claim State", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.85 }, { "header": "Benefit State", "source": "public sample Travelers", "confidence": 0.9, "note": "the state whose benefits apply" } ]
+    },
+    "claim.classCode": {
+      "aliases": [ { "header": "Occ Code", "source": "research:B1-TJC", "confidence": 0.7 }, { "header": "Class", "source": "research:B1-inference", "confidence": 0.8 }, { "header": "Class Code", "source": "research:B1-guides", "confidence": 0.95 }, { "header": "Payroll Classification Code", "source": "research:B1-statutory", "confidence": 0.95, "note": "AZ ICA" } ]
+    },
+    "claim.indemnity.paid": {
+      "aliases": [ { "header": "Indemnity Paid", "source": "research:B1-guides", "confidence": 0.98 }, { "header": "Total paid indemnity (including death benefits)", "source": "research:B1-statutory", "confidence": 0.95, "note": "AZ ICA" }, { "header": "Paid Indemnity", "source": "research:B1-statutory", "confidence": 0.98 }, { "header": "TOTAL INDEMNITY PAID", "source": "research:B1-statutory", "confidence": 0.98, "note": "RI SI-14" } ]
+    },
+    "claim.indemnity.reserve": {
+      "aliases": [ { "header": "Indemnity Reserves", "source": "research:B1-statutory", "confidence": 0.98, "note": "AZ ICA" }, { "header": "Indemnity Reserve", "source": "research:B1-inference", "confidence": 0.98 }, { "header": "Indemnity Outstanding", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "Total Indemnity Owed", "source": "research:B1-statutory", "confidence": 0.7, "note": "AZ ICA summary (B-C=D style)" } ]
+    },
+    "claim.indemnity.incurred": {
+      "aliases": [ { "header": "Incurred Indemnity", "source": "research:B1-statutory", "confidence": 0.98 }, { "header": "Indemnity Incurred", "source": "research:B1-inference", "confidence": 0.98 } ]
+    },
+    "claim.medical.paid": {
+      "aliases": [ { "header": "Medical Paid", "source": "research:B1-inference", "confidence": 0.98 }, { "header": "Total paid medical", "source": "research:B1-statutory", "confidence": 0.95, "note": "AZ ICA" }, { "header": "Paid Medical", "source": "research:B1-statutory", "confidence": 0.98 }, { "header": "TOTAL MEDICAL PAID", "source": "research:B1-statutory", "confidence": 0.98, "note": "RI SI-14" } ]
+    },
+    "claim.medical.reserve": {
+      "aliases": [ { "header": "Medical reserves", "source": "research:B1-statutory", "confidence": 0.98, "note": "AZ ICA" }, { "header": "Medical Reserve", "source": "research:B1-inference", "confidence": 0.98 }, { "header": "Medical Outstanding", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "Total Medical Owed", "source": "research:B1-statutory", "confidence": 0.7 } ]
+    },
+    "claim.medical.incurred": {
+      "aliases": [ { "header": "Incurred Medical", "source": "research:B1-statutory", "confidence": 0.98 }, { "header": "Medical Incurred", "source": "research:B1-inference", "confidence": 0.98 } ]
+    },
+    "claim.expense.paid": {
+      "aliases": [ { "header": "Expense Paid", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "TOTAL EXPENSES PAID", "source": "research:B1-statutory", "confidence": 0.95, "note": "RI SI-14" }, { "header": "Paid ALAE", "source": "research:B2", "confidence": 0.95, "note": "MA stat plan" }, { "header": "Legal Paid", "source": "research:B1-inference", "confidence": 0.85 }, { "header": "Expenses", "source": "research:B1-guides", "confidence": 0.6, "note": "AMS360; paid vs incurred ambiguous" }, { "header": "ExpensePaid", "source": "real-sample point-isabel-isd.pdf", "confidence": 0.9 }, { "header": "Expenses / Fees Paid", "source": "real-sample starr-cameron-county.pdf", "confidence": 0.9 } ]
+    },
+    "claim.expense.reserve": {
+      "aliases": [ { "header": "Expense Reserve", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "ALAE Reserve", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "Expense Outstanding", "source": "research:B1-inference", "confidence": 0.9 } ]
+    },
+    "claim.expense.incurred": {
+      "aliases": [ { "header": "Expense Incurred", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "ALAE Incurred", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "ALAE", "source": "research:B1-guides", "confidence": 0.5, "note": "ambiguous paid vs incurred; resolve from adjacent columns" } ]
+    },
+    "claim.total.paid": {
+      "aliases": [ { "header": "Total Paid", "source": "research:B1-statutory", "confidence": 0.98 }, { "header": "Paid", "source": "research:B1-TJC", "confidence": 0.6, "note": "bare 'Paid' is total unless under a component group header" }, { "header": "Paid To Date", "source": "research:B1-guides", "confidence": 0.9, "note": "AMS360" }, { "header": "Current Paid", "source": "research:B1-TJC", "confidence": 0.4, "note": "TJC: activity-period paid, NOT cumulative paid" } ]
+    },
+    "claim.total.reserve": {
+      "aliases": [ { "header": "Reserves", "source": "research:B1-TJC", "confidence": 0.85 }, { "header": "Total Reserves", "source": "research:B1-guides", "confidence": 0.95, "note": "AMS360" }, { "header": "Outstanding", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "O/S", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "Case Reserves", "source": "research:B1-guides", "confidence": 0.95, "note": "Racklify" }, { "header": "TOTAL CASE RESERVES", "source": "research:B1-statutory", "confidence": 0.95, "note": "RI SI-14: case reserves include all expenses incl. legal" }, { "header": "Remaining", "source": "research:B1-inference", "confidence": 0.6 }, { "header": "Current Reserves", "source": "research:B1-guides", "confidence": 0.5, "note": "AMS360 Current Reserves = reserves - paid (i.e. outstanding)" } ]
+    },
+    "claim.total.incurred": {
+      "aliases": [ { "header": "Incurred", "source": "research:B1-TJC", "confidence": 0.9 }, { "header": "Total Incurred", "source": "research:B1-guides", "confidence": 0.98 }, { "header": "Paid + Reserve", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "Gross Incurred", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "TOTAL INCURRED", "source": "research:B1-statutory", "confidence": 0.98, "note": "RI SI-14" }, { "header": "Total Gross Incurred", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.85 }, { "header": "Total Incurred Losses", "source": "public sample State Compensation Insurance Fund", "confidence": 0.95, "note": "State Fund: paid and outstanding medical and indemnity plus expenses; the total, so this explicit alias overrides the conditional 'Loss' composite" } ]
+    },
+    "claim.recoverySubrogation": {
+      "aliases": [ { "header": "REC", "source": "research:B1-TJC", "confidence": 0.85 }, { "header": "Recoveries", "source": "research:B1-guides", "confidence": 0.95, "note": "AMS360: salvage + subrogation" }, { "header": "Subro", "source": "research:B1-inference", "confidence": 0.9 }, { "header": "Subrogation", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "Third-party recovery", "source": "research:B1-guides", "confidence": 0.9, "note": "ICW" }, { "header": "Salvage", "source": "research:B1-inference", "confidence": 0.7 }, { "header": "Subrogation Recovery", "source": "real-sample stcharles-wc.pdf", "confidence": 0.95 }, { "header": "Recovery", "source": "real-sample starr-cameron-county.pdf", "confidence": 0.8 }, { "header": "Recovered", "source": "real-sample axis-cameron-county.pdf", "confidence": 0.8 }, { "header": "Recovered Loss", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.8 } ]
+    },
+    "period.subtotals.recoveries.deductible": {
+      "aliases": [ { "header": "Deductible Recovery", "source": "adr:0017", "confidence": 0.95 }, { "header": "Deductible Recoveries", "source": "adr:0017", "confidence": 0.95 }, { "header": "Deductible Reimbursement", "source": "adr:0017", "confidence": 0.85 } ]
+    },
+    "period.subtotals.recoveries.reinsurance": {
+      "aliases": [ { "header": "Reinsurance Recovery", "source": "adr:0017", "confidence": 0.95 }, { "header": "Reinsurance Recoveries", "source": "adr:0017", "confidence": 0.95 }, { "header": "Excess Recovery", "source": "adr:0017", "confidence": 0.85, "note": "excess insurance over a self-insured retention" }, { "header": "Excess Recoveries", "source": "adr:0017", "confidence": 0.85 } ]
+    },
+    "period.subtotals.recoveries.sif": {
+      "aliases": [ { "header": "SIF Recovery", "source": "adr:0017", "confidence": 0.95 }, { "header": "SIF", "source": "adr:0017", "confidence": 0.7 }, { "header": "Second Injury Fund", "source": "adr:0017", "confidence": 0.9 }, { "header": "Subsequent Injury Fund", "source": "adr:0017", "confidence": 0.9 } ]
+    },
+    "period.subtotals.recoveries.other": {
+      "aliases": [ { "header": "Other Recovery", "source": "adr:0017", "confidence": 0.85 }, { "header": "Other Recoveries", "source": "adr:0017", "confidence": 0.85 } ]
+    },
+    "claim.netIncurred": {
+      "aliases": [ { "header": "Net Incurred", "source": "research:B1-inference", "confidence": 0.95 }, { "header": "Net", "source": "research:B1-inference", "confidence": 0.5 } ]
+    }
+  },
+  "compositeHeaders": {
+    "description": "Words used in stacked or prefixed headers (e.g. 'Indemnity' over 'Paid | Reserve | Incurred', or 'IND Paid'). A header resolves to claim.<component>.<measure> when one component word and one measure word are present; a measure word alone resolves to claim.total.<measure>. A header naming two or more components joined by + or & ('Paid CLM + MED + EXP', 'Total Incurred (Ind+Med)') resolves to claim.total.<measure> with that component set (ADR 0018; within such a sum CLM / Claim / Loss mean indemnity).",
+    "components": {
+      "indemnity": [ { "word": "Indemnity", "source": "research:B1-inference", "confidence": 0.98 }, { "word": "IND", "source": "research:B1-TJC", "confidence": 0.95 }, { "word": "Ind", "source": "research:B1-inference", "confidence": 0.9 }, { "word": "Comp", "source": "research:B1-inference", "confidence": 0.6, "note": "some runs label wage-loss as compensation" } ],
+      "medical": [ { "word": "Medical", "source": "research:B1-inference", "confidence": 0.98 }, { "word": "MED", "source": "research:B1-TJC", "confidence": 0.95 }, { "word": "Med", "source": "research:B1-inference", "confidence": 0.9 } ],
+      "expense": [ { "word": "Expense", "source": "research:B1-inference", "confidence": 0.95 }, { "word": "Exp", "source": "research:B1-inference", "confidence": 0.85, "note": "abbreviation; added per brief 04 Answers 6" }, { "word": "ALAE", "source": "research:B1-guides", "confidence": 0.95 }, { "word": "LEG", "source": "research:B1-TJC", "confidence": 0.85, "note": "legal" }, { "word": "Legal", "source": "research:B1-inference", "confidence": 0.85 }, { "word": "OTH", "source": "research:B1-TJC", "confidence": 0.5, "note": "TJC 'other' expense; confirm per carrier" }, { "word": "RHB", "source": "research:B1-TJC", "confidence": 0.5, "note": "vocational rehab; folded into expense in v0.1" }, { "word": "LAE", "source": "real-sample alvin-isd-loss-runs.pdf", "confidence": 0.9 }, { "word": "Expenses", "source": "real-sample axis-cameron-county.pdf", "confidence": 0.9 } ]
+    },
+    "measures": {
+      "paid": [ { "word": "Paid", "source": "research:B1-inference", "confidence": 0.95 }, { "word": "Paid to Date", "source": "research:B1-guides", "confidence": 0.95 }, { "word": "PTD", "source": "research:B1-inference", "confidence": 0.3, "note": "collides with Permanent Total Disability" } ],
+      "reserve": [ { "word": "Reserve", "source": "research:B1-inference", "confidence": 0.95 }, { "word": "Reserves", "source": "research:B1-TJC", "confidence": 0.95 }, { "word": "Outstanding", "source": "research:B1-inference", "confidence": 0.9 }, { "word": "O/S", "source": "research:B1-inference", "confidence": 0.9 }, { "word": "Owed", "source": "research:B1-statutory", "confidence": 0.6 }, { "word": "Future Liability", "source": "real-sample marin-exhibits.pdf", "confidence": 0.75, "note": "actuarial summaries: unpaid (outstanding) liability" } ],
+      "incurred": [ { "word": "Incurred", "source": "research:B1-inference", "confidence": 0.95 }, { "word": "Total Incurred", "source": "research:B1-guides", "confidence": 0.95 } ]
+    },
+    "conditionalComponents": {
+      "description": "Component words whose meaning depends on the table (brief 17 Answers 2). A conditional word resolves to `component` only when the same table has a column resolving to `requiresComponent`; without one the column is marked ambiguous-composite and the document routes to review with that reason. Verification against printed totals is the tie-breaker when both readings are possible.",
+      "words": [
+        { "word": "Loss", "component": "indemnity", "requiresComponent": "medical", "source": "real-sample liberty-mutual-mercedes-isd.pdf", "note": "P&C convention: loss payments, expense apart; on a WC run without a medical column it may be indemnity plus medical" },
+        { "word": "Losses", "component": "indemnity", "requiresComponent": "medical", "source": "real-sample axis-cameron-county.pdf" }
+      ]
+    }
+  },
+  "ignoredHeaders": {
+    "description": "Printed columns deliberately not mapped to a canonical field (ADR 0017, P5). The learn path lists them under the spec ignoredHeaders instead of guessing a target.",
+    "headers": [
+      { "header": "Total Recoveries", "reason": "sum of recovery kinds; the kinds are modelled, the sum is derivable", "source": "real-sample stcharles-wc.pdf" },
+      { "header": "Net Recoveries", "reason": "recoveries net of recovery expense; not modelled", "source": "adr:0017" },
+      { "header": "Recovery Reserve", "reason": "anticipated recoveries; not modelled", "source": "adr:0017" },
+      { "header": "Anticipated Recoveries", "reason": "anticipated recoveries; not modelled", "source": "adr:0017" },
+      { "header": "Handler", "reason": "claims staff, not a canonical field", "source": "brief17:fitness-run" },
+      { "header": "Examiner", "reason": "claims staff, not a canonical field", "source": "brief17:fitness-run" },
+      { "header": "Adj Off", "reason": "the carrier's adjusting office code; not a canonical field", "source": "public sample Travelers" },
+      { "header": "Percent Paid/Incurred", "reason": "a ratio derivable from paid and incurred", "source": "public sample Travelers" },
+      { "header": "Percent To Total Claims", "reason": "an analysis ratio, not a loss-run value", "source": "public sample Travelers" },
+      { "header": "Average Cost Per Claim", "reason": "an analysis ratio (incurred / claims), not a loss-run value", "source": "public sample Travelers" },
+      { "header": "Largest Loss", "reason": "an analysis value, not a recovery or a total", "source": "public sample Travelers" }
+    ]
+  },
+  "carrierProvenance": [
+    {
+      "carrierId": "berkshire-hathaway-direct",
+      "displayName": "Berkshire Hathaway Direct (biBERK)",
+      "status": "no-sample",
+      "note": "Carrier explainer pages could not be fetched (research B1 Gaps) and no synthetic or redacted sample is in the repo yet. Mappings are appended here by the format registry once a sample is learned.",
+      "learnedMappings": []
+    },
+    {
+      "carrierId": "pie",
+      "displayName": "Pie Insurance",
+      "status": "no-sample",
+      "note": "As above.",
+      "learnedMappings": []
+    },
+    {
+      "carrierId": "amtrust",
+      "displayName": "AmTrust",
+      "status": "no-sample",
+      "note": "As above.",
+      "learnedMappings": []
+    }
+  ],
+  "learnedMappingShape": {
+    "description": "Shape of an entry in carrierProvenance[].learnedMappings (appended by briefs 04/05; never edited in place).",
+    "example": { "header": "Indem Pd", "canonicalField": "claim.indemnity.paid", "formatId": "fmt-amtrust-xlsx", "formatVersion": "1", "learnedBy": { "model": "gpt-5.4-mini", "promptVersion": "learn-v1" }, "reviewedBy": null, "confidence": 0.9, "firstSeenDocumentId": "doc-123", "firstSeenUtc": "2026-11-01T00:00:00Z" }
+  }
+}

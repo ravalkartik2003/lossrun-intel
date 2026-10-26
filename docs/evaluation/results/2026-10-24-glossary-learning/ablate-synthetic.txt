@@ -1,0 +1,6 @@
+# Brief 21 synthetic ablation: five hand aliases that learned formats print (c6, c7, c9 and the hand-spec carriers c1/c4/c5)
+claim.claimantName|Claimant
+claim.dateReported|Reported
+claim.dateOfInjury|Loss Date
+claim.claimNumber|Claim Number
+claim.status|Claim Status

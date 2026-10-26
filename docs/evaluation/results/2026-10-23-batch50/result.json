@@ -1,0 +1,26 @@
+{
+ "quote": "Q-BATCH50-10231713",
+ "uploadId": "up-1e3d78d6dc88fe46d660",
+ "files": 72,
+ "fileMB": 50.8,
+ "requestMB": 50.9,
+ "pages": 144,
+ "mix": {
+  "xlsx": 6,
+  "csv": 6,
+  "native-pdf": 16,
+  "scan-150dpi-fax": 10,
+  "scan-200dpi-rotated-noisy": 14,
+  "scan-300dpi-clean": 20
+ },
+ "acceptedSeconds": 10.8,
+ "firstProcessedSeconds": 53.1,
+ "p50ItemSeconds": 76.1,
+ "totalSeconds": 89.0,
+ "uploadStatus": "awaiting-review",
+ "items": 72,
+ "statuses": {
+  "processed/ReplayAccepted": 59,
+  "awaiting-review/Review": 13
+ }
+}

@@ -1,0 +1,52 @@
+{
+  "specSchema": "carrier-format-0.4.0",
+  "formatId": "construct-c6-two-line-records",
+  "version": 1,
+  "carrierName": "Hypothetical Mutual Casualty",
+  "fileKind": "pdf",
+  "createdBy": "hand",
+  "createdAt": "2026-10-24T00:00:00+00:00",
+  "reviewedBy": "brief-19 (hand-authored for the ADR 0018 construct fixtures)",
+  "description": "Corpus-gen 0.4.0 construct c6: each claim prints a key line and an amounts line in the same columns, under two header rows (records mode rows).",
+  "fingerprint": { "identityKey": "", "headerKey": "", "identityText": "", "headerText": "", "embedding": null },
+  "tableLocator": {
+    "headerMatchMin": 0.8,
+    "blockAnchor": "^Policy (?<policyNumber>\\S+)\\s+Policy Period (?<effectiveDate>\\d{2}/\\d{2}/\\d{4})\\s*-\\s*(?<expirationDate>\\d{2}/\\d{2}/\\d{4})$",
+    "rowKinds": [
+      { "kind": "subtotal", "regex": "^Policy Total\\b", "countsRegex": "\\(\\s*(?<claimCount>\\d+)\\s+claims?\\s*\\)" },
+      { "kind": "grandTotal", "regex": "^GRAND TOTAL\\b", "countsRegex": "\\(\\s*(?<claimCount>\\d+)\\s+claims?\\s*\\)" }
+    ],
+    "records": { "mode": "rows", "keySource": "Claim #:", "maxLines": 2 }
+  },
+  "columnMap": [
+    { "source": "Claim #:", "target": "claim.claimNumber", "normalizer": { "type": "claimNumber" } },
+    { "source": "Loss State:", "target": "claim.jurisdictionState", "normalizer": { "type": "text" } },
+    { "source": "Date of Injury:", "target": "claim.dateOfInjury", "normalizer": { "type": "date" } },
+    { "source": "Reported:", "target": "claim.dateReported", "normalizer": { "type": "date" } },
+    { "source": "Status:", "target": "claim.status", "normalizer": { "type": "enum", "glossaryField": "claim.status" } },
+    { "source": "Status:", "target": "claim.rawStatus", "normalizer": { "type": "text" } },
+    { "source": "Closed:", "target": "claim.dateClosed", "normalizer": { "type": "date" } },
+    { "source": "Claimant:", "target": "claim.claimantName", "normalizer": { "type": "text" } },
+    { "source": "Ind Paid:", "target": "claim.indemnity.paid", "line": 1, "under": "Loss State:", "normalizer": { "type": "currency" } },
+    { "source": "Med Paid:", "target": "claim.medical.paid", "line": 1, "under": "Date of Injury:", "normalizer": { "type": "currency" } },
+    { "source": "Exp Paid:", "target": "claim.expense.paid", "line": 1, "under": "Reported:", "normalizer": { "type": "currency" } },
+    { "source": "Ind Reserve:", "target": "claim.indemnity.reserve", "line": 1, "under": "Status:", "normalizer": { "type": "currency" } },
+    { "source": "Med Reserve:", "target": "claim.medical.reserve", "line": 1, "under": "Closed:", "normalizer": { "type": "currency" } },
+    { "source": "Total Incurred:", "target": "claim.total.incurred", "line": 1, "under": "Claimant:", "normalizer": { "type": "currency" } }
+  ],
+  "ignoredHeaders": [],
+  "periods": { "source": "blockAnchor" },
+  "documentFields": [
+    { "target": "document.carrierName", "locator": { "type": "regex", "pattern": "(?<value>Hypothetical Mutual Casualty)" }, "normalizer": { "type": "text" } },
+    { "target": "document.insuredName", "locator": { "type": "regex", "pattern": "^Insured:\\s*(?<value>.+?)\\s*(Valued as of:.*)?$" }, "normalizer": { "type": "text" } },
+    { "target": "document.valuationDate", "locator": { "type": "regex", "pattern": "Valued as of:\\s*(?<value>\\d{2}/\\d{2}/\\d{4})" }, "normalizer": { "type": "date" } },
+    { "target": "document.expenseTreatment", "locator": { "type": "const", "value": "separate" }, "reason": "Expense paid has its own column; no expense reserve column." }
+  ],
+  "derivedRules": [
+    { "target": "indemnity.incurred", "sum": ["indemnity.paid", "indemnity.reserve"], "when": "absent", "appliesTo": ["claim", "totals"] },
+    { "target": "medical.incurred", "sum": ["medical.paid", "medical.reserve"], "when": "absent", "appliesTo": ["claim", "totals"] },
+    { "target": "expense.incurred", "sum": ["expense.paid"], "when": "absent", "appliesTo": ["claim", "totals"] }
+  ],
+  "periodBoundaries": { "expirationInclusive": false },
+  "validation": { "expectedApplicable": ["R-01", "R-02", "R-10", "R-12"], "softOverrides": [] }
+}

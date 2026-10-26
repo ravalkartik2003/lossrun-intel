@@ -1,0 +1,554 @@
+{
+ "eTag": null,
+ "location": null,
+ "properties": {
+  "columns": [
+   {
+    "name": "Cost",
+    "type": "Number"
+   },
+   {
+    "name": "UsageQuantity",
+    "type": "Number"
+   },
+   {
+    "name": "UsageDate",
+    "type": "Number"
+   },
+   {
+    "name": "ServiceName",
+    "type": "String"
+   },
+   {
+    "name": "Meter",
+    "type": "String"
+   },
+   {
+    "name": "MeterSubcategory",
+    "type": "String"
+   },
+   {
+    "name": "Currency",
+    "type": "String"
+   }
+  ],
+  "nextLink": null,
+  "rows": [
+   [
+    0.0,
+    0.064512,
+    20261024,
+    "Azure App Service",
+    "F1 App",
+    "Azure App Service Free Plan - Linux",
+    "USD"
+   ],
+   [
+    2.424,
+    24.0,
+    20261024,
+    "Azure Cognitive Search",
+    "Basic Unit",
+    "Azure AI Search",
+    "USD"
+   ],
+   [
+    0.0,
+    7.3e-05,
+    20261024,
+    "Bandwidth",
+    "Inter Continent Data Transfer In - NAM or EU To Any",
+    "Bandwidth Inter-Region",
+    "USD"
+   ],
+   [
+    0.0,
+    2e-06,
+    20261024,
+    "Bandwidth",
+    "Inter Continent Data Transfer Out - NAM or EU To Any",
+    "Bandwidth Inter-Region",
+    "USD"
+   ],
+   [
+    0.0,
+    8e-06,
+    20261024,
+    "Bandwidth",
+    "Intra Continent Data Transfer In",
+    "Bandwidth Inter-Region",
+    "USD"
+   ],
+   [
+    0.0,
+    5e-06,
+    20261024,
+    "Bandwidth",
+    "Standard Data Transfer In",
+    "Rtn Preference: MGN",
+    "USD"
+   ],
+   [
+    0.0,
+    0.000247,
+    20261024,
+    "Bandwidth",
+    "Standard Data Transfer Out - Free",
+    "Rtn Preference: MGN",
+    "USD"
+   ],
+   [
+    4.688083125,
+    5.682525,
+    20261024,
+    "Foundry Models",
+    "5.4 mini Inp Dz 1M Tokens",
+    "Azure OpenAI GPT5",
+    "USD"
+   ],
+   [
+    9.06782085,
+    1.831883,
+    20261024,
+    "Foundry Models",
+    "5.4 mini Opt Dz 1M Tokens",
+    "Azure OpenAI GPT5",
+    "USD"
+   ],
+   [
+    1.22631168,
+    14.864384,
+    20261024,
+    "Foundry Models",
+    "5.4 mini cd Inp Dz 1M Tokens",
+    "Azure OpenAI GPT5",
+    "USD"
+   ],
+   [
+    0.147570709,
+    1031.963,
+    20261024,
+    "Foundry Models",
+    "text embedding 3 large DZ Tokens",
+    "Azure OpenAI Embedding",
+    "USD"
+   ],
+   [
+    6.67,
+    1.334,
+    20261024,
+    "Foundry Tools",
+    "Doc Content Extraction Standard Pages",
+    "Azure Content Understanding",
+    "USD"
+   ],
+   [
+    0.971,
+    971.0,
+    20261024,
+    "Foundry Tools",
+    "Std Contextualization Tokens",
+    "Azure Content Understanding",
+    "USD"
+   ],
+   [
+    0.0,
+    5856.6,
+    20261024,
+    "Functions",
+    "On Demand Execution Time",
+    "Flex Consumption",
+    "USD"
+   ],
+   [
+    0.0,
+    288.0,
+    20261024,
+    "Functions",
+    "On Demand Total Executions",
+    "Flex Consumption",
+    "USD"
+   ],
+   [
+    3.6e-05,
+    0.0012,
+    20261024,
+    "Key Vault",
+    "Operations",
+    "Key Vault",
+    "USD"
+   ],
+   [
+    0.0,
+    0.459652348,
+    20261024,
+    "Log Analytics",
+    "Analytics Logs Data Ingestion",
+    "Log Analytics",
+    "USD"
+   ],
+   [
+    0.0,
+    62.775,
+    20261024,
+    "Microsoft Defender for Cloud",
+    "Trial Tokens",
+    "Microsoft Defender for AI Services",
+    "USD"
+   ],
+   [
+    0.0,
+    16.2658408926505,
+    20261024,
+    "SQL Database",
+    "1 vCore - Free",
+    "SQL Database General Purpose - Serverless - Compute Gen5",
+    "USD"
+   ],
+   [
+    0.0,
+    1.03225806451613,
+    20261024,
+    "SQL Database",
+    "General Purpose Data Stored - Free",
+    "SQL Database Single/Elastic Pool General Purpose - Storage",
+    "USD"
+   ],
+   [
+    0.0,
+    0.008646,
+    20261024,
+    "Service Bus",
+    "Standard Messaging Operations",
+    "Service Bus",
+    "USD"
+   ],
+   [
+    0.0061132,
+    1.5283,
+    20261024,
+    "Storage",
+    "All Other Operations",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0034532,
+    0.8633,
+    20261024,
+    "Storage",
+    "Class 2 Operations",
+    "Queues v2",
+    "USD"
+   ],
+   [
+    0.0,
+    0.096984,
+    20261024,
+    "Storage",
+    "Hot LRS Data Stored - Free",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0,
+    0.0028,
+    20261024,
+    "Storage",
+    "Hot LRS Write Operations - Free",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0034728,
+    0.8682,
+    20261024,
+    "Storage",
+    "Hot Read Operations",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0,
+    0.3647,
+    20261024,
+    "Storage",
+    "LRS List and Create Container Operations - Free",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0,
+    0.008064,
+    20261025,
+    "Azure App Service",
+    "F1 App",
+    "Azure App Service Free Plan - Linux",
+    "USD"
+   ],
+   [
+    0.404,
+    4.0,
+    20261025,
+    "Azure Cognitive Search",
+    "Basic Unit",
+    "Azure AI Search",
+    "USD"
+   ],
+   [
+    0.0,
+    9.6e-05,
+    20261025,
+    "Bandwidth",
+    "Inter Continent Data Transfer In - NAM or EU To Any",
+    "Bandwidth Inter-Region",
+    "USD"
+   ],
+   [
+    0.0,
+    2e-06,
+    20261025,
+    "Bandwidth",
+    "Inter Continent Data Transfer Out - NAM or EU To Any",
+    "Bandwidth Inter-Region",
+    "USD"
+   ],
+   [
+    0.0,
+    0.000209,
+    20261025,
+    "Bandwidth",
+    "Intra Continent Data Transfer In",
+    "Bandwidth Inter-Region",
+    "USD"
+   ],
+   [
+    6.6e-07,
+    3.3e-05,
+    20261025,
+    "Bandwidth",
+    "Intra Continent Data Transfer Out",
+    "Bandwidth Inter-Region",
+    "USD"
+   ],
+   [
+    0.075,
+    25.0,
+    20261025,
+    "Durable Task Scheduler",
+    "Consumption Action",
+    "Durable Task Scheduler",
+    "USD"
+   ],
+   [
+    0.0,
+    0.0001,
+    20261025,
+    "Event Grid",
+    "Standard Operations",
+    "Event Grid",
+    "USD"
+   ],
+   [
+    1.228033125,
+    1.488525,
+    20261025,
+    "Foundry Models",
+    "5.4 mini Inp Dz 1M Tokens",
+    "Azure OpenAI GPT5",
+    "USD"
+   ],
+   [
+    3.30320925,
+    0.667315,
+    20261025,
+    "Foundry Models",
+    "5.4 mini Opt Dz 1M Tokens",
+    "Azure OpenAI GPT5",
+    "USD"
+   ],
+   [
+    0.49520064,
+    6.002432,
+    20261025,
+    "Foundry Models",
+    "5.4 mini cd Inp Dz 1M Tokens",
+    "Azure OpenAI GPT5",
+    "USD"
+   ],
+   [
+    0.051416937,
+    359.559,
+    20261025,
+    "Foundry Models",
+    "text embedding 3 large DZ Tokens",
+    "Azure OpenAI Embedding",
+    "USD"
+   ],
+   [
+    0.465,
+    0.093,
+    20261025,
+    "Foundry Tools",
+    "Doc Content Extraction Standard Pages",
+    "Azure Content Understanding",
+    "USD"
+   ],
+   [
+    0.049,
+    49.0,
+    20261025,
+    "Foundry Tools",
+    "Std Contextualization Tokens",
+    "Azure Content Understanding",
+    "USD"
+   ],
+   [
+    0.0,
+    1053.8,
+    20261025,
+    "Functions",
+    "On Demand Execution Time",
+    "Flex Consumption",
+    "USD"
+   ],
+   [
+    0.0,
+    56.0,
+    20261025,
+    "Functions",
+    "On Demand Total Executions",
+    "Flex Consumption",
+    "USD"
+   ],
+   [
+    7.5e-05,
+    0.0025,
+    20261025,
+    "Key Vault",
+    "Operations",
+    "Key Vault",
+    "USD"
+   ],
+   [
+    0.0,
+    0.10431995,
+    20261025,
+    "Log Analytics",
+    "Analytics Logs Data Ingestion",
+    "Log Analytics",
+    "USD"
+   ],
+   [
+    0.0,
+    9.084,
+    20261025,
+    "Microsoft Defender for Cloud",
+    "Trial Tokens",
+    "Microsoft Defender for AI Services",
+    "USD"
+   ],
+   [
+    0.0,
+    0.383017035590278,
+    20261025,
+    "SQL Database",
+    "1 vCore - Free",
+    "SQL Database General Purpose - Serverless - Compute Gen5",
+    "USD"
+   ],
+   [
+    0.0,
+    0.129032258064516,
+    20261025,
+    "SQL Database",
+    "General Purpose Data Stored - Free",
+    "SQL Database Single/Elastic Pool General Purpose - Storage",
+    "USD"
+   ],
+   [
+    1.03300371181098,
+    1.64987575954861,
+    20261025,
+    "SQL Database",
+    "vCore",
+    "SQL Database General Purpose - Serverless - Compute Gen5",
+    "USD"
+   ],
+   [
+    0.0,
+    0.002069,
+    20261025,
+    "Service Bus",
+    "Standard Messaging Operations",
+    "Service Bus",
+    "USD"
+   ],
+   [
+    0.0025928,
+    0.6482,
+    20261025,
+    "Storage",
+    "All Other Operations",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0007528,
+    0.1882,
+    20261025,
+    "Storage",
+    "Class 2 Operations",
+    "Queues v2",
+    "USD"
+   ],
+   [
+    0.0,
+    0.016164,
+    20261025,
+    "Storage",
+    "Hot LRS Data Stored - Free",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0,
+    0.0125,
+    20261025,
+    "Storage",
+    "Hot LRS Write Operations - Free",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    0.0006912,
+    0.1728,
+    20261025,
+    "Storage",
+    "Hot Read Operations",
+    "Blob Storage",
+    "USD"
+   ],
+   [
+    1.2e-05,
+    0.003,
+    20261025,
+    "Storage",
+    "LRS Class 1 Operations",
+    "Queues v2",
+    "USD"
+   ],
+   [
+    0.0,
+    0.0798,
+    20261025,
+    "Storage",
+    "LRS List and Create Container Operations - Free",
+    "Blob Storage",
+    "USD"
+   ]
+  ]
+ },
+ "sku": null,
+ "type": "Microsoft.CostManagement/query"
+}

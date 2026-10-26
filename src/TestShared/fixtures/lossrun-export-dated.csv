@@ -1,0 +1,4 @@
+Policy #,Policy Eff,Policy Exp,Claim #,Claimant,DOI,Report Date,Status,Type,Indemnity Paid,Indemnity Reserve,Medical Paid,Medical Reserve,Expense Paid,Total Incurred
+SYN-WC-1001,07/01/2022,07/01/2023,WC-22-0001,Synthetic Claimant A,09/15/2022,09/16/2022,Closed,IND,12000.00,0.00,8000.00,0.00,1500.00,21500.00
+SYN-WC-1001,07/01/2022,07/01/2023,WC-23-0002,Synthetic Claimant B,02/10/2023,02/13/2023,Open,MO,0.00,0.00,1200.00,800.00,0.00,2000.00
+SYN-WC-1002,07/01/2023,07/01/2024,WC-24-0003,Synthetic Claimant C,01/20/2024,01/22/2024,Closed,MO,0.00,0.00,650.00,0.00,0.00,650.00

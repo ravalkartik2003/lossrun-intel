@@ -1,0 +1,64 @@
+== 0. build
+Time Elapsed 00:00:06.30
+== 1. import
+imported 10 file(s), 17 page(s), 1.7 MB; skipped 1
+
+| carrier | csv | native-pdf | scan-150dpi-fax | scan-200dpi-rotated-noisy | xlsx | zip | total |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Fictional Casualty Group | 0 | 1 | 0 | 1 | 0 | 0 | 2 |
+| Notional Workers Comp Exchange | 0 | 0 | 0 | 0 | 1 | 1 | 2 |
+| Placeholder Assurance Co. | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| Synthetic Mutual Insurance Co. | 0 | 3 | 2 | 0 | 0 | 0 | 5 |
+
+strata with fewer than 2 files (cannot appear on both the tuning and the blind side): Fictional Casualty Group x native-pdf; Fictional Casualty Group x scan-200dpi-rotated-noisy; Notional Workers Comp Exchange x zip; Notional Workers Comp Exchange x xlsx; Placeholder Assurance Co. x csv
+packages (stratum bundle): 1, containing 2 xlsx
+with a 100-file tuning set the blind set would hold 0 file(s) (protocol: 300-500)
+skipped readme.txt: not a loss-run file type (.txt)
+
+truth-request.csv: 12 policy row(s), 2 carrier row(s) for files not readable before OCR
+== 2. truth request (to the data team)
+carrier,policy_number,period_start,period_end,documents,note
+Fictional Casualty Group,FCG-WC-2101,2021-01-01,2022-01-01,1,
+Fictional Casualty Group,FCG-WC-2301,2023-01-01,2024-01-01,1,
+Notional Workers Comp Exchange,NWX-2021-01,2021-10-01,2022-10-01,1,
+Notional Workers Comp Exchange,NWX-2022-01,2022-10-01,2023-10-01,2,
+Notional Workers Comp Exchange,NWX-2023-01,2023-10-01,2024-10-01,1,
+Notional Workers Comp Exchange,NWX-2024-01,2024-10-01,2025-10-01,2,
+Placeholder Assurance Co.,PAC-WC-20221,2022-03-15,2023-03-15,1,
+Placeholder Assurance Co.,PAC-WC-20231,2023-03-15,2024-03-15,1,
+Placeholder Assurance Co.,PAC-WC-20241,2024-03-15,2025-03-15,1,
+Synthetic Mutual Insurance Co.,SYN-WC-2201,2022-07-01,2023-07-01,2,
+Synthetic Mutual Insurance Co.,SYN-WC-2301,2023-07-01,2024-07-01,2,
+Synthetic Mutual Insurance Co.,SYN-WC-2401,2024-07-01,2025-07-01,1,
+Fictional Casualty Group,,,,1,"1 file(s) of this carrier print no policy readable before OCR (scans, images, protected files): request every policy of this carrier for the accounts in the pool"
+Synthetic Mutual Insurance Co.,,,,3,"3 file(s) of this carrier print no policy readable before OCR (scans, images, protected files): request every policy of this carrier for the accounts in the pool"
+== 3. seal
+sealed: 2 tuning, 8 blind; blind manifest sha256 6ab82cfe835ac5cddcc85fd62e163a1c9ed371a93d27aed1c4edd5198ae9cf4c
+== 6.1 verify
+seal verified: 8 blind file(s) match; blind manifest sha256 6ab82cfe835ac5cddcc85fd62e163a1c9ed371a93d27aed1c4edd5198ae9cf4c
+== 6.2 run (local, limit 3, blind only)
+eval run (local): 3 to process, 0 already done  eval-runs/blind-run-proof/results/build
+[1/3] fictional-casualty-group-loss-run-6ec9ccec: Learned ú 26.1s ú $0.0374 ú LLM 2
+[2/3] fictional-casualty-group-scanned-loss-run-28a523ea: ReplayAccepted ú 3.8s ú $0.0134 ú LLM 1
+[3/3] notional-workers-comp-exchange-broker-package-ab219245: Learned,ReplayAccepted ú 71.3s ú $0.0806 ú LLM 5
+== 7. align
+adjudication.xlsx: 174 row(s) for the evaluator
+aligned 181 ú archive-only 174 ú extracted-only 0 ú disagreements 0
+== 8. adjudicate adjudication.xlsx (scripted from the generator's ground truth) + truth
+adjudication.xlsx filled: {'In the archive, not extracted': 174}
+adjudication: 174 row(s); archive-only  exclude (blank, default): 174
+truth: 3 document(s), 181 claim(s); 3 with comparable amounts  eval-runs/blind-run-proof/corpus\truth
+== 9. score
+scored 3 documents, 1459 field values  eval-runs/blind-run-proof/report/build
+== seal-break check
+SEAL BROKEN: 8 blind file(s) missing or changed since sealing - do not run or score (docs/operations/blind-run.md, section 6):
+  Fictional Casualty Group/loss-run.pdf
+  Fictional Casualty Group/scanned-loss-run.pdf
+  Notional Workers Comp Exchange/broker-package.zip
+  Notional Workers Comp Exchange/claims-export.xlsx
+  Placeholder Assurance Co/claims.csv
+  Synthetic Mutual Insurance Co/protected-loss-run.pdf
+  Synthetic Mutual Insurance Co/submission-package.pdf
+  phone-photo-of-loss-run.png
+verify refused a moved blind set (exit 1)
+== done

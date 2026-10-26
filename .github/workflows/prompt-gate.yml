@@ -1,0 +1,36 @@
+# Brief 20 Answers 3 (docs/operations/tuning-loop.md §3): any change to the learn prompt, the schema descriptions it carries
+# or the lint rules changes docs/evaluation/learn-prompt-artefact.json (tools/prompt-gate.py), and a pull request that
+# changes the artefact must attach a corpus v5 results folder whose run.json records that artefact (corpus v4 until brief 22).
+name: prompt-gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prompt-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: "The learn-prompt artefact is current"
+        run: python tools/prompt-gate.py --check
+      - name: "A changed artefact comes with a corpus v5 run of the same code"
+        if: github.event_name == 'pull_request'
+        run: python tools/prompt-gate.py --pr "origin/${{ github.base_ref }}"
+      # Brief 30 item 48: a direct push to main (or a merge that skipped the pull-request check) is gated too, against
+      # the commit before the push. A new branch's first push has no "before" (all zeros): nothing to compare.
+      - name: "On push to main: the same gate against the commit before the push"
+        if: github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000'
+        run: python tools/prompt-gate.py --pr "${{ github.event.before }}"
+      - name: "Prompt-gate tests (scratch repository)"
+        run: python tools/test-prompt-gate.py

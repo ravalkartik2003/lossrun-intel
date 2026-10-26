@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Data</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- MIT. Data access only: the schema comes from db/changelog (ADR 0006), never from EF migrations. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Api.Contracts\LossRun.Api.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Formats\LossRun.Formats.csproj" />
+    <ProjectReference Include="..\LossRun.Ingestion\LossRun.Ingestion.csproj" />
+    <ProjectReference Include="..\LossRun.Rules\LossRun.Rules.csproj" />
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Brief 26: escalation thresholds are data (config/escalation.json), embedded like the price table. -->
+    <EmbeddedResource Include="..\..\config\escalation.json" LogicalName="LossRun.Config.escalation.json" Link="Config\escalation.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LossRun.Data.Tests" />
+  </ItemGroup>
+
+</Project>

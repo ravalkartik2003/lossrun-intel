@@ -1,0 +1,18 @@
+{
+  "artefactVersion": "learn-prompt-artefact-0.1.0",
+  "promptVersion": "learn-v12",
+  "sha256": "f913ce4e28a5b240259a5d3910b800a23d813b5d73731434911c98381a858fe6",
+  "files": {
+    "docs/evaluation/carrier-format.schema.json": "3276c0baeb5999a630d6965d62c07ba3caf9d01d1a8bd10d17a2241bb0f996c3",
+    "docs/evaluation/glossary.json": "8331b05f367ddc6163caf2466d5ee08c9e4cbb7959d23a85d95096f6c8a1ca6e",
+    "src/LossRun.Learning/FormatLearner.cs": "f32459e995ef8a54e3cce8b02821791c119695030dacaecdc1cd910ef9ae079d",
+    "src/LossRun.Learning/ModelSchema.cs": "b0d6d1fde93f459e998098cf16e9096de7845be8b93741c1a1c74557ab2edc0b",
+    "src/LossRun.Learning/PromptBuilder.cs": "fb7f5c7176a61fd1f32811db563cfcef101fa342bde677bffc66883236ce2563",
+    "src/LossRun.Learning/SpecLint.Quality.cs": "f0896a8220a43decd252281eea6a4310e8317ac7b1192e978cb8436ba7c7af33",
+    "src/LossRun.Learning/SpecLint.cs": "77b01658d1e9cdd94c9852cf2109c070b241f0acee20ed7ba6055ee2b3aef737"
+  },
+  "supersedes": [
+    "80c6a46a4c42eaee2203704ef0cbb8c0d7139504048030b908d802fe9e41dc69",
+    "720baedafd45aaf476e58ef682e5fcd639e9a2bdd440ea9f9dd16c2cb6002285"
+  ]
+}

@@ -1,0 +1,625 @@
+[
+  {
+    "delayMs": 0,
+    "grid": {
+      "quoteId": "Q-DEMO-REPLAY",
+      "quoteRevision": 1,
+      "ready": false,
+      "blockingFieldCount": 1,
+      "updatedAt": "2026-10-25T12:00:00.0000000\u002B00:00",
+      "rows": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective date"
+        },
+        {
+          "key": "expirationDate",
+          "label": "Expiration date"
+        },
+        {
+          "key": "carrier",
+          "label": "Carrier"
+        },
+        {
+          "key": "policyNumber",
+          "label": "Policy number"
+        },
+        {
+          "key": "totalPremium",
+          "label": "Total premium"
+        },
+        {
+          "key": "totalPayroll",
+          "label": "Total payroll"
+        },
+        {
+          "key": "exMod",
+          "label": "Ex-Mod %"
+        },
+        {
+          "key": "incurredLoss",
+          "label": "Total incurred loss (including expense)"
+        },
+        {
+          "key": "incurredExpense",
+          "label": "Total incurred expense"
+        },
+        {
+          "key": "claims",
+          "label": "Total # incurred claims"
+        },
+        {
+          "key": "indemnityClaims",
+          "label": "# indemnity claims"
+        },
+        {
+          "key": "medicalOnlyClaims",
+          "label": "# medical-only claims"
+        },
+        {
+          "key": "evaluationDate",
+          "label": "Loss-run evaluation date"
+        }
+      ],
+      "columns": [
+        {
+          "key": "doc-a/0",
+          "title": "SYN-WC-1002",
+          "excludedReason": null,
+          "cells": {
+            "effectiveDate": {
+              "value": "2023-07-01",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "expirationDate": {
+              "value": "2024-07-01",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "carrier": {
+              "value": "Synthetic Mutual Insurance Co.",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "policyNumber": {
+              "value": "SYN-WC-1002",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "totalPremium": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print premium.",
+              "source": null
+            },
+            "totalPayroll": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print payroll; it comes with the submission.",
+              "source": null
+            },
+            "exMod": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "The experience modification is not on a loss run.",
+              "source": null
+            },
+            "evaluationDate": {
+              "value": "2024-09-30",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "incurredLoss": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "1 claim value(s) need input: validation rule R-10 still fails",
+              "source": null
+            },
+            "incurredExpense": {
+              "value": "$1,500.00",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "claims": {
+              "value": "2",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "indemnityClaims": {
+              "value": "1",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "medicalOnlyClaims": {
+              "value": "1",
+              "state": "value",
+              "reason": null,
+              "source": null
+            }
+          },
+          "reportOnlyClaims": 1,
+          "effectiveDateNeedsInput": false
+        },
+        {
+          "key": "doc-b/0",
+          "title": "doc-b \u00B7 period 1",
+          "excludedReason": "pending-review",
+          "cells": {
+            "effectiveDate": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "expirationDate": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "carrier": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "policyNumber": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "totalPremium": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print premium.",
+              "source": null
+            },
+            "totalPayroll": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print payroll; it comes with the submission.",
+              "source": null
+            },
+            "exMod": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "The experience modification is not on a loss run.",
+              "source": null
+            },
+            "evaluationDate": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "incurredLoss": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "incurredExpense": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "claims": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "indemnityClaims": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            },
+            "medicalOnlyClaims": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "the document is waiting for review",
+              "source": null
+            }
+          },
+          "reportOnlyClaims": 0,
+          "effectiveDateNeedsInput": false
+        }
+      ],
+      "attachments": [
+        {
+          "fileName": "lossrun-2023.pdf",
+          "classification": "LossRun",
+          "status": "processed",
+          "reason": null,
+          "uploadId": "up-1"
+        },
+        {
+          "fileName": "broker-letter.pdf",
+          "classification": "Correspondence",
+          "status": "kept-not-processed",
+          "reason": "not a loss run",
+          "uploadId": "up-1"
+        }
+      ],
+      "integration": {
+        "commandId": "ob-replay-1",
+        "idempotencyKey": "ob-replay-1",
+        "quoteRevision": 1,
+        "delivery": "applied",
+        "receivedAt": "2026-10-25T12:00:00.0000000\u002B00:00",
+        "lastEventType": "lossrun.quote.revised",
+        "lastEventAt": "2026-10-25T12:00:00.0000000\u002B00:00",
+        "lastEventRevision": 1,
+        "staleRefused": null
+      },
+      "orderedByEffectiveDate": true
+    }
+  },
+  {
+    "delayMs": 6000,
+    "grid": {
+      "quoteId": "Q-DEMO-REPLAY",
+      "quoteRevision": 2,
+      "ready": false,
+      "blockingFieldCount": 1,
+      "updatedAt": "2026-10-25T12:00:40.0000000\u002B00:00",
+      "rows": [
+        {
+          "key": "effectiveDate",
+          "label": "Effective date"
+        },
+        {
+          "key": "expirationDate",
+          "label": "Expiration date"
+        },
+        {
+          "key": "carrier",
+          "label": "Carrier"
+        },
+        {
+          "key": "policyNumber",
+          "label": "Policy number"
+        },
+        {
+          "key": "totalPremium",
+          "label": "Total premium"
+        },
+        {
+          "key": "totalPayroll",
+          "label": "Total payroll"
+        },
+        {
+          "key": "exMod",
+          "label": "Ex-Mod %"
+        },
+        {
+          "key": "incurredLoss",
+          "label": "Total incurred loss (including expense)"
+        },
+        {
+          "key": "incurredExpense",
+          "label": "Total incurred expense"
+        },
+        {
+          "key": "claims",
+          "label": "Total # incurred claims"
+        },
+        {
+          "key": "indemnityClaims",
+          "label": "# indemnity claims"
+        },
+        {
+          "key": "medicalOnlyClaims",
+          "label": "# medical-only claims"
+        },
+        {
+          "key": "evaluationDate",
+          "label": "Loss-run evaluation date"
+        }
+      ],
+      "columns": [
+        {
+          "key": "doc-a/0",
+          "title": "SYN-WC-1002",
+          "excludedReason": null,
+          "cells": {
+            "effectiveDate": {
+              "value": "2023-07-01",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "expirationDate": {
+              "value": "2024-07-01",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "carrier": {
+              "value": "Synthetic Mutual Insurance Co.",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "policyNumber": {
+              "value": "SYN-WC-1002",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "totalPremium": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print premium.",
+              "source": null
+            },
+            "totalPayroll": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print payroll; it comes with the submission.",
+              "source": null
+            },
+            "exMod": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "The experience modification is not on a loss run.",
+              "source": null
+            },
+            "evaluationDate": {
+              "value": "2024-09-30",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "incurredLoss": {
+              "value": null,
+              "state": "needs-input",
+              "reason": "1 claim value(s) need input: validation rule R-10 still fails",
+              "source": null
+            },
+            "incurredExpense": {
+              "value": "$1,500.00",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "claims": {
+              "value": "2",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "indemnityClaims": {
+              "value": "1",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "medicalOnlyClaims": {
+              "value": "1",
+              "state": "value",
+              "reason": null,
+              "source": null
+            }
+          },
+          "reportOnlyClaims": 1,
+          "effectiveDateNeedsInput": false
+        },
+        {
+          "key": "doc-b/0",
+          "title": "SYN-WC-1001",
+          "excludedReason": null,
+          "cells": {
+            "effectiveDate": {
+              "value": "2022-07-01",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "expirationDate": {
+              "value": "2023-07-01",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "carrier": {
+              "value": "Synthetic Mutual Insurance Co.",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "policyNumber": {
+              "value": "SYN-WC-1001",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "totalPremium": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print premium.",
+              "source": null
+            },
+            "totalPayroll": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print payroll; it comes with the submission.",
+              "source": null
+            },
+            "exMod": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "The experience modification is not on a loss run.",
+              "source": null
+            },
+            "evaluationDate": {
+              "value": "2024-09-30",
+              "state": "value",
+              "reason": null,
+              "source": "submission"
+            },
+            "incurredLoss": {
+              "value": "$650.00",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "incurredExpense": {
+              "value": "$50.00",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "claims": {
+              "value": "1",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "indemnityClaims": {
+              "value": "1",
+              "state": "value",
+              "reason": null,
+              "source": null
+            },
+            "medicalOnlyClaims": {
+              "value": "0",
+              "state": "value",
+              "reason": null,
+              "source": null
+            }
+          },
+          "reportOnlyClaims": 0,
+          "effectiveDateNeedsInput": false
+        },
+        {
+          "key": "doc-c/0",
+          "title": "doc-c \u00B7 period 1",
+          "excludedReason": "rejected",
+          "cells": {
+            "effectiveDate": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "expirationDate": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "carrier": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "policyNumber": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "totalPremium": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print premium.",
+              "source": null
+            },
+            "totalPayroll": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "A loss run does not print payroll; it comes with the submission.",
+              "source": null
+            },
+            "exMod": {
+              "value": null,
+              "state": "not-from-loss-run",
+              "reason": "The experience modification is not on a loss run.",
+              "source": null
+            },
+            "evaluationDate": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "incurredLoss": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "incurredExpense": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "claims": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "indemnityClaims": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            },
+            "medicalOnlyClaims": {
+              "value": null,
+              "state": "excluded",
+              "reason": "excluded from quote: the document was rejected",
+              "source": null
+            }
+          },
+          "reportOnlyClaims": 0,
+          "effectiveDateNeedsInput": false
+        }
+      ],
+      "attachments": [
+        {
+          "fileName": "lossrun-2023.pdf",
+          "classification": "LossRun",
+          "status": "processed",
+          "reason": null,
+          "uploadId": "up-1"
+        },
+        {
+          "fileName": "broker-letter.pdf",
+          "classification": "Correspondence",
+          "status": "kept-not-processed",
+          "reason": "not a loss run",
+          "uploadId": "up-1"
+        }
+      ],
+      "integration": {
+        "commandId": "ob-replay-2",
+        "idempotencyKey": "ob-replay-2",
+        "quoteRevision": 2,
+        "delivery": "applied",
+        "receivedAt": "2026-10-25T12:00:00.0000000\u002B00:00",
+        "lastEventType": "lossrun.quote.revised",
+        "lastEventAt": "2026-10-25T12:00:40.0000000\u002B00:00",
+        "lastEventRevision": 2,
+        "staleRefused": null
+      },
+      "orderedByEffectiveDate": true
+    }
+  }
+]

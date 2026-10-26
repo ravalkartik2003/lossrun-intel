@@ -1,0 +1,1673 @@
+{
+  "name": "classifier-skip",
+  "decision": "keep the first-page skip: 9% of documents skip the classifier and no bundle was skipped",
+  "markdown": "### Classifier skip (04 answer 3)\n\nThe first-page check skips the CU classifier when a single loss-run table header resolves on page 1. Correct = a skipped document was a single loss run that was extracted; a classified bundle split exactly at the loss-run segment; a classified single document was found.\r\n\r\n| Population | Docs | Skipped | Skip rate | Correct when skipped | Correct when classified | Mean classifier cost when run |\r\n|---|---:|---:|---:|---:|---:|---:|\r\n| single documents | 177 | 17 | 10 % | 17/17 | 158/160 | $0.0146 |\r\n| bundles | 8 | 0 | 0 % | 0/0 | 8/8 | $0.0327 |\r\n| \u2014 native-pdf | 59 | 17 | 29 % | 17/17 | 42/42 | $0.0183 |\r\n| \u2014 scan | 126 | 0 | 0 % | 0/0 | 124/126 | $0.0146 |\r\n\r\n**Decision:** keep the first-page skip: 9% of documents skip the classifier and no bundle was skipped.\r\n",
+  "data": [
+    {
+      "id": "c1-000-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.019701150
+    },
+    {
+      "id": "c1-000-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018741150
+    },
+    {
+      "id": "c1-000-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018741150
+    },
+    {
+      "id": "c1-000-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019744050
+    },
+    {
+      "id": "c1-002-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-002-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013583175
+    },
+    {
+      "id": "c1-002-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013583175
+    },
+    {
+      "id": "c1-002-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013641750
+    },
+    {
+      "id": "c1-003-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-003-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019945350
+    },
+    {
+      "id": "c1-003-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019965975
+    },
+    {
+      "id": "c1-003-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.020015475
+    },
+    {
+      "id": "c1-004-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-004-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013497375
+    },
+    {
+      "id": "c1-004-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012537375
+    },
+    {
+      "id": "c1-004-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013544400
+    },
+    {
+      "id": "c1-005-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.013345575
+    },
+    {
+      "id": "c1-005-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013345575
+    },
+    {
+      "id": "c1-005-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012385575
+    },
+    {
+      "id": "c1-005-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013352175
+    },
+    {
+      "id": "c1-006-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-006-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013555950
+    },
+    {
+      "id": "c1-006-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012595950
+    },
+    {
+      "id": "c1-006-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013608750
+    },
+    {
+      "id": "c1-008-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-008-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013541925
+    },
+    {
+      "id": "c1-008-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012581925
+    },
+    {
+      "id": "c1-008-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013598850
+    },
+    {
+      "id": "c1-011-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-011-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013437975
+    },
+    {
+      "id": "c1-011-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012477975
+    },
+    {
+      "id": "c1-011-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013445400
+    },
+    {
+      "id": "c1-014-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.013295250
+    },
+    {
+      "id": "c1-014-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013295250
+    },
+    {
+      "id": "c1-014-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013293600
+    },
+    {
+      "id": "c1-014-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013312575
+    },
+    {
+      "id": "c1-015-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-015-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013529550
+    },
+    {
+      "id": "c1-015-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013533675
+    },
+    {
+      "id": "c1-015-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013544400
+    },
+    {
+      "id": "c1-016-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-016-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013566675
+    },
+    {
+      "id": "c1-016-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013565025
+    },
+    {
+      "id": "c1-016-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013623600
+    },
+    {
+      "id": "c1-018-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-018-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013546875
+    },
+    {
+      "id": "c1-018-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013547700
+    },
+    {
+      "id": "c1-018-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013605450
+    },
+    {
+      "id": "c1-019-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-019-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013532850
+    },
+    {
+      "id": "c1-019-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013532850
+    },
+    {
+      "id": "c1-019-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013541100
+    },
+    {
+      "id": "c1-020-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-020-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013516350
+    },
+    {
+      "id": "c1-020-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013516350
+    },
+    {
+      "id": "c1-020-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013569150
+    },
+    {
+      "id": "c1-021-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-021-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013553475
+    },
+    {
+      "id": "c1-021-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013560900
+    },
+    {
+      "id": "c1-021-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013589775
+    },
+    {
+      "id": "c1-023-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-023-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013555950
+    },
+    {
+      "id": "c1-023-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013555950
+    },
+    {
+      "id": "c1-023-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013602150
+    },
+    {
+      "id": "c1-024-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-025-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-026-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.013300200
+    },
+    {
+      "id": "c1-027-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-028-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": true,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0
+    },
+    {
+      "id": "c1-030-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.038319900
+    },
+    {
+      "id": "c1-031-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.031906575
+    },
+    {
+      "id": "c1-032-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.031791900
+    },
+    {
+      "id": "c1-033-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.031918125
+    },
+    {
+      "id": "c1-034-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.038305050
+    },
+    {
+      "id": "c1-035-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.031914825
+    },
+    {
+      "id": "c1-036-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.025503150
+    },
+    {
+      "id": "c1-037-native-pdf-bundle",
+      "inputType": "native-pdf",
+      "bundle": true,
+      "skipped": false,
+      "headerResolution": 1,
+      "correct": true,
+      "classifierCost": 0.031910700
+    },
+    {
+      "id": "c2-000-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013508100
+    },
+    {
+      "id": "c2-000-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012548925
+    },
+    {
+      "id": "c2-000-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013514700
+    },
+    {
+      "id": "c2-000-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013560075
+    },
+    {
+      "id": "c2-002-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013507275
+    },
+    {
+      "id": "c2-002-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013507275
+    },
+    {
+      "id": "c2-002-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012547275
+    },
+    {
+      "id": "c2-002-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013573275
+    },
+    {
+      "id": "c2-005-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013506450
+    },
+    {
+      "id": "c2-005-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012546450
+    },
+    {
+      "id": "c2-005-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012546450
+    },
+    {
+      "id": "c2-005-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013563375
+    },
+    {
+      "id": "c2-006-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013519650
+    },
+    {
+      "id": "c2-006-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013519650
+    },
+    {
+      "id": "c2-006-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013513050
+    },
+    {
+      "id": "c2-006-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": false,
+      "classifierCost": 0.013545225
+    },
+    {
+      "id": "c2-007-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013522950
+    },
+    {
+      "id": "c2-007-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013518825
+    },
+    {
+      "id": "c2-007-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013514700
+    },
+    {
+      "id": "c2-007-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": false,
+      "classifierCost": 0.013543575
+    },
+    {
+      "id": "c2-009-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013507275
+    },
+    {
+      "id": "c2-009-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013503975
+    },
+    {
+      "id": "c2-009-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013503975
+    },
+    {
+      "id": "c2-009-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013552650
+    },
+    {
+      "id": "c2-010-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013291125
+    },
+    {
+      "id": "c2-010-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013291125
+    },
+    {
+      "id": "c2-010-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013301850
+    },
+    {
+      "id": "c2-010-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013305150
+    },
+    {
+      "id": "c2-011-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013506450
+    },
+    {
+      "id": "c2-011-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013507275
+    },
+    {
+      "id": "c2-011-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013520475
+    },
+    {
+      "id": "c2-011-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013561725
+    },
+    {
+      "id": "c2-014-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013527075
+    },
+    {
+      "id": "c2-014-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012567075
+    },
+    {
+      "id": "c2-014-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013533675
+    },
+    {
+      "id": "c2-014-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013587300
+    },
+    {
+      "id": "c2-019-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013333200
+    },
+    {
+      "id": "c2-019-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013333200
+    },
+    {
+      "id": "c2-019-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013344750
+    },
+    {
+      "id": "c2-019-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013338975
+    },
+    {
+      "id": "c2-020-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013293600
+    },
+    {
+      "id": "c2-020-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013293600
+    },
+    {
+      "id": "c2-020-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013304325
+    },
+    {
+      "id": "c2-020-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013312575
+    },
+    {
+      "id": "c2-021-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013292775
+    },
+    {
+      "id": "c2-021-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013292775
+    },
+    {
+      "id": "c2-021-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013299375
+    },
+    {
+      "id": "c2-021-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013313400
+    },
+    {
+      "id": "c2-022-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013517175
+    },
+    {
+      "id": "c2-022-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013517175
+    },
+    {
+      "id": "c2-022-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012557175
+    },
+    {
+      "id": "c2-022-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013591425
+    },
+    {
+      "id": "c2-023-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013507275
+    },
+    {
+      "id": "c2-023-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013507275
+    },
+    {
+      "id": "c2-023-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013529550
+    },
+    {
+      "id": "c2-023-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013579875
+    },
+    {
+      "id": "c2-024-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013480050
+    },
+    {
+      "id": "c2-025-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013520475
+    },
+    {
+      "id": "c2-026-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013509750
+    },
+    {
+      "id": "c2-027-native-pdf-locked",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0.6,
+      "correct": true,
+      "classifierCost": 0.013510575
+    },
+    {
+      "id": "c3-000-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013434675
+    },
+    {
+      "id": "c3-000-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012474675
+    },
+    {
+      "id": "c3-000-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012474675
+    },
+    {
+      "id": "c3-000-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013442925
+    },
+    {
+      "id": "c3-001-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013430550
+    },
+    {
+      "id": "c3-001-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012470550
+    },
+    {
+      "id": "c3-001-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013430550
+    },
+    {
+      "id": "c3-001-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013459425
+    },
+    {
+      "id": "c3-002-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019736625
+    },
+    {
+      "id": "c3-002-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018776625
+    },
+    {
+      "id": "c3-002-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019736625
+    },
+    {
+      "id": "c3-002-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019763850
+    },
+    {
+      "id": "c3-003-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019694550
+    },
+    {
+      "id": "c3-003-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018734550
+    },
+    {
+      "id": "c3-003-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018734550
+    },
+    {
+      "id": "c3-003-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019701150
+    },
+    {
+      "id": "c3-004-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013440450
+    },
+    {
+      "id": "c3-004-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012480450
+    },
+    {
+      "id": "c3-004-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012480450
+    },
+    {
+      "id": "c3-004-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013453650
+    },
+    {
+      "id": "c3-005-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019548525
+    },
+    {
+      "id": "c3-005-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018588525
+    },
+    {
+      "id": "c3-005-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018588525
+    },
+    {
+      "id": "c3-005-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019555125
+    },
+    {
+      "id": "c3-006-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013434675
+    },
+    {
+      "id": "c3-006-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013434675
+    },
+    {
+      "id": "c3-006-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012474675
+    },
+    {
+      "id": "c3-006-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013458600
+    },
+    {
+      "id": "c3-007-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019743225
+    },
+    {
+      "id": "c3-007-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019743225
+    },
+    {
+      "id": "c3-007-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018783225
+    },
+    {
+      "id": "c3-007-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019777050
+    },
+    {
+      "id": "c3-008-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019749825
+    },
+    {
+      "id": "c3-008-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018789825
+    },
+    {
+      "id": "c3-008-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018789825
+    },
+    {
+      "id": "c3-008-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019798500
+    },
+    {
+      "id": "c3-009-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019742400
+    },
+    {
+      "id": "c3-009-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018782400
+    },
+    {
+      "id": "c3-009-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018782400
+    },
+    {
+      "id": "c3-009-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019786950
+    },
+    {
+      "id": "c3-010-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013428900
+    },
+    {
+      "id": "c3-010-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012468900
+    },
+    {
+      "id": "c3-010-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.012468900
+    },
+    {
+      "id": "c3-010-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.013440450
+    },
+    {
+      "id": "c3-011-native-pdf",
+      "inputType": "native-pdf",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019742400
+    },
+    {
+      "id": "c3-011-scan-300dpi-clean",
+      "inputType": "scan-300dpi-clean",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018782400
+    },
+    {
+      "id": "c3-011-scan-200dpi-rotated-noisy",
+      "inputType": "scan-200dpi-rotated-noisy",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.018782400
+    },
+    {
+      "id": "c3-011-scan-150dpi-fax",
+      "inputType": "scan-150dpi-fax",
+      "bundle": false,
+      "skipped": false,
+      "headerResolution": 0,
+      "correct": true,
+      "classifierCost": 0.019770450
+    }
+  ],
+  "spendUsd": 0
+}

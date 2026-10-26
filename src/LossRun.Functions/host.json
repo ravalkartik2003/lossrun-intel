@@ -1,0 +1,34 @@
+{
+  "version": "2.0",
+  "functionTimeout": "00:30:00",
+  "extensions": {
+    "http": {
+      "routePrefix": "api/v1"
+    },
+    "durableTask": {
+      "hubName": "%TASKHUB_NAME%",
+      "storageProvider": {
+        "type": "azureManaged",
+        "connectionStringName": "DURABLE_TASK_SCHEDULER_CONNECTION_STRING"
+      }
+    },
+    "serviceBus": {
+      "maxConcurrentSessions": 16,
+      "sessionIdleTimeout": "00:00:05",
+      "maxAutoLockRenewalDuration": "00:05:00"
+    }
+  },
+  "logging": {
+    "logLevel": {
+      "default": "Information",
+      "DurableTask.Core": "Warning",
+      "Azure.Core": "Warning"
+    },
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request;Exception"
+      }
+    }
+  }
+}

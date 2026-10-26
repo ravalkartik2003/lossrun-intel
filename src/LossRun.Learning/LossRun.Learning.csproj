@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>LossRun.Learning</RootNamespace>
+    <!-- PDFtoImage declares its supported OSes (Windows/Linux/macOS); the page image is an opt-in flag. -->
+    <NoWarn>$(NoWarn);CA1416</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- MIT (PDFium BSD-3-Clause/Apache-2.0, SkiaSharp MIT): renders page 1 for the optional image input. -->
+    <PackageReference Include="PDFtoImage" Version="5.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Contracts\LossRun.Contracts.csproj" />
+    <ProjectReference Include="..\LossRun.Rules\LossRun.Rules.csproj" />
+    <ProjectReference Include="..\LossRun.Ingestion\LossRun.Ingestion.csproj" />
+    <ProjectReference Include="..\LossRun.Formats\LossRun.Formats.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The spec schema the model writes against (source of truth in docs/evaluation) and one hand-written worked example. -->
+    <EmbeddedResource Include="$(EvaluationDataDir)carrier-format.schema.json" LogicalName="LossRun.Learning.carrier-format.schema.json" Link="Data\carrier-format.schema.json" />
+    <EmbeddedResource Include="$(EvaluationDataDir)learn-gate.json" LogicalName="LossRun.Learning.learn-gate.json" Link="Data\learn-gate.json" />
+    <EmbeddedResource Include="..\..\config\models.json" LogicalName="LossRun.Learning.models.json" Link="Config\models.json" />
+    <EmbeddedResource Include="..\TestShared\formats\synthetic-mutual-pdf\1.json" LogicalName="LossRun.Learning.example-spec.json" Link="Data\example-spec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="LossRun.Learning.Tests" />
+  </ItemGroup>
+
+</Project>

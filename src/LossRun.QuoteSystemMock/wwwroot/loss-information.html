@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loss Information · Quote system (mock)</title>
+<style>
+  /* Brief 25: the mock quote system's loss-information screen. Synthetic data only. Light and dark themes, WCAG 2.1 AA. */
+  :root {
+    --bg: #f6f7f9; --panel: #ffffff; --ink: #18202b; --ink-2: #47515f; --line: #c9d0d8; --line-strong: #77818d;
+    --accent: #1e5aa8; --needs: #8a4b00; --needs-bg: #fff3e0; --ok: #1f6e43; --ok-bg: #e7f4ec; --muted-bg: #eceef1; --focus: #1e5aa8;
+  }
+  :root[data-theme="dark"] {
+    --bg: #11161d; --panel: #18202a; --ink: #e8ecf1; --ink-2: #b4bdc8; --line: #2c3745; --line-strong: #74808f;
+    --accent: #8fb8f0; --needs: #ffc27a; --needs-bg: #3a2a14; --ok: #8fd6ab; --ok-bg: #173022; --muted-bg: #222b36; --focus: #8fb8f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #11161d; --panel: #18202a; --ink: #e8ecf1; --ink-2: #b4bdc8; --line: #2c3745; --line-strong: #74808f;
+      --accent: #8fb8f0; --needs: #ffc27a; --needs-bg: #3a2a14; --ok: #8fd6ab; --ok-bg: #173022; --muted-bg: #222b36; --focus: #8fb8f0;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); }
+  header.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+  header.bar h1 { font-size: 18px; margin: 0 12px 0 0; }
+  .system { color: var(--ink-2); font-size: 12px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 11px; border: 1px solid currentColor; font-size: 12px; font-weight: 600; }
+  .badge.ok { color: var(--ok); background: var(--ok-bg); }
+  .badge.needs { color: var(--needs); background: var(--needs-bg); }
+  .badge.rev { color: var(--accent); }
+  main { padding: 16px; max-width: 1400px; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; }
+  h2 { font-size: 15px; margin: 0 0 8px; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; }
+  caption { text-align: left; color: var(--ink-2); padding-bottom: 6px; }
+  th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: right; vertical-align: top; white-space: nowrap; }
+  th[scope="row"] { text-align: left; font-weight: 600; background: var(--muted-bg); }
+  thead th { background: var(--muted-bg); }
+  .col-excluded { background: var(--muted-bg); color: var(--ink-2); }
+  .sub { display: block; font-weight: 400; font-size: 12px; color: var(--ink-2); }
+  .marker { font-size: 12px; color: var(--ink-2); font-style: italic; }
+  .needs { position: relative; display: inline-block; color: var(--needs); background: var(--needs-bg); border: 1px solid var(--needs); border-radius: 4px; padding: 0 6px;
+           font-size: 12px; font-weight: 600; cursor: help; }
+  .needs:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .tip { display: none; position: absolute; right: 0; top: 120%; z-index: 2; width: max-content; max-width: 260px; white-space: normal; text-align: left;
+         background: var(--panel); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 4px; padding: 6px 8px; font-weight: 400; }
+  .needs:hover .tip, .needs:focus .tip, .needs:focus-within .tip { display: block; }
+  details summary { cursor: pointer; font-weight: 600; }
+  details summary:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+  dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; margin: 8px 0 0; }
+  dt { color: var(--ink-2); } dd { margin: 0; font-family: ui-monospace, Consolas, monospace; font-size: 12px; word-break: break-all; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .empty { color: var(--ink-2); }
+  .replay { color: var(--accent); }
+  button.theme { margin-left: auto; background: var(--panel); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+  button.theme:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+  td.att, th.att { text-align: left; white-space: normal; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <div>
+    <h1 id="title">Loss Information</h1>
+    <span class="system">Quote management system · mock · synthetic data</span>
+  </div>
+  <span id="revision" class="badge rev" hidden></span>
+  <span id="readiness" class="badge" hidden></span>
+  <span id="updated" class="system"></span>
+  <span id="mode" class="badge replay" hidden>Replay (recorded)</span>
+  <button type="button" class="theme" id="theme" aria-pressed="false">Dark theme</button>
+</header>
+<main>
+  <p id="live" class="sr-only" aria-live="polite"></p>
+  <section aria-labelledby="grid-title">
+    <h2 id="grid-title">Prior insurance — loss history by policy period</h2>
+    <div class="scroll" id="grid"><p class="empty">Loading…</p></div>
+  </section>
+  <section aria-labelledby="att-title">
+    <h2 id="att-title">Attachments</h2>
+    <div id="attachments" class="scroll"><p class="empty">No attachments yet.</p></div>
+  </section>
+  <section>
+    <details id="integration">
+      <summary>Integration</summary>
+      <dl id="strip"></dl>
+    </details>
+  </section>
+</main>
+<script src="loss-information.js" defer></script>
+</body>
+</html>

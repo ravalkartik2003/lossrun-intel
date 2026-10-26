@@ -1,0 +1,132 @@
+{
+  "documentLive": {
+    "samples": [
+      669.5,
+      589,
+      625.5,
+      562.6000000238419,
+      501.39999997615814
+    ],
+    "p50": 589,
+    "max": 669.5,
+    "note": "ms from navigation start to page image + ledger cells rendered; Static Web App + Function App, warm"
+  },
+  "liveParity": {
+    "comparisons": 8,
+    "identical": 8,
+    "results": [
+      {
+        "quote": "Q-DEMO-11",
+        "scenario": "{\"reserveFactorBps\":1000}",
+        "same": true
+      },
+      {
+        "quote": "Q-DEMO-11",
+        "scenario": "{\"reserveFactorBps\":-2000,\"capPerClaimCents\":1000000}",
+        "same": true
+      },
+      {
+        "quote": "Q-DEMO-11",
+        "scenario": "{\"trendFactorBpsByYear\":{\"2022\":11025,\"2023\":10500},\"includeCT\":false}",
+        "same": true
+      },
+      {
+        "quote": "Q-DEMO-11",
+        "scenario": "{\"excludeCatastrophicAboveCents\":1500000,\"includeNonCA\":false}",
+        "same": true
+      },
+      {
+        "quote": "Q-SAMPLE-10",
+        "scenario": "{\"reserveFactorBps\":1000}",
+        "same": true
+      },
+      {
+        "quote": "Q-SAMPLE-10",
+        "scenario": "{\"reserveFactorBps\":-2000,\"capPerClaimCents\":1000000}",
+        "same": true
+      },
+      {
+        "quote": "Q-SAMPLE-10",
+        "scenario": "{\"trendFactorBpsByYear\":{\"2022\":11025,\"2023\":10500},\"includeCT\":false}",
+        "same": true
+      },
+      {
+        "quote": "Q-SAMPLE-10",
+        "scenario": "{\"excludeCatastrophicAboveCents\":1500000,\"includeNonCA\":false}",
+        "same": true
+      }
+    ]
+  },
+  "axe": [
+    {
+      "screen": "Upload",
+      "theme": "light",
+      "violations": 0
+    },
+    {
+      "screen": "Document",
+      "theme": "light",
+      "violations": 0
+    },
+    {
+      "screen": "Review queue",
+      "theme": "light",
+      "violations": 0
+    },
+    {
+      "screen": "Analytics",
+      "theme": "light",
+      "violations": 0
+    },
+    {
+      "screen": "Chat",
+      "theme": "light",
+      "violations": 0
+    },
+    {
+      "screen": "Costs",
+      "theme": "light",
+      "violations": 0
+    },
+    {
+      "screen": "Formats",
+      "theme": "light",
+      "violations": 0
+    },
+    {
+      "screen": "Upload",
+      "theme": "dark",
+      "violations": 0
+    },
+    {
+      "screen": "Document",
+      "theme": "dark",
+      "violations": 0
+    },
+    {
+      "screen": "Review queue",
+      "theme": "dark",
+      "violations": 0
+    },
+    {
+      "screen": "Analytics",
+      "theme": "dark",
+      "violations": 0
+    },
+    {
+      "screen": "Chat",
+      "theme": "dark",
+      "violations": 0
+    },
+    {
+      "screen": "Costs",
+      "theme": "dark",
+      "violations": 0
+    },
+    {
+      "screen": "Formats",
+      "theme": "dark",
+      "violations": 0
+    }
+  ]
+}

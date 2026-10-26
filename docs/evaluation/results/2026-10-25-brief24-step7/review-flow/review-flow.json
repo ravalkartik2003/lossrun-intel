@@ -1,0 +1,27 @@
+{
+ "quote": "Q-REVIEW24-10250615",
+ "fixture": "src/TestShared/fixtures/lossrun-export.csv (synthetic)",
+ "steps": "upload (ReplayAccepted) -> reopen (pending) -> override decision with one correction (what 'Save changes and approve' sends) -> payload, integration, chat",
+ "integration": [
+  {"kind": "quote.payload", "quoteRevision": 1, "cause": "upload-completed", "delivery": "delivered"},
+  {"kind": "quote.revised", "quoteRevision": 1, "cause": "upload-completed", "published": true},
+  {"kind": "upload.completed", "quoteRevision": 1, "published": true},
+  {"kind": "quote.revised", "quoteRevision": 2, "cause": "reopen-decided", "published": true},
+  {"kind": "quote.payload", "quoteRevision": 2, "cause": "reopen-decided", "delivery": "delivered"},
+  {"kind": "review.decided", "quoteRevision": 2, "published": true}
+ ],
+ "payload": {"status": 200, "etag": "\"q-2\"", "quoteRevision": 2, "featuresView": "verified-only", "ready": false, "blockingFieldCount": 5,
+  "note": "the correction moved a claim value away from the printed subtotal, so R-10 keeps five fields unresolved"},
+ "ifNoneMatch": 304,
+ "revision1": [409, "revision-superseded"],
+ "audit": ["review.override", "rederive", "override", "extraction.persist", "review.reopened"],
+ "chat": {
+  "status": 200,
+  "tools": ["explain_value"],
+  "unverified": null,
+  "invalidCitations": null,
+  "rationaleQuoted": true,
+  "answer": "Claim WC-23-0002’s medical reserve was printed as $800.00 on the loss run [S1], but the current approved value is $700.00 [C1]. It was changed by the underwriter on 2026-10-25T10:20Z with the rationale: \"brief 24 live check: adjuster note reduces the medical reserve\" [C1].",
+  "costUsd": 0.003302
+ }
+}

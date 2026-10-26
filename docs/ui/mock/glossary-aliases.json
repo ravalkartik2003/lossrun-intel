@@ -1,0 +1,102 @@
+[
+  {
+    "id": "comp pd|claim.indemnity.paid",
+    "header": "Comp Pd",
+    "canonicalField": "claim.indemnity.paid",
+    "status": "candidate",
+    "carrierName": "Fictional Casualty Group",
+    "formatId": "fictional-casualty-group-pdf",
+    "formatVersion": "1",
+    "firstSeenDocumentId": "doc-5209d62bf384ad6a",
+    "firstSeenUtc": "2026-10-22T14:05:11Z",
+    "learnedBy": { "model": "gpt-5.4-mini", "modelVersion": "2026-03-17", "promptVersion": "learn-v8" },
+    "confidence": 0.9,
+    "totalsTie": true,
+    "verificationGate": "pdf-totals",
+    "evidence": [
+      { "documentId": "doc-5209d62bf384ad6a", "formatRef": "fictional-casualty-group-pdf@1", "route": "learn", "totalsTie": true, "atUtc": "2026-10-22T14:05:11Z" }
+    ]
+  },
+  {
+    "id": "dt rptd|claim.datereported",
+    "header": "Dt Rptd",
+    "canonicalField": "claim.dateReported",
+    "status": "candidate",
+    "carrierName": "Fictional Casualty Group",
+    "formatId": "fictional-casualty-group-pdf",
+    "formatVersion": "1",
+    "firstSeenDocumentId": "doc-5209d62bf384ad6a",
+    "firstSeenUtc": "2026-10-22T14:05:11Z",
+    "learnedBy": { "model": "gpt-5.4-mini", "modelVersion": "2026-03-17", "promptVersion": "learn-v8" },
+    "confidence": 0.9,
+    "totalsTie": true,
+    "verificationGate": "pdf-totals",
+    "evidence": [
+      { "documentId": "doc-5209d62bf384ad6a", "formatRef": "fictional-casualty-group-pdf@1", "route": "learn", "totalsTie": true, "atUtc": "2026-10-22T14:05:11Z" }
+    ]
+  },
+  {
+    "id": "ctl no|claim.claimnumber",
+    "header": "Ctl No",
+    "canonicalField": "claim.claimNumber",
+    "status": "candidate",
+    "carrierName": "Fictional Casualty Group",
+    "formatId": "fictional-casualty-group-pdf",
+    "formatVersion": "1",
+    "firstSeenDocumentId": "doc-5209d62bf384ad6a",
+    "firstSeenUtc": "2026-10-22T14:05:11Z",
+    "learnedBy": { "model": "gpt-5.4-mini", "modelVersion": "2026-03-17", "promptVersion": "learn-v8" },
+    "confidence": 0.9,
+    "totalsTie": true,
+    "verificationGate": "pdf-totals",
+    "evidence": [
+      { "documentId": "doc-5209d62bf384ad6a", "formatRef": "fictional-casualty-group-pdf@1", "route": "learn", "totalsTie": true, "atUtc": "2026-10-22T14:05:11Z" }
+    ]
+  },
+  {
+    "id": "incurred to date|claim.total.incurred",
+    "header": "Incurred to Date",
+    "canonicalField": "claim.total.incurred",
+    "status": "active",
+    "carrierName": "Synthetic Mutual Insurance Co.",
+    "formatId": "synthetic-mutual-insurance-co-pdf",
+    "formatVersion": "1",
+    "firstSeenDocumentId": "doc-0b3c41aa9e2d6f10",
+    "firstSeenUtc": "2026-10-21T09:41:02Z",
+    "learnedBy": { "model": "gpt-5.4-mini", "modelVersion": "2026-03-17", "promptVersion": "learn-v7" },
+    "confidence": 0.9,
+    "totalsTie": true,
+    "verificationGate": "pdf-totals",
+    "activatedBy": "system",
+    "activatedUtc": "2026-10-22T10:12:40Z",
+    "activationReason": "verified on 3 documents across 2 formats",
+    "evidence": [
+      { "documentId": "doc-0b3c41aa9e2d6f10", "formatRef": "synthetic-mutual-insurance-co-pdf@1", "route": "learn", "totalsTie": true, "atUtc": "2026-10-21T09:41:02Z" },
+      { "documentId": "doc-41f0c2d8a77e9b35", "formatRef": "synthetic-mutual-insurance-co-pdf@1", "route": "replay", "totalsTie": true, "atUtc": "2026-10-21T16:20:18Z" },
+      { "documentId": "doc-9997d9e37c0fcb03-p1-1", "formatRef": "synthetic-mutual-pdf@5", "route": "replay", "totalsTie": true, "atUtc": "2026-10-22T10:12:40Z" }
+    ]
+  },
+  {
+    "id": "med pd net|claim.medical.paid",
+    "header": "Med Pd (Net)",
+    "canonicalField": "claim.medical.paid",
+    "status": "retired",
+    "carrierName": "Synthetic Mutual Insurance Co.",
+    "formatId": "synthetic-mutual-insurance-co-pdf",
+    "formatVersion": "1",
+    "firstSeenDocumentId": "doc-0b3c41aa9e2d6f10",
+    "firstSeenUtc": "2026-10-21T09:41:02Z",
+    "learnedBy": { "model": "gpt-5.4-mini", "modelVersion": "2026-03-17", "promptVersion": "learn-v7" },
+    "confidence": 0.9,
+    "totalsTie": true,
+    "verificationGate": "pdf-totals",
+    "retiredBy": "uw-manager-1",
+    "retiredUtc": "2026-10-22T11:02:09Z",
+    "retiredReason": "a reviewer corrected policyPeriods[0].claims[2].medical.paid, read through this alias",
+    "retiredAuditEventId": "override:doc-41f0c2d8a77e9b35@2:policyPeriods[0].claims[2].medical.paid",
+    "evidence": [
+      { "documentId": "doc-0b3c41aa9e2d6f10", "formatRef": "synthetic-mutual-insurance-co-pdf@1", "route": "learn", "totalsTie": true, "atUtc": "2026-10-21T09:41:02Z" },
+      { "documentId": "doc-41f0c2d8a77e9b35", "formatRef": "synthetic-mutual-insurance-co-pdf@1", "route": "replay", "totalsTie": true, "atUtc": "2026-10-21T16:20:18Z" }
+    ]
+  }
+]

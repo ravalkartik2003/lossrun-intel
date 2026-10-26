@@ -1,0 +1,125 @@
+{
+  "description": "Brief 33: TaskFailureDetails as the orchestrator receives them, captured by tools/capture-failures (no Azure): real exceptions built by the SDKs or thrown by the runtime, through the Functions worker's own conversion (TaskFailureDetailsConverter.TaskFailureFromException with the app's IExceptionPropertiesProvider, ExceptionProperties.Of), then ProtoUtils back to Microsoft.DurableTask.TaskFailureDetails. The SqlException server message is synthetic: shape only; no real capture yet (a server's text cannot be captured offline; brief 34's live resume never reached the Durable layer, because EF's own retries absorb it). The classifier reads the sqlErrorNumber property, never the text.",
+  "packages": {
+    "durableTaskWorker": "1.26.0",
+    "durableTaskAbstractions": "1.27.0",
+    "functionsWorkerExtensionsDurableTask": "1.20.0",
+    "azureCore": "1.62.0",
+    "sqlClient": "6.1.7",
+    "efCore": "10.0.13"
+  },
+  "cases": {
+    "efcore-dbupdate-over-sql-40613": {
+      "Thrown": "Microsoft.EntityFrameworkCore.DbUpdateException",
+      "OrchestratorSees": {
+        "ErrorType": "Microsoft.EntityFrameworkCore.DbUpdateException",
+        "ErrorMessage": "An error occurred while saving the entity changes. See the inner exception for details.",
+        "Properties": {},
+        "InnerFailure": {
+          "ErrorType": "Microsoft.Data.SqlClient.SqlException",
+          "ErrorMessage": "<synthetic: shape only; no real capture yet (server message for 40613)>",
+          "Properties": {
+            "sqlErrorNumber": 40613
+          },
+          "InnerFailure": null
+        }
+      }
+    },
+    "efcore-retry-limit-exceeded-over-sql-40613": {
+      "Thrown": "Microsoft.EntityFrameworkCore.Storage.RetryLimitExceededException",
+      "OrchestratorSees": {
+        "ErrorType": "Microsoft.EntityFrameworkCore.Storage.RetryLimitExceededException",
+        "ErrorMessage": "The maximum number of retries (1) was exceeded while executing database operations with 'SqlServerRetryingExecutionStrategy'. See the inner exception for the most recent failure.",
+        "Properties": {},
+        "InnerFailure": {
+          "ErrorType": "Microsoft.Data.SqlClient.SqlException",
+          "ErrorMessage": "<synthetic: shape only; no real capture yet (server message for 40613)>",
+          "Properties": {
+            "sqlErrorNumber": 40613
+          },
+          "InnerFailure": null
+        }
+      }
+    },
+    "http-connection-refused": {
+      "Thrown": "System.Net.Http.HttpRequestException",
+      "OrchestratorSees": {
+        "ErrorType": "System.Net.Http.HttpRequestException",
+        "ErrorMessage": "No connection could be made because the target machine actively refused it. (127.0.0.1:65357)",
+        "Properties": {},
+        "InnerFailure": {
+          "ErrorType": "System.Net.Sockets.SocketException",
+          "ErrorMessage": "No connection could be made because the target machine actively refused it.",
+          "Properties": {},
+          "InnerFailure": null
+        }
+      }
+    },
+    "httpclient-timeout": {
+      "Thrown": "System.Threading.Tasks.TaskCanceledException",
+      "OrchestratorSees": {
+        "ErrorType": "System.Threading.Tasks.TaskCanceledException",
+        "ErrorMessage": "The request was canceled due to the configured HttpClient.Timeout of 0.05 seconds elapsing.",
+        "Properties": {},
+        "InnerFailure": {
+          "ErrorType": "System.TimeoutException",
+          "ErrorMessage": "A task was canceled.",
+          "Properties": {},
+          "InnerFailure": {
+            "ErrorType": "System.Threading.Tasks.TaskCanceledException",
+            "ErrorMessage": "A task was canceled.",
+            "Properties": {},
+            "InnerFailure": null
+          }
+        }
+      }
+    },
+    "invalidoperation": {
+      "Thrown": "System.InvalidOperationException",
+      "OrchestratorSees": {
+        "ErrorType": "System.InvalidOperationException",
+        "ErrorMessage": "Graph doc-1 is missing.",
+        "Properties": {},
+        "InnerFailure": null
+      }
+    },
+    "requestfailed-404": {
+      "Thrown": "Azure.RequestFailedException",
+      "OrchestratorSees": {
+        "ErrorType": "Azure.RequestFailedException",
+        "ErrorMessage": "The server is busy.\r\nStatus: 404 (Not Found)\r\nErrorCode: ServerBusy\r\n\r\nService request succeeded. Response content and headers are not included to avoid logging sensitive data.\r\n",
+        "Properties": {},
+        "InnerFailure": null
+      }
+    },
+    "requestfailed-429": {
+      "Thrown": "Azure.RequestFailedException",
+      "OrchestratorSees": {
+        "ErrorType": "Azure.RequestFailedException",
+        "ErrorMessage": "The server is busy.\r\nStatus: 429 (Too Many Requests)\r\nErrorCode: ServerBusy\r\n\r\nService request succeeded. Response content and headers are not included to avoid logging sensitive data.\r\n",
+        "Properties": {},
+        "InnerFailure": null
+      }
+    },
+    "requestfailed-503": {
+      "Thrown": "Azure.RequestFailedException",
+      "OrchestratorSees": {
+        "ErrorType": "Azure.RequestFailedException",
+        "ErrorMessage": "The server is busy.\r\nStatus: 503 (Service Unavailable)\r\nErrorCode: ServerBusy\r\n\r\nService request succeeded. Response content and headers are not included to avoid logging sensitive data.\r\n",
+        "Properties": {},
+        "InnerFailure": null
+      }
+    },
+    "sql-40613": {
+      "Thrown": "Microsoft.Data.SqlClient.SqlException",
+      "OrchestratorSees": {
+        "ErrorType": "Microsoft.Data.SqlClient.SqlException",
+        "ErrorMessage": "<synthetic: shape only; no real capture yet (server message for 40613)>",
+        "Properties": {
+          "sqlErrorNumber": 40613
+        },
+        "InnerFailure": null
+      }
+    }
+  }
+}

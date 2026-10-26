@@ -1,0 +1,1299 @@
+{
+  "catalogVersion": "1.3.0",
+  "owner": "underwriting-analytics",
+  "approvers": [
+    "chief-actuary",
+    "uw-manager"
+  ],
+  "conventions": {
+    "money": "Integer cents in computation; JSON prints dollars with up to 2 decimals. A missing paid or reserve counts as 0; a missing component incurred is paid + reserve; a printed incurred with no reserve gives reserve = incurred - paid.",
+    "ratio": "round-half-away-from-zero of numerator/denominator to 6 decimals, in integer arithmetic. Null when the denominator is 0 or no claim carries the input field.",
+    "days": "Whole days between ISO dates; medians printed to 1 decimal (mean of the two middle values for an even count); p90 is nearest-rank.",
+    "rate": "Claims per exposure unit, 6 decimals.",
+    "grain": "Account (all included claims of all documents of one quote); breakdowns by policy year (year of the policy period effective date) or by code.",
+    "excluded": "Rows whose lineOfBusiness is printed and is not WC are always excluded (counted by non_wc_excluded_count). Scenario exclusions apply after that.",
+    "ct": "A claim is cumulative trauma (CA LC §3208.1/§5412) when flagged CT, or nature-of-injury code 60–83, or cause code 97/98, or type-of-loss 02/03, or the description says cumulative / CT / repetitive. Post-termination when the date of injury is on or after the claimant's last day worked: the claim's own lastDayWorked when the carrier prints it, else the quote context's account-level date (report 10 answer 1).",
+    "notMeasurable": "A metric whose value is null prints notMeasurable with the reason: the missing input (no payroll / no FTE count in the submission context; no last day worked; no litigation flag, recoveries or cause / body-part / nature codes printed; no valuation date), else 'no contributing claims'. Added in 1.1.0 with claim.lastDayWorked.",
+    "fromSummary": "ADR 0017 (brief 18): a summary-only loss run prints period rows (counts, paid / reserve / incurred) and no claims. fromSummary: yes marks the metrics computed from those rows (LossRun.Analytics.PeriodSummaries; by-year breakdowns keyed by the printed period label); every other metric is notMeasurable for a summary-only document. Claim-level metrics and the what-if scenario see only claim rows. Added in 1.2.0."
+  },
+  "scenario": {
+    "description": "What-if parameters (underwriter-analytics.md KQ2). Applied identically by server and client; the baseline is the scenario with every parameter at its default.",
+    "order": [
+      "excludeClaimIds",
+      "includeNonCA",
+      "includeCT",
+      "excludeCatastrophicAbove",
+      "trendFactorBpsByYear",
+      "reserveFactorBps",
+      "capPerClaim"
+    ],
+    "parameters": [
+      {
+        "name": "excludeClaimIds",
+        "type": "string[]",
+        "default": [],
+        "description": "Claims removed from every metric."
+      },
+      {
+        "name": "includeNonCA",
+        "type": "boolean",
+        "default": true,
+        "description": "false removes claims whose jurisdiction is printed and is not CA (CA experience rating uses CA losses only)."
+      },
+      {
+        "name": "includeCT",
+        "type": "boolean",
+        "default": true,
+        "description": "false removes cumulative-trauma claims."
+      },
+      {
+        "name": "excludeCatastrophicAbove",
+        "type": "money|null",
+        "default": null,
+        "description": "Removes claims whose as-reported total incurred is above this amount (catastrophic / shock losses)."
+      },
+      {
+        "name": "trendFactorBpsByYear",
+        "type": "map<policyYear,int>",
+        "default": {},
+        "description": "Multiplies every paid and reserve amount of the policy year's claims, in basis points (10500 = x1.05)."
+      },
+      {
+        "name": "reserveFactorBps",
+        "type": "int",
+        "default": 0,
+        "description": "Changes every reserve by this many basis points (+1000 = +10 %, -500 = -5 %)."
+      },
+      {
+        "name": "capPerClaim",
+        "type": "money|null",
+        "default": null,
+        "description": "Limits each claim's total incurred; the limit consumes paid amounts first (indemnity, medical, expense), then reserves in the same order (Variance, Catastrophes and WC ratemaking)."
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "name": "claim_count",
+      "label": "Claim count",
+      "description": "Number of included claims.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "yes",
+      "expr": "count(claim)",
+      "agg": "count",
+      "nulls": "Never null; 0 for an account with no claims.",
+      "inputs": [
+        {
+          "field": "claim.claimNumber",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "As of each document's valuation date; late-reported claims (IBNR) are not on the run.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "claim_count_with_financials",
+      "label": "Claims with financials",
+      "description": "Included claims that carry financials: claim_count less the claims recorded for reporting only (claim.reportOnly; a census-only status or an incident indicator). Shown beside claim_count, so a count is read with both totals (brief 22 Answers 4). Added in 1.3.0.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim where reportOnly is not true)",
+      "agg": "count",
+      "filters": [
+        "reportOnly is not true"
+      ],
+      "nulls": "Never null; equals claim_count when no claim is flagged report-only.",
+      "inputs": [
+        {
+          "field": "claim.claimNumber",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.reportOnly",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "As of each document's valuation date; a census-only claim gains financials at a later valuation.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "open_claim_count",
+      "label": "Open claims",
+      "description": "Claims whose status is open or reopened.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "yes",
+      "expr": "count(claim where status in (open, reopened))",
+      "agg": "count",
+      "filters": [
+        "status in (open, reopened)"
+      ],
+      "nulls": "Claims with no status are not counted.",
+      "inputs": [
+        {
+          "field": "claim.status",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Open at the valuation date; a later valuation may close them.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "closed_claim_count",
+      "label": "Closed claims",
+      "description": "Claims whose status is closed.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "yes",
+      "expr": "count(claim where status = closed)",
+      "agg": "count",
+      "filters": [
+        "status = closed"
+      ],
+      "nulls": "Claims with no status are not counted.",
+      "inputs": [
+        {
+          "field": "claim.status",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Closed claims can reopen (development reason 3, §B4).",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "reopened_claim_count",
+      "label": "Reopened claims",
+      "description": "Claims whose status is reopened.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim where status = reopened)",
+      "agg": "count",
+      "filters": [
+        "status = reopened"
+      ],
+      "nulls": "Claims with no status are not counted.",
+      "inputs": [
+        {
+          "field": "claim.status",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Only reopenings printed on this run; a reopening detected across valuations needs two runs (rule S14).",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "medical_only_count",
+      "label": "Medical-only claims",
+      "description": "Claims of type medical-only.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim where claimType = medicalOnly)",
+      "agg": "count",
+      "filters": [
+        "claimType = medicalOnly"
+      ],
+      "nulls": "Claims of unknown type are counted in neither medical-only nor lost-time.",
+      "inputs": [
+        {
+          "field": "claim.claimType",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "A medical-only claim can convert to indemnity later (rule S8).",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "lost_time_count",
+      "label": "Lost-time claims",
+      "description": "Claims of type indemnity (lost time).",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim where claimType = indemnity)",
+      "agg": "count",
+      "filters": [
+        "claimType = indemnity"
+      ],
+      "nulls": "Claims of unknown type are not counted.",
+      "inputs": [
+        {
+          "field": "claim.claimType",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "As printed at the valuation date.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "lost_time_share",
+      "label": "Lost-time share",
+      "description": "Lost-time claims as a share of all claims (national rule of thumb 20–25 %, §B3).",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "lost_time_count / claim_count",
+      "numerator": "lost_time_count",
+      "denominator": "claim_count",
+      "nulls": "Null when there are no claims.",
+      "inputs": [
+        {
+          "field": "claim.claimType",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "As printed at the valuation date.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "paid_total",
+      "label": "Total paid",
+      "description": "Paid indemnity + medical + expense; breakdown by component.",
+      "type": "simple",
+      "unit": "money",
+      "fromSummary": "yes",
+      "expr": "sum(indemnity.paid + medical.paid + expense.paid)",
+      "agg": "sum",
+      "breakdown": "component",
+      "nulls": "Missing paid amounts count as 0.",
+      "inputs": [
+        {
+          "field": "claim.indemnity.paid",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.medical.paid",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.expense.paid",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Cumulative paid to the valuation date; paid develops upward.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "reserve_total",
+      "label": "Total reserves",
+      "description": "Case reserves indemnity + medical + expense; breakdown by component.",
+      "type": "simple",
+      "unit": "money",
+      "fromSummary": "yes",
+      "expr": "sum(indemnity.reserve + medical.reserve + expense.reserve)",
+      "agg": "sum",
+      "breakdown": "component",
+      "nulls": "Missing reserves count as 0 (a closed claim should carry none, rule H9).",
+      "inputs": [
+        {
+          "field": "claim.indemnity.reserve",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.medical.reserve",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.expense.reserve",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Case reserves set by examiners; no IBNR.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "incurred_total",
+      "label": "Total incurred",
+      "description": "Paid + reserves, all components; breakdown by component.",
+      "type": "simple",
+      "unit": "money",
+      "fromSummary": "yes",
+      "expr": "sum(paid + reserve) over indemnity, medical, expense",
+      "agg": "sum",
+      "breakdown": "component",
+      "nulls": "See conventions.money.",
+      "inputs": [
+        {
+          "field": "claim.indemnity.incurred",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.medical.incurred",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.expense.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Reported (case) incurred, not ultimate; apply LDFs for ultimate (§B5).",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "frequency_per_100_payroll",
+      "label": "Frequency per $100 payroll",
+      "description": "Claims per $100 of payroll over the policy years for which payroll is supplied; breakdown by policy year.",
+      "type": "ratio",
+      "unit": "rate",
+      "fromSummary": "no",
+      "expr": "claim_count / (payroll / 100)",
+      "numerator": "claim_count",
+      "denominator": "payroll / 100",
+      "breakdown": "policyYear",
+      "nulls": "Null when the context supplies no payroll.",
+      "inputs": [
+        {
+          "field": "claim.claimNumber",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "context.payrollByYear",
+          "transformation": "TRANSFORMATION"
+        }
+      ],
+      "valuation": "Claims reported to the valuation date over full-year payroll; immature years understate frequency.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "WCIRB reports indemnity-claim frequency per 1,000 employees (17.8 in 2025); payroll-based frequency is the rating view."
+    },
+    {
+      "name": "frequency_per_100_fte",
+      "label": "Frequency per 100 FTE",
+      "description": "Claims per 100 full-time-equivalent employees over the policy years for which FTE is supplied; breakdown by policy year.",
+      "type": "ratio",
+      "unit": "rate",
+      "fromSummary": "no",
+      "expr": "claim_count / (fte / 100)",
+      "numerator": "claim_count",
+      "denominator": "fte / 100",
+      "breakdown": "policyYear",
+      "nulls": "Null when the context supplies no FTE.",
+      "inputs": [
+        {
+          "field": "claim.claimNumber",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "context.fteByYear",
+          "transformation": "TRANSFORMATION"
+        }
+      ],
+      "valuation": "As frequency_per_100_payroll.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "claim_count_by_policy_year",
+      "label": "Claims by policy year",
+      "description": "Claim counts per policy year (frequency per policy year when no exposure is supplied); value is the number of policy years.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "yes",
+      "expr": "count(claim) group by policyYear",
+      "agg": "count",
+      "breakdown": "policyYear",
+      "nulls": "Claims with no policy year are grouped under 'unknown'.",
+      "inputs": [
+        {
+          "field": "period.effectiveDate",
+          "transformation": "TRANSFORMATION"
+        },
+        {
+          "field": "claim.claimNumber",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Recent years are immature (fewer claims reported yet).",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "severity_all",
+      "label": "Severity (all claims)",
+      "description": "Average total incurred per claim.",
+      "type": "ratio",
+      "unit": "money",
+      "fromSummary": "yes",
+      "expr": "incurred_total / claim_count",
+      "numerator": "incurred_total",
+      "denominator": "claim_count",
+      "nulls": "Null when there are no claims.",
+      "inputs": [
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Reported incurred; open claims develop.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "severity_lost_time",
+      "label": "Severity (lost-time claims)",
+      "description": "Average total incurred per lost-time claim.",
+      "type": "ratio",
+      "unit": "money",
+      "fromSummary": "no",
+      "expr": "incurred_total(lost time) / lost_time_count",
+      "numerator": "incurred_total where claimType = indemnity",
+      "denominator": "lost_time_count",
+      "filters": [
+        "claimType = indemnity"
+      ],
+      "nulls": "Null when there are no lost-time claims.",
+      "inputs": [
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.claimType",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "Reported incurred.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "paid_to_incurred",
+      "label": "Paid-to-incurred ratio",
+      "description": "Total paid over total incurred. Low in old years means reserve-heavy open claims; 1.0 with open claims suggests under-reserving (interpretation only, no published norm, §B5).",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "yes",
+      "expr": "paid_total / incurred_total",
+      "numerator": "paid_total",
+      "denominator": "incurred_total",
+      "nulls": "Null when incurred is 0.",
+      "inputs": [
+        {
+          "field": "claim.total.paid",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Rises toward 1.0 as claims close.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "large_loss_count",
+      "label": "Large losses",
+      "description": "Claims with total incurred at or above the threshold (default $100,000); breakdown at $100K / $250K / $500K.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim where incurred >= threshold)",
+      "agg": "count",
+      "breakdown": "threshold",
+      "params": {
+        "threshold": 100000,
+        "thresholds": [
+          100000,
+          250000,
+          500000
+        ]
+      },
+      "nulls": "Never null.",
+      "inputs": [
+        {
+          "field": "claim.total.incurred",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "NCCI 'large' is $1M; pricing practice caps at $250K–$500K (§B5).",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "large_loss_share",
+      "label": "Large-loss share of incurred",
+      "description": "Incurred of claims at or above the threshold over total incurred; breakdown per threshold.",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "incurred_total(large) / incurred_total",
+      "numerator": "incurred_total where incurred >= threshold",
+      "denominator": "incurred_total",
+      "breakdown": "threshold",
+      "params": {
+        "threshold": 100000,
+        "thresholds": [
+          100000,
+          250000,
+          500000
+        ]
+      },
+      "nulls": "Null when incurred is 0.",
+      "inputs": [
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Shock losses dominate small accounts' incurred.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "capped_incurred",
+      "label": "Incurred capped per claim",
+      "description": "Total incurred with each claim limited to the cap; value at $250K, breakdown at $250K and $500K.",
+      "type": "derived",
+      "unit": "money",
+      "fromSummary": "no",
+      "expr": "sum(min(incurred, cap))",
+      "agg": "sum",
+      "breakdown": "threshold",
+      "params": {
+        "cap": 250000,
+        "caps": [
+          250000,
+          500000
+        ]
+      },
+      "nulls": "Never null.",
+      "inputs": [
+        {
+          "field": "claim.total.incurred",
+          "transformation": "TRANSFORMATION"
+        }
+      ],
+      "valuation": "Triangles and trend are often built on capped losses (§B5).",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "loss_drivers_cause_incurred",
+      "label": "Top causes by incurred",
+      "description": "The five causes of injury with the most incurred; value is the top cause's incurred.",
+      "type": "simple",
+      "unit": "money",
+      "fromSummary": "no",
+      "expr": "sum(incurred) group by cause top 5",
+      "agg": "sum",
+      "breakdown": "cause",
+      "params": {
+        "top": 5
+      },
+      "nulls": "Claims without a cause are grouped under 'unknown'; null when no claim carries a cause.",
+      "inputs": [
+        {
+          "field": "claim.causeOfInjury",
+          "transformation": "INDIRECT_GROUP_BY"
+        },
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Repeat causes and escalating medical severity are red flags (§B3).",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "loss_drivers_cause_count",
+      "label": "Top causes by count",
+      "description": "The five causes of injury with the most claims; value is the top cause's claim count.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim) group by cause top 5",
+      "agg": "count",
+      "breakdown": "cause",
+      "params": {
+        "top": 5
+      },
+      "nulls": "As loss_drivers_cause_incurred.",
+      "inputs": [
+        {
+          "field": "claim.causeOfInjury",
+          "transformation": "INDIRECT_GROUP_BY"
+        }
+      ],
+      "valuation": "Frequency leads severity (§B3).",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "loss_drivers_body_part_incurred",
+      "label": "Top body parts by incurred",
+      "description": "The five parts of body with the most incurred; value is the top one's incurred.",
+      "type": "simple",
+      "unit": "money",
+      "fromSummary": "no",
+      "expr": "sum(incurred) group by partOfBody top 5",
+      "agg": "sum",
+      "breakdown": "bodyPart",
+      "params": {
+        "top": 5
+      },
+      "nulls": "As loss_drivers_cause_incurred.",
+      "inputs": [
+        {
+          "field": "claim.partOfBody",
+          "transformation": "INDIRECT_GROUP_BY"
+        },
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "As printed.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "loss_drivers_body_part_count",
+      "label": "Top body parts by count",
+      "description": "The five parts of body with the most claims; value is the top one's claim count.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim) group by partOfBody top 5",
+      "agg": "count",
+      "breakdown": "bodyPart",
+      "params": {
+        "top": 5
+      },
+      "nulls": "As loss_drivers_cause_incurred.",
+      "inputs": [
+        {
+          "field": "claim.partOfBody",
+          "transformation": "INDIRECT_GROUP_BY"
+        }
+      ],
+      "valuation": "As printed.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "loss_drivers_nature_incurred",
+      "label": "Top natures by incurred",
+      "description": "The five natures of injury with the most incurred; value is the top one's incurred.",
+      "type": "simple",
+      "unit": "money",
+      "fromSummary": "no",
+      "expr": "sum(incurred) group by natureOfInjury top 5",
+      "agg": "sum",
+      "breakdown": "nature",
+      "params": {
+        "top": 5
+      },
+      "nulls": "As loss_drivers_cause_incurred.",
+      "inputs": [
+        {
+          "field": "claim.natureOfInjury",
+          "transformation": "INDIRECT_GROUP_BY"
+        },
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "As printed.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "loss_drivers_nature_count",
+      "label": "Top natures by count",
+      "description": "The five natures of injury with the most claims; value is the top one's claim count.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim) group by natureOfInjury top 5",
+      "agg": "count",
+      "breakdown": "nature",
+      "params": {
+        "top": 5
+      },
+      "nulls": "As loss_drivers_cause_incurred.",
+      "inputs": [
+        {
+          "field": "claim.natureOfInjury",
+          "transformation": "INDIRECT_GROUP_BY"
+        }
+      ],
+      "valuation": "As printed.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "litigation_rate",
+      "label": "Litigation rate",
+      "description": "Litigated claims over lost-time (indemnity) claims (§B5); double digits signal a trust problem (§B3).",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "count(litigated and lost time) / lost_time_count",
+      "numerator": "count(claim where litigationFlag and claimType = indemnity)",
+      "denominator": "lost_time_count",
+      "nulls": "Null when no claim carries a litigation flag, or there are no lost-time claims.",
+      "inputs": [
+        {
+          "field": "claim.litigationFlag",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "claim.claimType",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "Litigation is often added after first report.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics",
+      "caNote": ">90 % of recent CA CT claims are litigated; 99 % of post-termination CT claims (WCIRB 2026, §B3)."
+    },
+    {
+      "name": "ct_share",
+      "label": "Cumulative-trauma share",
+      "description": "Cumulative-trauma claims over all claims (see conventions.ct).",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "count(ct) / claim_count",
+      "numerator": "count(claim where ct)",
+      "denominator": "claim_count",
+      "nulls": "Null when there are no claims.",
+      "inputs": [
+        {
+          "field": "claim.cumulativeTrauma",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "claim.natureOfInjury",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "claim.causeOfInjury",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "claim.typeOfLossCode",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "claim.accidentDescription",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "CT date of injury follows LC §5412 (disability + knowledge), often long after exposure.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "CA: CT 16.5 % of all claims (2025) and 26.6–31.6 % of indemnity claims (2024–2025); ~60 % post-termination (§B3)."
+    },
+    {
+      "name": "ct_indemnity_share",
+      "label": "CT share of lost-time claims",
+      "description": "Cumulative-trauma lost-time claims over lost-time claims — the WCIRB measure.",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "count(ct and lost time) / lost_time_count",
+      "numerator": "count(claim where ct and claimType = indemnity)",
+      "denominator": "lost_time_count",
+      "nulls": "Null when there are no lost-time claims.",
+      "inputs": [
+        {
+          "field": "claim.cumulativeTrauma",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "claim.claimType",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "As ct_share.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "Compare with WCIRB's 26–32 % statewide."
+    },
+    {
+      "name": "post_termination_ct_count",
+      "label": "Post-termination CT claims",
+      "description": "CT claims whose date of injury is on or after the last day worked.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim where ct and dateOfInjury >= lastDayWorked)",
+      "agg": "count",
+      "filters": [
+        "ct",
+        "dateOfInjury >= context.lastDayWorked"
+      ],
+      "nulls": "Null when the context supplies no last day worked.",
+      "inputs": [
+        {
+          "field": "claim.dateOfInjury",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "context.lastDayWorked",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "Post-termination filings fall under the LC §5412 date-of-injury exception.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "~60 % of CA CT claims are filed post-termination (§B3)."
+    },
+    {
+      "name": "subrogation_recovery_rate",
+      "label": "Subrogation recovery rate",
+      "description": "Recoveries over gross incurred on claims with a recovery (§B5 'subrogation effectiveness').",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "sum(recovery) / sum(incurred where recovery > 0)",
+      "numerator": "sum(recoverySubrogation)",
+      "denominator": "incurred_total where recoverySubrogation > 0",
+      "nulls": "Null when no claim carries a recovery.",
+      "inputs": [
+        {
+          "field": "claim.recoverySubrogation",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Recoveries arrive late; untimely reporting inflates X-Mods (CDI Peeters, §B3).",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "CA ERP rates subrogated claims at gross incurred x (net / gross)."
+    },
+    {
+      "name": "closure_median_days",
+      "label": "Median days to close",
+      "description": "Median days from date of injury to date closed, closed claims.",
+      "type": "simple",
+      "unit": "days",
+      "fromSummary": "no",
+      "expr": "median(dateClosed - dateOfInjury) where status = closed",
+      "agg": "median",
+      "filters": [
+        "status = closed",
+        "dateClosed and dateOfInjury present"
+      ],
+      "nulls": "Null when no closed claim has both dates.",
+      "inputs": [
+        {
+          "field": "claim.dateClosed",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.dateOfInjury",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Censored: claims still open are not in it (see open_claim_age).",
+      "tolerance": {
+        "kind": "absolute",
+        "value": 0.5
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "CA CT claims close slower: 22 % open after five years vs 12 % (§B5)."
+    },
+    {
+      "name": "open_claim_age",
+      "label": "Open claims by age",
+      "description": "Open claims by days from date of injury to the valuation date — buckets <1y, 1–2y, 2–3y, 3y+; value is the open claims with a date of injury.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(open claim) group by age bucket",
+      "agg": "count",
+      "breakdown": "ageBucket",
+      "filters": [
+        "status in (open, reopened)",
+        "dateOfInjury present"
+      ],
+      "nulls": "Null when the valuation date is unknown.",
+      "inputs": [
+        {
+          "field": "claim.dateOfInjury",
+          "transformation": "INDIRECT_GROUP_BY"
+        },
+        {
+          "field": "document.valuationDate",
+          "transformation": "TRANSFORMATION"
+        }
+      ],
+      "valuation": "Old open claims carry development risk.",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "reporting_lag_median_days",
+      "label": "Median reporting lag",
+      "description": "Median days from date of injury to date reported.",
+      "type": "simple",
+      "unit": "days",
+      "fromSummary": "no",
+      "expr": "median(dateReported - dateOfInjury)",
+      "agg": "median",
+      "filters": [
+        "dateReported and dateOfInjury present"
+      ],
+      "nulls": "Null when no claim has both dates.",
+      "inputs": [
+        {
+          "field": "claim.dateReported",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.dateOfInjury",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Unaffected by development.",
+      "tolerance": {
+        "kind": "absolute",
+        "value": 0.5
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "CT dates of injury follow LC §5412, which shortens apparent lag."
+    },
+    {
+      "name": "reporting_lag_p90_days",
+      "label": "Reporting lag p90",
+      "description": "90th-percentile (nearest-rank) days from date of injury to date reported.",
+      "type": "simple",
+      "unit": "days",
+      "fromSummary": "no",
+      "expr": "p90(dateReported - dateOfInjury)",
+      "agg": "percentile",
+      "params": {
+        "percentile": 90
+      },
+      "nulls": "As reporting_lag_median_days.",
+      "inputs": [
+        {
+          "field": "claim.dateReported",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.dateOfInjury",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "Unaffected by development.",
+      "tolerance": {
+        "kind": "absolute",
+        "value": 0.5
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "reporting_lag_over_30_share",
+      "label": "Share reported after 30 days",
+      "description": "Claims reported more than 30 days after the date of injury over claims with both dates.",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "count(lag > 30) / count(lag present)",
+      "numerator": "count(claim where dateReported - dateOfInjury > 30)",
+      "denominator": "count(claim where both dates present)",
+      "params": {
+        "days": 30
+      },
+      "nulls": "As reporting_lag_median_days.",
+      "inputs": [
+        {
+          "field": "claim.dateReported",
+          "transformation": "INDIRECT_FILTER"
+        },
+        {
+          "field": "claim.dateOfInjury",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "Unaffected by development.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "incurred_by_policy_year",
+      "label": "Incurred by policy year",
+      "description": "Total incurred per policy year; value is the total.",
+      "type": "cumulative",
+      "unit": "money",
+      "fromSummary": "yes",
+      "expr": "sum(incurred) group by policyYear",
+      "agg": "sum",
+      "breakdown": "policyYear",
+      "nulls": "Claims with no policy year under 'unknown'.",
+      "inputs": [
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "period.effectiveDate",
+          "transformation": "INDIRECT_GROUP_BY"
+        }
+      ],
+      "valuation": "Each year is at a different maturity (valuation age); apply LDFs before comparing years.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "paid_by_policy_year",
+      "label": "Paid by policy year",
+      "description": "Total paid per policy year; value is the total.",
+      "type": "cumulative",
+      "unit": "money",
+      "fromSummary": "yes",
+      "expr": "sum(paid) group by policyYear",
+      "agg": "sum",
+      "breakdown": "policyYear",
+      "nulls": "As incurred_by_policy_year.",
+      "inputs": [
+        {
+          "field": "claim.total.paid",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "period.effectiveDate",
+          "transformation": "INDIRECT_GROUP_BY"
+        }
+      ],
+      "valuation": "Paid triangles avoid reserving-practice distortion but develop more (§B5).",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "severity_by_policy_year",
+      "label": "Severity by policy year",
+      "description": "Average incurred per claim per policy year; value is the all-year severity.",
+      "type": "ratio",
+      "unit": "money",
+      "fromSummary": "no",
+      "expr": "incurred_by_policy_year / claim_count_by_policy_year",
+      "numerator": "incurred_by_policy_year",
+      "denominator": "claim_count_by_policy_year",
+      "breakdown": "policyYear",
+      "nulls": "Null when there are no claims.",
+      "inputs": [
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "period.effectiveDate",
+          "transformation": "INDIRECT_GROUP_BY"
+        }
+      ],
+      "valuation": "Trend before on-leveling; actuaries apply trend and LDFs.",
+      "tolerance": {
+        "kind": "money",
+        "absolute": 1,
+        "relative": 0.001
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "paid_to_incurred_by_policy_year",
+      "label": "Paid-to-incurred by policy year",
+      "description": "Paid over incurred per policy year — the development view of one valuation; value is the all-year ratio.",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "paid_by_policy_year / incurred_by_policy_year",
+      "numerator": "paid_by_policy_year",
+      "denominator": "incurred_by_policy_year",
+      "breakdown": "policyYear",
+      "nulls": "Null per year when that year's incurred is 0.",
+      "inputs": [
+        {
+          "field": "claim.total.paid",
+          "transformation": "AGGREGATION"
+        },
+        {
+          "field": "claim.total.incurred",
+          "transformation": "AGGREGATION"
+        }
+      ],
+      "valuation": "True development factors need two valuations of the same claims (§B5); this is the single-valuation proxy.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics"
+    },
+    {
+      "name": "non_ca_share",
+      "label": "Non-CA share",
+      "description": "Claims whose jurisdiction is printed and is not CA, over all claims; breakdown is each jurisdiction's share of claims.",
+      "type": "ratio",
+      "unit": "ratio",
+      "fromSummary": "no",
+      "expr": "count(jurisdiction not CA) / claim_count",
+      "numerator": "count(claim where jurisdictionState present and not CA)",
+      "denominator": "claim_count",
+      "breakdown": "jurisdiction",
+      "nulls": "Null when there are no claims; claims with no jurisdiction count as CA-unknown, not non-CA.",
+      "inputs": [
+        {
+          "field": "claim.jurisdictionState",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "As printed.",
+      "tolerance": {
+        "kind": "relative",
+        "value": 0.01
+      },
+      "owner": "underwriting-analytics",
+      "caNote": "CA experience rating uses CA USR losses only; separate non-CA rows (§B3)."
+    },
+    {
+      "name": "non_wc_excluded_count",
+      "label": "Non-WC rows excluded",
+      "description": "Rows whose line of business is printed and is not WC (GL, auto…), excluded from every other metric.",
+      "type": "simple",
+      "unit": "count",
+      "fromSummary": "no",
+      "expr": "count(claim where lineOfBusiness present and not WC)",
+      "agg": "count",
+      "filters": [
+        "lineOfBusiness present and not WC"
+      ],
+      "nulls": "Never null.",
+      "inputs": [
+        {
+          "field": "claim.lineOfBusiness",
+          "transformation": "INDIRECT_FILTER"
+        }
+      ],
+      "valuation": "Mixed GL/auto rows on a WC run (rule S20).",
+      "tolerance": {
+        "kind": "exact"
+      },
+      "owner": "underwriting-analytics"
+    }
+  ]
+}

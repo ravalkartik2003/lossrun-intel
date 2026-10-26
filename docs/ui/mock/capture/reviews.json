@@ -1,0 +1,58 @@
+[
+  {
+    "documentId": "doc-5209d62bf384ad6a",
+    "uploadId": "up-5ef86052f242da354666",
+    "kind": "confirm-format",
+    "state": "pending",
+    "reopened": false,
+    "reasons": [
+      "deterministic fingerprint hit; all hard and soft rules pass",
+      "policy cell blank on 2 row(s), each attached to the period above: a fill-down export, or a dropped cell? Confirm the format (the confirm-format review turns fill-down on) → review with pre-fill"
+    ],
+    "badge": "format learned · shadow 2/3: Fictional Casualty Group fictional-casualty-group-pdf v1 · 0 LLM calls",
+    "formatRef": "fictional-casualty-group-pdf@1",
+    "openedAt": "2026-10-23T01:11:27.1+00:00"
+  },
+  {
+    "documentId": "doc-04777370247230a8",
+    "uploadId": "up-a1b0b76c4558fac6c51b",
+    "kind": "document-review",
+    "state": "pending",
+    "reopened": false,
+    "reasons": [
+      "4 hard rule failure(s) with every header mapped",
+      "carrier name on the page differs from the format's: \"Synthetic Property Casualty Co of America\" differs from the format's \"Synthetic Mutual Insurance Co.\" (synthetic-mutual-pdf@5)"
+    ],
+    "badge": "needs review: Synthetic Mutual Insurance Co. synthetic-mutual-pdf v5",
+    "openedAt": "2026-10-23T01:14:10.193+00:00"
+  },
+  {
+    "documentId": "doc-ebb00898278dd541",
+    "uploadId": "up-02981841d0c318be2226",
+    "kind": "document-review",
+    "state": "decided",
+    "reopened": false,
+    "reasons": [
+      "6 hard rule failure(s) with every header mapped",
+      "3 routing flag(s) raised"
+    ],
+    "badge": "needs review: Synthetic Mutual Insurance Co. synthetic-mutual-pdf v5",
+    "openedAt": "2026-10-22T22:21:09.732+00:00",
+    "decidedAt": "2026-10-22T22:21:25.527+00:00",
+    "decision": {
+      "documentId": "doc-ebb00898278dd541",
+      "action": "override",
+      "overrides": [
+        {
+          "fieldPath": "policyPeriods[0].claims[0].indemnity.reserve",
+          "newValue": 25000,
+          "rationale": "Adjuster letter 2025-08-12: indemnity reserve raised after IME (synthetic sample)"
+        }
+      ],
+      "promoteToFormat": false,
+      "user": "underwriter",
+      "role": "Underwriter",
+      "at": "2026-10-22T22:21:25.5269311+00:00"
+    }
+  }
+]

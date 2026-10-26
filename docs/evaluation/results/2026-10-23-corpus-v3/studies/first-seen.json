@@ -1,0 +1,58 @@
+{
+  "name": "first-seen",
+  "decision": "first-seen native PDF: delivered key-field accuracy 100.0% [98.8%\u2013100.0%] (n=384, docs=5); review rate 0/5; mean 2.4 model calls, $0.0429 per learn",
+  "markdown": "### First-seen native PDF templates (brief 13)\n\n5 native PDFs of the unseen carriers (c2, c3, c4, c5), each learned from an empty registry as if it were the first document of its format (\u0060gpt-5.4-mini\u0060, prompt \u0060learn-v5\u0060). Delivered = the spec published and the replay has no hard rule failure; otherwise Review.\r\n\r\n| Document | Carrier | Path | Model calls | Cost | Key fields correct |\r\n|---|---|---|---:|---:|---:|\r\n| c2-000-native-pdf | c2 | delivered | 1 | $0.0141 | 48/48 |\r\n| c2-006-native-pdf | c2 | delivered | 2 | $0.0441 | 60/60 |\r\n| c2-007-native-pdf | c2 | delivered | 2 | $0.0383 | 84/84 |\r\n| c2-014-native-pdf | c2 | delivered | 2 | $0.0410 | 108/108 |\r\n| c2-015-native-pdf | c2 | delivered | 5 | $0.0769 | 84/84 |\r\n\r\n**Result:** first-seen native PDF: delivered key-field accuracy 100.0% [98.8%\u2013100.0%] (n=384, docs=5); review rate 0/5; mean 2.4 model calls, $0.0429 per learn.\r\n",
+  "data": [
+    {
+      "carrier": "c2",
+      "doc": "c2-000-native-pdf",
+      "published": true,
+      "delivered": true,
+      "modelCalls": 1,
+      "costUsd": 0.0140629500,
+      "keyFields": 48,
+      "keyCorrect": 48
+    },
+    {
+      "carrier": "c2",
+      "doc": "c2-006-native-pdf",
+      "published": true,
+      "delivered": true,
+      "modelCalls": 2,
+      "costUsd": 0.0441276000,
+      "keyFields": 60,
+      "keyCorrect": 60
+    },
+    {
+      "carrier": "c2",
+      "doc": "c2-007-native-pdf",
+      "published": true,
+      "delivered": true,
+      "modelCalls": 2,
+      "costUsd": 0.0382511250,
+      "keyFields": 84,
+      "keyCorrect": 84
+    },
+    {
+      "carrier": "c2",
+      "doc": "c2-014-native-pdf",
+      "published": true,
+      "delivered": true,
+      "modelCalls": 2,
+      "costUsd": 0.0409554750,
+      "keyFields": 108,
+      "keyCorrect": 108
+    },
+    {
+      "carrier": "c2",
+      "doc": "c2-015-native-pdf",
+      "published": true,
+      "delivered": true,
+      "modelCalls": 5,
+      "costUsd": 0.0768753150,
+      "keyFields": 84,
+      "keyCorrect": 84
+    }
+  ],
+  "spendUsd": 0.2142724650
+}

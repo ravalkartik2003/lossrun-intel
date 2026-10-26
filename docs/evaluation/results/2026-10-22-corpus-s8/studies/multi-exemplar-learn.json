@@ -1,0 +1,65 @@
+{
+  "name": "multi-exemplar-learn",
+  "decision": "keep the multi-exemplar check optional (off by default): held-out gate passes 0/111 with vs 26/111 without",
+  "markdown": "### Multi-exemplar learn (06 answer 5)\n\nEach unseen carrier, two fresh learns from the same seed (the document the run learned the carrier from): **without** exemplars, and **with** \u0060LearnRequest.Exemplars\u0060 = 2 other documents (other renderings first), publishing only a spec that verifies on all of them. Each published spec is then verified (replay only, learn gate) on every remaining document of the carrier; an unpublished learn scores 0 (its documents would go to Review).\r\n\r\n| Carrier | Seed | Exemplars | Held-out docs | Gate passes without | Gate passes with | Published with | Calls with | Cost with | Without |\r\n|---|---|---|---:|---:|---:|---|---:|---:|---|\r\n| c2 | c2-001-native-pdf | c2-001-scan-150dpi-fax, c2-001-scan-200dpi-rotated-noisy | 37 | 26 | 0 | no | 3 | $0.0344 | without: published in 2 call(s), $0.0240 |\r\n| c3 | - |  | 0 | 0 | 0 | no | 0 | $0.0000 | no learn in the run |\r\n| c4 | c4-000-xlsx | c4-001-xlsx, c4-002-xlsx | 37 | 0 | 0 | no | 3 | $0.0363 | without: not published in 3 call(s), $0.0343 |\r\n| c5 | c5-000-csv | c5-001-csv, c5-002-csv | 37 | 0 | 0 | no | 3 | $0.0363 | without: not published in 3 call(s), $0.0388 |\r\n\r\n**Decision:** keep the multi-exemplar check optional (off by default): held-out gate passes 0/111 with vs 26/111 without.\r\n",
+  "data": [
+    {
+      "carrier": "c2",
+      "seed": "c2-001-native-pdf",
+      "exemplars": [
+        "c2-001-scan-150dpi-fax",
+        "c2-001-scan-200dpi-rotated-noisy"
+      ],
+      "heldOut": 37,
+      "passWithout": 26,
+      "passWith": 0,
+      "publishedWith": false,
+      "callsWith": 3,
+      "costWith": 0.034400250,
+      "note": "without: published in 2 call(s), $0.0240"
+    },
+    {
+      "carrier": "c3",
+      "seed": "-",
+      "exemplars": [],
+      "heldOut": 0,
+      "passWithout": 0,
+      "passWith": 0,
+      "publishedWith": false,
+      "callsWith": 0,
+      "costWith": 0,
+      "note": "no learn in the run"
+    },
+    {
+      "carrier": "c4",
+      "seed": "c4-000-xlsx",
+      "exemplars": [
+        "c4-001-xlsx",
+        "c4-002-xlsx"
+      ],
+      "heldOut": 37,
+      "passWithout": 0,
+      "passWith": 0,
+      "publishedWith": false,
+      "callsWith": 3,
+      "costWith": 0.036292050,
+      "note": "without: not published in 3 call(s), $0.0343"
+    },
+    {
+      "carrier": "c5",
+      "seed": "c5-000-csv",
+      "exemplars": [
+        "c5-001-csv",
+        "c5-002-csv"
+      ],
+      "heldOut": 37,
+      "passWithout": 0,
+      "passWith": 0,
+      "publishedWith": false,
+      "callsWith": 3,
+      "costWith": 0.036316425,
+      "note": "without: not published in 3 call(s), $0.0388"
+    }
+  ],
+  "spendUsd": 0.204118425
+}

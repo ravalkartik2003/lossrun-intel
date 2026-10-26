@@ -1,0 +1,9 @@
+# ADR 0002 — Chat service is our own .NET agent, not a Foundry Agent Service agent
+
+**Status:** accepted 2026-10-21
+
+**Context.** End users need to ask questions over (a) all historical loss runs, (b) the loss runs of one quote id, (c) an ad-hoc workspace of documents they just uploaded. Every answer must respect scope per user and be auditable with citations to page/cell. Foundry Agent Service offers hosted threads and a built-in AI Search tool, but its workflow features are preview, structured outputs are unsupported there, and scope filters would be passed by the model to the tool rather than enforced by our code.
+
+**Decision.** Implement chat as an ASP.NET Core service using the Microsoft Agent Framework (`Microsoft.Agents.AI`, stable) `ChatClientAgent` over the `delta_model` deployment, with three server-side tools — `search_documents` (Azure AI Search hybrid over extracted Layout markdown, chunked per page), `query_claims` (parameterized Azure SQL over the canonical claim table), `compute_metric` (the Use Case 2 analytics catalog). The service injects the scope predicate (`org` / `quoteId` / `workspaceId`) from the authenticated request into every tool call; the model never chooses the scope. All turns and tool calls are written to the audit log. One AI Search index carries `scope`, `quoteId`, `workspaceId` fields; ad-hoc workspaces are ingested by the same pipeline and expire via a TTL job.
+
+**Consequences.** Adds Azure AI Search to the environment (Free SKU for development, Basic when indexing an archive slice). No Agent Service dependency; no preview features on the critical path. The chat service reuses the ingestion pipeline, lineage and analytics catalog rather than a parallel stack. Revisit if Agent Service reaches GA with structured outputs and per-call tool policy enforcement.

@@ -1,0 +1,690 @@
+{
+  "name": "inter-carrier-cosine",
+  "decision": "keep the 0.95 embedding threshold with the identity guard: 0 false hits after the guard (0 before); minimum inter-carrier distance 0.185",
+  "markdown": "### Inter-carrier cosine (05 answer 2)\n\n24 documents (6 per carrier across renderings), \u0060fp-text-1\u0060 text of the first page, embedded with the run\u0027s embedding model; carrier centroids are the mean of each carrier\u0027s documents. Mean cosine, document vs carrier centroid:\r\n\r\n| from \\ to | c1 | c2 | c4 | c5 |\r\n|---|---:|---:|---:|---:|\r\n| c1 | 0.985 | 0.779 | 0.798 | 0.754 |\r\n| c2 | 0.775 | 0.979 | 0.760 | 0.747 |\r\n| c4 | 0.797 | 0.763 | 0.983 | 0.790 |\r\n| c5 | 0.764 | 0.761 | 0.802 | 0.998 |\r\n\r\n- Highest inter-carrier cosine: **0.815** (c4-002-xlsx \u2192 c1), i.e. a minimum inter-carrier distance of 0.185.\r\n- Lowest own-carrier cosine: **0.962** (c1-007-scan-150dpi-fax, scan-150dpi-fax); own-carrier identity containment min 0.63.\r\n- Cosine-only false hits (\u2265 0.95 to another carrier): **0**; after the identity guard (containment \u2265 0.8): **0**.\r\n\r\n**Decision:** keep the 0.95 embedding threshold with the identity guard: 0 false hits after the guard (0 before); minimum inter-carrier distance 0.185. Spreadsheets are matched on header/identity keys, not embeddings; they are in the matrix for completeness.\r\n",
+  "data": {
+    "own": [
+      {
+        "doc": "c1-001-native-pdf",
+        "carrier": "c1",
+        "inputType": "native-pdf",
+        "cosine": 0.9948,
+        "identity": 1
+      },
+      {
+        "doc": "c1-001-scan-150dpi-fax",
+        "carrier": "c1",
+        "inputType": "scan-150dpi-fax",
+        "cosine": 0.9948,
+        "identity": 1
+      },
+      {
+        "doc": "c1-001-scan-200dpi-rotated-noisy",
+        "carrier": "c1",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "cosine": 0.9918,
+        "identity": 1
+      },
+      {
+        "doc": "c1-001-scan-300dpi-clean",
+        "carrier": "c1",
+        "inputType": "scan-300dpi-clean",
+        "cosine": 0.9948,
+        "identity": 1
+      },
+      {
+        "doc": "c1-002-native-pdf",
+        "carrier": "c1",
+        "inputType": "native-pdf",
+        "cosine": 0.9695,
+        "identity": 1
+      },
+      {
+        "doc": "c1-007-scan-150dpi-fax",
+        "carrier": "c1",
+        "inputType": "scan-150dpi-fax",
+        "cosine": 0.9624,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-native-pdf",
+        "carrier": "c2",
+        "inputType": "native-pdf",
+        "cosine": 0.9735,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-scan-150dpi-fax",
+        "carrier": "c2",
+        "inputType": "scan-150dpi-fax",
+        "cosine": 0.9878,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-scan-200dpi-rotated-noisy",
+        "carrier": "c2",
+        "inputType": "scan-200dpi-rotated-noisy",
+        "cosine": 0.989,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-scan-300dpi-clean",
+        "carrier": "c2",
+        "inputType": "scan-300dpi-clean",
+        "cosine": 0.989,
+        "identity": 1
+      },
+      {
+        "doc": "c2-003-native-pdf",
+        "carrier": "c2",
+        "inputType": "native-pdf",
+        "cosine": 0.9686,
+        "identity": 1
+      },
+      {
+        "doc": "c2-003-scan-150dpi-fax",
+        "carrier": "c2",
+        "inputType": "scan-150dpi-fax",
+        "cosine": 0.9673,
+        "identity": 1
+      },
+      {
+        "doc": "c4-000-xlsx",
+        "carrier": "c4",
+        "inputType": "xlsx",
+        "cosine": 0.9905,
+        "identity": 0.625
+      },
+      {
+        "doc": "c4-001-xlsx",
+        "carrier": "c4",
+        "inputType": "xlsx",
+        "cosine": 0.9909,
+        "identity": 0.625
+      },
+      {
+        "doc": "c4-002-xlsx",
+        "carrier": "c4",
+        "inputType": "xlsx",
+        "cosine": 0.9804,
+        "identity": 0.625
+      },
+      {
+        "doc": "c4-003-xlsx",
+        "carrier": "c4",
+        "inputType": "xlsx",
+        "cosine": 0.9701,
+        "identity": 0.625
+      },
+      {
+        "doc": "c4-004-xlsx",
+        "carrier": "c4",
+        "inputType": "xlsx",
+        "cosine": 0.9896,
+        "identity": 0.625
+      },
+      {
+        "doc": "c4-005-xlsx",
+        "carrier": "c4",
+        "inputType": "xlsx",
+        "cosine": 0.9787,
+        "identity": 0.625
+      },
+      {
+        "doc": "c5-000-csv",
+        "carrier": "c5",
+        "inputType": "csv",
+        "cosine": 0.996,
+        "identity": 1
+      },
+      {
+        "doc": "c5-001-csv",
+        "carrier": "c5",
+        "inputType": "csv",
+        "cosine": 0.9974,
+        "identity": 1
+      },
+      {
+        "doc": "c5-002-csv",
+        "carrier": "c5",
+        "inputType": "csv",
+        "cosine": 0.9972,
+        "identity": 1
+      },
+      {
+        "doc": "c5-003-csv",
+        "carrier": "c5",
+        "inputType": "csv",
+        "cosine": 0.998,
+        "identity": 1
+      },
+      {
+        "doc": "c5-004-csv",
+        "carrier": "c5",
+        "inputType": "csv",
+        "cosine": 0.9986,
+        "identity": 1
+      },
+      {
+        "doc": "c5-005-csv",
+        "carrier": "c5",
+        "inputType": "csv",
+        "cosine": 0.9983,
+        "identity": 1
+      }
+    ],
+    "pairs": [
+      {
+        "doc": "c1-001-native-pdf",
+        "from": "c1",
+        "to": "c2",
+        "cosine": 0.78,
+        "identity": 0
+      },
+      {
+        "doc": "c1-001-native-pdf",
+        "from": "c1",
+        "to": "c4",
+        "cosine": 0.7993,
+        "identity": 0.375
+      },
+      {
+        "doc": "c1-001-native-pdf",
+        "from": "c1",
+        "to": "c5",
+        "cosine": 0.7547,
+        "identity": 1
+      },
+      {
+        "doc": "c1-001-scan-150dpi-fax",
+        "from": "c1",
+        "to": "c2",
+        "cosine": 0.78,
+        "identity": 0
+      },
+      {
+        "doc": "c1-001-scan-150dpi-fax",
+        "from": "c1",
+        "to": "c4",
+        "cosine": 0.7993,
+        "identity": 0.375
+      },
+      {
+        "doc": "c1-001-scan-150dpi-fax",
+        "from": "c1",
+        "to": "c5",
+        "cosine": 0.7547,
+        "identity": 1
+      },
+      {
+        "doc": "c1-001-scan-200dpi-rotated-noisy",
+        "from": "c1",
+        "to": "c2",
+        "cosine": 0.783,
+        "identity": 0
+      },
+      {
+        "doc": "c1-001-scan-200dpi-rotated-noisy",
+        "from": "c1",
+        "to": "c4",
+        "cosine": 0.8026,
+        "identity": 0.375
+      },
+      {
+        "doc": "c1-001-scan-200dpi-rotated-noisy",
+        "from": "c1",
+        "to": "c5",
+        "cosine": 0.766,
+        "identity": 1
+      },
+      {
+        "doc": "c1-001-scan-300dpi-clean",
+        "from": "c1",
+        "to": "c2",
+        "cosine": 0.78,
+        "identity": 0
+      },
+      {
+        "doc": "c1-001-scan-300dpi-clean",
+        "from": "c1",
+        "to": "c4",
+        "cosine": 0.7993,
+        "identity": 0.375
+      },
+      {
+        "doc": "c1-001-scan-300dpi-clean",
+        "from": "c1",
+        "to": "c5",
+        "cosine": 0.7547,
+        "identity": 1
+      },
+      {
+        "doc": "c1-002-native-pdf",
+        "from": "c1",
+        "to": "c2",
+        "cosine": 0.7741,
+        "identity": 0
+      },
+      {
+        "doc": "c1-002-native-pdf",
+        "from": "c1",
+        "to": "c4",
+        "cosine": 0.7967,
+        "identity": 0.375
+      },
+      {
+        "doc": "c1-002-native-pdf",
+        "from": "c1",
+        "to": "c5",
+        "cosine": 0.7436,
+        "identity": 1
+      },
+      {
+        "doc": "c1-007-scan-150dpi-fax",
+        "from": "c1",
+        "to": "c2",
+        "cosine": 0.7764,
+        "identity": 0
+      },
+      {
+        "doc": "c1-007-scan-150dpi-fax",
+        "from": "c1",
+        "to": "c4",
+        "cosine": 0.7904,
+        "identity": 0.375
+      },
+      {
+        "doc": "c1-007-scan-150dpi-fax",
+        "from": "c1",
+        "to": "c5",
+        "cosine": 0.7493,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-native-pdf",
+        "from": "c2",
+        "to": "c1",
+        "cosine": 0.7704,
+        "identity": 0.25
+      },
+      {
+        "doc": "c2-001-native-pdf",
+        "from": "c2",
+        "to": "c4",
+        "cosine": 0.7721,
+        "identity": 0.375
+      },
+      {
+        "doc": "c2-001-native-pdf",
+        "from": "c2",
+        "to": "c5",
+        "cosine": 0.7396,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-scan-150dpi-fax",
+        "from": "c2",
+        "to": "c1",
+        "cosine": 0.7728,
+        "identity": 0.25
+      },
+      {
+        "doc": "c2-001-scan-150dpi-fax",
+        "from": "c2",
+        "to": "c4",
+        "cosine": 0.767,
+        "identity": 0.375
+      },
+      {
+        "doc": "c2-001-scan-150dpi-fax",
+        "from": "c2",
+        "to": "c5",
+        "cosine": 0.7546,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-scan-200dpi-rotated-noisy",
+        "from": "c2",
+        "to": "c1",
+        "cosine": 0.7712,
+        "identity": 0.25
+      },
+      {
+        "doc": "c2-001-scan-200dpi-rotated-noisy",
+        "from": "c2",
+        "to": "c4",
+        "cosine": 0.763,
+        "identity": 0.375
+      },
+      {
+        "doc": "c2-001-scan-200dpi-rotated-noisy",
+        "from": "c2",
+        "to": "c5",
+        "cosine": 0.7526,
+        "identity": 1
+      },
+      {
+        "doc": "c2-001-scan-300dpi-clean",
+        "from": "c2",
+        "to": "c1",
+        "cosine": 0.7712,
+        "identity": 0.25
+      },
+      {
+        "doc": "c2-001-scan-300dpi-clean",
+        "from": "c2",
+        "to": "c4",
+        "cosine": 0.7631,
+        "identity": 0.375
+      },
+      {
+        "doc": "c2-001-scan-300dpi-clean",
+        "from": "c2",
+        "to": "c5",
+        "cosine": 0.7521,
+        "identity": 1
+      },
+      {
+        "doc": "c2-003-native-pdf",
+        "from": "c2",
+        "to": "c1",
+        "cosine": 0.7795,
+        "identity": 0.25
+      },
+      {
+        "doc": "c2-003-native-pdf",
+        "from": "c2",
+        "to": "c4",
+        "cosine": 0.7478,
+        "identity": 0.375
+      },
+      {
+        "doc": "c2-003-native-pdf",
+        "from": "c2",
+        "to": "c5",
+        "cosine": 0.7413,
+        "identity": 1
+      },
+      {
+        "doc": "c2-003-scan-150dpi-fax",
+        "from": "c2",
+        "to": "c1",
+        "cosine": 0.7824,
+        "identity": 0.25
+      },
+      {
+        "doc": "c2-003-scan-150dpi-fax",
+        "from": "c2",
+        "to": "c4",
+        "cosine": 0.7471,
+        "identity": 0.375
+      },
+      {
+        "doc": "c2-003-scan-150dpi-fax",
+        "from": "c2",
+        "to": "c5",
+        "cosine": 0.7432,
+        "identity": 1
+      },
+      {
+        "doc": "c4-000-xlsx",
+        "from": "c4",
+        "to": "c1",
+        "cosine": 0.794,
+        "identity": 0.25
+      },
+      {
+        "doc": "c4-000-xlsx",
+        "from": "c4",
+        "to": "c2",
+        "cosine": 0.7635,
+        "identity": 0
+      },
+      {
+        "doc": "c4-000-xlsx",
+        "from": "c4",
+        "to": "c5",
+        "cosine": 0.7861,
+        "identity": 1
+      },
+      {
+        "doc": "c4-001-xlsx",
+        "from": "c4",
+        "to": "c1",
+        "cosine": 0.7948,
+        "identity": 0.25
+      },
+      {
+        "doc": "c4-001-xlsx",
+        "from": "c4",
+        "to": "c2",
+        "cosine": 0.7622,
+        "identity": 0
+      },
+      {
+        "doc": "c4-001-xlsx",
+        "from": "c4",
+        "to": "c5",
+        "cosine": 0.7892,
+        "identity": 1
+      },
+      {
+        "doc": "c4-002-xlsx",
+        "from": "c4",
+        "to": "c1",
+        "cosine": 0.8151,
+        "identity": 0.25
+      },
+      {
+        "doc": "c4-002-xlsx",
+        "from": "c4",
+        "to": "c2",
+        "cosine": 0.7623,
+        "identity": 0
+      },
+      {
+        "doc": "c4-002-xlsx",
+        "from": "c4",
+        "to": "c5",
+        "cosine": 0.8022,
+        "identity": 1
+      },
+      {
+        "doc": "c4-003-xlsx",
+        "from": "c4",
+        "to": "c1",
+        "cosine": 0.7965,
+        "identity": 0.25
+      },
+      {
+        "doc": "c4-003-xlsx",
+        "from": "c4",
+        "to": "c2",
+        "cosine": 0.754,
+        "identity": 0
+      },
+      {
+        "doc": "c4-003-xlsx",
+        "from": "c4",
+        "to": "c5",
+        "cosine": 0.7854,
+        "identity": 1
+      },
+      {
+        "doc": "c4-004-xlsx",
+        "from": "c4",
+        "to": "c1",
+        "cosine": 0.7871,
+        "identity": 0.25
+      },
+      {
+        "doc": "c4-004-xlsx",
+        "from": "c4",
+        "to": "c2",
+        "cosine": 0.7555,
+        "identity": 0
+      },
+      {
+        "doc": "c4-004-xlsx",
+        "from": "c4",
+        "to": "c5",
+        "cosine": 0.786,
+        "identity": 1
+      },
+      {
+        "doc": "c4-005-xlsx",
+        "from": "c4",
+        "to": "c1",
+        "cosine": 0.7938,
+        "identity": 0.25
+      },
+      {
+        "doc": "c4-005-xlsx",
+        "from": "c4",
+        "to": "c2",
+        "cosine": 0.7821,
+        "identity": 0
+      },
+      {
+        "doc": "c4-005-xlsx",
+        "from": "c4",
+        "to": "c5",
+        "cosine": 0.7936,
+        "identity": 1
+      },
+      {
+        "doc": "c5-000-csv",
+        "from": "c5",
+        "to": "c1",
+        "cosine": 0.7676,
+        "identity": 0.5
+      },
+      {
+        "doc": "c5-000-csv",
+        "from": "c5",
+        "to": "c2",
+        "cosine": 0.761,
+        "identity": 0
+      },
+      {
+        "doc": "c5-000-csv",
+        "from": "c5",
+        "to": "c4",
+        "cosine": 0.8131,
+        "identity": 0.125
+      },
+      {
+        "doc": "c5-001-csv",
+        "from": "c5",
+        "to": "c1",
+        "cosine": 0.7596,
+        "identity": 0.5
+      },
+      {
+        "doc": "c5-001-csv",
+        "from": "c5",
+        "to": "c2",
+        "cosine": 0.7605,
+        "identity": 0
+      },
+      {
+        "doc": "c5-001-csv",
+        "from": "c5",
+        "to": "c4",
+        "cosine": 0.7921,
+        "identity": 0.125
+      },
+      {
+        "doc": "c5-002-csv",
+        "from": "c5",
+        "to": "c1",
+        "cosine": 0.7596,
+        "identity": 0.5
+      },
+      {
+        "doc": "c5-002-csv",
+        "from": "c5",
+        "to": "c2",
+        "cosine": 0.757,
+        "identity": 0
+      },
+      {
+        "doc": "c5-002-csv",
+        "from": "c5",
+        "to": "c4",
+        "cosine": 0.7979,
+        "identity": 0.125
+      },
+      {
+        "doc": "c5-003-csv",
+        "from": "c5",
+        "to": "c1",
+        "cosine": 0.762,
+        "identity": 0.5
+      },
+      {
+        "doc": "c5-003-csv",
+        "from": "c5",
+        "to": "c2",
+        "cosine": 0.7588,
+        "identity": 0
+      },
+      {
+        "doc": "c5-003-csv",
+        "from": "c5",
+        "to": "c4",
+        "cosine": 0.7969,
+        "identity": 0.125
+      },
+      {
+        "doc": "c5-004-csv",
+        "from": "c5",
+        "to": "c1",
+        "cosine": 0.7656,
+        "identity": 0.5
+      },
+      {
+        "doc": "c5-004-csv",
+        "from": "c5",
+        "to": "c2",
+        "cosine": 0.7654,
+        "identity": 0
+      },
+      {
+        "doc": "c5-004-csv",
+        "from": "c5",
+        "to": "c4",
+        "cosine": 0.8048,
+        "identity": 0.125
+      },
+      {
+        "doc": "c5-005-csv",
+        "from": "c5",
+        "to": "c1",
+        "cosine": 0.7679,
+        "identity": 0.5
+      },
+      {
+        "doc": "c5-005-csv",
+        "from": "c5",
+        "to": "c2",
+        "cosine": 0.7651,
+        "identity": 0
+      },
+      {
+        "doc": "c5-005-csv",
+        "from": "c5",
+        "to": "c4",
+        "cosine": 0.8063,
+        "identity": 0.125
+      }
+    ],
+    "identity": {
+      "c1": "synthetic mutual insurance co",
+      "c2": "fictional casualty group",
+      "c4": "notional workers comp exchange|claims detail|policy summary",
+      "c5": ""
+    }
+  },
+  "spendUsd": 0.003050619
+}

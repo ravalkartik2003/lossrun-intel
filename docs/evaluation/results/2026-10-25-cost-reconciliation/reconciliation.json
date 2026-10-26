@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "meteredUsd": 27.9620,
+    "billedUsd": 28.3626,
+    "ratio": 0.9859,
+    "exportDate": "2026-10-25",
+    "from": "2026-10-24",
+    "platformBilledUsd": 3.9532,
+    "scope": "AI services (Content Understanding, model and embedding tokens); platform costs are standing, not per document."
+  },
+  "days": [
+    {
+      "date": "2026-10-24",
+      "aiMeteredUsd": 21.3613,
+      "aiBilledUsd": 22.7708,
+      "platformBilledUsd": 2.4371,
+      "meteredEvents": 4692
+    },
+    {
+      "date": "2026-10-25",
+      "aiMeteredUsd": 6.6008,
+      "aiBilledUsd": 5.5919,
+      "platformBilledUsd": 1.5161,
+      "meteredEvents": 3279
+    }
+  ]
+}

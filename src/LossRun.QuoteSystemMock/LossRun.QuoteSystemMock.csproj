@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Brief 12b: a mock quote management system (Guidewire Cloud API shape) for the integration demo and the load test. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <RootNamespace>LossRun.QuoteSystemMock</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.52.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.ApplicationInsights" Version="2.51.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.23.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LossRun.Integration\LossRun.Integration.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="host.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Brief 25: the loss-information page and its recorded replay, served by the mock (no build step, no framework). -->
+    <EmbeddedResource Include="wwwroot\loss-information.html" LogicalName="LossRun.QuoteSystemMock.wwwroot.loss-information.html" />
+    <EmbeddedResource Include="wwwroot\replay.json" LogicalName="LossRun.QuoteSystemMock.wwwroot.replay.json" />
+    <EmbeddedResource Include="wwwroot\loss-information.js" LogicalName="LossRun.QuoteSystemMock.wwwroot.loss-information.js" />
+  </ItemGroup>
+
+</Project>

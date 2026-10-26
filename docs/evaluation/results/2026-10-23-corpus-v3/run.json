@@ -1,0 +1,88 @@
+{
+  "gitSha": "72647d368b6f95136fdcaf09dd427a2343d52503\u002Bdirty",
+  "startedAt": "2026-10-23T16:07:32.0869529+00:00",
+  "finishedAt": "2026-10-23T16:08:33.2468482+00:00",
+  "mode": "local",
+  "cuInline": false,
+  "learnModel": "gpt-5.4-mini",
+  "learnModelVersion": "2026-03-17",
+  "deltaModel": "gpt-5.4-mini",
+  "deltaModelVersion": "2026-03-17",
+  "embeddingModel": "text-embedding-3-large",
+  "promptVersion": "learn-v5",
+  "learnGateVersion": "learn-gate-0.1.0",
+  "priceTableVersion": "0.1.0",
+  "catalogVersion": "0.4.0",
+  "corpusGeneratorVersion": "corpus-gen-0.3.0",
+  "corpusSeed": 8,
+  "documents": 40,
+  "registryAtEnd": [
+    {
+      "formatId": "notional-workers-comp-exchange-xlsx",
+      "version": 1,
+      "carrierName": "Notional Workers Comp Exchange",
+      "fileKind": "spreadsheet",
+      "createdBy": "learn:gpt-5.4-mini@2026-03-17",
+      "createdAt": "2026-10-23T16:08:31.5902481+00:00",
+      "status": "active",
+      "verificationGate": "spreadsheet-totals"
+    },
+    {
+      "formatId": "synthetic-mutual-csv",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "spreadsheet",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T00:00:00+00:00",
+      "status": "active"
+    },
+    {
+      "formatId": "synthetic-mutual-pdf",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T00:00:00+00:00",
+      "status": "active"
+    },
+    {
+      "formatId": "synthetic-mutual-pdf",
+      "version": 2,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T20:00:00+00:00",
+      "status": "active",
+      "supersedes": "synthetic-mutual-pdf@1"
+    },
+    {
+      "formatId": "synthetic-mutual-pdf",
+      "version": 3,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T21:00:00+00:00",
+      "status": "active",
+      "supersedes": "synthetic-mutual-pdf@2"
+    },
+    {
+      "formatId": "synthetic-mutual-pdf",
+      "version": 5,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "pdf",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T23:00:00+00:00",
+      "status": "active",
+      "supersedes": "synthetic-mutual-pdf@4"
+    },
+    {
+      "formatId": "synthetic-mutual-xlsx",
+      "version": 1,
+      "carrierName": "Synthetic Mutual Insurance Co.",
+      "fileKind": "spreadsheet",
+      "createdBy": "hand",
+      "createdAt": "2026-10-22T00:00:00+00:00",
+      "status": "active"
+    }
+  ]
+}

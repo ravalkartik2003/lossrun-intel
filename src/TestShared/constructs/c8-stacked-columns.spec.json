@@ -1,0 +1,49 @@
+{
+  "specSchema": "carrier-format-0.4.0",
+  "formatId": "construct-c8-stacked-columns",
+  "version": 1,
+  "carrierName": "Illustrative Comp Assurance",
+  "fileKind": "pdf",
+  "createdBy": "hand",
+  "createdAt": "2026-10-24T00:00:00+00:00",
+  "reviewedBy": "brief-19 (hand-authored for the ADR 0018 construct fixtures)",
+  "description": "Corpus-gen 0.4.0 construct c8: the first three columns print two fields stacked in one cell (part 0 / part 1).",
+  "fingerprint": { "identityKey": "", "headerKey": "", "identityText": "", "headerText": "", "embedding": null },
+  "tableLocator": {
+    "headerMatchMin": 0.8,
+    "blockAnchor": "^Policy (?<policyNumber>\\S+)\\s+Policy Period (?<effectiveDate>\\d{2}/\\d{2}/\\d{4})\\s*-\\s*(?<expirationDate>\\d{2}/\\d{2}/\\d{4})$",
+    "rowKinds": [
+      { "kind": "subtotal", "regex": "^Subtotal\\b", "countsRegex": "\\(\\s*(?<claimCount>\\d+)\\s+claims?\\s*\\)" },
+      { "kind": "grandTotal", "regex": "^GRAND TOTAL\\b", "countsRegex": "\\(\\s*(?<claimCount>\\d+)\\s+claims?\\s*\\)" }
+    ]
+  },
+  "columnMap": [
+    { "source": "Claim Number Claim Type", "target": "claim.claimNumber", "part": 0, "normalizer": { "type": "claimNumber" } },
+    { "source": "Claim Number Claim Type", "target": "claim.claimType", "part": 1, "normalizer": { "type": "enum", "glossaryField": "claim.claimType" } },
+    { "source": "Claimant Status", "target": "claim.claimantName", "part": 0, "normalizer": { "type": "text" } },
+    { "source": "Claimant Status", "target": "claim.status", "part": 1, "normalizer": { "type": "enum", "glossaryField": "claim.status" } },
+    { "source": "Injury Date Reported", "target": "claim.dateOfInjury", "part": 0, "normalizer": { "type": "date" } },
+    { "source": "Injury Date Reported", "target": "claim.dateReported", "part": 1, "normalizer": { "type": "date" } },
+    { "source": "Ind Paid", "target": "claim.indemnity.paid", "normalizer": { "type": "currency" } },
+    { "source": "Med Paid", "target": "claim.medical.paid", "normalizer": { "type": "currency" } },
+    { "source": "Exp Paid", "target": "claim.expense.paid", "normalizer": { "type": "currency" } },
+    { "source": "Ind Reserve", "target": "claim.indemnity.reserve", "normalizer": { "type": "currency" } },
+    { "source": "Med Reserve", "target": "claim.medical.reserve", "normalizer": { "type": "currency" } },
+    { "source": "Total Incurred", "target": "claim.total.incurred", "normalizer": { "type": "currency" } }
+  ],
+  "ignoredHeaders": [],
+  "periods": { "source": "blockAnchor" },
+  "documentFields": [
+    { "target": "document.carrierName", "locator": { "type": "regex", "pattern": "(?<value>Illustrative Comp Assurance)" }, "normalizer": { "type": "text" } },
+    { "target": "document.insuredName", "locator": { "type": "regex", "pattern": "^Insured:\\s*(?<value>.+?)\\s*(Valued as of:.*)?$" }, "normalizer": { "type": "text" } },
+    { "target": "document.valuationDate", "locator": { "type": "regex", "pattern": "Valued as of:\\s*(?<value>\\d{2}/\\d{2}/\\d{4})" }, "normalizer": { "type": "date" } },
+    { "target": "document.expenseTreatment", "locator": { "type": "const", "value": "separate" }, "reason": "Expense paid has its own column." }
+  ],
+  "derivedRules": [
+    { "target": "indemnity.incurred", "sum": ["indemnity.paid", "indemnity.reserve"], "when": "absent", "appliesTo": ["claim", "totals"] },
+    { "target": "medical.incurred", "sum": ["medical.paid", "medical.reserve"], "when": "absent", "appliesTo": ["claim", "totals"] },
+    { "target": "expense.incurred", "sum": ["expense.paid"], "when": "absent", "appliesTo": ["claim", "totals"] }
+  ],
+  "periodBoundaries": { "expirationInclusive": false },
+  "validation": { "expectedApplicable": ["R-01", "R-02", "R-10", "R-12"], "softOverrides": [] }
+}

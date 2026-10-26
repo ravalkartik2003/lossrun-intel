@@ -1,0 +1,1040 @@
+{
+  "quote": "Q-DEMO-11",
+  "conversations": [
+    {
+      "id": "largest",
+      "steps": [
+        {
+          "question": "Which claim has the largest total incurred?",
+          "facts": [
+            {
+              "label": "claim",
+              "text": "WC-22-0001",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Is it open or closed?",
+          "facts": [
+            {
+              "label": "status",
+              "text": "closed",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "What is its date of injury?",
+          "facts": [
+            {
+              "label": "date of injury",
+              "text": "2022-09-15",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "And the second largest?",
+          "facts": [
+            {
+              "label": "second claim",
+              "text": "22-FC-00342",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "How do those two compare in total incurred?",
+          "facts": [
+            {
+              "label": "first incurred",
+              "text": "21500.00",
+              "money": true
+            },
+            {
+              "label": "second incurred",
+              "text": "11900.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Which policy year is the second one in?",
+          "facts": [
+            {
+              "label": "policy year",
+              "text": "2022",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Go back to the first claim we discussed: how much has been paid on it?",
+          "facts": [
+            {
+              "label": "first paid",
+              "text": "21500.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Summarise the claims we discussed, with their claim numbers.",
+          "facts": [
+            {
+              "label": "first claim",
+              "text": "WC-22-0001",
+              "money": false
+            },
+            {
+              "label": "second claim",
+              "text": "22-FC-00342",
+              "money": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smallest",
+      "steps": [
+        {
+          "question": "Which claim has the smallest total incurred?",
+          "facts": [
+            {
+              "label": "claim",
+              "text": "23-FC-00198",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Is it open or closed?",
+          "facts": [
+            {
+              "label": "status",
+              "text": "closed",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "What is its date of injury?",
+          "facts": [
+            {
+              "label": "date of injury",
+              "text": "2023-10-11",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "And the next smallest?",
+          "facts": [
+            {
+              "label": "second claim",
+              "text": "WC-24-0003",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "How do those two compare in total incurred?",
+          "facts": [
+            {
+              "label": "first incurred",
+              "text": "320.00",
+              "money": true
+            },
+            {
+              "label": "second incurred",
+              "text": "650.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Which policy year is the second one in?",
+          "facts": [
+            {
+              "label": "policy year",
+              "text": "2023",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Go back to the first claim we discussed: how much has been paid on it?",
+          "facts": [
+            {
+              "label": "first paid",
+              "text": "320.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Summarise the claims we discussed, with their claim numbers.",
+          "facts": [
+            {
+              "label": "first claim",
+              "text": "23-FC-00198",
+              "money": false
+            },
+            {
+              "label": "second claim",
+              "text": "WC-24-0003",
+              "money": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "open",
+      "steps": [
+        {
+          "question": "Which open claim has the largest total incurred?",
+          "facts": [
+            {
+              "label": "claim",
+              "text": "22-FC-00342",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Is it open or closed?",
+          "facts": [
+            {
+              "label": "status",
+              "text": "reopened|open",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "What is its date of injury?",
+          "facts": [
+            {
+              "label": "date of injury",
+              "text": "2022-08-02",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "And the open claim with the smallest?",
+          "facts": [
+            {
+              "label": "second claim",
+              "text": "23-FC-00051",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "How do those two compare in total incurred?",
+          "facts": [
+            {
+              "label": "first incurred",
+              "text": "11900.00",
+              "money": true
+            },
+            {
+              "label": "second incurred",
+              "text": "1250.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Which policy year is the second one in?",
+          "facts": [
+            {
+              "label": "policy year",
+              "text": "2023",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Go back to the first claim we discussed: how much has been paid on it?",
+          "facts": [
+            {
+              "label": "first paid",
+              "text": "7400.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Summarise the claims we discussed, with their claim numbers.",
+          "facts": [
+            {
+              "label": "first claim",
+              "text": "22-FC-00342",
+              "money": false
+            },
+            {
+              "label": "second claim",
+              "text": "23-FC-00051",
+              "money": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oldest",
+      "steps": [
+        {
+          "question": "Which claim has the earliest date of injury?",
+          "facts": [
+            {
+              "label": "claim",
+              "text": "22-FC-00117",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Is it open or closed?",
+          "facts": [
+            {
+              "label": "status",
+              "text": "closed",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "What is its date of injury?",
+          "facts": [
+            {
+              "label": "date of injury",
+              "text": "2022-03-14",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "And the claim with the latest date of injury?",
+          "facts": [
+            {
+              "label": "second claim",
+              "text": "WC-24-0003",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "How do those two compare in total incurred?",
+          "facts": [
+            {
+              "label": "first incurred",
+              "text": "11600.00",
+              "money": true
+            },
+            {
+              "label": "second incurred",
+              "text": "650.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Which policy year is the second one in?",
+          "facts": [
+            {
+              "label": "policy year",
+              "text": "2023",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Go back to the first claim we discussed: how much has been paid on it?",
+          "facts": [
+            {
+              "label": "first paid",
+              "text": "11600.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Summarise the claims we discussed, with their claim numbers.",
+          "facts": [
+            {
+              "label": "first claim",
+              "text": "22-FC-00117",
+              "money": false
+            },
+            {
+              "label": "second claim",
+              "text": "WC-24-0003",
+              "money": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metrics",
+      "steps": [
+        {
+          "question": "What is the total incurred across all claims?",
+          "facts": [
+            {
+              "label": "total incurred",
+              "text": "49220.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "How many claims are open or reopened?",
+          "facts": [
+            {
+              "label": "open count",
+              "text": "3",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Of those, which has the largest total incurred?",
+          "facts": [
+            {
+              "label": "largest open",
+              "text": "22-FC-00342",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "What is its reserve?",
+          "facts": [
+            {
+              "label": "reserve",
+              "text": "4500.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "And the largest claim overall?",
+          "facts": [
+            {
+              "label": "largest",
+              "text": "WC-22-0001",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "Is that the same claim as the one before?",
+          "facts": [
+            {
+              "label": "same or not",
+              "text": "not|different|no,",
+              "money": false
+            }
+          ]
+        },
+        {
+          "question": "What share of the total incurred is that largest claim?",
+          "facts": [
+            {
+              "label": "largest incurred",
+              "text": "21500.00",
+              "money": true
+            }
+          ]
+        },
+        {
+          "question": "Remind me of the total we started with.",
+          "facts": [
+            {
+              "label": "total incurred",
+              "text": "49220.00",
+              "money": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "turns": [
+    {
+      "conversation": "largest",
+      "turn": 1,
+      "question": "Which claim has the largest total incurred?",
+      "answer": "The claim with the largest total incurred is WC-22-0001 at $21,500.00 [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002196,
+      "totalMs": 2961,
+      "verbatimTurns": 0,
+      "pass": true
+    },
+    {
+      "conversation": "largest",
+      "turn": 2,
+      "question": "Is it open or closed?",
+      "answer": "It is closed [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002708,
+      "totalMs": 22603,
+      "verbatimTurns": 1,
+      "pass": true
+    },
+    {
+      "conversation": "largest",
+      "turn": 3,
+      "question": "What is its date of injury?",
+      "answer": "Its date of injury is 2022-09-15 [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002291,
+      "totalMs": 2831,
+      "verbatimTurns": 2,
+      "pass": true
+    },
+    {
+      "conversation": "largest",
+      "turn": 4,
+      "question": "And the second largest?",
+      "answer": "The second largest total incurred is $11,900.00 on claim 22-FC-00342, and its values are pending review [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002434,
+      "totalMs": 3059,
+      "verbatimTurns": 3,
+      "pass": true
+    },
+    {
+      "conversation": "largest",
+      "turn": 5,
+      "question": "How do those two compare in total incurred?",
+      "answer": "WC-22-0001 has the higher total incurred at $21,500.00, versus $11,900.00 for 22-FC-00342 [C1][C2]. The difference is $9,600.00 [C1][C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003556,
+      "totalMs": 4520,
+      "verbatimTurns": 4,
+      "pass": true
+    },
+    {
+      "conversation": "largest",
+      "turn": 6,
+      "question": "Which policy year is the second one in?",
+      "answer": "The second one is in policy year 2022 [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003013,
+      "totalMs": 3088,
+      "verbatimTurns": 5,
+      "pass": true
+    },
+    {
+      "conversation": "largest",
+      "turn": 7,
+      "question": "Go back to the first claim we discussed: how much has been paid on it?",
+      "answer": "The first claim we discussed, WC-22-0001, has $21,500.00 paid [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003130,
+      "totalMs": 3147,
+      "verbatimTurns": 6,
+      "pass": true
+    },
+    {
+      "conversation": "largest",
+      "turn": 8,
+      "question": "Summarise the claims we discussed, with their claim numbers.",
+      "answer": "We discussed two claims: WC-22-0001, which is closed with $21,500.00 incurred and $21,500.00 paid [C1]; and 22-FC-00342, which is reopened/open with $11,900.00 incurred, $7,400.00 paid, and $4,500.00 reserved, but its values are pending review [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.004965,
+      "totalMs": 5270,
+      "verbatimTurns": 7,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 1,
+      "question": "Which claim has the smallest total incurred?",
+      "answer": "The smallest total incurred is $320.00 on claim 23-FC-00198 [C1]. Its values are pending review, not approved [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003494,
+      "totalMs": 3012,
+      "verbatimTurns": 0,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 2,
+      "question": "Is it open or closed?",
+      "answer": "The quote is not closed/ready yet: 1 document is pending review and 1 is straight-through, with 94 unresolved fields total [C1]. The pending document\u2019s values are not approved yet [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002651,
+      "totalMs": 4770,
+      "verbatimTurns": 1,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 3,
+      "question": "What is its date of injury?",
+      "answer": "Its date of injury is 2023-10-11 [S1]. The current value is still unresolved pending review [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002957,
+      "totalMs": 3604,
+      "verbatimTurns": 2,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 4,
+      "question": "And the next smallest?",
+      "answer": "The next smallest is claim WC-24-0003 with $650.00 incurred [C2]. It is closed [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002587,
+      "totalMs": 15106,
+      "verbatimTurns": 3,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 5,
+      "question": "How do those two compare in total incurred?",
+      "answer": "Claim 23-FC-00198 has $320.00 total incurred [C1], while WC-24-0003 has $650.00 [C2]. WC-24-0003 is higher by $330.00 [C1][C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003469,
+      "totalMs": 16905,
+      "verbatimTurns": 4,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 6,
+      "question": "Which policy year is the second one in?",
+      "answer": "The second one, WC-24-0003, is in policy year 2023 [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002869,
+      "totalMs": 4230,
+      "verbatimTurns": 5,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 7,
+      "question": "Go back to the first claim we discussed: how much has been paid on it?",
+      "answer": "It has paid $320.00 on claim 23-FC-00198 [C1]. Its paid value is approved [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003102,
+      "totalMs": 3327,
+      "verbatimTurns": 6,
+      "pass": true
+    },
+    {
+      "conversation": "smallest",
+      "turn": 8,
+      "question": "Summarise the claims we discussed, with their claim numbers.",
+      "answer": "We discussed two claims: 23-FC-00198, with total incurred of $320.00 [C1], and WC-24-0003, with total incurred of $650.00 [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003830,
+      "totalMs": 3776,
+      "verbatimTurns": 7,
+      "pass": true
+    },
+    {
+      "conversation": "open",
+      "turn": 1,
+      "question": "Which open claim has the largest total incurred?",
+      "answer": "The open claim with the largest total incurred is claim 22-FC-00342 at $11,900.00 [C1]. It is a reopened claim, so it counts as open for underwriting purposes [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002705,
+      "totalMs": 4378,
+      "verbatimTurns": 0,
+      "pass": true
+    },
+    {
+      "conversation": "open",
+      "turn": 2,
+      "question": "Is it open or closed?",
+      "answer": "The quote is still open/not ready: 1 loss-run document is pending review and the quote is not ready [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003224,
+      "totalMs": 4504,
+      "verbatimTurns": 1,
+      "pass": true
+    },
+    {
+      "conversation": "open",
+      "turn": 3,
+      "question": "What is its date of injury?",
+      "answer": "The date of injury for claim 22-FC-00342 is 2022-08-02, but it is pending review and not yet approved [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002632,
+      "totalMs": 2881,
+      "verbatimTurns": 2,
+      "pass": true
+    },
+    {
+      "conversation": "open",
+      "turn": 4,
+      "question": "And the open claim with the smallest?",
+      "answer": "The open claim with the smallest total incurred is 23-FC-00051 at $1,250.00 [C1]. It is pending review [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002428,
+      "totalMs": 2559,
+      "verbatimTurns": 3,
+      "pass": true
+    },
+    {
+      "conversation": "open",
+      "turn": 5,
+      "question": "How do those two compare in total incurred?",
+      "answer": "Do you mean the two loss-run documents, or the two open claims we just discussed?",
+      "missing": [
+        "first incurred",
+        "second incurred"
+      ],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002033,
+      "totalMs": 2524,
+      "verbatimTurns": 4,
+      "pass": false
+    },
+    {
+      "conversation": "open",
+      "turn": 6,
+      "question": "Which policy year is the second one in?",
+      "answer": "The second one is in policy year 2023 [C1]. It is pending review [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002784,
+      "totalMs": 4659,
+      "verbatimTurns": 5,
+      "pass": true
+    },
+    {
+      "conversation": "open",
+      "turn": 7,
+      "question": "Go back to the first claim we discussed: how much has been paid on it?",
+      "answer": "Claim 22-FC-00342 has $7,400.00 paid [C1]. It is still pending review [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002678,
+      "totalMs": 2922,
+      "verbatimTurns": 6,
+      "pass": true
+    },
+    {
+      "conversation": "open",
+      "turn": 8,
+      "question": "Summarise the claims we discussed, with their claim numbers.",
+      "answer": "The two claims we discussed are 22-FC-00342 and 23-FC-00051 [C1][C2]. Claim 22-FC-00342 is reopened with $11,900.00 incurred [C1]. Claim 23-FC-00051 is open with $1,250.00 incurred [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003629,
+      "totalMs": 4309,
+      "verbatimTurns": 7,
+      "pass": true
+    },
+    {
+      "conversation": "oldest",
+      "turn": 1,
+      "question": "Which claim has the earliest date of injury?",
+      "answer": "The earliest date of injury is on claim 22-FC-00117, with date of injury 2022-03-14 [C1]. That claim is pending review, so the value is not yet approved [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002452,
+      "totalMs": 3517,
+      "verbatimTurns": 0,
+      "pass": true
+    },
+    {
+      "conversation": "oldest",
+      "turn": 2,
+      "question": "Is it open or closed?",
+      "answer": "It is closed [C1]. The claim is pending review, so that status is not yet approved [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002363,
+      "totalMs": 2895,
+      "verbatimTurns": 1,
+      "pass": true
+    },
+    {
+      "conversation": "oldest",
+      "turn": 3,
+      "question": "What is its date of injury?",
+      "answer": "Its date of injury is 2022-03-14 [C2]. The value is currently unresolved/pending review, so it is not yet approved [C1][C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002866,
+      "totalMs": 3231,
+      "verbatimTurns": 2,
+      "pass": true
+    },
+    {
+      "conversation": "oldest",
+      "turn": 4,
+      "question": "And the claim with the latest date of injury?",
+      "answer": "The latest date of injury is on claim WC-24-0003, dated 2024-01-20 [C13]. That claim is approved straight-through [C13].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.009857,
+      "totalMs": 7548,
+      "verbatimTurns": 3,
+      "pass": true
+    },
+    {
+      "conversation": "oldest",
+      "turn": 5,
+      "question": "How do those two compare in total incurred?",
+      "answer": "FICTIONAL CASUALTY GROUP has $25,070 total incurred, while Synthetic Mutual Insurance Co. has $24,150 [C1][C5]. FICTIONAL CASUALTY GROUP is higher by $920 [C1][C5].",
+      "missing": [
+        "first incurred",
+        "second incurred"
+      ],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.010132,
+      "totalMs": 10842,
+      "verbatimTurns": 4,
+      "pass": false
+    },
+    {
+      "conversation": "oldest",
+      "turn": 6,
+      "question": "Which policy year is the second one in?",
+      "answer": "The second one is in policy year 2023 [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002426,
+      "totalMs": 3264,
+      "verbatimTurns": 5,
+      "pass": true
+    },
+    {
+      "conversation": "oldest",
+      "turn": 7,
+      "question": "Go back to the first claim we discussed: how much has been paid on it?",
+      "answer": "It has $11,600 paid [C1]. That claim is still pending review, so the value is not yet approved [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002489,
+      "totalMs": 2878,
+      "verbatimTurns": 6,
+      "pass": true
+    },
+    {
+      "conversation": "oldest",
+      "turn": 8,
+      "question": "Summarise the claims we discussed, with their claim numbers.",
+      "answer": "We discussed two claims: 22-FC-00117, a closed FICTIONAL CASUALTY GROUP claim with $11,600 incurred and a 2022-03-14 injury date [C1]; and WC-24-0003, a closed medical-only Synthetic Mutual Insurance Co. claim with $650 incurred and a 2024-01-20 injury date [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003876,
+      "totalMs": 3888,
+      "verbatimTurns": 7,
+      "pass": true
+    },
+    {
+      "conversation": "metrics",
+      "turn": 1,
+      "question": "What is the total incurred across all claims?",
+      "answer": "Total incurred across all claims is $49,220.00 [M1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.001596,
+      "totalMs": 2222,
+      "verbatimTurns": 0,
+      "pass": true
+    },
+    {
+      "conversation": "metrics",
+      "turn": 2,
+      "question": "How many claims are open or reopened?",
+      "answer": "There are 3 open claims [M1]. Open includes reopened claims in this catalog [M1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.001745,
+      "totalMs": 2962,
+      "verbatimTurns": 1,
+      "pass": true
+    },
+    {
+      "conversation": "metrics",
+      "turn": 3,
+      "question": "Of those, which has the largest total incurred?",
+      "answer": "The largest total incurred among the open/reopened claims is claim 22-FC-00342 at $11,900.00 [C1]. Its values are still pending review [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002399,
+      "totalMs": 3469,
+      "verbatimTurns": 2,
+      "pass": true
+    },
+    {
+      "conversation": "metrics",
+      "turn": 4,
+      "question": "What is its reserve?",
+      "answer": "Its reserve is $4,500.00 [C1]. The reserve value is approved [C2].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003039,
+      "totalMs": 4778,
+      "verbatimTurns": 3,
+      "pass": true
+    },
+    {
+      "conversation": "metrics",
+      "turn": 5,
+      "question": "And the largest claim overall?",
+      "answer": "The largest claim overall is WC-22-0001 at $21,500.00 [C1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002124,
+      "totalMs": 2940,
+      "verbatimTurns": 4,
+      "pass": true
+    },
+    {
+      "conversation": "metrics",
+      "turn": 6,
+      "question": "Is that the same claim as the one before?",
+      "answer": "No. The prior claim was 22-FC-00342, while the largest claim overall is WC-22-0001 [C1][C2].",
+      "missing": [
+        "same or not"
+      ],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003637,
+      "totalMs": 5593,
+      "verbatimTurns": 5,
+      "pass": false
+    },
+    {
+      "conversation": "metrics",
+      "turn": 7,
+      "question": "What share of the total incurred is that largest claim?",
+      "answer": "The largest claim, WC-22-0001, is $21,500.00 of the $49,220.00 total incurred, or about 43.7% [C1][M1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.003356,
+      "totalMs": 4103,
+      "verbatimTurns": 6,
+      "pass": true
+    },
+    {
+      "conversation": "metrics",
+      "turn": 8,
+      "question": "Remind me of the total we started with.",
+      "answer": "The total incurred we started with was $49,220.00 [M1].",
+      "missing": [],
+      "invalidCitations": 0,
+      "unverified": 0,
+      "leak": false,
+      "costUsd": 0.002430,
+      "totalMs": 2620,
+      "verbatimTurns": 7,
+      "pass": true
+    }
+  ]
+}

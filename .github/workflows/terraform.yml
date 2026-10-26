@@ -1,0 +1,39 @@
+# Brief 30 item 25 (ADR 0027): every change to infra/ is formatted, validates, and passes the offline posture tests
+# (infra/tests/*.tftest.hcl: mock providers, plan only). No Azure sign-in, no backend, no secrets: init runs with
+# -backend=false, so this never touches the remote state. `terraform plan` against a real subscription stays a
+# deliberate, signed-in step (infra/README.md "Plan / apply").
+name: terraform
+
+on:
+  push:
+    branches: [main]
+    paths: ["infra/**", ".github/workflows/terraform.yml"]
+  pull_request:
+    paths: ["infra/**", ".github/workflows/terraform.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.16.5"
+      - name: "terraform fmt -check"
+        run: terraform -chdir=infra fmt -check -recursive
+      - name: "terraform init (no backend, no sign-in)"
+        run: |
+          terraform -chdir=infra init -backend=false -input=false
+          terraform -chdir=infra/bootstrap init -backend=false -input=false
+      - name: "terraform validate"
+        run: |
+          terraform -chdir=infra validate
+          terraform -chdir=infra/bootstrap validate
+      - name: "POC values keep the POC plan (mock providers)"
+        run: terraform -chdir=infra test -filter=tests/poc.tftest.hcl -var-file=environments/poc.tfvars
+      - name: "The sandbox example plans; Basic auth and a missing audience are refused (mock providers)"
+        run: terraform -chdir=infra test -filter=tests/sandbox.tftest.hcl -var-file=environments/sandbox.tfvars.example

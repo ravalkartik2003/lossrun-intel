@@ -1,0 +1,6 @@
+# shell scripts run under bash: LF on every checkout
+*.sh text eol=lf
+.githooks/* text eol=lf
+tools/sample-hashes.txt text eol=lf
+# PDFs are binary: a PDF without NUL bytes (reportlab output) would otherwise get CRLF on a Windows checkout and break its offsets
+*.pdf binary

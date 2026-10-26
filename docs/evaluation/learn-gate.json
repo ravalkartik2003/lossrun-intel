@@ -1,0 +1,44 @@
+{
+  "learnGateVersion": "learn-gate-0.3.0",
+  "description": "Publish gate for learned carrier format specs (ADR 0007 as amended in the 06/06b reviews). A spec learned from a document is published only when its replay on that document has 0 hard rule failures, no unmapped headers, no normalization or lint issues, a claim number on every claim row, and then either (a) every required field present and a printed subtotal or grand total reconciling (R-10/R-12), or (b) for spreadsheets only, no printed total contradicting the rows, at least minCoverage of the required fields present, and the carrier named by the submission. Required-field semantics: document.* present; period.* present on every policy period; claim.* present on at least one claim (alwaysRequired claim fields on every claim). Values supplied by the submission context (lineage extractor 'context') count as present: conditionalFromContext lists the fields a spreadsheet may take from the context instead of printing them. Code: LossRun.Learning.LearnGate (reads this file; never the other way round).",
+  "requiredFields": [
+    "document.carrierName",
+    "document.valuationDate",
+    "period.policyNumber",
+    "period.effectiveDate",
+    "period.expirationDate",
+    "claim.claimNumber",
+    "claim.dateOfInjury",
+    "claim.status",
+    "claim.indemnity.paid",
+    "claim.medical.paid",
+    "claim.total.incurred"
+  ],
+  "alwaysRequired": ["claim.claimNumber"],
+  "totalsRules": ["R-10", "R-12"],
+  "summaryOnly": {
+    "description": "ADR 0017: a summary-only loss run (every policy period summary-only) has no claim rows, so the claim fields and R-10/R-12 do not apply. It is published only with the document fields, a printed total incurred on every period row, a label or date or policy number on every period, the period rows reconciling to a printed grand total (R-26), and every amount read covered by such a check (everyAmountChecked).",
+    "requiredFields": ["document.carrierName", "document.valuationDate", "period.subtotals.total.incurred"],
+    "periodIdentityAnyOf": ["policyNumber", "periodLabel", "effectiveDate"],
+    "totalsRules": ["R-26"],
+    "everyAmountChecked": true,
+    "everyAmountCheckedDescription": "Brief 22 Answers 6: every money amount the summary-only replay reads (period subtotals and report totals: indemnity, medical, expense, total, recoveries) must be checked by a passing printed-total rule (R-26 for its component and measure). An amount no total checks is reported as an issue and the spec is not published. Recoveries are in no totals rule, so a summary-only spec that reads them routes to review. It is the rule that would have stopped the brief 22 wrong publish (two analysis columns read as recoveries) before the mapped-and-ignored lint existed; both stay."
+  },
+  "exemplars": {
+    "count": 2,
+    "description": "Brief 30 item 19: a drift repair (delta, or the learn it escalates to) must also verify on the format's last N accepted documents, not only on the document that drifted (carrier-format-memory.md: multi-exemplar verification). The first learn of a format has none."
+  },
+  "fileKinds": {
+    "pdf": {
+      "requirePrintedTotals": true,
+      "minCoverage": 1.0,
+      "requireCarrierFromContext": false
+    },
+    "spreadsheet": {
+      "requirePrintedTotals": false,
+      "minCoverage": 0.8,
+      "requireCarrierFromContext": true,
+      "conditionalFromContext": ["document.valuationDate", "period.effectiveDate", "period.expirationDate"]
+    }
+  }
+}

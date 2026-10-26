@@ -1,0 +1,28 @@
+# /import — import the archive and ask the data team for truth
+
+You are helping the operator import a folder of historical loss runs for the evaluation (`docs/operations/blind-run.md` §1–2, `docs/operations/playbook.md`).
+
+## Rules (always)
+- **Never commit or paste archive content.** Archive files, extractions, graphs and specs built from them stay outside the repository (`$WORK` is outside it). Reports name categories, carriers' folder labels, rule ids, field names and counts — never a claimant name, claim number, amount or quoted line (`tuning-loop.md` §7).
+- **There is no blind set yet**, but after `/seal-handoff` there will be: never open a `blind/` folder, and never open or run a file the seal lists under `blind[]`.
+- **No secrets in commands or chat.** Passwords come from Key Vault into `LOSSRUN_PASSWORDS` in the shell, never written down.
+- **Stop and ask** if the archive path is inside the repository.
+
+## Before you start
+The operator sets, in a bash shell at the repository root:
+`LR` (the built tool, `tools/lossrun/lossrun`), `ARCHIVE` (the folder of loss runs, one sub-folder per carrier), `WORK` (a work folder outside the repository), and optionally `$WORK/carriers.csv` (`file,carrier`).
+
+## Do
+```bash run
+mkdir -p "$WORK"
+"$LR" eval import --in "$ARCHIVE" --out "$WORK/corpus" $( [ -f "$WORK/carriers.csv" ] && echo --carriers "$WORK/carriers.csv" )
+python -c "import json,collections,sys; m=json.load(open(sys.argv[1],encoding='utf-8')); c=collections.Counter((e['carrier'],e['inputType']) for e in m['entries']); [print(f'{k[0]:<40} {k[1]:<28} {v:>4}') for k,v in sorted(c.items())]; print(f'{len(m[\"entries\"])} file(s); strata with fewer than 2 files cannot be on both the tuning and the blind side')" "$WORK/corpus/manifest.json"
+echo "truth request for the data team: $WORK/corpus/truth-request.csv ($(($(wc -l < "$WORK/corpus/truth-request.csv") - 1)) row(s))"
+```
+
+## Then tell the operator, and stop
+1. The carrier × input-type table, the strata with fewer than 2 files, files with an unknown carrier (fix `carriers.csv` and import again), and skipped files with their reason.
+2. **What the data team must supply:** `$WORK/truth.csv`, one row per claim of the policies in `truth-request.csv`, with exactly the header
+   `carrier,policy_number,claim_number,date_of_injury,valuation_date,indemnity_paid,indemnity_reserve,medical_paid,medical_reserve,expense_paid,total_incurred`
+   (dates `yyyy-mm-dd`; plain numbers; empty when unknown; `valuation_date` as valued in the claims system — `blind-run.md` §2).
+3. Next: `/seal-handoff`. Nothing runs until the evaluator has sealed.

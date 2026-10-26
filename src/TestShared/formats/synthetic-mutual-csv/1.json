@@ -1,0 +1,53 @@
+{
+  "specSchema": "carrier-format-0.1.0",
+  "formatId": "synthetic-mutual-csv",
+  "version": 1,
+  "carrierName": "Synthetic Mutual Insurance Co.",
+  "fileKind": "spreadsheet",
+  "createdBy": "hand",
+  "createdAt": "2026-10-22T00:00:00+00:00",
+  "reviewedBy": "brief-05 (hand-authored for the synthetic fixtures)",
+  "description": "Synthetic Mutual CSV export: one wide row per claim, no letterhead, no valuation date, no subtotals. Matched on the header tuple alone (no identity text).",
+  "fingerprint": {
+    "identityKey": "61b5224b53464e125ed4bb8c47d72f2c",
+    "headerKey": "bd0096e5523332f8540857e0dbab3eaf",
+    "identityText": "",
+    "headerText": "policy|claim|claimant|doi|report date|status|type|indemnity paid|indemnity reserve|medical paid|medical reserve|expense paid|total incurred|sheets 1",
+    "embedding": null
+  },
+  "tableLocator": {
+    "headerMatchMin": 0.8,
+    "rowKinds": []
+  },
+  "columnMap": [
+    { "source": "Policy #", "target": "period.policyNumber", "normalizer": { "type": "text" } },
+    { "source": "Claim #", "target": "claim.claimNumber", "normalizer": { "type": "claimNumber" } },
+    { "source": "Claimant", "target": "claim.claimantName", "normalizer": { "type": "text" } },
+    { "source": "DOI", "target": "claim.dateOfInjury", "normalizer": { "type": "date" } },
+    { "source": "Report Date", "target": "claim.dateReported", "normalizer": { "type": "date" } },
+    { "source": "Status", "target": "claim.status", "normalizer": { "type": "enum", "glossaryField": "claim.status" } },
+    { "source": "Status", "target": "claim.rawStatus", "normalizer": { "type": "text" } },
+    { "source": "Type", "target": "claim.claimType", "normalizer": { "type": "enum", "glossaryField": "claim.claimType" } },
+    { "source": "Indemnity Paid", "target": "claim.indemnity.paid", "normalizer": { "type": "currency" } },
+    { "source": "Indemnity Reserve", "target": "claim.indemnity.reserve", "normalizer": { "type": "currency" } },
+    { "source": "Medical Paid", "target": "claim.medical.paid", "normalizer": { "type": "currency" } },
+    { "source": "Medical Reserve", "target": "claim.medical.reserve", "normalizer": { "type": "currency" } },
+    { "source": "Expense Paid", "target": "claim.expense.paid", "normalizer": { "type": "currency" } },
+    { "source": "Total Incurred", "target": "claim.total.incurred", "normalizer": { "type": "currency" } }
+  ],
+  "ignoredHeaders": [],
+  "periods": { "source": "column", "column": "Policy #" },
+  "documentFields": [
+    { "target": "document.carrierName", "locator": { "type": "const", "value": "Synthetic Mutual Insurance Co." }, "reason": "The CSV export carries no letterhead; the carrier is known from the submission that delivered it. Confirm per upload (brief 05 Questions)." },
+    { "target": "document.expenseTreatment", "locator": { "type": "const", "value": "separate" }, "reason": "Expense paid has its own column; no expense reserve column is exported." }
+  ],
+  "derivedRules": [
+    { "target": "indemnity.incurred", "sum": ["indemnity.paid", "indemnity.reserve"], "when": "absent", "appliesTo": ["claim"] },
+    { "target": "medical.incurred", "sum": ["medical.paid", "medical.reserve"], "when": "absent", "appliesTo": ["claim"] }
+  ],
+  "periodBoundaries": { "expirationInclusive": false },
+  "validation": {
+    "expectedApplicable": ["R-01", "R-02", "R-03", "R-07", "R-09", "R-19", "R-21"],
+    "softOverrides": []
+  }
+}

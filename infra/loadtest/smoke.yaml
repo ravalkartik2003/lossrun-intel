@@ -1,0 +1,26 @@
+# Azure Load Testing definition for brief 12b (run with infra/scripts/run-loadtest.ps1 or `az load test create/update --load-test-config-file`).
+# 25 underwriters x 10 minutes (+1 min ramp) on one engine; pass/fail criteria from the brief. "0 x 429 on CU/model" and the
+# server-side p95s are read from Application Insights after the run (docs/operations/runbook.md, Load test).
+version: v0.1
+testId: lossrun-12b-smoke
+displayName: lossrun 12b - smoke (2 users)
+description: 25 underwriters - features, what-ifs, documents, override, chat; 1 upload/min
+testType: JMX
+testPlan: underwriters.jmx
+engineInstances: 1
+configurationFiles:
+  - lossrun-export.csv
+properties:
+  userPropertyFile: smoke.properties
+failureCriteria:
+  - features-hit: p95(response_time_ms) > 300
+  - override: p95(response_time_ms) > 1500
+  - document: p95(response_time_ms) > 1000
+  - percentage(error) > 0.5
+autoStop:
+  errorPercentage: 50
+  timeWindow: 60
+secrets:
+  - name: devauth
+    value: {{keyvault_uri}}secrets/devauth-users
+keyVaultReferenceIdentityType: SystemAssigned
